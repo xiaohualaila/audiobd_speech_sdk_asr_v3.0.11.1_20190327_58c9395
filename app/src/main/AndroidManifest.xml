@@ -123,14 +123,32 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="精简版唤醒和语音识别"
             android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".RecordActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="语音识别"
+            android:screenOrientation="landscape">
+
+        </activity>
+        <activity
+            android:name=".RobotWakeUpActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="语音唤醒"
+            android:screenOrientation="landscape">
+
+        </activity>
+        <activity
+            android:name=".RobotTTSActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="语音合成"
+            android:screenOrientation="landscape">
+
+        </activity>
+
+        <activity
+            android:name=".RobotMainActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="语音识别"
             android:screenOrientation="landscape">
