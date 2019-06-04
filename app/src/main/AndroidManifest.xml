@@ -148,9 +148,16 @@
         </activity>
 
         <activity
-            android:name=".RobotMainActivity"
+            android:name=".RobotSpeechActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="语音识别"
+            android:screenOrientation="landscape">
+
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="主页面"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

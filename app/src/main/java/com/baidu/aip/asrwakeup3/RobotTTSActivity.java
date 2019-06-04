@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
-
 import com.baidu.aip.asrwakeup3.control.InitConfig;
 import com.baidu.aip.asrwakeup3.listener.UiMessageListener;
 import com.baidu.aip.asrwakeup3.util.AutoCheck2;
@@ -15,7 +14,6 @@ import com.baidu.tts.chainofresponsibility.logger.LoggerProxy;
 import com.baidu.tts.client.SpeechSynthesizer;
 import com.baidu.tts.client.SpeechSynthesizerListener;
 import com.baidu.tts.client.TtsMode;
-
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;

@@ -2,21 +2,24 @@ package com.baidu.aip.asrwakeup3;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Map;
 import java.util.TreeMap;
-
 import butterknife.BindView;
 
+/**
+ * 百度唤醒
+ */
 public class RobotWakeUpActivity extends BaseActivity implements EventListener {
 
     @BindView(R.id.text)
@@ -26,15 +29,15 @@ public class RobotWakeUpActivity extends BaseActivity implements EventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_robot);
         wakeup = EventManagerFactory.create(this, "wp");
         wakeup.registerListener(this); //  EventListener 中 onEvent方法
+
     }
 
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_robot2;
+        return R.layout.activity_robot;
     }
 
     @Override
