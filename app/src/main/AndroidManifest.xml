@@ -133,14 +133,14 @@
 
         </activity>
         <activity
-            android:name=".RobotWakeUpActivity"
+            android:name=".mvp.activity.RobotWakeUpActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="语音唤醒"
             android:screenOrientation="landscape">
 
         </activity>
         <activity
-            android:name=".RobotTTSActivity"
+            android:name=".mvp.activity.RobotTTSActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="语音合成"
             android:screenOrientation="landscape">
@@ -148,14 +148,14 @@
         </activity>
 
         <activity
-            android:name=".RobotSpeechActivity"
+            android:name=".mvp.activity.RobotSpeechActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="语音识别"
             android:screenOrientation="landscape">
 
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".mvp.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="主页面"
             android:screenOrientation="landscape">
