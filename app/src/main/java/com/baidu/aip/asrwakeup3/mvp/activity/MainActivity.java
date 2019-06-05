@@ -26,8 +26,10 @@ import butterknife.BindView;
 
 public class MainActivity extends RobotSpeechActivity implements  MainContract.View  {
     private static final String TAG ="MainActivity" ;
-    @BindView(R.id.imageView)
-    ImageView imageView;
+    @BindView(R.id.eye)
+    ImageView eye;
+    @BindView(R.id.mouth)
+    ImageView mouth;
     @BindView(R.id.img)
     ImageView img;
     private MainPresenter presenter;
@@ -38,7 +40,8 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new MainPresenter(this, SchedulerProvider.getInstance());
-        Glide.with(this).load(R.drawable.xiaohui).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
+        Glide.with(this).load(R.drawable.eye).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(eye);
+        Glide.with(this).load(R.drawable.mouth).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mouth);
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         am=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
@@ -85,9 +88,12 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
             text = result;
         }
 
+        Log.i(TAG,"羽白结果----> text  "+text);
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
             speak(text);
+            Glide.with(this).load(R.drawable.eye_speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(eye);
+            Glide.with(this).load(R.drawable.mouth_speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mouth);
         } else {
             playVoice(voice);
         }
@@ -99,11 +105,14 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         }
     }
 
+    //语音合成播放完成
     protected void ttsFinish(){
         if(isShowImage){
             img.setVisibility(View.GONE);
             isShowImage =false;
         }
+        Glide.with(this).load(R.drawable.eye).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(eye);
+        Glide.with(this).load(R.drawable.mouth).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mouth);
     }
 
     @Override

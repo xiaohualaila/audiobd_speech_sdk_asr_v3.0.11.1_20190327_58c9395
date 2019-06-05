@@ -27,6 +27,7 @@
             android:name=".mvp.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="主页面"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
