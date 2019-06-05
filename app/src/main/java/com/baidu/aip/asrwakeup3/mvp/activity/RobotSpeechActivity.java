@@ -21,7 +21,6 @@ import java.util.Map;
 public class RobotSpeechActivity extends RobotTTSActivity {
     protected MyRecognizer myRecognizer;
     private CommonRecogParams apiParams;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

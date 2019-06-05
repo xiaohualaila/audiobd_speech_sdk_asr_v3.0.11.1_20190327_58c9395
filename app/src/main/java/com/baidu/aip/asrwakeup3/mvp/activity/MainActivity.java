@@ -49,8 +49,8 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
             mediaPlayer.reset();
         }
         stop();//停止语音合成说话
-        stopSpeech();
-    //    cancelSpeech();
+      //  stopSpeech();
+        cancelSpeech();
         speak("在");
         startSpeech();
 
@@ -69,11 +69,9 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         Log.i(TAG,"结果---->  "+text);
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
-            Log.i("sss","ssss"+text );
             speak(text);
         } else {
             playVoice(voice);
-            Log.i("sss","voice" );
         }
         String image_url = bean.getImagereply();
         if (!TextUtils.isEmpty(image_url)) {
@@ -82,7 +80,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         } else {
             img.setVisibility(View.GONE);
         }
-        speak( result);
     }
 
     @Override

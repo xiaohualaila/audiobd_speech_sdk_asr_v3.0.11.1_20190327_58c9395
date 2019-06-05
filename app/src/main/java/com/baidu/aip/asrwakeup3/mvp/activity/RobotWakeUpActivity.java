@@ -2,20 +2,15 @@ package com.baidu.aip.asrwakeup3.mvp.activity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
-
 import com.baidu.aip.asrwakeup3.R;
-import com.baidu.aip.asrwakeup3.mvp.activity.BaseActivity;
 import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
 import com.baidu.speech.EventManagerFactory;
 import com.baidu.speech.asr.SpeechConstant;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.Map;
 import java.util.TreeMap;
-import butterknife.BindView;
 
 /**
  * 百度唤醒

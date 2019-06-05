@@ -57,8 +57,8 @@ public class MessageStatusRecogListener extends StatusRecogListener {
     public void onAsrFinalResult(String[] results, RecogResult recogResult) {
         super.onAsrFinalResult(results, recogResult);
         String message = results[0];
-        sendStatusMessage(SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL,
-                 recogResult.getOrigalJson());
+   //     sendStatusMessage(SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL,
+   //              recogResult.getOrigalJson());
         sendMessage(message, status, true);
     }
 
