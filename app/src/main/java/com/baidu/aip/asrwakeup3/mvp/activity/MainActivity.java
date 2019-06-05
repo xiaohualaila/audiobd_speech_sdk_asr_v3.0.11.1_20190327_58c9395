@@ -32,6 +32,8 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     ImageView img;
     private MainPresenter presenter;
     private MediaPlayer mediaPlayer;
+    private boolean isShowImage = false;
+    private AudioManager am;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,34 +41,50 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         Glide.with(this).load(R.drawable.xiaohui).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(imageView);
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        am=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
     }
 
-    public  void wakup(){
+    public void wakup(){
         Log.i(TAG,"唤醒");
-    //    wakeUpAndUnlock();
+        wakeUpAndUnlock();
         if(mediaPlayer.isPlaying()){
             mediaPlayer.stop();
             mediaPlayer.reset();
         }
+        stopSpeech();//停止语音识别
         stop();//停止语音合成说话
-      //  stopSpeech();
-        cancelSpeech();
         speak("在");
+//        cancelSpeech();//取消语音识别
         startSpeech();
-
     }
 
     protected void backMsg(String msg){
         Log.i(TAG,"msg ---->     "+msg);
+        if(msg.equals("增大音量")||msg.equals("增加声音")||msg.equals("声音变大")||msg.equals("增加音量")){
+            am.adjustStreamVolume (AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
+            return;
+        } else if(msg.equals("减小音量")||msg.equals("减小声音")||msg.equals("声音变小")){
+            am.adjustStreamVolume (AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增大
+            return;
+        }
+
+        toastLong(msg);
         presenter.getYubaiData(msg);
     }
 
     @Override
     public void getDataSuccess(YUBAIBean bean) {
+        Log.i(TAG,"羽白结果---->  "+bean.toString());
         String result = bean.getResult();
-        int index =result.indexOf("\n");
-        String text = result.substring(0,index);
-        Log.i(TAG,"结果---->  "+text);
+        String text;
+        try {
+            int index =result.indexOf("你还可以问我");
+            text = result.substring(0,index);
+            Log.i(TAG,"羽白结果----> text  "+text);
+        }catch (Exception e){
+            text = result;
+        }
+
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
             speak(text);
@@ -77,8 +95,14 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         if (!TextUtils.isEmpty(image_url)) {
             img.setVisibility(View.VISIBLE);
             ImageUtils.image(mContext,image_url,img);
-        } else {
+            isShowImage = true;
+        }
+    }
+
+    protected void ttsFinish(){
+        if(isShowImage){
             img.setVisibility(View.GONE);
+            isShowImage =false;
         }
     }
 

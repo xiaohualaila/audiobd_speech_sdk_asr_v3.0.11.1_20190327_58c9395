@@ -172,4 +172,26 @@ public class YUBAIBean {
     public void setVoice(String voice) {
         this.voice = voice;
     }
+
+    @Override
+    public String toString() {
+        return "YUBAIBean{" +
+                "errmsg='" + errmsg + '\'' +
+                ", imagereply='" + imagereply + '\'' +
+                ", ip='" + ip + '\'' +
+                ", ipcity='" + ipcity + '\'' +
+                ", label='" + label + '\'' +
+                ", query='" + query + '\'' +
+                ", result='" + result + '\'' +
+                ", succeed=" + succeed +
+                ", time='" + time + '\'' +
+                ", timeused=" + timeused +
+                ", type='" + type + '\'' +
+                ", usertype='" + usertype + '\'' +
+                ", city=" + city +
+                ", keyword=" + keyword +
+                ", number=" + number +
+                ", voice='" + voice + '\'' +
+                '}';
+    }
 }

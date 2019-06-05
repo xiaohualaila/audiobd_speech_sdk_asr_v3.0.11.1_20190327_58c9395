@@ -14,6 +14,8 @@ import com.baidu.aip.asrwakeup3.uiasr.params.CommonRecogParams;
 import com.baidu.aip.asrwakeup3.uiasr.params.OnlineRecogParams;
 import java.util.Map;
 
+import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED_RESULT;
+
 /**
  * 语音识别
  */
@@ -21,12 +23,37 @@ import java.util.Map;
 public class RobotSpeechActivity extends RobotTTSActivity {
     protected MyRecognizer myRecognizer;
     private CommonRecogParams apiParams;
+    protected Handler handlerSpeech;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        IRecogListener listener = new MessageStatusRecogListener(handler);
+        handlerSpeech = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                handleSpeechMsg(msg);
+            }
+
+        };
+        IRecogListener listener = new MessageStatusRecogListener(handlerSpeech);
         myRecognizer = new MyRecognizer(this, listener);
         apiParams = new OnlineRecogParams();
+
+    }
+
+    /**
+     * 返回语音识别的结果
+     * @param msg
+     */
+    protected void handleSpeechMsg(Message msg) {
+        if (msg.obj != null) {
+            if (msg.what == STATUS_FINISHED_RESULT) {
+                String result = msg.obj.toString();
+                result = result.substring(0,result.length()-1);
+                backMsg(result);
+            }
+            Log.i("xxx", "语音识别---->" + msg.obj.toString()+"  what "+msg.what);
+        }
     }
 
     /**

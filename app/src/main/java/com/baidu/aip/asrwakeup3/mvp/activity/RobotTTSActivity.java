@@ -58,11 +58,12 @@ public class RobotTTSActivity extends RobotWakeUpActivity {
      */
     protected void handleMsg(Message msg) {
         if (msg.obj != null) {
-            if (msg.what == STATUS_FINISHED_RESULT) {
-                String result = msg.obj.toString();
-                backMsg(result);
+            String str =msg.obj.toString();
+            String result = str.substring(0,4);
+            if(result.equals("播放结束")){
+                ttsFinish();
             }
-            Log.i("sss", "---->" + msg.obj.toString());
+            Log.i("xxx", "语音合成" + msg.obj.toString());
         }
     }
 
@@ -70,6 +71,9 @@ public class RobotTTSActivity extends RobotWakeUpActivity {
 
     }
 
+    protected void ttsFinish(){
+
+    }
     private void initTTs() {
         LoggerProxy.printable(true); // 日志打印在logcat中
         boolean isMix = ttsMode.equals(TtsMode.MIX);
