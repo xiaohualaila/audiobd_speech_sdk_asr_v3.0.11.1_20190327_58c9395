@@ -21,9 +21,6 @@ import butterknife.BindView;
  * 百度唤醒
  */
 public class RobotWakeUpActivity extends BaseActivity implements EventListener {
-
-    @BindView(R.id.text)
-    TextView text;
     private EventManager wakeup;
 
     @Override
@@ -31,9 +28,7 @@ public class RobotWakeUpActivity extends BaseActivity implements EventListener {
         super.onCreate(savedInstanceState);
         wakeup = EventManagerFactory.create(this, "wp");
         wakeup.registerListener(this); //  EventListener 中 onEvent方法
-
     }
-
 
     @Override
     protected int getLayout() {
@@ -90,5 +85,10 @@ public class RobotWakeUpActivity extends BaseActivity implements EventListener {
         stop();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        wakeup.send(SpeechConstant.WAKEUP_STOP, "{}", null, 0, 0);
+    }
 
 }

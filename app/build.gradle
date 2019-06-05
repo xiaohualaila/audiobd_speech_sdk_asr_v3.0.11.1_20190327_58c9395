@@ -4,6 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.baidu.speech.recognizerdemo"
+//        applicationId "com.aier.ardemo"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 22

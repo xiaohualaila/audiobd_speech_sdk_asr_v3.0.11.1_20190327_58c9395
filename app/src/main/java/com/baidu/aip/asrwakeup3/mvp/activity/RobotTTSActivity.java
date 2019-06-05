@@ -57,10 +57,9 @@ public class RobotTTSActivity extends RobotWakeUpActivity {
      * @param msg
      */
     protected void handleMsg(Message msg) {
-        if (text != null && msg.obj != null) {
+        if (msg.obj != null) {
             if (msg.what == STATUS_FINISHED_RESULT) {
                 String result = msg.obj.toString();
-                text.setText(result);
                 backMsg(result);
             }
             Log.i("sss", "---->" + msg.obj.toString());
@@ -184,10 +183,6 @@ public class RobotTTSActivity extends RobotWakeUpActivity {
         mSpeechSynthesizer.stop();
     }
 
-    public void speek(View view) {
-        speak("小明今天上班了吗");
-
-    }
     /**
      * 销毁时需要释放识别资源。
      */
