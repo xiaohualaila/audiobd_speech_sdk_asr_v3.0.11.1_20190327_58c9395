@@ -61,10 +61,10 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     protected void backMsg(String msg){
         Log.i(TAG,"msg ---->     "+msg);
         if(msg.equals("增大音量")||msg.equals("增加声音")||msg.equals("声音变大")||msg.equals("增加音量")){
-            am.adjustStreamVolume (AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
+            am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
             return;
         } else if(msg.equals("减小音量")||msg.equals("减小声音")||msg.equals("声音变小")){
-            am.adjustStreamVolume (AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增大
+            am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增大
             return;
         }
 
