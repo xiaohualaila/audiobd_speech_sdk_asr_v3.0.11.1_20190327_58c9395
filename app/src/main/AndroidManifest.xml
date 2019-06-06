@@ -36,6 +36,7 @@
             android:name=".mvp.activity.OpenCVCameraActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="人脸识别"
+            android:launchMode="singleTask"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

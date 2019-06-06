@@ -73,6 +73,9 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         } else if(msg.equals("减小音量")||msg.equals("减小声音")||msg.equals("声音变小")||msg.equals("调低音量")){
             am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增小
             return;
+        }else if(msg.equals("打开相机")){
+            startActiviys(OpenCVCameraActivity.class);
+            return;
         }
 
         toastLong(msg);
