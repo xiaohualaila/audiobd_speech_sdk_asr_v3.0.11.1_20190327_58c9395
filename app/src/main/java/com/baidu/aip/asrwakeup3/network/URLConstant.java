@@ -10,4 +10,6 @@ public class URLConstant {
     public static String BASE_URL_LOCAL = "http://192.168.4.44:3000/";
     public static String YUYIN_URL = "https://api.zq-ai.com/zqcloudapi/v1.0/";//羽白语音
 
+    public static String UPLOAD_PIC = "https://www.zq-ai.com/zqcloudapi/v1.0/video/";//图片识别
+
 }

@@ -161,8 +161,6 @@
     <orderEntry type="module" module-name="core" />
     <orderEntry type="module" module-name="uiasr" />
     <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="uidialog" />
+    <orderEntry type="module" module-name="openCVLibrary320" />
   </component>
 </module>

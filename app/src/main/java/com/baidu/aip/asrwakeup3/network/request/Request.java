@@ -2,8 +2,17 @@ package com.baidu.aip.asrwakeup3.network.request;
 
 
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
+import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -20,7 +29,9 @@ public interface Request {
     Call<YUBAIBean> getWeatherData(@Query("type") String type, @Query("data") String data);
 
 
-
+    @POST("face")
+    @Multipart
+    Call<ResponseBody> uploadPicFile(@Part  List<MultipartBody.Part> files);
 
 
 }

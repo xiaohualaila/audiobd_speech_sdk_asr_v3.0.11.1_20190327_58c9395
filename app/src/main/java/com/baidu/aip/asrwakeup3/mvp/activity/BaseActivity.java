@@ -183,6 +183,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.MODIFY_AUDIO_SETTINGS,
                 Manifest.permission.WRITE_SETTINGS,
+                Manifest.permission.CAMERA,
                 Manifest.permission.ACCESS_WIFI_STATE,
                 Manifest.permission.CHANGE_WIFI_STATE
         };
