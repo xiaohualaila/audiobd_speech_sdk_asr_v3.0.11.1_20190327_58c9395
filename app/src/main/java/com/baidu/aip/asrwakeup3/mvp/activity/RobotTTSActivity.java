@@ -67,9 +67,7 @@ public class RobotTTSActivity extends RobotWakeUpActivity {
         }
     }
 
-    protected void backMsg(String msg){
 
-    }
 
     protected void ttsFinish(){
 

@@ -28,7 +28,7 @@ public class MessageStatusRecogListener extends StatusRecogListener {
     public void onAsrReady() {
         super.onAsrReady();
         speechEndTime = 0;
-      //  sendStatusMessage(SpeechConstant.CALLBACK_EVENT_WAKEUP_READY, "引擎就绪，可以开始说话。");
+        sendStatusMessage(SpeechConstant.CALLBACK_EVENT_WAKEUP_READY, "引擎就绪，可以开始说话。");
     }
 
     @Override
@@ -68,7 +68,7 @@ public class MessageStatusRecogListener extends StatusRecogListener {
         super.onAsrFinishError(errorCode, subErrorCode, descMessage, recogResult);
       //  String message = "【asr.finish事件】识别错误, 错误码：" + errorCode + " ," + subErrorCode + " ; " + descMessage;
         String message ="error";
-        sendStatusMessage(SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL, message);
+     //   sendStatusMessage(SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL, message);
         sendMessage(message, status, true);
 
     }

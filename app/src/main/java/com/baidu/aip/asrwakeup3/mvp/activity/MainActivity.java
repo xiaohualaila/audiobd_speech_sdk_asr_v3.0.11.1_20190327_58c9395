@@ -54,25 +54,34 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
             mediaPlayer.stop();
             mediaPlayer.reset();
         }
-        stopSpeech();//停止语音识别
+        //stopSpeech();//停止语音识别
+        cancelSpeech();//取消语音识别
         stop();//停止语音合成说话
         speak("在");
-//        cancelSpeech();//取消语音识别
+
         startSpeech();
     }
+    protected void speechStart( ){
+        Log.i(TAG,"msg ---->   speechStart  ");
+    }
 
-    protected void backMsg(String msg){
+    protected void speechBackMsg(String msg){
         Log.i(TAG,"msg ---->     "+msg);
-        if(msg.equals("增大音量")||msg.equals("增加声音")||msg.equals("声音变大")||msg.equals("增加音量")){
+        if(msg.equals("增大音量")||msg.equals("增加声音")||msg.equals("声音变大")||msg.equals("增加音量")||msg.equals("调高音量")){
             am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
             return;
-        } else if(msg.equals("减小音量")||msg.equals("减小声音")||msg.equals("声音变小")){
-            am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增大
+        } else if(msg.equals("减小音量")||msg.equals("减小声音")||msg.equals("声音变小")||msg.equals("调低音量")){
+            am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增小
             return;
         }
 
         toastLong(msg);
         presenter.getYubaiData(msg);
+        Log.i(TAG,"msg ---->   speechBackMsg  ");
+    }
+
+    protected void speechFinish(){
+        Log.i(TAG,"msg ---->   speechFinish  ");
     }
 
     @Override

@@ -12,15 +12,23 @@ import com.baidu.aip.asrwakeup3.core.recog.listener.IRecogListener;
 import com.baidu.aip.asrwakeup3.core.recog.listener.MessageStatusRecogListener;
 import com.baidu.aip.asrwakeup3.uiasr.params.CommonRecogParams;
 import com.baidu.aip.asrwakeup3.uiasr.params.OnlineRecogParams;
+
+import java.util.HashMap;
 import java.util.Map;
 
+import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED;
 import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED_RESULT;
+import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_LONG_SPEECH_FINISHED;
+import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_READY;
+import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_SPEAKING;
+import static com.baidu.aip.asrwakeup3.core.recog.IStatus.WHAT_MESSAGE_STATUS;
 
 /**
  * 语音识别
  */
 
 public class RobotSpeechActivity extends RobotTTSActivity {
+    private static final String TAG = "RobotSpeechActivity";
     protected MyRecognizer myRecognizer;
     private CommonRecogParams apiParams;
     protected Handler handlerSpeech;
@@ -47,21 +55,43 @@ public class RobotSpeechActivity extends RobotTTSActivity {
      */
     protected void handleSpeechMsg(Message msg) {
         if (msg.obj != null) {
-            if (msg.what == STATUS_FINISHED_RESULT) {
-                String result = msg.obj.toString();
+            String result = msg.obj.toString();
+            if (msg.what == STATUS_READY) {
+                speechStart();
+            } else if (msg.what == STATUS_FINISHED_RESULT) {
                 result = result.substring(0,result.length()-1);
-                backMsg(result);
+                speechBackMsg(result);
+            }else if(msg.what == STATUS_FINISHED){
+                speechFinish();
             }
             Log.i("xxx", "语音识别---->" + msg.obj.toString()+"  what "+msg.what);
         }
     }
+    protected void speechStart( ){
+
+    }
+
+    protected void speechFinish(){
+
+    }
+
+    protected void speechBackMsg(String msg){
+
+    }
+
+
+
 
     /**
      * 开始录音，点击“开始”按钮后调用。
      * 基于DEMO集成2.1, 2.2 设置识别参数并发送开始事件
      */
     protected void startSpeech() {
-        final Map<String, Object> params = fetchParams();
+      //  final Map<String, Object> params = fetchParams();
+        Map<String, Object> params = new HashMap<String, Object>();
+//        params.put("vad.endpoint-timeout",0);
+        params.put("accept-audio-volume",false);
+        Log.i(TAG, "设置的start输入参数：" + params);
         (new AutoCheck(getApplicationContext(), new Handler() {
             public void handleMessage(Message msg) {
                 if (msg.what == 100) {
