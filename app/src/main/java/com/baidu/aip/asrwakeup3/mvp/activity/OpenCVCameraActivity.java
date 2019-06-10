@@ -170,6 +170,6 @@ public class OpenCVCameraActivity extends BaseActivity implements CameraBridgeVi
 
     @Override
     public void getDataFail() {
-        toastLong("人脸检测失败");
+        toastLong("请检查网络！");
     }
 }

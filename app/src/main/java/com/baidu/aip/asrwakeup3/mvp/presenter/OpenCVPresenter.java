@@ -82,8 +82,7 @@ public class OpenCVPresenter implements OpenCVContract.Persenter{
 
             @Override
             public void onFailure(Call<FaceCheckBean> call, Throwable t) {
-                Log.i("sss",t.getMessage());
-         //       view.getDataFail();
+                view.getDataFail();
             }
         });
     }
