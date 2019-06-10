@@ -1,22 +1,14 @@
 package com.baidu.aip.asrwakeup3.mvp.presenter;
 
-
-import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
 import com.baidu.aip.asrwakeup3.mvp.contract.MainContract;
-import com.baidu.aip.asrwakeup3.network.URLConstant;
-import com.baidu.aip.asrwakeup3.network.request.Request;
+import com.baidu.aip.asrwakeup3.mvp.model.MainModel;
 import com.baidu.aip.asrwakeup3.network.schedulers.BaseSchedulerProvider;
 import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
-
 import io.reactivex.disposables.CompositeDisposable;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import io.reactivex.disposables.Disposable;
 
 public class MainPresenter implements MainContract.Persenter{
+    private MainModel model;
 
     private MainContract.View view;
 
@@ -24,8 +16,9 @@ public class MainPresenter implements MainContract.Persenter{
 
     private CompositeDisposable mDisposable;
 
-    public MainPresenter(MainContract.View view,
+    public MainPresenter(MainModel model,MainContract.View view,
                          SchedulerProvider schedulerProvider) {
+        this.model = model;
         this.view = view;
         this.schedulerProvider = schedulerProvider;
         mDisposable = new CompositeDisposable();
@@ -37,33 +30,29 @@ public class MainPresenter implements MainContract.Persenter{
     }
 
     @Override
-    public void getYubaiData(String data) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(URLConstant.YUYIN_URL)
-                .build();
-        Request service = retrofit.create(Request.class);
-        Call<YUBAIBean> call = service.getWeatherData("YUBAI",data);
-        call.enqueue(new Callback<YUBAIBean>() {
-            @Override
-            public void onResponse(Call<YUBAIBean> call, Response<YUBAIBean> response) {
-                // 已经转换为想要的类型了
-                try {
-                    YUBAIBean bean = response.body();
-                    if(bean!=null){
-                        view.getDataSuccess(bean);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
+    public void getYubaiData(String queryData) {
+        try {
 
-            @Override
-            public void onFailure(Call<YUBAIBean> call, Throwable t) {
-                view.getDataFail();
-            }
+            Disposable disposable = model.getYubaiData(queryData)
+                   // .compose(ResponseTransformer.handleResult())
+                    .compose(schedulerProvider.applySchedulers())
+                    .subscribe(bean -> {
+                        try {
+                            if(bean!=null){
+                                view.getDataSuccess(bean);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }, throwable -> {
+                        // 处理异常
+                        view.getDataFail();
+                    });
 
-        });
+            mDisposable.add(disposable);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

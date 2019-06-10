@@ -23,12 +23,12 @@ import retrofit2.http.Query;
 
 public interface Request {
 
-    String HOST = "https://cloud.zq12369.com/nodeapi/";
+
     String YUYIN_URL = "https://api.zq-ai.com/zqcloudapi/v1.0/";//羽白语音
 
-    @GET("query")
-    Call<YUBAIBean> getWeatherData(@Query("type") String type, @Query("data") String data);
 
+    @GET("query")
+    Observable<YUBAIBean> getYUBAIData(@Query("type") String type, @Query("data") String data);
 
     @POST("face")
     @Multipart

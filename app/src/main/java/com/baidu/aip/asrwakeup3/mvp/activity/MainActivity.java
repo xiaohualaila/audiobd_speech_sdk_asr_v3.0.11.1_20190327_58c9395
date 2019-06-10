@@ -15,6 +15,7 @@ import com.baidu.aip.asrwakeup3.MyApplication;
 import com.baidu.aip.asrwakeup3.R;
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
 import com.baidu.aip.asrwakeup3.mvp.contract.MainContract;
+import com.baidu.aip.asrwakeup3.mvp.model.MainModel;
 import com.baidu.aip.asrwakeup3.mvp.presenter.MainPresenter;
 import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
 import com.baidu.aip.asrwakeup3.util.ImageUtils;
@@ -39,7 +40,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new MainPresenter(this, SchedulerProvider.getInstance());
+        presenter = new MainPresenter(new MainModel(),this, SchedulerProvider.getInstance());
         Glide.with(this).load(R.drawable.eye).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(eye);
         Glide.with(this).load(R.drawable.mouth).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mouth);
         mediaPlayer = new MediaPlayer();

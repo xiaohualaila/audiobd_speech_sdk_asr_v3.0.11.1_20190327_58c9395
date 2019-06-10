@@ -3,6 +3,9 @@ package com.baidu.aip.asrwakeup3.mvp.contract;
 
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
 
+import io.reactivex.Observable;
+import okhttp3.RequestBody;
+
 /**
  * Created by Zaifeng on 2018/3/1.
  */
@@ -20,7 +23,7 @@ public class MainContract {
     }
 
     public interface Model {
-
+        Observable<YUBAIBean> getYubaiData(String data);
     }
 
 }

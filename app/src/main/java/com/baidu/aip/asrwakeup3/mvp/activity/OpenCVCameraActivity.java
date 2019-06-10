@@ -80,6 +80,7 @@ public class OpenCVCameraActivity extends BaseActivity implements CameraBridgeVi
         @Override
         public void run() {
          Log.i(TAG,"定时器");
+         finish();
         }
     };
 
