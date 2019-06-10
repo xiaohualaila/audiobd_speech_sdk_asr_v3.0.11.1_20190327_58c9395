@@ -1,6 +1,7 @@
 package com.baidu.aip.asrwakeup3.network.request;
 
 
+import com.baidu.aip.asrwakeup3.bean.FaceCheckBean;
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public interface Request {
 
     @POST("face")
     @Multipart
-    Call<ResponseBody> uploadPicFile(@Part  List<MultipartBody.Part> files);
+    Call<FaceCheckBean> uploadPicFile(@Part  List<MultipartBody.Part> files);
 
 
 }

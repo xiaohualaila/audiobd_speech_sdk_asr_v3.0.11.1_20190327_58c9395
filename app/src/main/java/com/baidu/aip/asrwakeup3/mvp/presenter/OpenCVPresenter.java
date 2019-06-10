@@ -4,6 +4,7 @@ package com.baidu.aip.asrwakeup3.mvp.presenter;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.baidu.aip.asrwakeup3.bean.FaceCheckBean;
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
 import com.baidu.aip.asrwakeup3.mvp.contract.MainContract;
 import com.baidu.aip.asrwakeup3.mvp.contract.OpenCVContract;
@@ -65,22 +66,22 @@ public class OpenCVPresenter implements OpenCVContract.Persenter{
                 .baseUrl(URLConstant.UPLOAD_PIC)
                 .build();
         Request service = retrofit.create(Request.class);
-        Call<ResponseBody> call = service.uploadPicFile(parts);
-        call.enqueue(new Callback<ResponseBody>() {
+        Call<FaceCheckBean> call = service.uploadPicFile(parts);
+        call.enqueue(new Callback<FaceCheckBean>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(Call<FaceCheckBean> call, Response<FaceCheckBean> response) {
                 // 已经转换为想要的类型了
                 try {
-                  String str =  response.body().string();
-                    Log.i("sss",str);
-                     view.getDataSuccess();
+                    FaceCheckBean bean = response.body();
+                    Log.i("sss",bean.toString());
+                     view.getDataSuccess(bean);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<FaceCheckBean> call, Throwable t) {
                 Log.i("sss",t.getMessage());
          //       view.getDataFail();
             }

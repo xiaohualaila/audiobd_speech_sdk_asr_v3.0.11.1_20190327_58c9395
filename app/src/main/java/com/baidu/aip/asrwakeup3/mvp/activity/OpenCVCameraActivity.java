@@ -1,20 +1,16 @@
 package com.baidu.aip.asrwakeup3.mvp.activity;
 
 import android.content.Context;
-import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ImageView;
-
 import com.baidu.aip.asrwakeup3.R;
+import com.baidu.aip.asrwakeup3.bean.FaceCheckBean;
 import com.baidu.aip.asrwakeup3.mvp.contract.OpenCVContract;
-import com.baidu.aip.asrwakeup3.mvp.presenter.MainPresenter;
 import com.baidu.aip.asrwakeup3.mvp.presenter.OpenCVPresenter;
 import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
-
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.OpenCVLoader;
@@ -32,7 +28,7 @@ import java.io.InputStream;
 import java.util.Calendar;
 
 public class OpenCVCameraActivity extends BaseActivity implements CameraBridgeViewBase.CvCameraViewListener, JavaCameraView.PhotoSuccessCallback, OpenCVContract.View {
-
+    private static final String TAG ="OpenCVCameraActivity" ;
     JavaCameraView openCvCameraView;
     private CascadeClassifier cascadeClassifier;
     private Mat grayscaleImage;
@@ -42,6 +38,9 @@ public class OpenCVCameraActivity extends BaseActivity implements CameraBridgeVi
     private boolean isPhoteTakingPic = false;
     private String path = "/sdcard/face/";
     private OpenCVPresenter presenter;
+    private static Handler handler = new Handler();
+
+
     private void initializeOpenCVDependencies() {
         try {
             // Copy the resource into a temp file so OpenCV can load it
@@ -73,7 +72,16 @@ public class OpenCVCameraActivity extends BaseActivity implements CameraBridgeVi
         openCvCameraView.setCvCameraViewListener(this);
         openCvCameraView.setPhotoSuccessCallback(this);
         presenter = new OpenCVPresenter(this, SchedulerProvider.getInstance());
+        handler.postDelayed(runnable,8000);
     }
+
+
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+         Log.i(TAG,"定时器");
+        }
+    };
 
     @Override
     protected int getLayout() {
@@ -151,15 +159,16 @@ public class OpenCVCameraActivity extends BaseActivity implements CameraBridgeVi
     protected void onDestroy() {
         super.onDestroy();
         presenter.despose();
+        handler.removeCallbacksAndMessages(null);
     }
 
     @Override
-    public void getDataSuccess() {
-
+    public void getDataSuccess(FaceCheckBean bean) {
+           toastLong(bean.getResult().get(0).getLabel());
     }
 
     @Override
     public void getDataFail() {
-
+        toastLong("人脸检测失败");
     }
 }
