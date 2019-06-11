@@ -32,7 +32,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class CameraActivity extends BaseActivity implements OpenCVContract.View {
+public class CameraActivity extends RobotTTSActivity implements OpenCVContract.View {
     private static final String TAG = "CameraActivity";
     @BindView(R.id.camera)
     JavaCameraView mCameraView;
@@ -49,9 +49,11 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     private boolean isPhoteTakingPic = false;
     String fileName;
     private OpenCVPresenter presenter;
+    private boolean isCheckFace = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.camera);
         presenter = new OpenCVPresenter(this, SchedulerProvider.getInstance());
         mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
@@ -102,11 +104,6 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
         });
 
         initClassifier();
-    }
-
-    @Override
-    protected int getLayout() {
-        return R.layout.camera;
     }
 
     private void savePicture(Mat frameData){
@@ -179,14 +176,18 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
                 builder.append("姓名："+b.getLabel());
                 float score =(float)b.getScore();
                 builder.append("，识别分数："+score);
-                if(score>0.6){
+                if(score>0.55){
                     builder.append( " ,检测成功！"+"\n");
+                    speak(b.getLabel()+"识别成功！");
+                    isCheckFace = true;
                 }else {
                     builder.append( " ,检测失败！"+"\n");
+                    speak(b.getLabel()+"识别失败！");
                 }
             }
         }else {
             builder.append("检测失败,未识别到人脸！");
+            speak("检测失败,未识别到人脸信息！");
         }
         name.setText(builder.toString());
         deletePic();
@@ -195,6 +196,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     @Override
     public void getDataFail() {
         deletePic();
+
     }
 
     private void deletePic() {
@@ -204,5 +206,11 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
             Log.i(TAG,"deletePic+++");
         }
         isPhoteTakingPic = false;
+    }
+
+    protected void ttsFinish(){
+          if(isCheckFace){
+              finish();
+          }
     }
 }

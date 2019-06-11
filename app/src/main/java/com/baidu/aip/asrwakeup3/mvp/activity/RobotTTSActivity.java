@@ -25,7 +25,7 @@ import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED_RESULT
  */
 
 public class RobotTTSActivity extends RobotWakeUpActivity {
-    protected Handler handler;
+    protected static Handler handler;
     protected String appId = "11005757";
     protected String appKey = "Ovcz19MGzIKoDDb3IsFFncG1";
     protected String secretKey = "e72ebb6d43387fc7f85205ca7e6706e2";
@@ -190,6 +190,7 @@ public class RobotTTSActivity extends RobotWakeUpActivity {
      */
     @Override
     protected void onDestroy() {
+        handler.removeCallbacksAndMessages(null);
         if (mSpeechSynthesizer != null) {
             mSpeechSynthesizer.stop();
             mSpeechSynthesizer.release();

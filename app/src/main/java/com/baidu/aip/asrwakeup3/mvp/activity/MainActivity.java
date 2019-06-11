@@ -52,6 +52,13 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         am=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        if (!OpenCVLoader.initDebug()) {
+            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
+        } else {
+            Log.d(TAG, "OpenCV library found inside package. Using it!");
+            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+        }
     }
 
     public void wakup(){
@@ -65,7 +72,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         cancelSpeech();//取消语音识别
         stop();//停止语音合成说话
         speak("在");
-
         startSpeech();
     }
     protected void speechStart( ){
@@ -80,7 +86,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         } else if(msg.equals("减小音量")||msg.equals("减小声音")||msg.equals("声音变小")||msg.equals("调低音量")){
             am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增小
             return;
-        }else if(msg.equals("打开相机")||msg.equals("人脸识别")){
+        }else if(msg.equals("打开相机")||msg.equals("人脸识别")||msg.equals("打开摄像头")){
             if(isCheckFace){
                 startActiviys(CameraActivity.class);
             }else {
@@ -192,17 +198,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (!OpenCVLoader.initDebug()) {
-            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
-        } else {
-            Log.d(TAG, "OpenCV library found inside package. Using it!");
-            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
-        }
-    }
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
