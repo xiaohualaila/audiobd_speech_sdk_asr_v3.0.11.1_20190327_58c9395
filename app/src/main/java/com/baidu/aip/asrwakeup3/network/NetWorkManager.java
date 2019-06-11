@@ -52,6 +52,26 @@ public class NetWorkManager {
                 .build();
     }
 
+    /**
+     * 初始化必要对象和参数
+     */
+    public void init(String url) {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        // 初始化okhttp
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(logging)
+                .build();
+
+        // 初始化Retrofit
+        retrofit = new Retrofit.Builder()
+                .baseUrl(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(client)
+                .build();
+    }
+
     public static Request getRequest() {
         if (request == null) {
             synchronized (Request.class) {

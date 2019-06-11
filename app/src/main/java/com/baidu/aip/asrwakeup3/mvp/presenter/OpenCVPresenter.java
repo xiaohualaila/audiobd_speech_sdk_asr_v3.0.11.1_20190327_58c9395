@@ -73,8 +73,12 @@ public class OpenCVPresenter implements OpenCVContract.Persenter{
                 // 已经转换为想要的类型了
                 try {
                     FaceCheckBean bean = response.body();
-                    Log.i("sss",bean.toString());
-                     view.getDataSuccess(bean);
+                    List<FaceCheckBean.ResultBean>  list=  bean.getResult();
+                    if(list.size()>0){
+                        view.getDataSuccess(bean);
+                    }
+                    Log.i("xxx",bean.toString());
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

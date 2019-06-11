@@ -72,7 +72,7 @@ public class OpenCVCameraActivity extends BaseActivity implements CameraBridgeVi
         openCvCameraView.setCvCameraViewListener(this);
         openCvCameraView.setPhotoSuccessCallback(this);
         presenter = new OpenCVPresenter(this, SchedulerProvider.getInstance());
-        handler.postDelayed(runnable,8000);
+    //    handler.postDelayed(runnable,8000);
     }
 
 
@@ -126,7 +126,7 @@ public class OpenCVCameraActivity extends BaseActivity implements CameraBridgeVi
             faceSerialCount = 0;
         }
         if (faceSerialCount > 5) {
-            if(!isPhoteTakingPic){
+//            if(!isPhoteTakingPic){
                 File folder = new File(path);
                 if (!folder.exists()){
                     folder.mkdirs();
@@ -134,7 +134,7 @@ public class OpenCVCameraActivity extends BaseActivity implements CameraBridgeVi
                 fileName = path+ File.separator + getTime() + ".jpeg";
                 openCvCameraView.takePhoto(fileName);
                 Log.i("拍","拍摄照片啦");
-            }
+//            }
             faceSerialCount = -5000;
         }
 
