@@ -21,6 +21,11 @@ import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
 import com.baidu.aip.asrwakeup3.util.ImageUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
+
 import java.io.IOException;
 import butterknife.BindView;
 
@@ -37,6 +42,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     private MediaPlayer mediaPlayer;
     private boolean isShowImage = false;
     private AudioManager am;
+    private boolean isCheckFace =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,8 +80,13 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         } else if(msg.equals("减小音量")||msg.equals("减小声音")||msg.equals("声音变小")||msg.equals("调低音量")){
             am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增小
             return;
-        }else if(msg.equals("打开相机")){
-            startActiviys(OpenCVCameraActivity.class);
+        }else if(msg.equals("打开相机")||msg.equals("人脸识别")){
+            if(isCheckFace){
+                startActiviys(CameraActivity.class);
+            }else {
+                speak("无法进入拍照界面");
+            }
+
             return;
         }
 
@@ -180,6 +191,33 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         }
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!OpenCVLoader.initDebug()) {
+            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
+        } else {
+            Log.d(TAG, "OpenCV library found inside package. Using it!");
+            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
+        }
+    }
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+        @Override
+        public void onManagerConnected(int status) {
+            switch (status) {
+                case LoaderCallbackInterface.SUCCESS:
+                    Log.i("rr", "OpenCV loaded successfully");
+                   isCheckFace = true;
+                    break;
+                default:
+                    super.onManagerConnected(status);
+                    break;
+            }
+        }
+    };
+
 
     @Override
     protected void onDestroy() {

@@ -30,18 +30,18 @@
             android:label="主页面"
             android:launchMode="singleTask"
             android:screenOrientation="landscape">
-
-        </activity>
-        <activity
-            android:name=".mvp.activity.OpenCVCameraActivity"
-            android:configChanges="orientation|keyboardHidden|screenLayout"
-            android:label="人脸识别"
-            android:launchMode="singleTask"
-            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".mvp.activity.CameraActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="人脸识别"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+
         </activity>
         <activity
                 android:name=".recog.ActivityOnlineRecog"
