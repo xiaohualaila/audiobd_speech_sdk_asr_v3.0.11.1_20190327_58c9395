@@ -3,10 +3,13 @@ package com.baidu.aip.asrwakeup3.mvp.activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 import com.baidu.aip.asrwakeup3.R;
 import com.baidu.aip.asrwakeup3.bean.FaceCheckBean;
+import com.baidu.aip.asrwakeup3.event.BusProvider;
+import com.baidu.aip.asrwakeup3.model.EventModel;
 import com.baidu.aip.asrwakeup3.mvp.contract.OpenCVContract;
 import com.baidu.aip.asrwakeup3.mvp.presenter.OpenCVPresenter;
 import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
@@ -32,7 +35,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class CameraActivity extends RobotTTSActivity implements OpenCVContract.View {
+public class CameraActivity extends BaseActivity implements OpenCVContract.View {
     private static final String TAG = "CameraActivity";
     @BindView(R.id.camera)
     JavaCameraView mCameraView;
@@ -50,10 +53,10 @@ public class CameraActivity extends RobotTTSActivity implements OpenCVContract.V
     String fileName;
     private OpenCVPresenter presenter;
     private boolean isCheckFace = false;
+    private static Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.camera);
         presenter = new OpenCVPresenter(this, SchedulerProvider.getInstance());
         mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
@@ -84,7 +87,7 @@ public class CameraActivity extends RobotTTSActivity implements OpenCVContract.V
                     faceSerialCount = 0;
                 }
                 if (faceSerialCount > 5) {
-                    if(!isPhoteTakingPic){
+                    if(!isPhoteTakingPic&&!isCheckFace){
                         File folder = new File(PATH);
                         if (!folder.exists()){
                             folder.mkdirs();
@@ -104,6 +107,15 @@ public class CameraActivity extends RobotTTSActivity implements OpenCVContract.V
         });
 
         initClassifier();
+        handler.postDelayed(() -> {
+            BusProvider.getBus().post(new EventModel("未检测出人脸！"));
+            finish();
+        },10000);
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.camera;
     }
 
     private void savePicture(Mat frameData){
@@ -157,39 +169,40 @@ public class CameraActivity extends RobotTTSActivity implements OpenCVContract.V
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (null != mCameraView){
-            mCameraView.disableView();
-        }
-    }
 
     @Override
     public void getDataSuccess(FaceCheckBean bean) {
         List<FaceCheckBean.ResultBean> list =  bean.getResult();
         StringBuilder builder = new StringBuilder();
+        StringBuilder builder1 = new StringBuilder();
         builder.delete(0,builder.length());
         if(list.size()>0){
             for (int i =0;i<list.size();i++){
                FaceCheckBean.ResultBean b = list.get(i);
                 builder.append("姓名："+b.getLabel());
+                builder1.append(b.getLabel());
                 float score =(float)b.getScore();
                 builder.append("，识别分数："+score);
                 if(score>0.55){
-                    builder.append( " ,检测成功！"+"\n");
-                    speak(b.getLabel()+"识别成功！");
                     isCheckFace = true;
+                    builder.append( " ,识别成功！"+"\n");
+                    builder1.append("识别成功");
                 }else {
-                    builder.append( " ,检测失败！"+"\n");
-                    speak(b.getLabel()+"识别失败！");
+                    builder.append( " ,识别失败！"+"\n");
+                    builder1.append("识别失败");
+                }
+                BusProvider.getBus().post(new EventModel(builder1.toString()));
+                if(isCheckFace){
+                    int n = list.size()+1;
+                    handler.postDelayed(() -> finish(),5000*n);
                 }
             }
         }else {
             builder.append("检测失败,未识别到人脸！");
-            speak("检测失败,未识别到人脸信息！");
+         //   BusProvider.getBus().post(new EventModel("未识别到人脸信息！"));
         }
         name.setText(builder.toString());
+
         deletePic();
     }
 
@@ -208,9 +221,14 @@ public class CameraActivity extends RobotTTSActivity implements OpenCVContract.V
         isPhoteTakingPic = false;
     }
 
-    protected void ttsFinish(){
-          if(isCheckFace){
-              finish();
-          }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.despose();
+        if (null != mCameraView){
+            mCameraView.disableView();
+        }
+        handler.removeCallbacksAndMessages(null);
     }
+
 }

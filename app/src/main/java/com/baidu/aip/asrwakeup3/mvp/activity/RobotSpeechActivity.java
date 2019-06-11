@@ -12,16 +12,13 @@ import com.baidu.aip.asrwakeup3.core.recog.listener.IRecogListener;
 import com.baidu.aip.asrwakeup3.core.recog.listener.MessageStatusRecogListener;
 import com.baidu.aip.asrwakeup3.uiasr.params.CommonRecogParams;
 import com.baidu.aip.asrwakeup3.uiasr.params.OnlineRecogParams;
-
 import java.util.HashMap;
 import java.util.Map;
-
 import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED;
 import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED_RESULT;
-import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_LONG_SPEECH_FINISHED;
 import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_READY;
-import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_SPEAKING;
-import static com.baidu.aip.asrwakeup3.core.recog.IStatus.WHAT_MESSAGE_STATUS;
+
+
 
 /**
  * 语音识别
