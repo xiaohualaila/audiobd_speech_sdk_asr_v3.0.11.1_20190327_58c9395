@@ -104,11 +104,12 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     }
 
     protected void speechStart(){
+        updateDate = new Date(System.currentTimeMillis());
         Log.i(TAG,"msg ---->   speechStart  ");
     }
 
     protected void speechBackMsg(String msg){
-
+        updateDate = new Date(System.currentTimeMillis());
         Log.i(TAG,"msg ---->     "+msg);
         if(msg.equals("增大音量")||msg.equals("增加声音")||msg.equals("声音变大")||msg.equals("增加音量")||msg.equals("调高音量")){
             am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
@@ -131,7 +132,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     }
 
     protected void speechFinish(){
-        updateDate = new Date(System.currentTimeMillis());
         web_view.setVisibility(View.GONE);
         if(mediaPlayer.isPlaying()){
             mediaPlayer.stop();
@@ -139,7 +139,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         }
         stop(); //停止语音合成
         Log.i(TAG,"msg ---->   speechFinish  ");
-        updateDate = new Date(System.currentTimeMillis());
     }
 
     @Override
