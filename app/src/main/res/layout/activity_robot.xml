@@ -26,5 +26,14 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+    <WebView
+        android:id="@+id/web_view"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
+
 </android.support.constraint.ConstraintLayout>

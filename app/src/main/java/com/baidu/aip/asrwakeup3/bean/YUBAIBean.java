@@ -44,6 +44,8 @@ public class YUBAIBean {
     private List<?> keyword;
     private List<?> number;
     private String voice;
+    private String url;
+    private String weburl;
 
     public String getErrmsg() {
         return errmsg;
@@ -173,6 +175,22 @@ public class YUBAIBean {
         this.voice = voice;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getWeburl() {
+        return weburl;
+    }
+
+    public void setWeburl(String weburl) {
+        this.weburl = weburl;
+    }
+
     @Override
     public String toString() {
         return "YUBAIBean{" +
@@ -192,6 +210,8 @@ public class YUBAIBean {
                 ", keyword=" + keyword +
                 ", number=" + number +
                 ", voice='" + voice + '\'' +
+                ", url='" + url + '\'' +
+                ", weburl='" + weburl + '\'' +
                 '}';
     }
 }

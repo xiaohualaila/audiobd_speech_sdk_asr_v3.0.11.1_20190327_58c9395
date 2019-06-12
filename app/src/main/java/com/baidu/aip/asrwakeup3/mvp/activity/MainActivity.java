@@ -1,18 +1,15 @@
 package com.baidu.aip.asrwakeup3.mvp.activity;
 
-import android.annotation.SuppressLint;
-import android.app.KeyguardManager;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
-
-import com.baidu.aip.asrwakeup3.MyApplication;
 import com.baidu.aip.asrwakeup3.R;
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
 import com.baidu.aip.asrwakeup3.model.MessageWrap;
@@ -23,16 +20,19 @@ import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
 import com.baidu.aip.asrwakeup3.util.ImageUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
-
 import java.io.IOException;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
 public class MainActivity extends RobotSpeechActivity implements  MainContract.View  {
@@ -43,11 +43,15 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     ImageView mouth;
     @BindView(R.id.img)
     ImageView img;
+    @BindView(R.id.web_view)
+     WebView web_view;
     private MainPresenter presenter;
     private MediaPlayer mediaPlayer;
     private boolean isShowImage = false;
     private AudioManager am;
     private boolean isCheckFace =false;
+    private Date curDate,updateDate;
+    private boolean isWakeUp = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,28 +69,48 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
+        heartinterval();
+
     }
 
     public void wakup(){
         Log.i(TAG,"唤醒");
-        wakeUpAndUnlock();
-        if(mediaPlayer.isPlaying()){
-            mediaPlayer.stop();
-            mediaPlayer.reset();
-        }
-        //stopSpeech();//停止语音识别
-        cancelSpeech();//取消语音识别
-        stop();//停止语音合成说话
+      //  wakeUpAndUnlock();
         speak("在");
+        isWakeUp = true;
         startSpeech();
+
     }
 
+    /**
+     * 发送心跳数据
+     */
+    private void heartinterval() {
+        updateDate = new Date(System.currentTimeMillis());
+        Observable.interval(15, 15, TimeUnit.SECONDS)//15秒
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    if(isWakeUp){
+                        curDate = new Date(System.currentTimeMillis());
+                        long diff = curDate.getTime() - updateDate.getTime();
+                        Log.i(TAG,"diff ---->   TIME  " + diff);
 
-    protected void speechStart( ){
+                        if(diff>15000){
+                            cancelSpeech();//取消语音识别
+                            isWakeUp = false;
+                            Log.i(TAG,"diff ---->   取消语音识别  ");
+                        }
+                    }
+                });
+    }
+
+    protected void speechStart(){
         Log.i(TAG,"msg ---->   speechStart  ");
     }
 
     protected void speechBackMsg(String msg){
+
+
         Log.i(TAG,"msg ---->     "+msg);
         if(msg.equals("增大音量")||msg.equals("增加声音")||msg.equals("声音变大")||msg.equals("增加音量")||msg.equals("调高音量")){
             am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
@@ -100,7 +124,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
             }else {
                 speak("无法进入拍照界面");
             }
-
             return;
         }
 
@@ -110,21 +133,57 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     }
 
     protected void speechFinish(){
+        updateDate = new Date(System.currentTimeMillis());
+        web_view.setVisibility(View.GONE);
+        if(mediaPlayer.isPlaying()){
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+        }
+        stop(); //停止语音合成
         Log.i(TAG,"msg ---->   speechFinish  ");
+        updateDate = new Date(System.currentTimeMillis());
     }
 
     @Override
     public void getDataSuccess(YUBAIBean bean) {
         Log.i(TAG,"羽白结果---->  "+bean.toString());
         String result = bean.getResult();
+        String label = bean.getLabel();
         String text;
-        try {
-            int index =result.indexOf("你还可以问我");
-            text = result.substring(0,index);
-            Log.i(TAG,"羽白结果----> text  "+text);
-        }catch (Exception e){
-            text = result;
+        if(label.equals("新闻资讯")){
+
+            String url = bean.getUrl();
+            if(!TextUtils.isEmpty(url)){
+                web_view.setVisibility(View.VISIBLE);
+                web_view.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        view.loadUrl(url);
+                        return super.shouldOverrideUrlLoading(view, url);
+                    }
+                });
+                web_view.loadUrl(url);
+
+            }
+
+            try {
+                int index =result.indexOf("-----------");
+                text = result.substring(0,index);
+                Log.i(TAG,"羽白结果----> text  "+text);
+            }catch (Exception e){
+                text = result;
+            }
+
+        }else {
+            try {
+                int index =result.indexOf("你还可以问我");
+                text = result.substring(0,index);
+                Log.i(TAG,"羽白结果----> text  "+text);
+            }catch (Exception e){
+                text = result;
+            }
         }
+
 
         Log.i(TAG,"羽白结果----> text  "+text);
         String voice = bean.getVoice();
@@ -149,6 +208,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
             img.setVisibility(View.GONE);
             isShowImage =false;
         }
+       // tv_text.setVisibility(View.GONE);
         Glide.with(this).load(R.drawable.eye).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(eye);
         Glide.with(this).load(R.drawable.mouth).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mouth);
     }
@@ -161,26 +221,26 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     /**
      * 唤醒手机屏幕并解锁
      */
-    public static void wakeUpAndUnlock() {
-         // 获取电源管理器对象
-        PowerManager pm = (PowerManager) MyApplication.getAppContext() .getSystemService(Context.POWER_SERVICE);
-        boolean screenOn = pm.isScreenOn();
-        if (!screenOn) {
-            // 获取PowerManager.WakeLock对象,后面的参数|表示同时传入两个值,最后的是LogCat里用的Tag
-           @SuppressLint("InvalidWakeLockTag") PowerManager.WakeLock wl = pm.newWakeLock( PowerManager.ACQUIRE_CAUSES_WAKEUP |
-           PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "bright");
-           wl.acquire(10000);
-           // 点亮屏幕
-             wl.release(); // 释放
-            }
-        // 屏幕解锁
-         KeyguardManager keyguardManager = (KeyguardManager) MyApplication.getAppContext()
-                 .getSystemService(KEYGUARD_SERVICE);
-         KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("unLock");
-         // 屏幕锁定
-         keyguardLock.reenableKeyguard();
-         keyguardLock.disableKeyguard(); // 解锁
-    }
+//    public static void wakeUpAndUnlock() {
+//         // 获取电源管理器对象
+//        PowerManager pm = (PowerManager) MyApplication.getAppContext() .getSystemService(Context.POWER_SERVICE);
+//        boolean screenOn = pm.isScreenOn();
+//        if (!screenOn) {
+//            // 获取PowerManager.WakeLock对象,后面的参数|表示同时传入两个值,最后的是LogCat里用的Tag
+//           @SuppressLint("InvalidWakeLockTag") PowerManager.WakeLock wl = pm.newWakeLock( PowerManager.ACQUIRE_CAUSES_WAKEUP |
+//           PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "bright");
+//           wl.acquire(10000);
+//           // 点亮屏幕
+//             wl.release(); // 释放
+//            }
+//        // 屏幕解锁
+//         KeyguardManager keyguardManager = (KeyguardManager) MyApplication.getAppContext()
+//                 .getSystemService(KEYGUARD_SERVICE);
+//         KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("unLock");
+//         // 屏幕锁定
+//         keyguardLock.reenableKeyguard();
+//         keyguardLock.disableKeyguard(); // 解锁
+//    }
 
     //播放语音
     private void playVoice(String voice) {

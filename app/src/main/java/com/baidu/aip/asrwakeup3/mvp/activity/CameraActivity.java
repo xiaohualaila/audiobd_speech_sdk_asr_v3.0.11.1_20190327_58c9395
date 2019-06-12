@@ -55,7 +55,6 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  EventBus.getDefault().register(this);
         presenter = new OpenCVPresenter(this, SchedulerProvider.getInstance());
         mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
@@ -166,7 +165,6 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
             e.printStackTrace();
         }
         mCameraView.enableView();
-
     }
 
 
@@ -195,13 +193,8 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
             Log.i("sss","list.size() -->" +list.size()+"  "+builder1.toString());
             EventBus.getDefault().post(MessageWrap.getInstance(builder1.toString()));
             if(isCheckFace){
-                int n = 5000*list.size();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                            finish();
-                    }
-                },n);
+                int n = 3000*list.size();
+                handler.postDelayed(() -> finish(),n);
             }
 
         }else {

@@ -84,7 +84,7 @@ public class RobotSpeechActivity extends RobotTTSActivity {
     protected void startSpeech() {
       //  final Map<String, Object> params = fetchParams();
         Map<String, Object> params = new HashMap<String, Object>();
-//        params.put("vad.endpoint-timeout",0);
+        params.put("vad.endpoint-timeout",0);//长语音识别
         params.put("accept-audio-volume",false);
         Log.i(TAG, "设置的start输入参数：" + params);
         (new AutoCheck(getApplicationContext(), new Handler() {

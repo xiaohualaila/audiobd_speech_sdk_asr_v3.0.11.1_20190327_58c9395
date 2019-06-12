@@ -51,4 +51,5 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation project(':openCV4Libs')
     implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'org.sufficientlysecure:html-textview:3.6'
 }
