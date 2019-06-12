@@ -22,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
     <ImageView
         android:id="@+id/img"
-        android:layout_width="200dp"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"

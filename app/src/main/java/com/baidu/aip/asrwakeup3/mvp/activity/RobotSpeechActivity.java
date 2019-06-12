@@ -18,8 +18,6 @@ import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED;
 import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED_RESULT;
 import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_READY;
 
-
-
 /**
  * 语音识别
  */

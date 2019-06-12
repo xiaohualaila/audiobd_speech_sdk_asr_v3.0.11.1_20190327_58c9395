@@ -8,12 +8,11 @@ import android.util.Log;
 import android.widget.TextView;
 import com.baidu.aip.asrwakeup3.R;
 import com.baidu.aip.asrwakeup3.bean.FaceCheckBean;
-import com.baidu.aip.asrwakeup3.event.BusProvider;
-import com.baidu.aip.asrwakeup3.model.EventModel;
+import com.baidu.aip.asrwakeup3.model.MessageWrap;
 import com.baidu.aip.asrwakeup3.mvp.contract.OpenCVContract;
 import com.baidu.aip.asrwakeup3.mvp.presenter.OpenCVPresenter;
 import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
-
+import org.greenrobot.eventbus.EventBus;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.Utils;
@@ -25,7 +24,6 @@ import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -57,6 +55,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+      //  EventBus.getDefault().register(this);
         presenter = new OpenCVPresenter(this, SchedulerProvider.getInstance());
         mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
@@ -108,9 +107,11 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
 
         initClassifier();
         handler.postDelayed(() -> {
-            BusProvider.getBus().post(new EventModel("未检测出人脸！"));
-            finish();
-        },10000);
+            if(!isCheckFace){
+                EventBus.getDefault().post(MessageWrap.getInstance("未检测出人脸！"));
+                handler.postDelayed(() -> finish(),3000);
+            }
+        },15000);
     }
 
     @Override
@@ -147,7 +148,6 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     }
 
     private void initClassifier() {
-        Log.i("xxx","you mei you paizhao ya----------------->");
         InputStream is = getResources().openRawResource(R.raw.lbpcascade_frontalface);
         File cascadeDir = getDir("cascade", Context.MODE_PRIVATE);
         File mCascadeFile = new File(cascadeDir, "lbpcascade_frontalface.xml");
@@ -191,15 +191,22 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
                     builder.append( " ,识别失败！"+"\n");
                     builder1.append("识别失败");
                 }
-                BusProvider.getBus().post(new EventModel(builder1.toString()));
-                if(isCheckFace){
-                    int n = list.size()+1;
-                    handler.postDelayed(() -> finish(),5000*n);
-                }
             }
+            Log.i("sss","list.size() -->" +list.size()+"  "+builder1.toString());
+            EventBus.getDefault().post(MessageWrap.getInstance(builder1.toString()));
+            if(isCheckFace){
+                int n = 5000*list.size();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                            finish();
+                    }
+                },n);
+            }
+
         }else {
             builder.append("检测失败,未识别到人脸！");
-         //   BusProvider.getBus().post(new EventModel("未识别到人脸信息！"));
+            EventBus.getDefault().post(MessageWrap.getInstance("未识别到人脸信息！"));
         }
         name.setText(builder.toString());
 

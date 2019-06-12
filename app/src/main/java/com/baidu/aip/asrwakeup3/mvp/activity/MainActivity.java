@@ -11,13 +11,11 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.baidu.aip.asrwakeup3.MyApplication;
 import com.baidu.aip.asrwakeup3.R;
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
-import com.baidu.aip.asrwakeup3.event.BusProvider;
-import com.baidu.aip.asrwakeup3.model.EventModel;
+import com.baidu.aip.asrwakeup3.model.MessageWrap;
 import com.baidu.aip.asrwakeup3.mvp.contract.MainContract;
 import com.baidu.aip.asrwakeup3.mvp.model.MainModel;
 import com.baidu.aip.asrwakeup3.mvp.presenter.MainPresenter;
@@ -26,13 +24,15 @@ import com.baidu.aip.asrwakeup3.util.ImageUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 
 import java.io.IOException;
 import butterknife.BindView;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
 public class MainActivity extends RobotSpeechActivity implements  MainContract.View  {
@@ -51,6 +51,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         presenter = new MainPresenter(new MainModel(),this, SchedulerProvider.getInstance());
         Glide.with(this).load(R.drawable.eye).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(eye);
         Glide.with(this).load(R.drawable.mouth).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mouth);
@@ -78,14 +79,8 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         stop();//停止语音合成说话
         speak("在");
         startSpeech();
-        getBus();
     }
 
-    private void getBus() {
-        BusProvider.getBus().toFlowable(EventModel.class).observeOn(AndroidSchedulers.mainThread()).subscribe(
-                eventModel -> speak(eventModel.value)
-        );
-    }
 
     protected void speechStart( ){
         Log.i(TAG,"msg ---->   speechStart  ");
@@ -226,6 +221,10 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         }
     };
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onGetMessage(MessageWrap message) {
+           speak(message.message);
+    }
 
     @Override
     protected void onDestroy() {
@@ -236,5 +235,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
             mediaPlayer = null;
         }
         presenter.despose();
+        EventBus.getDefault().unregister(this);
     }
 }

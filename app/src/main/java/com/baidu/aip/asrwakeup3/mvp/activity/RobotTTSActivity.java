@@ -175,6 +175,7 @@ public class RobotTTSActivity extends RobotWakeUpActivity {
     }
 
     public void speak(String text) {
+        Log.i("sss","+++++"+text);
         if (mSpeechSynthesizer == null) {
             return;
         }
