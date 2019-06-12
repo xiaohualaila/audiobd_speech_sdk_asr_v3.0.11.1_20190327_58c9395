@@ -79,7 +79,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         speak("在");
         isWakeUp = true;
         startSpeech();
-
     }
 
     /**
@@ -109,7 +108,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     }
 
     protected void speechBackMsg(String msg){
-
 
         Log.i(TAG,"msg ---->     "+msg);
         if(msg.equals("增大音量")||msg.equals("增加声音")||msg.equals("声音变大")||msg.equals("增加音量")||msg.equals("调高音量")){
@@ -151,8 +149,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         String label = bean.getLabel();
         String text;
         if(label.equals("新闻资讯")){
-
-            String url = bean.getUrl();
+         String url = bean.getUrl();
             if(!TextUtils.isEmpty(url)){
                 web_view.setVisibility(View.VISIBLE);
                 web_view.setWebViewClient(new WebViewClient() {
