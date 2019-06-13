@@ -156,7 +156,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             img.setVisibility(View.GONE);
             isShowImage = false;
         }
-
     }
 
     //停止播放音乐
