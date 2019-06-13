@@ -10,6 +10,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+
 import com.baidu.aip.asrwakeup3.R;
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
 import com.baidu.aip.asrwakeup3.model.MessageWrap;
@@ -20,12 +21,14 @@ import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
 import com.baidu.aip.asrwakeup3.util.ImageUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -35,34 +38,33 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
-public class MainActivity extends RobotSpeechActivity implements  MainContract.View  {
-    private static final String TAG ="MainActivity" ;
-    @BindView(R.id.eye)
-    ImageView eye;
-    @BindView(R.id.mouth)
-    ImageView mouth;
+public class MainActivity extends RobotSpeechActivity implements MainContract.View {
+    private static final String TAG = "MainActivity";
     @BindView(R.id.img)
     ImageView img;
     @BindView(R.id.web_view)
-     WebView web_view;
+    WebView web_view;
+    @BindView(R.id.iv_expression)//表情
+    ImageView iv_expression;
     private MainPresenter presenter;
     private MediaPlayer mediaPlayer;
     private boolean isShowImage = false;
     private AudioManager am;
-    private boolean isCheckFace =false;
-    private Date curDate,updateDate;
+    private boolean isCheckFace = false;
+    private Date curDate, updateDate;
     private boolean isWakeUp = true;
     private boolean isWebVisible = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
-        presenter = new MainPresenter(new MainModel(),this, SchedulerProvider.getInstance());
-        Glide.with(this).load(R.drawable.eye).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(eye);
-        Glide.with(this).load(R.drawable.mouth).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mouth);
+        presenter = new MainPresenter(new MainModel(), this, SchedulerProvider.getInstance());
+        Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
+
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        am=(AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         if (!OpenCVLoader.initDebug()) {
             Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
@@ -74,11 +76,12 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
 
     }
 
-    public void wakup(){
-        Log.i(TAG,"唤醒");
+    public void wakup() {
+        Log.i(TAG, "唤醒");
         speak("在");
         isWakeUp = true;
         startSpeech();
+        Glide.with(mContext).load(R.drawable.listen).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//语音识别表情
     }
 
     /**
@@ -86,87 +89,98 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
      */
     private void heartinterval() {
         updateDate = new Date(System.currentTimeMillis());
-        Observable.interval(15, 15, TimeUnit.SECONDS)//15秒
+        Observable.interval(20, 20, TimeUnit.SECONDS)//20秒
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-                    if(isWakeUp){
+                    if (isWakeUp) {
                         curDate = new Date(System.currentTimeMillis());
                         long diff = curDate.getTime() - updateDate.getTime();
-                        Log.i(TAG,"diff ---->   TIME  " + diff);
+                        Log.i(TAG, "diff ---->   TIME  " + diff);
 
-                        if(diff>15000){
+                        if (diff > 20000) {
                             cancelSpeech();//取消语音识别
                             isWakeUp = false;
-                            Log.i(TAG,"diff ---->   取消语音识别  ");
+                            Log.i(TAG, "diff ---->   取消语音识别  ");
                             stopYuBai();
+                            stopMediaPlay();
+                            Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
                         }
                     }
                 });
     }
 
-    protected void speechStart(){
+    protected void speechStart() {
         updateDate = new Date(System.currentTimeMillis());
-        Log.i(TAG,"msg ---->   speechStart  ");
+        Log.i(TAG, "msg ---->   speechStart  ");
     }
 
-    protected void speechBackMsg(String msg){
+    protected void speechBackMsg(String msg) {
         updateDate = new Date(System.currentTimeMillis());
         stopYuBai();
-        Log.i(TAG,"msg ---->     "+msg);
-        if(msg.equals("增大音量")||msg.equals("增加声音")||msg.equals("声音变大")||msg.equals("增加音量")||msg.equals("调高音量")){
-            am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
+        stopMediaPlay();
+        stopTTS();
+        Log.i(TAG, "msg ---->     " + msg);
+        if (msg.equals("增大音量") || msg.equals("增加声音") || msg.equals("声音变大") || msg.equals("增加音量") || msg.equals("调高音量")|| msg.equals("提高音量")) {
+            am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
             return;
-        } else if(msg.equals("减小音量")||msg.equals("减小声音")||msg.equals("声音变小")||msg.equals("调低音量")){
-            am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增小
+        } else if (msg.equals("减小音量") || msg.equals("减小声音") || msg.equals("声音变小") || msg.equals("调低音量")) {
+            am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增小
             return;
-        }else if(msg.equals("打开相机")||msg.equals("人脸识别")||msg.equals("打开摄像头")){
-            if(isCheckFace){
+        } else if (msg.equals("打开相机") || msg.equals("人脸识别") || msg.equals("打开摄像头")) {
+            if (isCheckFace) {
                 startActiviys(CameraActivity.class);
-            }else {
+            } else {
                 speak("无法进入拍照界面");
             }
             return;
-        }else if(msg.equals("停止")||msg.equals("羽白停止")){
+        } else if (msg.equals("停止") || msg.equals("羽白停止")|| msg.equals("暂停")) {
+            cancelSpeech();//取消语音识别
+            isWakeUp = false;
+            Log.i(TAG, "diff ---->   取消语音识别  ");
             stopYuBai();
+            Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
             return;
         }
 
         toastLong(msg);
         presenter.getYubaiData(msg);
-        Log.i(TAG,"msg ---->   speechBackMsg  ");
+        Log.i(TAG, "msg ---->   speechBackMsg  ");
     }
 
     private void stopYuBai() {
-        if(isWebVisible){
+        if (isWebVisible) {
             web_view.setVisibility(View.GONE);
             isWebVisible = false;
         }
-        if(isShowImage){
+        if (isShowImage) {
             img.setVisibility(View.GONE);
-            isShowImage =false;
+            isShowImage = false;
         }
-        //停止播放音乐
-        if(mediaPlayer.isPlaying()){
+
+    }
+
+    //停止播放音乐
+    private void stopMediaPlay() {
+        if (mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
             mediaPlayer.reset();
         }
-        stopTTS(); //停止语音合成
     }
 
-    protected void speechFinish(){
+    protected void speechFinish() {
 
-        Log.i(TAG,"msg ---->   speechFinish  ");
+        Log.i(TAG, "msg ---->   speechFinish  ");
     }
 
     @Override
     public void getDataSuccess(YUBAIBean bean) {
-        Log.i(TAG,"羽白结果---->  "+bean.toString());
+        Log.i(TAG, "羽白结果---->  " + bean.toString());
         String result = bean.getResult();
         String label = bean.getLabel();
         String text;
-        if(label.equals("新闻资讯")){
-         String url = bean.getUrl();
-            if(!TextUtils.isEmpty(url)){
+        if (label.equals("新闻资讯")) {
+            String url = bean.getUrl();
+            if (!TextUtils.isEmpty(url)) {
                 web_view.setVisibility(View.VISIBLE);
                 isWebVisible = true;
                 web_view.setWebViewClient(new WebViewClient() {
@@ -180,47 +194,44 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
             }
 
             try {
-                int index =result.indexOf("-----------");
-                text = result.substring(0,index);
-                Log.i(TAG,"羽白结果----> text  "+text);
-            }catch (Exception e){
+                int index = result.indexOf("-----------");
+                text = result.substring(0, index);
+                Log.i(TAG, "羽白结果----> text  " + text);
+            } catch (Exception e) {
                 text = result;
             }
 
-        }else {
+        } else {
             try {
-                int index =result.indexOf("你还可以问我");
-                text = result.substring(0,index);
-                Log.i(TAG,"羽白结果----> text  "+text);
-            }catch (Exception e){
+                int index = result.indexOf("你还可以问我");
+                text = result.substring(0, index);
+                Log.i(TAG, "羽白结果----> text  " + text);
+            } catch (Exception e) {
                 text = result;
             }
         }
 
-
-        Log.i(TAG,"羽白结果----> text  "+text);
+        Log.i(TAG, "羽白结果----> text  " + text);
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
             speak(text);
-            Glide.with(this).load(R.drawable.eye_speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(eye);
-            Glide.with(this).load(R.drawable.mouth_speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mouth);
+              Glide.with(mContext).load(R.drawable.speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//说话
+
         } else {
             playVoice(voice);
         }
         String image_url = bean.getImagereply();
         if (!TextUtils.isEmpty(image_url)) {
             img.setVisibility(View.VISIBLE);
-            ImageUtils.image(mContext,image_url,img);
+            ImageUtils.image(mContext, image_url, img);
             isShowImage = true;
         }
     }
 
     //语音合成播放完成
-    protected void ttsFinish(){
+    protected void ttsFinish() {
+       Glide.with(mContext).load(R.drawable.listen).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//完成说话换语音识别表情
 
-       // tv_text.setVisibility(View.GONE);
-        Glide.with(this).load(R.drawable.eye).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(eye);
-        Glide.with(this).load(R.drawable.mouth).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mouth);
     }
 
     @Override
@@ -258,7 +269,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
                     Log.i("rr", "OpenCV loaded successfully");
-                   isCheckFace = true;
+                    isCheckFace = true;
                     break;
                 default:
                     super.onManagerConnected(status);
@@ -269,7 +280,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetMessage(MessageWrap message) {
-           speak(message.message);
+        speak(message.message);
     }
 
     @Override

@@ -45,7 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
         mContext = this;
-        mUnbinder=ButterKnife.bind(this);
+        mUnbinder = ButterKnife.bind(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0 全透明状态栏
             View decorView = getWindow().getDecorView();
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -67,12 +67,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        Log.i("sss","height  "+ height);
 //        Log.i("sss","density  "+ density);
 //        Log.i("sss","densityDpi  "+ densityDpi);
-        //  drawable-ldpi        120DPI
-        //  drawable-mdpi        160DPI
-        //  drawable-hdpi        240DPI
-        //  drawable-xhdpi       320DPI
-        //  drawalbe-xxhdpi      480DPI
-        //  drawable-xxxhdpi     640DPI
+//          drawable-ldpi        120DPI
+//          drawable-mdpi        160DPI
+//          drawable-hdpi        240DPI
+//          drawable-xhdpi       320DPI
+//          drawalbe-xxhdpi      480DPI
+//          drawable-xxxhdpi     640DPI
         // 小慧机器人 width  1280 height  720 density  2.0 densityDpi  320 drawable-xhdpi
     }
 
@@ -108,8 +108,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected BaseActivity getContext() {
         return BaseActivity.this;
     }
-
-
 
 
     /**
