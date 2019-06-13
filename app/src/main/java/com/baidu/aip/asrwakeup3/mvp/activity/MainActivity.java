@@ -98,7 +98,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                             isWakeUp = false;
                             Log.i(TAG, "diff ---->   取消语音识别  ");
                             stopYuBai();
-                            stopMediaPlay();
+                          //  stopMediaPlay();
                             Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
                         }
                     }
@@ -133,7 +133,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             cancelSpeech();//取消语音识别
             isWakeUp = false;
             Log.i(TAG, "diff ---->   取消语音识别  ");
-            stopYuBai();
             Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
             return;
         }
