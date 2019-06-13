@@ -209,8 +209,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
             speak(text);
-              Glide.with(mContext).load(R.drawable.speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//说话
-
+             Glide.with(mContext).load(R.drawable.speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//说话
         } else {
             playVoice(voice);
         }
