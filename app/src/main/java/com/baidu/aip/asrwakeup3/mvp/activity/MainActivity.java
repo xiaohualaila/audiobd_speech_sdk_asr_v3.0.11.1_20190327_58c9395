@@ -52,6 +52,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     private boolean isCheckFace =false;
     private Date curDate,updateDate;
     private boolean isWakeUp = true;
+    private boolean isWebVisible = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +76,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
 
     public void wakup(){
         Log.i(TAG,"唤醒");
-      //  wakeUpAndUnlock();
         speak("在");
         isWakeUp = true;
         startSpeech();
@@ -98,6 +98,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
                             cancelSpeech();//取消语音识别
                             isWakeUp = false;
                             Log.i(TAG,"diff ---->   取消语音识别  ");
+                            stopYuBai();
                         }
                     }
                 });
@@ -110,6 +111,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
 
     protected void speechBackMsg(String msg){
         updateDate = new Date(System.currentTimeMillis());
+        stopYuBai();
         Log.i(TAG,"msg ---->     "+msg);
         if(msg.equals("增大音量")||msg.equals("增加声音")||msg.equals("声音变大")||msg.equals("增加音量")||msg.equals("调高音量")){
             am.adjustStreamVolume (AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
@@ -124,6 +126,9 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
                 speak("无法进入拍照界面");
             }
             return;
+        }else if(msg.equals("停止")||msg.equals("羽白停止")){
+            stopYuBai();
+            return;
         }
 
         toastLong(msg);
@@ -131,13 +136,25 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
         Log.i(TAG,"msg ---->   speechBackMsg  ");
     }
 
-    protected void speechFinish(){
-        web_view.setVisibility(View.GONE);
+    private void stopYuBai() {
+        if(isWebVisible){
+            web_view.setVisibility(View.GONE);
+            isWebVisible = false;
+        }
+        if(isShowImage){
+            img.setVisibility(View.GONE);
+            isShowImage =false;
+        }
+        //停止播放音乐
         if(mediaPlayer.isPlaying()){
             mediaPlayer.stop();
             mediaPlayer.reset();
         }
-        stop(); //停止语音合成
+        stopTTS(); //停止语音合成
+    }
+
+    protected void speechFinish(){
+
         Log.i(TAG,"msg ---->   speechFinish  ");
     }
 
@@ -151,6 +168,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
          String url = bean.getUrl();
             if(!TextUtils.isEmpty(url)){
                 web_view.setVisibility(View.VISIBLE);
+                isWebVisible = true;
                 web_view.setWebViewClient(new WebViewClient() {
                     @Override
                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -159,7 +177,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
                     }
                 });
                 web_view.loadUrl(url);
-
             }
 
             try {
@@ -200,10 +217,7 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
 
     //语音合成播放完成
     protected void ttsFinish(){
-        if(isShowImage){
-            img.setVisibility(View.GONE);
-            isShowImage =false;
-        }
+
        // tv_text.setVisibility(View.GONE);
         Glide.with(this).load(R.drawable.eye).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(eye);
         Glide.with(this).load(R.drawable.mouth).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(mouth);
@@ -213,30 +227,6 @@ public class MainActivity extends RobotSpeechActivity implements  MainContract.V
     public void getDataFail() {
         toastShort("请检查网络！");
     }
-
-    /**
-     * 唤醒手机屏幕并解锁
-     */
-//    public static void wakeUpAndUnlock() {
-//         // 获取电源管理器对象
-//        PowerManager pm = (PowerManager) MyApplication.getAppContext() .getSystemService(Context.POWER_SERVICE);
-//        boolean screenOn = pm.isScreenOn();
-//        if (!screenOn) {
-//            // 获取PowerManager.WakeLock对象,后面的参数|表示同时传入两个值,最后的是LogCat里用的Tag
-//           @SuppressLint("InvalidWakeLockTag") PowerManager.WakeLock wl = pm.newWakeLock( PowerManager.ACQUIRE_CAUSES_WAKEUP |
-//           PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "bright");
-//           wl.acquire(10000);
-//           // 点亮屏幕
-//             wl.release(); // 释放
-//            }
-//        // 屏幕解锁
-//         KeyguardManager keyguardManager = (KeyguardManager) MyApplication.getAppContext()
-//                 .getSystemService(KEYGUARD_SERVICE);
-//         KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("unLock");
-//         // 屏幕锁定
-//         keyguardLock.reenableKeyguard();
-//         keyguardLock.disableKeyguard(); // 解锁
-//    }
 
     //播放语音
     private void playVoice(String voice) {

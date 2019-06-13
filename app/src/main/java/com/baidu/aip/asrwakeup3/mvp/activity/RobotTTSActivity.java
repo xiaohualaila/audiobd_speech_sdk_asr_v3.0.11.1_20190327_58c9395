@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.View;
 import com.baidu.aip.asrwakeup3.control.InitConfig;
 import com.baidu.aip.asrwakeup3.listener.UiMessageListener;
 import com.baidu.aip.asrwakeup3.util.AutoCheck2;
@@ -17,8 +16,6 @@ import com.baidu.tts.client.TtsMode;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED_RESULT;
 
 /**
  * 语音合成
@@ -67,8 +64,6 @@ public class RobotTTSActivity extends RobotWakeUpActivity {
         }
     }
 
-
-
     protected void ttsFinish(){
 
     }
@@ -100,9 +95,13 @@ public class RobotTTSActivity extends RobotWakeUpActivity {
             mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_TTS_TEXT_MODEL_FILE, TEXT_FILENAME);
             mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_TTS_SPEECH_MODEL_FILE, MODEL_FILENAME);
         }
-        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "0");
+        // 设置在线发声音人： 0 普通女声（默认） 1 普通男声 2 特别男声 3 情感男声<度逍遥> 4 情感儿童声<度丫丫>
+        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "4");
+        // 设置合成的音量，0-9 ，默认 5
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "9");
+        // 设置合成的语速，0-9 ，默认 5
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED, "5");
+        // 设置合成的语调，0-9 ，默认 5
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_PITCH, "5");
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_MIX_MODE, SpeechSynthesizer.MIX_MODE_DEFAULT);
         mSpeechSynthesizer.setAudioStreamType(AudioManager.MODE_IN_CALL);
@@ -182,7 +181,7 @@ public class RobotTTSActivity extends RobotWakeUpActivity {
         mSpeechSynthesizer.speak(text);
     }
 
-    public void stop() {
+    public void stopTTS() {
         mSpeechSynthesizer.stop();
     }
 
