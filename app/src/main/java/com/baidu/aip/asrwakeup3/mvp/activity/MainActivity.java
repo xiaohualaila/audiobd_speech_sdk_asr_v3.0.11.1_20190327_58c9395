@@ -27,7 +27,6 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import java.io.IOException;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import io.reactivex.Observable;
@@ -47,8 +46,8 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     private boolean isShowImage = false;
     private AudioManager am;
     private boolean isCheckFace = false;
-    private Date curDate, updateDate;
-    private boolean isWakeUp = true;
+    private Long updateTime;
+    private boolean isWakeUp = false;
     private boolean isWebVisible = true;
 
     @Override
@@ -84,16 +83,15 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
      * 发送心跳数据
      */
     private void heartinterval() {
-        updateDate = new Date(System.currentTimeMillis());
+        updateTime = System.currentTimeMillis();
         Observable.interval(20, 20, TimeUnit.SECONDS)//20秒
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     if (isWakeUp) {
-                        curDate = new Date(System.currentTimeMillis());
-                        long diff = curDate.getTime() - updateDate.getTime();
-                        Log.i(TAG, "diff ---->   TIME  " + diff);
+                        System.currentTimeMillis();
 
-                        if (diff > 20000) {
+                        Log.i(TAG, "diff ----> " +(System.currentTimeMillis()-updateTime));
+                        if (System.currentTimeMillis()-updateTime > 20000) {
                             cancelSpeech();//取消语音识别
                             isWakeUp = false;
                             Log.i(TAG, "diff ---->   取消语音识别  ");
@@ -106,12 +104,12 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     }
 
     protected void speechStart() {
-        updateDate = new Date(System.currentTimeMillis());
+        updateTime = System.currentTimeMillis();
         Log.i(TAG, "msg ---->   speechStart  ");
     }
 
     protected void speechBackMsg(String msg) {
-        updateDate = new Date(System.currentTimeMillis());
+        updateTime = System.currentTimeMillis();
         stopYuBai();
         stopMediaPlay();
         stopTTS();
