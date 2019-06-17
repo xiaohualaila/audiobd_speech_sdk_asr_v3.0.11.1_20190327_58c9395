@@ -99,13 +99,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 speak("无法进入拍照界面");
             }
             return;
-        } else if (msg.equals("停止") || msg.equals("羽白停止") || msg.equals("暂停")) {
-            stopYuBai();
-            stopMediaPlay();
-            stopTTS();
-            Log.i(TAG, "diff ---->   取消语音识别  ");
-            Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
-            return;
         }
 
         toastLong(msg);
@@ -135,8 +128,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 }
             }, 10000);
         }
-
-
         Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//完成说话换语音识别表情
     }
 
