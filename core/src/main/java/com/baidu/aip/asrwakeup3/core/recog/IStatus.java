@@ -16,7 +16,7 @@ public interface IStatus {
     int STATUS_FINISHED_RESULT = 8;
     int STATUS_LONG_SPEECH_FINISHED = 7;
     int STATUS_STOPPED = 10;
-
+    int STATUS_TEMPORARY = 11;
     int STATUS_WAITING_READY = 8001;
     int WHAT_MESSAGE_STATUS = 9001;
 

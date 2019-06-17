@@ -17,6 +17,7 @@ import java.util.Map;
 import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED;
 import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_FINISHED_RESULT;
 import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_READY;
+import static com.baidu.aip.asrwakeup3.core.recog.IStatus.STATUS_TEMPORARY;
 
 /**
  * 语音识别
@@ -58,6 +59,8 @@ public class RobotSpeechActivity extends RobotTTSActivity {
                 speechBackMsg(result);
             }else if(msg.what == STATUS_FINISHED){
                 speechFinish();
+            }else if(msg.what == STATUS_TEMPORARY){
+                speechTemporary(result);
             }
             Log.i("xxx", "语音识别---->" + msg.obj.toString()+"  what "+msg.what);
         }
@@ -67,6 +70,10 @@ public class RobotSpeechActivity extends RobotTTSActivity {
     }
 
     protected void speechFinish(){
+
+    }
+
+    protected void speechTemporary(String msg){
 
     }
 

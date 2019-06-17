@@ -10,6 +10,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.baidu.aip.asrwakeup3.R;
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
@@ -40,6 +41,8 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     ImageView img;
     @BindView(R.id.web_view)
     WebView web_view;
+    @BindView(R.id.tip)
+    TextView tip;
     @BindView(R.id.iv_expression)//表情
             ImageView iv_expression;
     private MainPresenter presenter;
@@ -106,11 +109,16 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         Log.i(TAG, "msg ---->   speechBackMsg  ");
     }
 
+    protected void speechTemporary(String msg){
+        tip.setText(msg);
+    }
+
     /**
      * 语音识别结束
      */
     protected void speechFinish() {
         Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
+        tip.setText("");
         Log.i(TAG, "msg ---->   speechFinish  ");
     }
 

@@ -45,7 +45,7 @@ public class StatusRecogListener implements IRecogListener, IStatus {
 
     @Override
     public void onAsrPartialResult(String[] results, RecogResult recogResult) {
-
+        status =STATUS_TEMPORARY;
     }
 
     @Override

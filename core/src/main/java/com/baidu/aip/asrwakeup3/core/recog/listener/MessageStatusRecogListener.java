@@ -50,6 +50,8 @@ public class MessageStatusRecogListener extends StatusRecogListener {
     public void onAsrPartialResult(String[] results, RecogResult recogResult) {
      //   sendStatusMessage(SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL,
         //        "临时识别结果，结果是“" + results[0] + "”；原始json：" + recogResult.getOrigalJson());
+        String message = results[0];
+        sendMessage(message, status, true);
         super.onAsrPartialResult(results, recogResult);
     }
 
