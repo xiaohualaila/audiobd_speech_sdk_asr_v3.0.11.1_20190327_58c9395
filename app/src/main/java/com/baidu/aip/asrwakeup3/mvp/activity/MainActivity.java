@@ -27,10 +27,7 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 
 public class MainActivity extends RobotSpeechActivity implements MainContract.View {
@@ -43,13 +40,12 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     ImageView iv_expression;
     private MainPresenter presenter;
     private MediaPlayer mediaPlayer;
-    private boolean isShowImage = false;
+
     private AudioManager am;
     private boolean isCheckFace = false;
-    private Long updateTime;
-    private boolean isWakeUp = false;
     private boolean isWebVisible = true;
-
+    private boolean isShowImage = false;
+    private Long updateTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,52 +63,23 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
-        heartinterval();
-
     }
 
     public void wakup() {
         Log.i(TAG, "唤醒");
+        stopTTS();
         speak("在");
-        isWakeUp = true;
         startSpeech();
-        Glide.with(mContext).load(R.drawable.listen).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//语音识别表情
-    }
-
-    /**
-     * 发送心跳数据
-     */
-    private void heartinterval() {
-        updateTime = System.currentTimeMillis();
-        Observable.interval(20, 20, TimeUnit.SECONDS)//20秒
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                    if (isWakeUp) {
-                        System.currentTimeMillis();
-
-                        Log.i(TAG, "diff ----> " +(System.currentTimeMillis()-updateTime));
-                        if (System.currentTimeMillis()-updateTime > 20000) {
-                            cancelSpeech();//取消语音识别
-                            isWakeUp = false;
-                            Log.i(TAG, "diff ---->   取消语音识别  ");
-                            stopYuBai();
-                          //  stopMediaPlay();
-                            Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
-                        }
-                    }
-                });
     }
 
     protected void speechStart() {
-        updateTime = System.currentTimeMillis();
         Log.i(TAG, "msg ---->   speechStart  ");
+        stopYuBai();
+        stopMediaPlay();
+        Glide.with(mContext).load(R.drawable.listen).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//语音识别表情
     }
 
     protected void speechBackMsg(String msg) {
-        updateTime = System.currentTimeMillis();
-        stopYuBai();
-        stopMediaPlay();
-        stopTTS();
         Log.i(TAG, "msg ---->     " + msg);
         if (msg.equals("增大音量") || msg.equals("增加声音") || msg.equals("声音变大") || msg.equals("增加音量") || msg.equals("调高音量")|| msg.equals("提高音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
@@ -128,8 +95,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             }
             return;
         } else if (msg.equals("停止") || msg.equals("羽白停止")|| msg.equals("暂停")) {
-            cancelSpeech();//取消语音识别
-            isWakeUp = false;
+            stopYuBai();
+            stopMediaPlay();
+            stopTTS();
             Log.i(TAG, "diff ---->   取消语音识别  ");
             Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
             return;
@@ -138,6 +106,34 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         toastLong(msg);
         presenter.getYubaiData(msg);
         Log.i(TAG, "msg ---->   speechBackMsg  ");
+    }
+
+    /**
+     *  语音识别结束
+     */
+    protected void speechFinish() {
+
+        Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
+        Log.i(TAG, "msg ---->   speechFinish  ");
+    }
+
+    /**
+     *     语音合成播放完成
+     */
+    protected void ttsFinish() {
+        if (isWebVisible||isShowImage) {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if(System.currentTimeMillis()-updateTime > 10000){
+                        stopYuBai();
+                    }
+                }
+            },10000);
+        }
+
+
+        Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//完成说话换语音识别表情
     }
 
     private void stopYuBai() {
@@ -159,10 +155,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         }
     }
 
-    protected void speechFinish() {
-
-        Log.i(TAG, "msg ---->   speechFinish  ");
-    }
 
     @Override
     public void getDataSuccess(YUBAIBean bean) {
@@ -175,6 +167,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             if (!TextUtils.isEmpty(url)) {
                 web_view.setVisibility(View.VISIBLE);
                 isWebVisible = true;
+                updateTime =  System.currentTimeMillis();
                 web_view.setWebViewClient(new WebViewClient() {
                     @Override
                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -206,7 +199,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         Log.i(TAG, "羽白结果----> text  " + text);
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
-            speak(text);
+             speak(text);
              Glide.with(mContext).load(R.drawable.speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//说话
         } else {
             playVoice(voice);
@@ -216,14 +209,12 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             img.setVisibility(View.VISIBLE);
             ImageUtils.image(mContext, image_url, img);
             isShowImage = true;
+            updateTime =  System.currentTimeMillis();
         }
-    }
-
-    //语音合成播放完成
-    protected void ttsFinish() {
-       Glide.with(mContext).load(R.drawable.listen).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//完成说话换语音识别表情
 
     }
+
+
 
     @Override
     public void getDataFail() {
