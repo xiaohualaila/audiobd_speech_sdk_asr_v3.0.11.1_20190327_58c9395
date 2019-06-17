@@ -10,6 +10,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.baidu.aip.asrwakeup3.R;
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
 import com.baidu.aip.asrwakeup3.model.MessageWrap;
@@ -39,8 +41,10 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     ImageView img;
     @BindView(R.id.web_view)
     WebView web_view;
-    @BindView(R.id.iv_expression)//表情
+    @BindView(R.id.iv_expression)
     ImageView iv_expression;
+    @BindView(R.id.tip)
+    TextView tip;
     private MainPresenter presenter;
     private MediaPlayer mediaPlayer;
     private boolean isShowImage = false;
@@ -76,7 +80,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         speak("在");
         isWakeUp = true;
         startSpeech();
-        Glide.with(mContext).load(R.drawable.listen).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//语音识别表情
+        Glide.with(mContext).load(R.drawable.listen2).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//语音识别表情
     }
 
     /**
@@ -88,15 +92,11 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     if (isWakeUp) {
-                        System.currentTimeMillis();
-
-                        Log.i(TAG, "diff ----> " +(System.currentTimeMillis()-updateTime));
                         if (System.currentTimeMillis()-updateTime > 20000) {
                             cancelSpeech();//取消语音识别
                             isWakeUp = false;
                             Log.i(TAG, "diff ---->   取消语音识别  ");
                             stopYuBai();
-                          //  stopMediaPlay();
                             Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
                         }
                     }
@@ -110,9 +110,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
 
     protected void speechBackMsg(String msg) {
         updateTime = System.currentTimeMillis();
+        stopTTS();
         stopYuBai();
         stopMediaPlay();
-        stopTTS();
         Log.i(TAG, "msg ---->     " + msg);
         if (msg.equals("增大音量") || msg.equals("增加声音") || msg.equals("声音变大") || msg.equals("增加音量") || msg.equals("调高音量")|| msg.equals("提高音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
@@ -128,16 +128,43 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             }
             return;
         } else if (msg.equals("停止") || msg.equals("羽白停止")|| msg.equals("暂停")) {
-            cancelSpeech();//取消语音识别
+            cancelSpeech();
             isWakeUp = false;
             Log.i(TAG, "diff ---->   取消语音识别  ");
             Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
             return;
         }
-
-        toastLong(msg);
         presenter.getYubaiData(msg);
         Log.i(TAG, "msg ---->   speechBackMsg  ");
+    }
+
+    /**
+     * 临时识别结果
+     */
+    protected void speechTemporary(String msg){
+        tip.setText(msg);
+    }
+
+
+    /**
+     * 语音识别结束
+     */
+    protected void speechFinish() {
+        updateTime = System.currentTimeMillis();
+        tip.setText("");
+        Log.i(TAG, "msg ---->   speechFinish  ");
+    }
+
+    /**
+     * 语音合成播放完成
+     */
+    protected void ttsFinish() {
+        updateTime = System.currentTimeMillis();
+        if(isWakeUp){
+            Glide.with(mContext).load(R.drawable.listen2).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
+        }else {
+            Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
+        }
     }
 
     private void stopYuBai() {
@@ -157,11 +184,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             mediaPlayer.stop();
             mediaPlayer.reset();
         }
-    }
-
-    protected void speechFinish() {
-
-        Log.i(TAG, "msg ---->   speechFinish  ");
     }
 
     @Override
@@ -219,12 +241,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         }
     }
 
-    //语音合成播放完成
-    protected void ttsFinish() {
-       Glide.with(mContext).load(R.drawable.listen).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//完成说话换语音识别表情
-
-    }
-
     @Override
     public void getDataFail() {
         toastShort("请检查网络！");
@@ -259,7 +275,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         public void onManagerConnected(int status) {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
-                    Log.i("rr", "OpenCV loaded successfully");
+                    Log.i(TAG, "OpenCV loaded successfully");
                     isCheckFace = true;
                     break;
                 default:
