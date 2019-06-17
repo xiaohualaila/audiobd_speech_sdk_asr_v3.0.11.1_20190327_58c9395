@@ -20,19 +20,15 @@ import com.baidu.aip.asrwakeup3.mvp.model.MainModel;
 import com.baidu.aip.asrwakeup3.mvp.presenter.MainPresenter;
 import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
 import com.baidu.aip.asrwakeup3.util.ImageUtils;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
-
 import java.io.IOException;
-
 import butterknife.BindView;
+import pl.droidsonroids.gif.GifImageView;
 
 
 public class MainActivity extends RobotSpeechActivity implements MainContract.View {
@@ -44,7 +40,11 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     @BindView(R.id.tip)
     TextView tip;
     @BindView(R.id.iv_expression)//表情
-            ImageView iv_expression;
+            GifImageView iv_expression;
+    @BindView(R.id.iv_expression2)//表情
+            GifImageView iv_expression2;
+    @BindView(R.id.voice)
+    GifImageView voice;
     private MainPresenter presenter;
     private MediaPlayer mediaPlayer;
 
@@ -59,8 +59,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
         presenter = new MainPresenter(new MainModel(), this, SchedulerProvider.getInstance());
-        Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
 
+        iv_expression.setVisibility(View.VISIBLE);
+        iv_expression2.setVisibility(View.GONE);
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -84,7 +85,8 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
 
     protected void speechStart() {
         Log.i(TAG, "msg ---->   speechStart  ");
-        Glide.with(mContext).load(R.drawable.listen2).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//语音识别表情
+
+        voice.setVisibility(View.VISIBLE);
     }
 
     protected void speechBackMsg(String msg) {
@@ -103,8 +105,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             }
             return;
         }
-
-        toastLong(msg);
         presenter.getYubaiData(msg);
         Log.i(TAG, "msg ---->   speechBackMsg  ");
     }
@@ -117,7 +117,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
      * 语音识别结束
      */
     protected void speechFinish() {
-        Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
+        voice.setVisibility(View.GONE);
         tip.setText("");
         Log.i(TAG, "msg ---->   speechFinish  ");
     }
@@ -136,7 +136,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 }
             }, 10000);
         }
-        Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//完成说话换语音识别表情
+
+        iv_expression.setVisibility(View.VISIBLE);
+        iv_expression2.setVisibility(View.GONE);
     }
 
     private void stopYuBai() {
@@ -203,7 +205,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
             speak(text);
-            Glide.with(mContext).load(R.drawable.speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//说话
+            Log.i(TAG, "羽白说--->  " + text);
+            iv_expression.setVisibility(View.GONE);
+            iv_expression2.setVisibility(View.VISIBLE);
         } else {
             playVoice(voice);
         }

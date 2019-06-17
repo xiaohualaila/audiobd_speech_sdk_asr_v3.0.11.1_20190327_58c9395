@@ -4,17 +4,24 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg">
 
-    <ImageView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/iv_expression"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"
+        android:src="@drawable/wait"/>
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/iv_expression2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:src="@drawable/speak"/>
     <ImageView
         android:id="@+id/img"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
+        android:scaleType="fitStart"
         android:visibility="gone" />
 
     <WebView
@@ -30,6 +37,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#fff"
+        android:layout_marginBottom="60dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/voice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:src="@drawable/voice" />
+
 </RelativeLayout>

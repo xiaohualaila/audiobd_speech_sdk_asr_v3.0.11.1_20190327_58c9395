@@ -18,7 +18,7 @@
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
         <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/build/generated/res/rs/debug;file://$MODULE_DIR$/build/generated/res/resValues/debug" />
-        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="" />
+        <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/build/generated/res/rs/androidTest/debug" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
@@ -97,6 +97,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-runtime-classes" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental-verifier" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-apk" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_app_manifest" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_app_info_output_file" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_main_apk_resources" />
@@ -119,6 +120,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/split-apk" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/validate_signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
@@ -142,6 +144,7 @@
     <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable:27.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.retrofit2:converter-gson:2.5.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.sufficientlysecure:html-textview:3.6@aar" level="project" />
+    <orderEntry type="library" name="Gradle: pl.droidsonroids.gif:android-gif-drawable:1.2.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.jakewharton:butterknife:8.4.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:E.\baidu\audiobd_speech\core\libs\bdasr_V3_20190327_58c9395.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:logging-interceptor:3.12.1@jar" level="project" />
@@ -159,22 +162,6 @@
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:glide:3.7.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.15.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxandroid:2.1.0@aar" level="project" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="openCV4Libs" />
     <orderEntry type="module" module-name="core" />
     <orderEntry type="module" module-name="uiasr" />
     <orderEntry type="module" module-name="uidialog" />
