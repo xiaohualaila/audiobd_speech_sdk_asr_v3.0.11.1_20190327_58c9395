@@ -10,6 +10,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
+
 import com.baidu.aip.asrwakeup3.R;
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
 import com.baidu.aip.asrwakeup3.model.MessageWrap;
@@ -20,13 +21,16 @@ import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
 import com.baidu.aip.asrwakeup3.util.ImageUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+
 import java.io.IOException;
+
 import butterknife.BindView;
 
 
@@ -37,7 +41,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     @BindView(R.id.web_view)
     WebView web_view;
     @BindView(R.id.iv_expression)//表情
-    ImageView iv_expression;
+            ImageView iv_expression;
     private MainPresenter presenter;
     private MediaPlayer mediaPlayer;
 
@@ -46,6 +50,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     private boolean isWebVisible = true;
     private boolean isShowImage = false;
     private Long updateTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,20 +73,20 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     public void wakup() {
         Log.i(TAG, "唤醒");
         stopTTS();
+        stopYuBai();
+        stopMediaPlay();
         speak("在");
         startSpeech();
     }
 
     protected void speechStart() {
         Log.i(TAG, "msg ---->   speechStart  ");
-        stopYuBai();
-        stopMediaPlay();
         Glide.with(mContext).load(R.drawable.listen).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//语音识别表情
     }
 
     protected void speechBackMsg(String msg) {
         Log.i(TAG, "msg ---->     " + msg);
-        if (msg.equals("增大音量") || msg.equals("增加声音") || msg.equals("声音变大") || msg.equals("增加音量") || msg.equals("调高音量")|| msg.equals("提高音量")) {
+        if (msg.equals("增大音量") || msg.equals("增加声音") || msg.equals("声音变大") || msg.equals("增加音量") || msg.equals("调高音量") || msg.equals("提高音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
             return;
         } else if (msg.equals("减小音量") || msg.equals("减小声音") || msg.equals("声音变小") || msg.equals("调低音量")) {
@@ -94,7 +99,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 speak("无法进入拍照界面");
             }
             return;
-        } else if (msg.equals("停止") || msg.equals("羽白停止")|| msg.equals("暂停")) {
+        } else if (msg.equals("停止") || msg.equals("羽白停止") || msg.equals("暂停")) {
             stopYuBai();
             stopMediaPlay();
             stopTTS();
@@ -109,27 +114,26 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     }
 
     /**
-     *  语音识别结束
+     * 语音识别结束
      */
     protected void speechFinish() {
-
         Glide.with(mContext).load(R.drawable.wait).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);
         Log.i(TAG, "msg ---->   speechFinish  ");
     }
 
     /**
-     *     语音合成播放完成
+     * 语音合成播放完成
      */
     protected void ttsFinish() {
-        if (isWebVisible||isShowImage) {
+        if (isWebVisible || isShowImage) {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    if(System.currentTimeMillis()-updateTime > 10000){
+                    if (System.currentTimeMillis() - updateTime > 10000) {
                         stopYuBai();
                     }
                 }
-            },10000);
+            }, 10000);
         }
 
 
@@ -167,7 +171,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             if (!TextUtils.isEmpty(url)) {
                 web_view.setVisibility(View.VISIBLE);
                 isWebVisible = true;
-                updateTime =  System.currentTimeMillis();
+                updateTime = System.currentTimeMillis();
                 web_view.setWebViewClient(new WebViewClient() {
                     @Override
                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -199,8 +203,8 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         Log.i(TAG, "羽白结果----> text  " + text);
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
-             speak(text);
-             Glide.with(mContext).load(R.drawable.speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//说话
+            speak(text);
+            Glide.with(mContext).load(R.drawable.speak).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//说话
         } else {
             playVoice(voice);
         }
@@ -209,11 +213,10 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             img.setVisibility(View.VISIBLE);
             ImageUtils.image(mContext, image_url, img);
             isShowImage = true;
-            updateTime =  System.currentTimeMillis();
+            updateTime = System.currentTimeMillis();
         }
 
     }
-
 
 
     @Override
