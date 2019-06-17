@@ -84,7 +84,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
 
     protected void speechStart() {
         Log.i(TAG, "msg ---->   speechStart  ");
-        Glide.with(mContext).load(R.drawable.listen).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//语音识别表情
+        Glide.with(mContext).load(R.drawable.listen2).asGif().diskCacheStrategy(DiskCacheStrategy.SOURCE).into(iv_expression);//语音识别表情
     }
 
     protected void speechBackMsg(String msg) {
