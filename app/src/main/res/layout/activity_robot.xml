@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textIsSelectable="true"
     android:background="@drawable/bg">
 
     <pl.droidsonroids.gif.GifImageView
@@ -56,5 +57,18 @@
         android:layout_centerHorizontal="true"
         android:visibility="gone"
         android:src="@drawable/voice" />
+
+    <TextView
+        android:id="@+id/tv_marquee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="-1"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp" />
 
 </RelativeLayout>

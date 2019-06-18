@@ -22,7 +22,6 @@ import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.presenter.MainPresenter;
 import com.aier.speech.recognizer.util.ImageUtils;
 import com.aier.speech.recognizer.util.ReplaceHtml;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -50,6 +49,8 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             GifImageView iv_expression2;
     @BindView(R.id.voice)
     GifImageView voice;
+    @BindView(R.id.tv_marquee)
+    TextView tv_marquee;
     private MainPresenter presenter;
     private MediaPlayer mediaPlayer;
 
@@ -113,6 +114,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         toastLong(msg);
         if(isNetConnection){
             presenter.getYubaiData(msg);
+            Log.i("xxx","presenter.getYubaiData(msg)");
         }else {
             toastLong("网络无法连接！");
         }
@@ -144,7 +146,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 }
             }, 10000);
         }
-
+        tv_marquee.setVisibility(View.GONE);
         iv_expression.setVisibility(View.VISIBLE);
         iv_expression2.setVisibility(View.GONE);
     }
@@ -173,8 +175,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     public void getDataSuccess(YUBAIBean bean) {
         Log.i(TAG, "羽白结果---->  " + bean.toString());
         String result = bean.getResult();
-        Log.i(TAG, "result结果---->  " + result);
-
         String label = bean.getLabel();
         Log.i("xxxx", "label---->  " + label);
         String text;
@@ -195,25 +195,22 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             }
 
             try {
-
                 String resultNotHtml = ReplaceHtml.delHtmlTag(result);
-                Log.i(TAG, "resultNotHtml结果---->  " + resultNotHtml);
-                int index = resultNotHtml.indexOf("-----------");
                 int indexLast = resultNotHtml.indexOf("你还可以问我");
                 text = resultNotHtml.substring(0, indexLast);
-                Log.i("xxxx", "羽白结果----> text  " + text);
             } catch (Exception e) {
                 text = result;
             }
-
         } else {
             try {
                 int index = result.indexOf("你还可以问我");
                 text = result.substring(0, index);
-                Log.i(TAG, "羽白结果----> text  " + text);
             } catch (Exception e) {
                 text = result;
             }
+            tv_marquee.setVisibility(View.VISIBLE);
+            tv_marquee.setText(text);
+            tv_marquee.setSelected(true);
         }
 
         Log.i(TAG, "羽白结果----> text  " + text);
