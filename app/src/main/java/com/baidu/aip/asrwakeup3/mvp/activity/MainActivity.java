@@ -20,6 +20,8 @@ import com.baidu.aip.asrwakeup3.mvp.model.MainModel;
 import com.baidu.aip.asrwakeup3.mvp.presenter.MainPresenter;
 import com.baidu.aip.asrwakeup3.network.schedulers.SchedulerProvider;
 import com.baidu.aip.asrwakeup3.util.ImageUtils;
+import com.baidu.aip.asrwakeup3.util.ReplaceHtml;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -39,9 +41,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     WebView web_view;
     @BindView(R.id.tip)
     TextView tip;
-    @BindView(R.id.iv_expression)//表情
+    @BindView(R.id.iv_expression)
             GifImageView iv_expression;
-    @BindView(R.id.iv_expression2)//表情
+    @BindView(R.id.iv_expression2)
             GifImageView iv_expression2;
     @BindView(R.id.voice)
     GifImageView voice;
@@ -85,7 +87,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
 
     protected void speechStart() {
         Log.i(TAG, "msg ---->   speechStart  ");
-
         voice.setVisibility(View.VISIBLE);
     }
 
@@ -105,6 +106,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             }
             return;
         }
+        toastLong(msg);
         presenter.getYubaiData(msg);
         Log.i(TAG, "msg ---->   speechBackMsg  ");
     }
@@ -127,12 +129,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
      */
     protected void ttsFinish() {
         if (isWebVisible || isShowImage) {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (System.currentTimeMillis() - updateTime > 10000) {
-                        stopYuBai();
-                    }
+            handler.postDelayed(() -> {
+                if (System.currentTimeMillis() - updateTime > 10000) {
+                    stopYuBai();
                 }
             }, 10000);
         }
@@ -165,7 +164,10 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     public void getDataSuccess(YUBAIBean bean) {
         Log.i(TAG, "羽白结果---->  " + bean.toString());
         String result = bean.getResult();
+        Log.i(TAG, "result结果---->  " + result);
+
         String label = bean.getLabel();
+        Log.i("xxxx", "label---->  " + label);
         String text;
         if (label.equals("新闻资讯")) {
             String url = bean.getUrl();
@@ -184,9 +186,13 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             }
 
             try {
-                int index = result.indexOf("-----------");
-                text = result.substring(0, index);
-                Log.i(TAG, "羽白结果----> text  " + text);
+
+                String resultNotHtml = ReplaceHtml.delHtmlTag(result);
+                Log.i(TAG, "resultNotHtml结果---->  " + resultNotHtml);
+                int index = resultNotHtml.indexOf("-----------");
+                int indexLast = resultNotHtml.indexOf("你还可以问我");
+                text = resultNotHtml.substring(0, indexLast);
+                Log.i("xxxx", "羽白结果----> text  " + text);
             } catch (Exception e) {
                 text = result;
             }
@@ -218,7 +224,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             isShowImage = true;
             updateTime = System.currentTimeMillis();
         }
-
     }
 
 
