@@ -7,12 +7,12 @@
     <application>
         <meta-data
                 android:name="com.baidu.speech.APP_ID"
-                android:value="15590577"/>
+                android:value="16554949"/>
         <meta-data
                 android:name="com.baidu.speech.API_KEY"
-                android:value="q2uPyBe6LmWTZlvb0g1dzcHV"/>
+                android:value="ununbsGKrB3GR1mcGdflP36G"/>
         <meta-data
                 android:name="com.baidu.speech.SECRET_KEY"
-                android:value="y7S7hAI894BB3LF1yHYmvQEus1B6wPvj"/>
+                android:value="Gzekoi2eMNXLkjVa7DIeg5othWRP5U8y"/>
     </application>
 </manifest>
