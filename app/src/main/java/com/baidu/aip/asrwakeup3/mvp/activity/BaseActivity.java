@@ -5,8 +5,10 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,6 +21,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.baidu.aip.asrwakeup3.broadcastReceiver.NetStateReceiver;
 
 import java.util.ArrayList;
 
@@ -39,7 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Unbinder mUnbinder;
     private Toast mToast;
     private ProgressDialog loadingDialog;
-
+    private NetStateReceiver mStateReceiver;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +61,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
         initPermission();
+        rigisterReceiver();
 //        DisplayMetrics metric = new DisplayMetrics();
 //        getWindowManager().getDefaultDisplay().getMetrics(metric);
 //        int width = metric.widthPixels;  // 屏幕宽度（像素）
@@ -74,6 +79,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 //          drawalbe-xxhdpi      480DPI
 //          drawable-xxxhdpi     640DPI
         // 小慧机器人 width  1280 height  720 density  2.0 densityDpi  320 drawable-xhdpi
+
+    }
+
+    private void rigisterReceiver() {
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        mStateReceiver = new NetStateReceiver();
+        registerReceiver(mStateReceiver,filter);
     }
 
     protected abstract int getLayout();
@@ -166,6 +178,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         dismissLoading();
+        unregisterReceiver(mStateReceiver);
         mUnbinder.unbind();
         super.onDestroy();
     }

@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.baidu.aip.asrwakeup3.R;
 import com.baidu.aip.asrwakeup3.bean.YUBAIBean;
 import com.baidu.aip.asrwakeup3.model.MessageWrap;
+import com.baidu.aip.asrwakeup3.model.NetState;
 import com.baidu.aip.asrwakeup3.mvp.contract.MainContract;
 import com.baidu.aip.asrwakeup3.mvp.model.MainModel;
 import com.baidu.aip.asrwakeup3.mvp.presenter.MainPresenter;
@@ -41,6 +42,8 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     WebView web_view;
     @BindView(R.id.tip)
     TextView tip;
+    @BindView(R.id.net_state)
+    TextView net_state;
     @BindView(R.id.iv_expression)
             GifImageView iv_expression;
     @BindView(R.id.iv_expression2)
@@ -55,6 +58,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     private boolean isWebVisible = true;
     private boolean isShowImage = false;
     private Long updateTime;
+    private boolean isNetConnection = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +111,12 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             return;
         }
         toastLong(msg);
-        presenter.getYubaiData(msg);
+        if(isNetConnection){
+            presenter.getYubaiData(msg);
+        }else {
+            toastLong("网络无法连接！");
+        }
+
         Log.i(TAG, "msg ---->   speechBackMsg  ");
     }
 
@@ -274,6 +283,18 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetMessage(MessageWrap message) {
         speak(message.message);
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onGetNetState(NetState state) {
+        isNetConnection= state.isUse;
+        if(!isNetConnection){
+            net_state.setText(state.message);
+        }else {
+            net_state.setText("");
+        }
+        toastLong(state.message);
     }
 
     @Override
