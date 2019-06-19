@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
 import com.aier.speech.recognizer.model.NetState;
-
 import org.greenrobot.eventbus.EventBus;
 
 public class NetStateReceiver extends BroadcastReceiver {

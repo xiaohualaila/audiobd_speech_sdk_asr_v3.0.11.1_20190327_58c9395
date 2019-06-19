@@ -2,7 +2,6 @@ package com.aier.speech.recognizer.mvp.activity;
 
 import android.os.Bundle;
 import android.util.Log;
-
 import com.aier.speech.recognizer.R;
 import com.baidu.speech.EventListener;
 import com.baidu.speech.EventManager;
