@@ -2,7 +2,6 @@ package com.aier.speech.recognizer.wakeup;
 
 import android.os.Bundle;
 import android.view.View;
-
 import com.aier.speech.recognizer.R;
 import com.baidu.aip.asrwakeup3.core.recog.IStatus;
 import com.baidu.aip.asrwakeup3.core.wakeup.IWakeupListener;
@@ -10,7 +9,6 @@ import com.baidu.aip.asrwakeup3.core.wakeup.MyWakeup;
 import com.baidu.aip.asrwakeup3.core.wakeup.RecogWakeupListener;
 import com.baidu.aip.asrwakeup3.uiasr.activity.ActivityCommon;
 import com.baidu.speech.asr.SpeechConstant;
-
 import java.util.HashMap;
 import java.util.Map;
 

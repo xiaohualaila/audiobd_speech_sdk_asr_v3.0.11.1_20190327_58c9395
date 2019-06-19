@@ -69,6 +69,6 @@
         android:marqueeRepeatLimit="-1"
         android:textColor="#fff"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="20dp" />
 
 </RelativeLayout>

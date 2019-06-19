@@ -114,12 +114,11 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         toastLong(msg);
         if(isNetConnection){
             presenter.getYubaiData(msg);
-            Log.i("xxx","presenter.getYubaiData(msg)");
         }else {
             toastLong("网络无法连接！");
         }
 
-        Log.i(TAG, "msg ---->   speechBackMsg  ");
+     //   Log.i(TAG, "msg ---->   speechBackMsg  ");
     }
 
     protected void speechTemporary(String msg){
@@ -132,7 +131,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     protected void speechFinish() {
         voice.setVisibility(View.GONE);
         tip.setText("");
-        Log.i(TAG, "msg ---->   speechFinish  ");
+    //    Log.i(TAG, "msg ---->   speechFinish  ");
     }
 
     /**
@@ -176,7 +175,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         Log.i(TAG, "羽白结果---->  " + bean.toString());
         String result = bean.getResult();
         String label = bean.getLabel();
-        Log.i("xxxx", "label---->  " + label);
+      //  Log.i("xxxx", "label---->  " + label);
         String text;
         if (label.equals("新闻资讯")) {
             String url = bean.getUrl();
@@ -217,7 +216,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
             speak(text);
-            Log.i(TAG, "羽白说--->  " + text);
             iv_expression.setVisibility(View.GONE);
             iv_expression2.setVisibility(View.VISIBLE);
         } else {
