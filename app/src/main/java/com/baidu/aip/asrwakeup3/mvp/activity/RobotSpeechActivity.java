@@ -81,15 +81,11 @@ public class RobotSpeechActivity extends RobotTTSActivity {
 
     }
 
-
-
-
     /**
      * 开始录音，点击“开始”按钮后调用。
      * 基于DEMO集成2.1, 2.2 设置识别参数并发送开始事件
      */
     protected void startSpeech() {
-      //  final Map<String, Object> params = fetchParams();
         Map<String, Object> params = new HashMap<String, Object>();
         params.put("vad.endpoint-timeout",0);//长语音识别
         params.put("accept-audio-volume",false);

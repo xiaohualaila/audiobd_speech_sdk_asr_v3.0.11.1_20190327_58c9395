@@ -90,8 +90,10 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotation_processor_list" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotations_typedef_file" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotations_zip" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/check_manifest_result" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/compile_only_not_namespaced_r_class_jar" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/consumer_proguard_file" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/intermediate-jars" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
@@ -109,6 +111,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/sourceFolderJavaResources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
@@ -130,13 +133,6 @@
     <orderEntry type="library" name="Gradle: com.android.support:animated-vector-drawable:27.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7:27.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:common:1.1.0@jar" level="project" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="core" />
     <orderEntry type="module" module-name="core" />
   </component>
 </module>
