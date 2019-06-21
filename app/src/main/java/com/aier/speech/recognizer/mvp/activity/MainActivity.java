@@ -207,7 +207,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             } catch (Exception e) {
                 text = result;
             }
-            tv_marquee.setVisibility(View.VISIBLE);
             tv_marquee.setText(text);
             tv_marquee.setSelected(true);
         }
@@ -246,6 +245,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 // 装载完毕 开始播放流媒体
                 mediaPlayer.start();
             });
+            mediaPlayer.setOnCompletionListener(mp -> tv_marquee.setVisibility(View.GONE));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {

@@ -166,5 +166,17 @@
     <orderEntry type="module" module-name="uiasr" />
     <orderEntry type="module" module-name="uidialog" />
     <orderEntry type="module" module-name="openCV4Libs" />
+    <orderEntry type="module" module-name="core" />
+    <orderEntry type="module" module-name="uiasr" />
+    <orderEntry type="module" module-name="uidialog" />
+    <orderEntry type="module" module-name="openCV4Libs" />
+    <orderEntry type="module" module-name="core" />
+    <orderEntry type="module" module-name="uiasr" />
+    <orderEntry type="module" module-name="uidialog" />
+    <orderEntry type="module" module-name="openCV4Libs" />
+    <orderEntry type="module" module-name="core" />
+    <orderEntry type="module" module-name="uiasr" />
+    <orderEntry type="module" module-name="uidialog" />
+    <orderEntry type="module" module-name="openCV4Libs" />
   </component>
 </module>
