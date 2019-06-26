@@ -11,6 +11,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textSize="30sp"
-        android:text="我是环境宝宝机器人"/>
+        android:text="我是羽白同学机器人"/>
 
 </android.support.constraint.ConstraintLayout>

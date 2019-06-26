@@ -53,14 +53,14 @@ public class RobotWakeUpActivity extends BaseActivity implements EventListener {
     @Override
     protected void onResume() {
         super.onResume();
-        start();
+      //  startWakeUp();
     }
 
     /**
      * 测试参数填在这里
      * 基于SDK唤醒词集成第2.1 设置唤醒的输入参数
      */
-    private void start() {
+    protected void startWakeUp() {
         // 基于SDK唤醒词集成第2.1 设置唤醒的输入参数
         Map<String, Object> params = new TreeMap<String, Object>();
         params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, false);

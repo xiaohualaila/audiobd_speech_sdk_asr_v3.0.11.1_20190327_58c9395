@@ -60,6 +60,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     private boolean isShowImage = false;
     private Long updateTime;
     private boolean isNetConnection = false;
+    private boolean isFirst = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,13 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
+        speak("大家好！我是羽白同学，大家有什么问题可以问我哦。");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     public void wakup() {
@@ -138,6 +146,11 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
      * 语音合成播放完成
      */
     protected void ttsFinish() {
+        if(isFirst){
+            startWakeUp();
+            isFirst = false;
+            return;
+        }
         if (isWebVisible || isShowImage) {
             handler.postDelayed(() -> {
                 if (System.currentTimeMillis() - updateTime > 10000) {
