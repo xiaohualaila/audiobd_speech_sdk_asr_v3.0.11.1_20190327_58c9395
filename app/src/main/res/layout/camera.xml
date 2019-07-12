@@ -7,7 +7,6 @@
     <!--<org.opencv.android.JavaCamera2View-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent" />-->
-
     <org.opencv.android.JavaCameraView
         android:id="@+id/camera"
         android:layout_width="match_parent"

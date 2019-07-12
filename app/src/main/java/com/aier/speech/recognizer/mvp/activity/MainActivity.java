@@ -29,7 +29,11 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import pl.droidsonroids.gif.GifImageView;
 
 
@@ -44,9 +48,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     @BindView(R.id.net_state)
     TextView net_state;
     @BindView(R.id.iv_expression)
-            GifImageView iv_expression;
+            GifImageView iv_expression;//等待表情
     @BindView(R.id.iv_expression2)
-            GifImageView iv_expression2;
+            GifImageView iv_expression2;//说话表情
     @BindView(R.id.voice)
     GifImageView voice;
     @BindView(R.id.tv_marquee)
@@ -56,7 +60,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
 
     private AudioManager am;
     private boolean isCheckFace = false;
-    private boolean isWebVisible = true;
+    private boolean isWebVisible = false;
     private boolean isShowImage = false;
     private Long updateTime;
     private boolean isNetConnection = false;
@@ -80,7 +84,24 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
-        speak("大家好！我是羽白同学，大家有什么问题可以问我哦。");
+        speak("大家好！我是羽白同学，大家有什么问题可以问我。");
+        heartinterval();
+    }
+
+    /**
+     * 发送心跳数据
+     */
+    private void heartinterval() {
+        Observable.interval(5, 15, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                  //  Log.i("ZZZ","心跳+++++++++++++++++++++++");
+                    if (isWebVisible || isShowImage) {
+                        if (System.currentTimeMillis() - updateTime > 15000) {
+                            stopYuBai();
+                        }
+                    }
+                });
     }
 
     @Override
@@ -104,7 +125,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     }
 
     protected void speechBackMsg(String msg) {
-        Log.i(TAG, "msg ---->     " + msg);
+      //  Log.i(TAG, "msg ---->     " + msg);
         if (msg.equals("增大音量") || msg.equals("增加声音") || msg.equals("声音变大") || msg.equals("增加音量") || msg.equals("调高音量") || msg.equals("提高音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
             return;
@@ -151,16 +172,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             isFirst = false;
             return;
         }
-        if (isWebVisible || isShowImage) {
-            handler.postDelayed(() -> {
-                if (System.currentTimeMillis() - updateTime > 10000) {
-                    stopYuBai();
-                }
-            }, 10000);
-        }
-        tv_marquee.setVisibility(View.GONE);
-        iv_expression.setVisibility(View.VISIBLE);
-        iv_expression2.setVisibility(View.GONE);
+        stopYuBai();
     }
 
     private void stopYuBai() {
@@ -172,6 +184,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             img.setVisibility(View.GONE);
             isShowImage = false;
         }
+        tv_marquee.setVisibility(View.GONE);
+        iv_expression.setVisibility(View.VISIBLE);
+        iv_expression2.setVisibility(View.GONE);
     }
 
     //停止播放音乐
@@ -189,13 +204,13 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         String result = bean.getResult();
         String label = bean.getLabel();
       //  Log.i("xxxx", "label---->  " + label);
+        //判断是否是新闻如果是新闻资讯显示Webview
         String text;
         if (label.equals("新闻资讯")) {
             String url = bean.getUrl();
             if (!TextUtils.isEmpty(url)) {
                 web_view.setVisibility(View.VISIBLE);
                 isWebVisible = true;
-                updateTime = System.currentTimeMillis();
                 web_view.setWebViewClient(new WebViewClient() {
                     @Override
                     public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -220,26 +235,33 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             } catch (Exception e) {
                 text = result;
             }
+            //显示滚动文字
             tv_marquee.setText(text);
             tv_marquee.setSelected(true);
+            tv_marquee.setVisibility(View.VISIBLE);
         }
 
-        Log.i(TAG, "羽白结果----> text  " + text);
+        Log.i("ZZZ", "羽白结果----> text  " + text);
+        //判断是否有声音
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
             speak(text);
+            Log.i("ZZZ", "speak+++++++++++++++++++++++++++" );
             iv_expression.setVisibility(View.GONE);
             iv_expression2.setVisibility(View.VISIBLE);
         } else {
             playVoice(voice);
+            iv_expression.setVisibility(View.GONE);
+            iv_expression2.setVisibility(View.VISIBLE);
         }
+        //判断是否有图标
         String image_url = bean.getImagereply();
         if (!TextUtils.isEmpty(image_url)) {
-            img.setVisibility(View.VISIBLE);
             ImageUtils.image(mContext, image_url, img);
+            img.setVisibility(View.VISIBLE);
             isShowImage = true;
-            updateTime = System.currentTimeMillis();
         }
+        updateTime = System.currentTimeMillis();
     }
 
 
@@ -258,7 +280,11 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 // 装载完毕 开始播放流媒体
                 mediaPlayer.start();
             });
-            mediaPlayer.setOnCompletionListener(mp -> tv_marquee.setVisibility(View.GONE));
+            mediaPlayer.setOnCompletionListener(mp -> {
+                        tv_marquee.setVisibility(View.GONE);
+                        iv_expression.setVisibility(View.VISIBLE);
+                        iv_expression2.setVisibility(View.GONE);
+                    });
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {
@@ -272,6 +298,8 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         }
 
     }
+
+
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override

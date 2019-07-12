@@ -16,7 +16,7 @@
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
-            android:label="环宝宝"
+            android:label="羽白同学"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:theme="@style/AppTheme"
             android:name=".MyApplication">
