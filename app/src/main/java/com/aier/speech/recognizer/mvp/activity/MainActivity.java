@@ -65,7 +65,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     private Long updateTime;
     private boolean isNetConnection = false;
     private boolean isFirst = true;
-
+    private boolean isNews = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +107,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     @Override
     protected void onResume() {
         super.onResume();
-
+        if(!isFirst){
+            startWakeUp();
+        }
     }
 
     public void wakup() {
@@ -172,7 +174,10 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             isFirst = false;
             return;
         }
-        stopYuBai();
+        if(!isNews){
+            stopYuBai();
+        }
+
     }
 
     private void stopYuBai() {
@@ -207,6 +212,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         //判断是否是新闻如果是新闻资讯显示Webview
         String text;
         if (label.equals("新闻资讯")) {
+            isNews = true;
             String url = bean.getUrl();
             if (!TextUtils.isEmpty(url)) {
                 web_view.setVisibility(View.VISIBLE);
@@ -223,12 +229,14 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
 
             try {
                 String resultNotHtml = ReplaceHtml.delHtmlTag(result);
-                int indexLast = resultNotHtml.indexOf("你还可以问我");
+                int indexLast = resultNotHtml.indexOf("-----------");
                 text = resultNotHtml.substring(0, indexLast);
             } catch (Exception e) {
                 text = result;
             }
+            Log.i("ZZZ", "返回新闻结果----> result  " + result);
         } else {
+            isNews = false;
             try {
                 int index = result.indexOf("你还可以问我");
                 text = result.substring(0, index);
@@ -296,9 +304,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
 
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -320,7 +326,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     public void onGetMessage(MessageWrap message) {
         speak(message.message);
     }
-
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetNetState(NetState state) {
