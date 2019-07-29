@@ -23,6 +23,40 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
+
+    //签名配置
+    signingConfigs {
+        release {
+            storeFile file("../key.jks")
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+        }
+    }
+    //打包配置
+    buildTypes {
+        debug {
+            //不混淆
+            minifyEnabled false
+            proguardFiles 'proguard.cfg'
+            signingConfig signingConfigs.release
+        }
+
+        release {
+            minifyEnabled false
+            proguardFiles 'proguard.cfg'
+            signingConfig signingConfigs.release
+
+        }
+
+    }
+}
+
+android.applicationVariants.all {
+    variant -> variant.outputs.all {
+        def date = new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+        outputFileName ="羽白同学" + "[${date}]001_"+ buildType.name+".apk"
+    }
 }
 
 dependencies {

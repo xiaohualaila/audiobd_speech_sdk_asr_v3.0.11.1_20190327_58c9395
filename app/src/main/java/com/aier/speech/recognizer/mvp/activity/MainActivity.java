@@ -10,13 +10,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.model.NetState;
 import com.aier.speech.recognizer.mvp.contract.MainContract;
 import com.aier.speech.recognizer.mvp.model.MainModel;
 import com.aier.speech.recognizer.network.schedulers.SchedulerProvider;
-
 import com.aier.speech.recognizer.bean.YUBAIBean;
 import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.presenter.MainPresenter;
@@ -86,6 +84,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         }
         speak("大家好！我是羽白同学，大家有什么问题可以问我。");
         heartinterval();
+
     }
 
     /**
@@ -95,7 +94,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         Observable.interval(5, 15, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-                  //  Log.i("ZZZ","心跳+++++++++++++++++++++++");
                     if (isWebVisible || isShowImage) {
                         if (System.currentTimeMillis() - updateTime > 15000) {
                             stopYuBai();
@@ -349,4 +347,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         presenter.despose();
         EventBus.getDefault().unregister(this);
     }
+
+
+
 }

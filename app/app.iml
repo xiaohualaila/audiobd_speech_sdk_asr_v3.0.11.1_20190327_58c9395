@@ -124,6 +124,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/validate_signing_config" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/reports" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
@@ -162,50 +163,6 @@
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:glide:3.7.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.15.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxandroid:2.1.0@aar" level="project" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
-    <orderEntry type="module" module-name="uidialog" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="uiasr" />
-    <orderEntry type="module" module-name="openCV4Libs" />
     <orderEntry type="module" module-name="uidialog" />
     <orderEntry type="module" module-name="core" />
     <orderEntry type="module" module-name="uiasr" />
