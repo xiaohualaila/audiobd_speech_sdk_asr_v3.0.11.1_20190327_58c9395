@@ -82,7 +82,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
-        speak("大家好！我是羽白同学，大家有什么问题可以问我。");
+        speak("大家好！我是羽白智能机器人，大家有什么问题可以问我。");
         heartinterval();
 
     }
@@ -132,7 +132,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         } else if (msg.equals("减小音量") || msg.equals("减小声音") || msg.equals("声音变小") || msg.equals("调低音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增小
             return;
-        } else if (msg.equals("打开相机") || msg.equals("人脸识别") || msg.equals("打开摄像头")) {
+        } else if (msg.equals("打开相机") || msg.equals("人脸识别") || msg.equals("打开摄像头")||msg.equals("相机")) {
             if (isCheckFace) {
                 startActiviys(CameraActivity.class);
             } else {

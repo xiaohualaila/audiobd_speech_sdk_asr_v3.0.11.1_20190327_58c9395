@@ -129,7 +129,5 @@
     <orderEntry type="library" name="Gradle: __local_aars__:F.\company\audiobd_speech\core\libs\bdasr_V3_20190327_58c9395.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:common:1.1.0@jar" level="project" />
     <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="core" />
-    <orderEntry type="module" module-name="core" />
   </component>
 </module>

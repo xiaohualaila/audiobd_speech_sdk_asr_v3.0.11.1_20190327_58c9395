@@ -55,7 +55,7 @@ android {
 android.applicationVariants.all {
     variant -> variant.outputs.all {
         def date = new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
-        outputFileName ="羽白同学" + "[${date}]001_"+ buildType.name+".apk"
+        outputFileName ="羽白智能机器人" + "[${date}]001_"+ buildType.name+".apk"
     }
 }
 

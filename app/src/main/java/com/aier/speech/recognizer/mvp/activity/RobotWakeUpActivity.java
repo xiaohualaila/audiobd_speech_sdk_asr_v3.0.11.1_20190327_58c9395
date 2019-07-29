@@ -64,7 +64,7 @@ public class RobotWakeUpActivity extends BaseActivity implements EventListener {
         // 基于SDK唤醒词集成第2.1 设置唤醒的输入参数
         Map<String, Object> params = new TreeMap<String, Object>();
         params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, false);
-        params.put(SpeechConstant.WP_WORDS_FILE, "assets:///WakeUp.bin");
+        params.put(SpeechConstant.WP_WORDS_FILE, "assets:///WakeUp1.bin");
         String json = new JSONObject(params).toString();
         wakeup.send(SpeechConstant.WAKEUP_START, json, null, 0, 0);
     }
