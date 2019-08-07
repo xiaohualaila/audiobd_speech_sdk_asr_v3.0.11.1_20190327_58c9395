@@ -20,6 +20,8 @@ import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.presenter.MainPresenter;
 import com.aier.speech.recognizer.util.ImageUtils;
 import com.aier.speech.recognizer.util.ReplaceHtml;
+import com.aier.speech.recognizer.util.StatusBarUtil;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -64,6 +66,13 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     private boolean isNetConnection = false;
     private boolean isFirst = true;
     private boolean isNews = false;
+
+    @Override
+    protected void beforeInit() {
+        super.beforeInit();
+        StatusBarUtil.INSTANCE.setTranslucent(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: __local_aars__:E.\baidu\audiobd_speech_sdk_asr_v3.0.11.1_20190327_58c9395\app\libs\com.baidu.tts_2.3.2.20180713_6101c2a.jar:unspecified@jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/com.baidu.tts_2.3.2.20180713_6101c2a.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

@@ -23,6 +23,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:scaleType="fitStart"
+        android:layout_marginBottom="50dp"
         android:visibility="gone" />
 
     <WebView
@@ -38,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#fff"
+        android:text="net_state"
         android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
@@ -46,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#fff"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="70dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 
@@ -56,6 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
         android:visibility="gone"
         android:src="@drawable/voice" />
 
@@ -70,6 +73,6 @@
         android:marqueeRepeatLimit="-1"
         android:textColor="#2196F3"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="50dp" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -47,6 +48,17 @@ android {
             proguardFiles 'proguard.cfg'
             signingConfig signingConfigs.release
 
+//            buildConfigField "boolean", "LOG_DEBUG", "false" //不显示log
+//            minifyEnabled true
+//            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+
+//            buildConfigField "boolean", "LOG_DEBUG", "false" //不显示log
+//            minifyEnabled true
+//            shrinkResources true
+//            proguardFiles 'proguard.cfg'
+//            signingConfig signingConfigs.release
         }
 
     }
