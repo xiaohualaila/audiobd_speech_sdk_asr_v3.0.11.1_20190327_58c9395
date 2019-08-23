@@ -3,5 +3,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="green">#4CAF50</color>
+    <color name="green">#338B36</color>
+    <color name="text_color_gary">#A2AAB3</color>
+    <!--蓝色背景 -->
+    <color name="title_black">#2993F0</color>
 </resources>

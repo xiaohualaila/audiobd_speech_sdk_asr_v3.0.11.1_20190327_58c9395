@@ -25,6 +25,7 @@ import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -53,12 +54,13 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     private OpenCVPresenter presenter;
     private boolean isCheckFace = false;
     private static Handler handler = new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new OpenCVPresenter(this, SchedulerProvider.getInstance());
-        mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
-      //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
+      //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
+          mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
             @Override
             public void onCameraViewStarted(int width, int height) {
@@ -87,18 +89,18 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
                     faceSerialCount = 0;
                 }
                 if (faceSerialCount > 5) {
-                    if(!isPhoteTakingPic&&!isCheckFace){
+                    if (!isPhoteTakingPic && !isCheckFace) {
                         File folder = new File(PATH);
-                        if (!folder.exists()){
+                        if (!folder.exists()) {
                             folder.mkdirs();
                         }
                         savePicture(aInputFrame);
-                        Log.i(TAG,"拍摄照片啦");
+                        Log.i(TAG, "拍摄照片啦");
                     }
                     faceSerialCount = -5000;
                 }
 
-                for (int i = 0; i <facesArray.length; i++){
+                for (int i = 0; i < facesArray.length; i++) {
                     Imgproc.rectangle(aInputFrame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0, 255), 3);
                 }
 
@@ -108,11 +110,11 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
 
         initClassifier();
         handler.postDelayed(() -> {
-            if(!isCheckFace){
-                EventBus.getDefault().post(MessageWrap.getInstance("未检测出人脸！"));
-                handler.postDelayed(() -> finish(),3000);
+            if (!isCheckFace) {
+                EventBus.getDefault().post(MessageWrap.getInstance("未识别到人脸信息！"));
+                handler.postDelayed(() -> finish(), 3000);
             }
-        },15000);
+        }, 15000);
     }
 
     @Override
@@ -120,8 +122,8 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
         return R.layout.camera;
     }
 
-    private void savePicture(Mat frameData){
-        isPhoteTakingPic =true;
+    private void savePicture(Mat frameData) {
+        isPhoteTakingPic = true;
         Bitmap bitmap = Bitmap.createBitmap(frameData.width(), frameData.height(), Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(frameData, bitmap);
         fileName = PATH + File.separator + getTime() + ".jpg";
@@ -133,8 +135,8 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
             outputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            if(outputStream != null){
+        } finally {
+            if (outputStream != null) {
                 try {
                     outputStream.close();
                     presenter.upLoadPicFile(fileName);
@@ -144,6 +146,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
             }
         }
     }
+
     public long getTime() {
         return Calendar.getInstance().getTimeInMillis();
     }
@@ -172,35 +175,32 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
 
     @Override
     public void getDataSuccess(FaceCheckBean bean) {
-        List<FaceCheckBean.ResultBean> list =  bean.getResult();
+        List<FaceCheckBean.ResultBean> list = bean.getResult();
         StringBuilder builder = new StringBuilder();
         StringBuilder builder1 = new StringBuilder();
-        builder.delete(0,builder.length());
-        if(list.size()>0){
-            for (int i =0;i<list.size();i++){
-               FaceCheckBean.ResultBean b = list.get(i);
-                builder.append("姓名："+b.getLabel());
+        builder.delete(0, builder.length());
+        if (list.size() > 0) {
+            for (int i = 0; i < list.size(); i++) {
+                FaceCheckBean.ResultBean b = list.get(i);
+                builder.append("姓名：" + b.getLabel());
                 builder1.append(b.getLabel());
-                float score =(float)b.getScore();
-                builder.append("，识别分数："+score);
-                if(score>0.55){
+                float score = (float) b.getScore();
+                builder.append("，识别分数：" + score);
+                if (score > 0.55) {
                     isCheckFace = true;
-                    builder.append( " ,识别成功！"+"\n");
+                    builder.append(" ,识别成功！" + "\n");
                     builder1.append("识别成功");
-                }else {
-                    builder.append( " ,识别失败！"+"\n");
+                } else {
+                    builder.append(" ,识别失败！" + "\n");
                     builder1.append("识别失败");
                 }
             }
-            Log.i("sss","list.size() -->" +list.size()+"  "+builder1.toString());
             EventBus.getDefault().post(MessageWrap.getInstance(builder1.toString()));
-            if(isCheckFace){
-                int n = 3000*list.size();
-                handler.postDelayed(() -> finish(),n);
+            if (isCheckFace) {
+                int n = 3000 * list.size();
+                handler.postDelayed(() -> finish(), n);
             }
-
-        }else {
-            builder.append("检测失败,未识别到人脸！");
+        } else {
             EventBus.getDefault().post(MessageWrap.getInstance("未识别到人脸信息！"));
         }
         name.setText(builder.toString());
@@ -215,10 +215,10 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     }
 
     private void deletePic() {
-        File file =  new File(fileName);
-        if(file.exists()){
+        File file = new File(fileName);
+        if (file.exists()) {
             file.delete();
-            Log.i(TAG,"deletePic+++");
+            Log.i(TAG, "deletePic+++");
         }
         isPhoteTakingPic = false;
     }
@@ -227,7 +227,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     protected void onDestroy() {
         super.onDestroy();
         presenter.despose();
-        if (null != mCameraView){
+        if (null != mCameraView) {
             mCameraView.disableView();
         }
         handler.removeCallbacksAndMessages(null);

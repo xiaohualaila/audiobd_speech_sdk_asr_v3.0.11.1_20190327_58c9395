@@ -45,7 +45,7 @@ public class NetWorkManager {
 
         // 初始化Retrofit
         retrofit = new Retrofit.Builder()
-                .baseUrl(Request.YUYIN_URL)
+                .baseUrl(Request.HOST)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)

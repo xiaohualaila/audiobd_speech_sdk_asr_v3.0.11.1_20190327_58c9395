@@ -35,8 +35,8 @@ public class ImageUtils {
     public static void image(Context context, String url, ImageView imageView) {
         Glide.with(context)
                 .load(url)
-                .placeholder(R.drawable.perch)//设置占位图
-                .error(R.drawable.perch)//设置错误图片
+//                .placeholder(R.drawable.perch)//设置占位图
+//                .error(R.drawable.perch)//设置错误图片
                 .crossFade() //设置淡入淡出效果，默认300ms，可以传参
                 .into(imageView);
     }
@@ -62,7 +62,7 @@ public class ImageUtils {
      * @param path
      * @param imageView
      */
-    public static void image(Context context, int path, ImageView imageView) {
+    public static void imageCrossFade(Context context, int path, ImageView imageView) {
         Glide.with(context)
                 .load(path)
                 .crossFade() //设置淡入淡出效果，默认300ms，可以传参
@@ -79,8 +79,8 @@ public class ImageUtils {
     public static void imageCircle(Context context, String url, ImageView imageView) {
         Glide.with(context)
                 .load(url)
-                .placeholder(R.drawable.iv_my_photo)//设置占位图
-                .error(R.drawable.iv_my_photo)//设置错误图片
+//                .placeholder(R.drawable.iv_my_photo)//设置占位图
+//                .error(R.drawable.iv_my_photo)//设置错误图片
                 .transform(new GlideCircleTransform(context))
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)//关闭Glide的硬盘缓存机制

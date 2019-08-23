@@ -13,15 +13,13 @@ import android.widget.TextView;
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.model.NetState;
 import com.aier.speech.recognizer.mvp.contract.MainContract;
-import com.aier.speech.recognizer.mvp.model.MainModel;
-import com.aier.speech.recognizer.network.schedulers.SchedulerProvider;
 import com.aier.speech.recognizer.bean.YUBAIBean;
 import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.presenter.MainPresenter;
 import com.aier.speech.recognizer.util.ImageUtils;
 import com.aier.speech.recognizer.util.ReplaceHtml;
 import com.aier.speech.recognizer.util.StatusBarUtil;
-
+import com.aier.speech.recognizer.weight.WaveView;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -30,7 +28,6 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
 import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -48,13 +45,13 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     @BindView(R.id.net_state)
     TextView net_state;
     @BindView(R.id.iv_expression)
-            GifImageView iv_expression;//等待表情
+    GifImageView iv_expression;//等待表情
     @BindView(R.id.iv_expression2)
-            GifImageView iv_expression2;//说话表情
-    @BindView(R.id.voice)
-    GifImageView voice;
+    GifImageView iv_expression2;//说话表情
     @BindView(R.id.tv_marquee)
     TextView tv_marquee;
+    @BindView(R.id.voice_view)
+    WaveView waveView;
     private MainPresenter presenter;
     private MediaPlayer mediaPlayer;
 
@@ -77,7 +74,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
-        presenter = new MainPresenter(new MainModel(), this, SchedulerProvider.getInstance());
+        presenter = new MainPresenter(this);
 
         iv_expression.setVisibility(View.VISIBLE);
         iv_expression2.setVisibility(View.GONE);
@@ -93,6 +90,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         }
         speak("大家好！我是羽白智能机器人，大家有什么问题可以问我。");
         heartinterval();
+        waveView.setWaveScaleWidth(0.62f);
+        waveView.setWaveScaleHeight(0.1f);
+        waveView.setSpeed(512);
 
     }
 
@@ -114,7 +114,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     @Override
     protected void onResume() {
         super.onResume();
-        if(!isFirst){
+        if (!isFirst) {
             startWakeUp();
         }
     }
@@ -130,18 +130,18 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
 
     protected void speechStart() {
         Log.i(TAG, "msg ---->   speechStart  ");
-        voice.setVisibility(View.VISIBLE);
+        waveView.setVisibility(View.VISIBLE);
     }
 
     protected void speechBackMsg(String msg) {
-      //  Log.i(TAG, "msg ---->     " + msg);
+        //  Log.i(TAG, "msg ---->     " + msg);
         if (msg.equals("增大音量") || msg.equals("增加声音") || msg.equals("声音变大") || msg.equals("增加音量") || msg.equals("调高音量") || msg.equals("提高音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
             return;
         } else if (msg.equals("减小音量") || msg.equals("减小声音") || msg.equals("声音变小") || msg.equals("调低音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增小
             return;
-        } else if (msg.equals("打开相机") || msg.equals("人脸识别") || msg.equals("打开摄像头")||msg.equals("相机")) {
+        } else if (msg.equals("打开相机") || msg.equals("人脸识别") || msg.equals("打开摄像头") || msg.equals("相机")) {
             if (isCheckFace) {
                 startActiviys(CameraActivity.class);
             } else {
@@ -150,16 +150,16 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             return;
         }
         toastLong(msg);
-        if(isNetConnection){
+        if (isNetConnection) {
             presenter.getYubaiData(msg);
-        }else {
+        } else {
             toastLong("网络无法连接！");
         }
 
-     //   Log.i(TAG, "msg ---->   speechBackMsg  ");
+        //   Log.i(TAG, "msg ---->   speechBackMsg  ");
     }
 
-    protected void speechTemporary(String msg){
+    protected void speechTemporary(String msg) {
         tip.setText(msg);
     }
 
@@ -167,21 +167,22 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
      * 语音识别结束
      */
     protected void speechFinish() {
-        voice.setVisibility(View.GONE);
+
+        waveView.setVisibility(View.GONE);
         tip.setText("");
-    //    Log.i(TAG, "msg ---->   speechFinish  ");
+        //    Log.i(TAG, "msg ---->   speechFinish  ");
     }
 
     /**
      * 语音合成播放完成
      */
     protected void ttsFinish() {
-        if(isFirst){
+        if (isFirst) {
             startWakeUp();
             isFirst = false;
             return;
         }
-        if(!isNews){
+        if (!isNews) {
             stopYuBai();
         }
 
@@ -193,7 +194,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             isWebVisible = false;
         }
         if (isShowImage) {
-            img.setVisibility(View.GONE);
+            img.setVisibility(View.INVISIBLE);
             isShowImage = false;
         }
         tv_marquee.setVisibility(View.GONE);
@@ -215,7 +216,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         Log.i(TAG, "羽白结果---->  " + bean.toString());
         String result = bean.getResult();
         String label = bean.getLabel();
-      //  Log.i("xxxx", "label---->  " + label);
+        //  Log.i("xxxx", "label---->  " + label);
         //判断是否是新闻如果是新闻资讯显示Webview
         String text;
         if (label.equals("新闻资讯")) {
@@ -261,7 +262,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         String voice = bean.getVoice();
         if (TextUtils.isEmpty(voice)) {
             speak(text);
-            Log.i("ZZZ", "speak+++++++++++++++++++++++++++" );
+            Log.i("ZZZ", "speak+++++++++++++++++++++++++++");
             iv_expression.setVisibility(View.GONE);
             iv_expression2.setVisibility(View.VISIBLE);
         } else {
@@ -296,10 +297,10 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 mediaPlayer.start();
             });
             mediaPlayer.setOnCompletionListener(mp -> {
-                        tv_marquee.setVisibility(View.GONE);
-                        iv_expression.setVisibility(View.VISIBLE);
-                        iv_expression2.setVisibility(View.GONE);
-                    });
+                tv_marquee.setVisibility(View.GONE);
+                iv_expression.setVisibility(View.VISIBLE);
+                iv_expression2.setVisibility(View.GONE);
+            });
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IllegalArgumentException e) {
@@ -331,15 +332,16 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetMessage(MessageWrap message) {
+        //    Log.i("zzz", " -->"+message.message );
         speak(message.message);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetNetState(NetState state) {
-        isNetConnection= state.isUse;
-        if(!isNetConnection){
+        isNetConnection = state.isUse;
+        if (!isNetConnection) {
             net_state.setText(state.message);
-        }else {
+        } else {
             net_state.setText("");
         }
         toastLong(state.message);
@@ -353,10 +355,8 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             mediaPlayer.release();
             mediaPlayer = null;
         }
-        presenter.despose();
         EventBus.getDefault().unregister(this);
     }
-
 
 
 }

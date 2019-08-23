@@ -3,6 +3,7 @@ package com.aier.speech.recognizer;
 import android.app.Application;
 
 import com.aier.speech.recognizer.network.NetWorkManager;
+import com.aier.speech.recognizer.util.Utils;
 
 public class MyApplication extends Application {
 
@@ -12,6 +13,7 @@ public class MyApplication extends Application {
         super.onCreate();
         appContext = this;
         NetWorkManager.getInstance().init();
+        Utils.Companion.init(this);
     }
 
     public static Application getAppContext() {

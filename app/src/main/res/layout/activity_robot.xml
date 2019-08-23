@@ -18,13 +18,11 @@
         android:src="@drawable/speak"/>
     <ImageView
         android:id="@+id/img"
-        android:layout_width="200dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:scaleType="fitStart"
-        android:layout_marginBottom="50dp"
-        android:visibility="gone" />
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+        android:visibility="invisible" />
 
     <WebView
         android:id="@+id/web_view"
@@ -39,7 +37,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#fff"
-        android:text="net_state"
         android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
@@ -52,16 +49,12 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"/>
 
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/voice"
+    <com.aier.speech.recognizer.weight.WaveView
+        android:id="@+id/voice_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:visibility="gone"
-        android:src="@drawable/voice" />
-
+        android:visibility="gone" />
     <TextView
         android:id="@+id/tv_marquee"
         android:layout_width="wrap_content"

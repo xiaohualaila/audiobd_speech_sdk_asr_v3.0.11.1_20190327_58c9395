@@ -5,9 +5,10 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.aier.speech.recognizer"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 27
-        versionCode 22
+        versionCode 2
+        versionName '1.0.2'
     }
     buildTypes {
         release {
@@ -47,18 +48,6 @@ android {
             minifyEnabled false
             proguardFiles 'proguard.cfg'
             signingConfig signingConfigs.release
-
-//            buildConfigField "boolean", "LOG_DEBUG", "false" //不显示log
-//            minifyEnabled true
-//            shrinkResources true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release
-
-//            buildConfigField "boolean", "LOG_DEBUG", "false" //不显示log
-//            minifyEnabled true
-//            shrinkResources true
-//            proguardFiles 'proguard.cfg'
-//            signingConfig signingConfigs.release
         }
 
     }
@@ -67,7 +56,7 @@ android {
 android.applicationVariants.all {
     variant -> variant.outputs.all {
         def date = new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
-        outputFileName ="羽白智能机器人" + "[${date}]001_"+ buildType.name+".apk"
+        outputFileName ="羽白后置摄像头" + "[${date}]001_"+ buildType.name+".apk"
     }
 }
 
