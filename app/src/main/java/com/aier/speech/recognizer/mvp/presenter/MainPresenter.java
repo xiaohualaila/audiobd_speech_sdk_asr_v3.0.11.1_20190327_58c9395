@@ -2,13 +2,8 @@ package com.aier.speech.recognizer.mvp.presenter;
 
 import com.aier.speech.recognizer.bean.YUBAIBean;
 import com.aier.speech.recognizer.mvp.contract.MainContract;
-import com.aier.speech.recognizer.mvp.model.MainModel;
 import com.aier.speech.recognizer.network.request.Request;
-import com.aier.speech.recognizer.network.schedulers.BaseSchedulerProvider;
-import com.aier.speech.recognizer.network.schedulers.SchedulerProvider;
-
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

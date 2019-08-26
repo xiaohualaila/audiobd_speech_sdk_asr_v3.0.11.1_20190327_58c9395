@@ -1,13 +1,9 @@
 package com.aier.speech.recognizer.mvp.presenter;
 
 import android.util.Log;
-
 import com.aier.speech.recognizer.bean.VersionResult;
-import com.aier.speech.recognizer.bean.YUBAIBean;
 import com.aier.speech.recognizer.mvp.contract.StartContract;
 import com.aier.speech.recognizer.mvp.model.StartModel;
-import com.aier.speech.recognizer.network.request.Request;
-import com.aier.speech.recognizer.network.response.Response;
 import com.aier.speech.recognizer.network.response.ResponseTransformer;
 import com.aier.speech.recognizer.network.schedulers.BaseSchedulerProvider;
 import com.aier.speech.recognizer.network.schedulers.SchedulerProvider;
@@ -18,11 +14,6 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import retrofit2.Call;
-
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StartPresenter implements StartContract.Persenter {
     private StartModel model;
@@ -80,4 +71,5 @@ public class StartPresenter implements StartContract.Persenter {
             e.printStackTrace();
         }
     }
+
 }
