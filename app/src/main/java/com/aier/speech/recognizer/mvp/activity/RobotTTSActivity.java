@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-
 import com.aier.speech.recognizer.control.InitConfig;
 import com.aier.speech.recognizer.listener.UiMessageListener;
 import com.aier.speech.recognizer.util.AutoCheck2;

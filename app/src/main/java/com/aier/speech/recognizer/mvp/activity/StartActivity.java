@@ -19,9 +19,7 @@ import com.aier.speech.recognizer.BuildConfig;
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.dialog.Apk_dialog;
 import com.aier.speech.recognizer.mvp.contract.StartContract;
-import com.aier.speech.recognizer.mvp.model.StartModel;
 import com.aier.speech.recognizer.mvp.presenter.StartPresenter;
-import com.aier.speech.recognizer.network.schedulers.SchedulerProvider;
 import com.aier.speech.recognizer.weight.AppDownload;
 import java.io.File;
 import java.util.ArrayList;
@@ -39,7 +37,7 @@ public class StartActivity extends BaseActivity implements StartContract.View, A
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestPermission();
-        presenter = new StartPresenter(new StartModel(), this, SchedulerProvider.getInstance());
+        presenter = new StartPresenter( this);
     }
 
     private void requestPermission() {
@@ -199,6 +197,6 @@ public class StartActivity extends BaseActivity implements StartContract.View, A
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.despose();
+        presenter.dispose();
     }
 }

@@ -5,14 +5,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
-
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.bean.FaceCheckBean;
 import com.aier.speech.recognizer.mvp.contract.OpenCVContract;
-import com.aier.speech.recognizer.network.schedulers.SchedulerProvider;
 import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.presenter.OpenCVPresenter;
-
 import org.greenrobot.eventbus.EventBus;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
@@ -25,7 +22,6 @@ import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -58,7 +54,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new OpenCVPresenter(this, SchedulerProvider.getInstance());
+        presenter = new OpenCVPresenter(this);
       //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
           mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
@@ -226,7 +222,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.despose();
+        presenter.dispose();
         if (null != mCameraView) {
             mCameraView.disableView();
         }

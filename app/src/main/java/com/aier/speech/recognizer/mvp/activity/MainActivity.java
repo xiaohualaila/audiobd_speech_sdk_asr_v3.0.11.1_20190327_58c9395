@@ -151,7 +151,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
         }
         toastLong(msg);
         if (isNetConnection) {
-            presenter.getYubaiData(msg);
+            presenter.loadData(msg);
         } else {
             toastLong("网络无法连接！");
         }
@@ -356,6 +356,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             mediaPlayer = null;
         }
         EventBus.getDefault().unregister(this);
+        presenter.dispose();
     }
 
 
