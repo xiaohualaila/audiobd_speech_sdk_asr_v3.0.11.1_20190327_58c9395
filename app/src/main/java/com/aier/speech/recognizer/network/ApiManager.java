@@ -1,22 +1,15 @@
 package com.aier.speech.recognizer.network;
 
-
-
 import com.aier.speech.recognizer.network.api.CheckFaceApi;
 import com.aier.speech.recognizer.network.api.CommonApi;
 import com.aier.speech.recognizer.network.api.YubaiApi;
-
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by PandaQ on 2016/9/8.
- * email : 767807368@qq.com
- * 集中处理Api相关配置的Manager类
- */
+
 public class ApiManager {
 
     private CommonApi commonApi;
