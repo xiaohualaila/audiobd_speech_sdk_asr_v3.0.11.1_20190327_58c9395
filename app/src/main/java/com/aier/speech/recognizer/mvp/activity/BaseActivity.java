@@ -132,6 +132,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
     public void startActiviys(Class c, int type) {
         Intent intent = new Intent(this, c);
         intent.putExtra("type", type);

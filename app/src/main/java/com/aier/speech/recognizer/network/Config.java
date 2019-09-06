@@ -12,4 +12,5 @@ public class Config {
     public static String BASIC_API_URL = "https://cloud.zq12369.com/nodeapi/";
 
     public static String UPLOAD_PIC_API_URL = "https://www.zq-ai.com/zqcloudapi/v1.0/video/";//图片识别
+
 }

@@ -1,6 +1,6 @@
 package com.aier.speech.recognizer.mvp.contract;
 
-import com.aier.speech.recognizer.bean.FaceCheckBean;
+import com.aier.speech.recognizer.bean.SimilarFaceResult;
 
 public class OpenCVContract {
 
@@ -9,7 +9,7 @@ public class OpenCVContract {
     }
 
     public interface View {
-        void getDataSuccess(FaceCheckBean bean);
+        void getDataSuccess(SimilarFaceResult value);
         void getDataFail();
     }
 

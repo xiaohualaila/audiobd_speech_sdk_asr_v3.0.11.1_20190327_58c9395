@@ -53,7 +53,8 @@ public class StartActivity extends BaseActivity implements StartContract.View, A
         }
     }
 
-    String[] ALL_PERMISSIONS = {Manifest.permission.RECORD_AUDIO,
+    String[] ALL_PERMISSIONS = {
+            Manifest.permission.RECORD_AUDIO,
             Manifest.permission.ACCESS_NETWORK_STATE,
             Manifest.permission.INTERNET,
             Manifest.permission.READ_PHONE_STATE,

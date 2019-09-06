@@ -1,5 +1,6 @@
 package com.aier.speech.recognizer.mvp.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.widget.TextView;
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.bean.FaceCheckBean;
+import com.aier.speech.recognizer.bean.SimilarFaceResult;
 import com.aier.speech.recognizer.mvp.contract.OpenCVContract;
 import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.presenter.OpenCVPresenter;
@@ -50,10 +52,12 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     private OpenCVPresenter presenter;
     private boolean isCheckFace = false;
     private static Handler handler = new Handler();
+    private String my_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        my_name = getIntent().getStringExtra("my_name");
         presenter = new OpenCVPresenter(this);
       //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
           mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
@@ -62,6 +66,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
             public void onCameraViewStarted(int width, int height) {
                 grayscaleImage = new Mat(height, width, CvType.CV_8UC4);
                 absoluteFaceSize = (int) (height * 0.2);
+
             }
 
             @Override
@@ -170,44 +175,61 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
 
 
     @Override
-    public void getDataSuccess(FaceCheckBean bean) {
-        List<FaceCheckBean.ResultBean> list = bean.getResult();
-        StringBuilder builder = new StringBuilder();
-        StringBuilder builder1 = new StringBuilder();
-        builder.delete(0, builder.length());
-        if (list.size() > 0) {
-            for (int i = 0; i < list.size(); i++) {
-                FaceCheckBean.ResultBean b = list.get(i);
-                builder.append("姓名：" + b.getLabel());
-                builder1.append(b.getLabel());
-                float score = (float) b.getScore();
-                builder.append("，识别分数：" + score);
-                if (score > 0.55) {
-                    isCheckFace = true;
-                    builder.append(" ,识别成功！" + "\n");
-                    builder1.append("识别成功");
-                } else {
-                    builder.append(" ,识别失败！" + "\n");
-                    builder1.append("识别失败");
-                }
-            }
-            EventBus.getDefault().post(MessageWrap.getInstance(builder1.toString()));
-            if (isCheckFace) {
-                int n = 3000 * list.size();
-                handler.postDelayed(() -> finish(), n);
-            }
-        } else {
-            EventBus.getDefault().post(MessageWrap.getInstance("未识别到人脸信息！"));
-        }
-        name.setText(builder.toString());
-
+    public void getDataSuccess(SimilarFaceResult bean) {
+//        List<FaceCheckBean.ResultBean> list = bean.getResult();
+//        StringBuilder builder = new StringBuilder();
+//        StringBuilder builder1 = new StringBuilder();
+//        builder.delete(0, builder.length());
+//        if (list.size() > 0) {
+//            for (int i = 0; i < list.size(); i++) {
+//                FaceCheckBean.ResultBean b = list.get(i);
+//                builder.append("姓名：" + b.getLabel());
+//                builder1.append(b.getLabel());
+//                float score = (float) b.getScore();
+//                builder.append("，识别分数：" + score);
+//                if (score > 0.55) {
+//                    isCheckFace = true;
+//                    builder.append(" ,识别成功！" + "\n");
+//                    builder1.append("识别成功");
+//                } else {
+//                    builder.append(" ,识别失败！" + "\n");
+//                    builder1.append("识别失败");
+//                }
+//            }
+//            EventBus.getDefault().post(MessageWrap.getInstance(builder1.toString()));
+//            if (isCheckFace) {
+//                int n = 3000 * list.size();
+//                handler.postDelayed(() -> finish(), n);
+//            }
+//        } else {
+//            EventBus.getDefault().post(MessageWrap.getInstance("未识别到人脸信息！"));
+//        }
+//        name.setText(builder.toString());
+//
         deletePic();
+
+        List<SimilarFaceResult.ResultBean> resultBeans =bean.getResult();
+        if(resultBeans.size()>0){
+            SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
+            Bundle bundle = new Bundle();
+            Intent intent = new Intent(this, DetailActivity.class );
+            bundle.putString("my_name", my_name);
+            bundle.putString("name", bean1.getName());
+            bundle.putString("duty", bean1.getDuty());
+            bundle.putString("description", bean1.getDescription());
+            String score =(bean1.getScore()*100+"").substring(0,2);
+            bundle.putString("score", score);
+            bundle.putString("img", bean1.getDraw_image());
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+        finish();
     }
 
     @Override
     public void getDataFail() {
+        EventBus.getDefault().post(MessageWrap.getInstance("未识别到人脸信息！"));
         deletePic();
-
     }
 
     private void deletePic() {

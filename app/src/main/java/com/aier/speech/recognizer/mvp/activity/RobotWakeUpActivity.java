@@ -27,7 +27,7 @@ public class RobotWakeUpActivity extends BaseActivity implements EventListener {
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_robot;
+        return R.layout.activity_main;
     }
 
     @Override
