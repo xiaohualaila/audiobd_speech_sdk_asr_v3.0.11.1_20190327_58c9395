@@ -1,5 +1,6 @@
 package com.aier.speech.recognizer.mvp.activity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.widget.TextView;
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.bean.FaceCheckBean;
+import com.aier.speech.recognizer.bean.SimilarFaceResult;
 import com.aier.speech.recognizer.mvp.contract.OpenCVContract;
 import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.presenter.OpenCVPresenter;
@@ -50,11 +52,12 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     private OpenCVPresenter presenter;
     private boolean isCheckFace = false;
     private static Handler handler = new Handler();
-
+    private int type= 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new OpenCVPresenter(this);
+        type = getIntent().getIntExtra("type",1);
       //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
           mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
@@ -135,7 +138,12 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
             if (outputStream != null) {
                 try {
                     outputStream.close();
-                    presenter.upLoadPicFile(fileName);
+                    if(type==2){
+                        presenter.upLoadToRedPeopleFile(fileName);
+                    }else {
+                        presenter.upLoadPicFile(fileName);
+                    }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -202,6 +210,28 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
         name.setText(builder.toString());
 
         deletePic();
+    }
+
+    @Override
+    public void getRedDataSuccess(SimilarFaceResult bean) {
+        deletePic();
+
+        List<SimilarFaceResult.ResultBean> resultBeans =bean.getResult();
+        if(resultBeans.size()>0){
+            SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
+            EventBus.getDefault().post(MessageWrap.getInstance("重回红军时代是"+bean1.getName()+bean1.getDuty()));
+            Bundle bundle = new Bundle();
+            Intent intent = new Intent(this, DetailActivity.class );
+            bundle.putString("name", bean1.getName());
+            bundle.putString("duty", bean1.getDuty());
+            bundle.putString("description", bean1.getDescription());
+            String score =((bean1.getScore()*100+30)+"").substring(0,2);
+            bundle.putString("score", score);
+            bundle.putString("img", bean1.getDraw_image());
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
+        finish();
     }
 
     @Override

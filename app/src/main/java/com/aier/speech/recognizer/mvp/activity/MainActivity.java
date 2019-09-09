@@ -134,6 +134,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     }
 
     protected void speechBackMsg(String msg) {
+        msg="红军时代";
         //  Log.i(TAG, "msg ---->     " + msg);
         if (msg.equals("增大音量") || msg.equals("增加声音") || msg.equals("声音变大") || msg.equals("增加音量") || msg.equals("调高音量") || msg.equals("提高音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
@@ -143,10 +144,13 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             return;
         } else if (msg.equals("打开相机") || msg.equals("人脸识别") || msg.equals("打开摄像头") || msg.equals("相机")) {
             if (isCheckFace) {
-                startActiviys(CameraActivity.class);
+                startActiviys(CameraActivity.class,2);
             } else {
                 speak("无法进入拍照界面");
             }
+            return;
+        }else if (msg.equals("重回红军时代")||msg.equals("红军时代")||msg.equals("重回")||msg.equals("黄金时代")){
+            startActiviys(CameraActivity.class,2);
             return;
         }
         toastLong(msg);
@@ -167,7 +171,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
      * 语音识别结束
      */
     protected void speechFinish() {
-
         waveView.setVisibility(View.GONE);
         tip.setText("");
         //    Log.i(TAG, "msg ---->   speechFinish  ");

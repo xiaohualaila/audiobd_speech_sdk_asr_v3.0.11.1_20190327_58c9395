@@ -67,7 +67,12 @@
             android:label="语音合成"
             android:screenOrientation="landscape">
         </activity>
-
+        <activity
+            android:name=".mvp.activity.DetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:launchMode="singleTask"
+            android:screenOrientation="landscape">
+        </activity>
         <activity
             android:name=".mvp.activity.RobotSpeechActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
