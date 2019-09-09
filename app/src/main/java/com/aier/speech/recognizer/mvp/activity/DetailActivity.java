@@ -14,9 +14,10 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class DetailActivity extends BaseActivity {
+    @BindView(R.id.tv_title)
+    TextView tv_title;
     @BindView(R.id.iv_photo)
     ImageView iv_photo;
-
     @BindView(R.id.name)
     TextView tv_name;
     @BindView(R.id.name_1)
@@ -27,6 +28,7 @@ public class DetailActivity extends BaseActivity {
     TextView tv_history;
     @BindView(R.id.tv_score)
     TextView tv_score;
+
     @Override
     protected void beforeInit() {
         super.beforeInit();
@@ -37,7 +39,8 @@ public class DetailActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        tv_title.setText("重回红军时代");
+        tv_title.setTextColor(getResources().getColor(R.color.black));
         Bundle bundle = getIntent().getExtras();
         String my_name =  bundle.getString("my_name");
         String name =  bundle.getString("name");
@@ -60,10 +63,13 @@ public class DetailActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.tv_play_again})
+    @OnClick({R.id.tv_play_again,R.id.iv_back})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.tv_play_again:
+                finish();
+                break;
+            case R.id.iv_back:
                 finish();
                 break;
         }
