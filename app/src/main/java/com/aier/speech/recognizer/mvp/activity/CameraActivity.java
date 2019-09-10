@@ -237,7 +237,6 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     @Override
     public void getDataFail() {
         deletePic();
-
     }
 
     private void deletePic() {

@@ -134,8 +134,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     }
 
     protected void speechBackMsg(String msg) {
-        msg="红军时代";
+//        msg="红军时代";
         //  Log.i(TAG, "msg ---->     " + msg);
+        toastLong(msg);
         if (msg.equals("增大音量") || msg.equals("增加声音") || msg.equals("声音变大") || msg.equals("增加音量") || msg.equals("调高音量") || msg.equals("提高音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
             return;
@@ -153,7 +154,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             startActiviys(CameraActivity.class,2);
             return;
         }
-        toastLong(msg);
         if (isNetConnection) {
             presenter.loadData(msg);
         } else {

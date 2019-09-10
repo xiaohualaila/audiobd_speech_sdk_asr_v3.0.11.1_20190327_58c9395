@@ -1,5 +1,6 @@
 package com.aier.speech.recognizer.mvp.activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -19,6 +20,8 @@ public class DetailActivity extends BaseActivity {
     ImageView iv_photo;
     @BindView(R.id.name)
     TextView tv_name;
+    @BindView(R.id.name_1)
+    TextView name_1;
     @BindView(R.id.tv_work)
     TextView tv_work;
     @BindView(R.id.tv_history)
@@ -39,7 +42,6 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle bundle = getIntent().getExtras();
-
         String name = bundle.getString("name");
         String duty = bundle.getString("duty");
         String description = bundle.getString("description");
@@ -47,11 +49,17 @@ public class DetailActivity extends BaseActivity {
         String img = bundle.getString("img");
 
         ImageUtils.image(this, img, iv_photo);
+        Typeface textFont = Typeface.createFromAsset(getAssets(), "fonts/RuiZiZhenYanTiMianFeiShangYong-2.ttf");
+        tv_name.setTypeface(textFont);
+        tv_score.setTypeface(textFont);
 
         tv_name.setText(name);
+        name_1.setText(name);
         tv_work.setText(duty);
         tv_history.setText(description);
+
         tv_score.setText(score + "%");
+
         handler.postDelayed(runnable, 8000);
     }
 
@@ -61,8 +69,6 @@ public class DetailActivity extends BaseActivity {
     protected int getLayout() {
         return R.layout.activity_detail;
     }
-
-
 
     @Override
     protected void onDestroy() {
