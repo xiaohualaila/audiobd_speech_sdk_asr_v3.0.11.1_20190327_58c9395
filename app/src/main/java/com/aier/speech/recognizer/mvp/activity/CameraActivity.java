@@ -59,7 +59,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
         presenter = new OpenCVPresenter(this);
         type = getIntent().getIntExtra("type",1);
       //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
-          mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
+         mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
             @Override
             public void onCameraViewStarted(int width, int height) {
@@ -219,17 +219,18 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
         List<SimilarFaceResult.ResultBean> resultBeans =bean.getResult();
         if(resultBeans.size()>0){
             SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
-            EventBus.getDefault().post(MessageWrap.getInstance("重回红军时代是"+bean1.getName()+bean1.getDuty()));
+
             Bundle bundle = new Bundle();
             Intent intent = new Intent(this, DetailActivity.class );
             bundle.putString("name", bean1.getName());
             bundle.putString("duty", bean1.getDuty());
             bundle.putString("description", bean1.getDescription());
-            String score =((bean1.getScore()*100+30)+"").substring(0,2);
+            String score =((bean1.getScore()*100+30)+"").substring(0,4);
             bundle.putString("score", score);
             bundle.putString("img", bean1.getDraw_image());
             intent.putExtras(bundle);
             startActivity(intent);
+            EventBus.getDefault().post(MessageWrap.getInstance("您重回红军时代是"+bean1.getName()+"契合度"+score+bean1.getDuty()));
         }
         finish();
     }

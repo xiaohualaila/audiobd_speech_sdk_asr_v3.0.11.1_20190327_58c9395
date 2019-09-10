@@ -4,16 +4,13 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.util.ImageUtils;
 import com.aier.speech.recognizer.util.StatusBarUtil;
-
 import butterknife.BindView;
-import butterknife.OnClick;
+
 
 public class DetailActivity extends BaseActivity {
     @BindView(R.id.iv_photo)
@@ -60,7 +57,7 @@ public class DetailActivity extends BaseActivity {
 
         tv_score.setText(score + "%");
 
-        handler.postDelayed(runnable, 8000);
+        handler.postDelayed(runnable, 20000);
     }
 
     private Runnable runnable = () -> finish();

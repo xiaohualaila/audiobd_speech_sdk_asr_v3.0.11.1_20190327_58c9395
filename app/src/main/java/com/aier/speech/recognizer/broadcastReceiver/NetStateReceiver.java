@@ -20,10 +20,10 @@ public class NetStateReceiver extends BroadcastReceiver {
             int type = networkInfo.getType();
             switch (type) {
                 case ConnectivityManager.TYPE_MOBILE:  //移动网络
-                    EventBus.getDefault().post(NetState.getInstance(true,"移动网络"));
+               //     EventBus.getDefault().post(NetState.getInstance(true,"移动网络"));
                     break;
                 case ConnectivityManager.TYPE_WIFI:  //wifi
-                    EventBus.getDefault().post(NetState.getInstance(true,"wifi已连接"));
+                //    EventBus.getDefault().post(NetState.getInstance(true,"wifi已连接"));
                     break;
             }
         } else {
