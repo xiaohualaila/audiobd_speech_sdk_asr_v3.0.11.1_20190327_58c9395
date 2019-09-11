@@ -61,7 +61,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     private boolean isShowImage = false;
     private Long updateTime;
     private boolean isNetConnection = false;
-    private boolean isFirst = true;
+
     private boolean isNews = false;
 
     @Override
@@ -111,14 +111,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (!isFirst) {
-            startWakeUp();
-        }
-    }
-
     public void wakup() {
         Log.i(TAG, "唤醒");
         stopTTS();
@@ -134,7 +126,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     }
 
     protected void speechBackMsg(String msg) {
-        //  Log.i(TAG, "msg ---->     " + msg);
+          Log.i(TAG, "msg ---->     " + msg);
         toastLong(msg);
         if (msg.contains("增大音量") || msg.contains("增加声音") || msg.contains("声音变大") || msg.contains("增加音量") || msg.contains("调高音量") || msg.equals("提高音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
@@ -179,15 +171,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
      * 语音合成播放完成
      */
     protected void ttsFinish() {
-        if (isFirst) {
-            startWakeUp();
-            isFirst = false;
-            return;
-        }
         if (!isNews) {
             stopYuBai();
         }
-
     }
 
     private void stopYuBai() {

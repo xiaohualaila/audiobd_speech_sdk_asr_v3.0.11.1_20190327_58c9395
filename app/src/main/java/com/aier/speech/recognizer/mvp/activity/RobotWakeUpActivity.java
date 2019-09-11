@@ -53,7 +53,7 @@ public class RobotWakeUpActivity extends BaseActivity implements EventListener {
     @Override
     protected void onResume() {
         super.onResume();
-      //  startWakeUp();
+        startWakeUp();
     }
 
     /**
