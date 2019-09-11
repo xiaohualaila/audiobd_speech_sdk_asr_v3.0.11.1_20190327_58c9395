@@ -18,6 +18,7 @@ import com.aier.speech.recognizer.bean.YUBAIBean;
 import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.presenter.MainPresenter;
 import com.aier.speech.recognizer.util.StatusBarUtil;
+
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -61,16 +62,16 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
-      //  speak("欢迎您重回红军时代！");
+        //  speak("欢迎您重回红军时代！");
     }
 
     @OnClick({R.id.start_speak})
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.start_speak:
-            //    startSpeech();
-                String my_name =ed_name.getText().toString();
-                if(TextUtils.isEmpty(my_name)){
+                //    startSpeech();
+                String my_name = ed_name.getText().toString();
+                if (TextUtils.isEmpty(my_name)) {
                     toastLong("姓名不能为空！");
                     return;
                 }
@@ -78,12 +79,9 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
                 Intent intent = new Intent(this, CameraActivity.class);
                 intent.putExtra("my_name", my_name);
                 startActivity(intent);
-
                 break;
         }
     }
-
-
 
     @Override
     protected void onResume() {
@@ -96,7 +94,7 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     public void wakup() {
         Log.i(TAG, "唤醒");
         stopTTS();
-//        speak("在");
+        //   speak("在");
         startSpeech();
     }
 
@@ -107,13 +105,13 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
 
     protected void speechBackMsg(String msg) {
         //  Log.i(TAG, "msg ---->     " + msg);
-        if (msg.equals("增大音量") || msg.equals("增加声音") || msg.equals("声音变大") || msg.equals("增加音量") || msg.equals("调高音量") || msg.equals("提高音量")) {
+        if (msg.contains("增大音量") || msg.contains("增加声音") || msg.contains("声音变大") || msg.contains("增加音量") || msg.contains("调高音量") || msg.equals("提高音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI);//增大
             return;
-        } else if (msg.equals("减小音量") || msg.equals("减小声音") || msg.equals("声音变小") || msg.equals("调低音量")) {
+        } else if (msg.contains("减小音量") || msg.contains("减小声音") || msg.contains("声音变小") || msg.contains("调低音量")) {
             am.adjustStreamVolume(AudioManager.STREAM_SYSTEM, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI);//增小
             return;
-        } else if (msg.equals("打开相机") || msg.equals("人脸识别") || msg.equals("打开摄像头") || msg.equals("相机")) {
+        } else if (msg.contains("打开相机") || msg.contains("人脸识别") || msg.contains("打开摄像头") || msg.contains("相机")) {
             if (isCheckFace) {
                 startActiviys(CameraActivity.class);
             } else {
@@ -122,17 +120,17 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             return;
         }
         ed_name.setText(msg);
-//        if (isNetConnection) {
-////            presenter.loadData(msg);
-//        } else {
-//            toastLong("网络无法连接！");
-//        }
+        if (isNetConnection) {
+            presenter.loadData(msg);
+        } else {
+            toastLong("网络无法连接！");
+        }
 
-           Log.i(TAG, "msg ---->   speechBackMsg  "+msg);
+        Log.i(TAG, "msg ---->   speechBackMsg  " + msg);
     }
 
     protected void speechTemporary(String msg) {
-            Log.i(TAG, "msg ---->   识别结果  " +msg);
+        Log.i(TAG, "msg ---->   识别结果  " + msg);
     }
 
     /**
@@ -152,7 +150,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
             isFirst = false;
             return;
         }
-
     }
 
 

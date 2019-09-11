@@ -20,7 +20,7 @@ public class MainPresenter extends BasePresenter implements MainContract.Persent
     @Override
     public void loadData(String queryData) {
         ApiManager.getInstence().getYubaiService()
-                .getYUBAIData("YUBAI", "今天天气怎么样")
+                .getYUBAIData("YUBAI", queryData)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<YUBAIBean>() {

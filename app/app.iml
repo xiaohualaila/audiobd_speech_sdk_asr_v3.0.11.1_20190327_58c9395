@@ -25,7 +25,7 @@
       </configuration>
     </facet>
     <facet type="kotlin-language" name="Kotlin">
-      <configuration version="3" platform="JVM 1.6" allPlatforms="JVM [1.6]" useProjectSettings="false">
+      <configuration version="3" platform="JVM 1.6" allPlatforms="JVM [1.6]" useProjectSettings="false" pureKotlinSourceFolders="F:\company\audiobd_speech\app\src\debug\kotlin;F:\company\audiobd_speech\app\src\debug\java;F:\company\audiobd_speech\app\src\release\kotlin;F:\company\audiobd_speech\app\src\release\java;F:\company\audiobd_speech\app\src\debugAndroidTest\kotlin;F:\company\audiobd_speech\app\src\debugUnitTest\kotlin;F:\company\audiobd_speech\app\src\releaseUnitTest\kotlin">
         <compilerSettings />
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/debug" />
