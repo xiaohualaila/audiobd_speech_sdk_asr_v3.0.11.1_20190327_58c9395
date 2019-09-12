@@ -120,7 +120,7 @@ public class StartActivity extends BaseActivity implements StartContract.View, A
         new Handler().postDelayed(() -> {
             startActiviys(MainActivity.class);
             finish();
-        }, 5000);
+        }, 2000);
     }
 
     @Override
