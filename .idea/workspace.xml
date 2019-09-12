@@ -83,17 +83,207 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fde45cdb-ada4-4259-bea4-41d6d46ac4f4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/android/support/constraint/group-index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/com/android/support/group-index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/maven.google/master-index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/intermediates/lint-cache/sdk-registry.xml/sdk-registry.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/generated/aidl_source_output_dir/release/compileReleaseAidl/out/org/opencv/engine/OpenCVEngineInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/generated/source/buildConfig/release/org/opencv/BuildConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/aapt_friendly_merged_manifests/release/processReleaseManifest/aapt/output.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/annotation_processor_list/release/annotationProcessors.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/compile_only_not_namespaced_r_class_jar/release/generateReleaseRFile/R.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/incremental/mergeReleaseJniLibFolders/merger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/incremental/mergeReleaseShaders/merger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/incremental/packageReleaseAssets/merger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/incremental/packageReleaseResources/compile-file-map.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/incremental/packageReleaseResources/merged.dir/values/values.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/incremental/packageReleaseResources/merger.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/incremental/release-mergeJniLibs/merge-state" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/intermediate-jars/release/classes.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/intermediate-jars/release/res.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/BuildConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/AsyncServiceHelper$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/AsyncServiceHelper$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/AsyncServiceHelper$3$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/AsyncServiceHelper$3$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/AsyncServiceHelper$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/AsyncServiceHelper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/BaseLoaderCallback$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/BaseLoaderCallback$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/BaseLoaderCallback$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/BaseLoaderCallback$4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/BaseLoaderCallback$5.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/BaseLoaderCallback$6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/BaseLoaderCallback$7.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/BaseLoaderCallback.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/Camera2Renderer$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/Camera2Renderer$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/Camera2Renderer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraBridgeViewBase$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraBridgeViewBase$CvCameraViewFrame.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraBridgeViewBase$CvCameraViewListener.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraBridgeViewBase$CvCameraViewListener2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraBridgeViewBase$CvCameraViewListenerAdapter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraBridgeViewBase$ListItemAccessor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraBridgeViewBase.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraGLRendererBase.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraGLSurfaceView$CameraTextureListener.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraGLSurfaceView.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/CameraRenderer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/FpsMeter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/InstallCallbackInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/JavaCamera2View$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/JavaCamera2View$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/JavaCamera2View$3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/JavaCamera2View$JavaCamera2Frame.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/JavaCamera2View.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/JavaCameraView$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/JavaCameraView$CameraWorker.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/JavaCameraView$JavaCameraFrame.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/JavaCameraView$JavaCameraSizeAccessor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/JavaCameraView.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/LoaderCallbackInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/OpenCVLoader.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/StaticHelper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/android/Utils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/calib3d/Calib3d.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/calib3d/StereoBM.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/calib3d/StereoMatcher.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/calib3d/StereoSGBM.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Algorithm.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Core$MinMaxLocResult.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Core.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/CvException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/CvType.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/DMatch.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/KeyPoint.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Mat.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfByte.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfDMatch.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfDouble.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfFloat.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfFloat4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfFloat6.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfInt.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfInt4.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfKeyPoint.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfPoint.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfPoint2f.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfPoint3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfPoint3f.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfRect.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfRect2d.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/MatOfRotatedRect.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Point.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Point3.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Range.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Rect.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Rect2d.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/RotatedRect.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Scalar.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/Size.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/TermCriteria.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/core/TickMeter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/dnn/DictValue.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/dnn/Dnn.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/dnn/Layer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/dnn/Net.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/engine/OpenCVEngineInterface$Stub$Proxy.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/engine/OpenCVEngineInterface$Stub.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/engine/OpenCVEngineInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/AKAZE.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/AgastFeatureDetector.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/BFMatcher.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/BOWImgDescriptorExtractor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/BOWKMeansTrainer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/BOWTrainer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/BRISK.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/DescriptorMatcher.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/FastFeatureDetector.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/Feature2D.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/Features2d.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/FlannBasedMatcher.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/GFTTDetector.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/KAZE.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/MSER.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/ORB.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/features2d/Params.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/imgcodecs/Imgcodecs.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/imgproc/CLAHE.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/imgproc/GeneralizedHough.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/imgproc/GeneralizedHoughBallard.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/imgproc/GeneralizedHoughGuil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/imgproc/Imgproc.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/imgproc/LineSegmentDetector.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/imgproc/Moments.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/imgproc/Subdiv2D.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/ANN_MLP.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/Boost.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/DTrees.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/EM.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/KNearest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/LogisticRegression.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/Ml.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/NormalBayesClassifier.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/ParamGrid.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/RTrees.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/SVM.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/SVMSGD.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/StatModel.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/ml/TrainData.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/objdetect/BaseCascadeClassifier.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/objdetect/CascadeClassifier.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/objdetect/HOGDescriptor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/objdetect/Objdetect.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/objdetect/QRCodeDetector.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/osgi/OpenCVInterface.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/osgi/OpenCVNativeLoader.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/AlignExposures.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/AlignMTB.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/CalibrateCRF.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/CalibrateDebevec.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/CalibrateRobertson.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/MergeDebevec.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/MergeExposures.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/MergeMertens.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/MergeRobertson.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/Photo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/Tonemap.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/TonemapDrago.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/TonemapMantiuk.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/photo/TonemapReinhard.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/utils/Converters.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/BackgroundSubtractor.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/BackgroundSubtractorKNN.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/BackgroundSubtractorMOG2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/DISOpticalFlow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/DenseOpticalFlow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/FarnebackOpticalFlow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/KalmanFilter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/SparseOpticalFlow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/SparsePyrLKOpticalFlow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/VariationalRefinement.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/video/Video.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/videoio/VideoCapture.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/videoio/VideoWriter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/javac/release/compileReleaseJavaWithJavac/classes/org/opencv/videoio/Videoio.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/library_manifest/release/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/merged_manifests/release/output.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/packaged_res/release/values/values.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/res/symbol-table-with-package/release/package-aware-r.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/symbols/release/R.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/intermediates/transforms/mergeJniLibs/release/__content__.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/openCV4Libs/build/outputs/logs/manifest-merger-release-report.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/broadcastReceiver/NetStateReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/broadcastReceiver/NetStateReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/RobotWakeUpActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/RobotWakeUpActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/MainPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/MainPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -119,70 +309,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="61" column="6" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/DetailActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="44" selection-start-line="44" selection-end-line="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="211" column="39" lean-forward="true" selection-start-line="211" selection-start-column="39" selection-end-line="211" selection-end-column="39" />
+            <state relative-caret-position="960">
+              <caret line="81" column="17" lean-forward="true" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
               <folding>
-                <element signature="e#5709#5710#0" expanded="true" />
-                <element signature="e#9237#9238#0" expanded="true" />
-                <element signature="method#playVoice#0;class#MainActivity#0" />
+                <element signature="method#deletePic#0;class#CameraActivity#0" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/RobotWakeUpActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="470">
-              <caret line="55" column="19" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/MainPresenter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/model/NetState.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/broadcastReceiver/NetStateReceiver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -200,7 +334,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>yuyin</find>
       <find>listen2</find>
       <find>listen</find>
       <find>wakup</find>
@@ -230,6 +363,7 @@
       <find>isNetConnection</find>
       <find>isFirst</find>
       <find>isNews</find>
+      <find>type</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -295,19 +429,19 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/DetailActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/broadcastReceiver/NetStateReceiver.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/MainPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/RobotWakeUpActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="324" />
-    <option name="y" value="11" />
+    <option name="x" value="278" />
+    <option name="y" value="41" />
     <option name="width" value="1400" />
-    <option name="height" value="1100" />
+    <option name="height" value="1099" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -315,8 +449,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -433,32 +565,6 @@
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="aier" type="462c0819:PsiDirectoryNode" />
-              <item name="speech" type="462c0819:PsiDirectoryNode" />
-              <item name="recognizer" type="462c0819:PsiDirectoryNode" />
-              <item name="network" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="audiobd_speech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="audiobd_speech" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="aier" type="462c0819:PsiDirectoryNode" />
-              <item name="speech" type="462c0819:PsiDirectoryNode" />
-              <item name="recognizer" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="audiobd_speech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="audiobd_speech" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -492,7 +598,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -506,7 +614,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="device.picker.selection" value="8904ab08b7a700000000" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/assets/fonts" />
+    <property name="last_opened_file_path" value="F:/opencv/Makeup-with-photo-changecolor" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
@@ -1038,9 +1146,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.21748401" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.22707888" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -1172,20 +1281,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1755">
-          <caret line="65" column="49" selection-start-line="65" selection-start-column="40" selection-end-line="65" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -1387,12 +1482,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
           <caret line="31" column="27" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -1402,10 +1497,10 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="61" column="6" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="6" />
+        <state relative-caret-position="2550">
+          <caret line="85" selection-start-line="85" selection-end-line="85" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1413,6 +1508,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
           <caret line="44" selection-start-line="44" selection-end-line="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1560">
+          <caret line="83" column="25" selection-start-line="83" selection-start-column="13" selection-end-line="83" selection-end-column="25" />
+          <folding>
+            <element signature="e#5677#5678#0" expanded="true" />
+            <element signature="e#5709#5710#0" expanded="true" />
+            <element signature="e#9201#9202#0" expanded="true" />
+            <element signature="e#9237#9238#0" expanded="true" />
+            <element signature="method#playVoice#0;class#MainActivity#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/RobotWakeUpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1290">
+          <caret line="55" column="19" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/MainPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -1430,28 +1556,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/MainPresenter.java">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        <state relative-caret-position="270">
+          <caret line="9" column="56" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/RobotWakeUpActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="55" column="19" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="211" column="39" lean-forward="true" selection-start-line="211" selection-start-column="39" selection-end-line="211" selection-end-column="39" />
+        <state relative-caret-position="960">
+          <caret line="81" column="17" lean-forward="true" selection-start-line="81" selection-start-column="17" selection-end-line="81" selection-end-column="17" />
           <folding>
-            <element signature="e#5709#5710#0" expanded="true" />
-            <element signature="e#9237#9238#0" expanded="true" />
-            <element signature="method#playVoice#0;class#MainActivity#0" />
+            <element signature="method#deletePic#0;class#CameraActivity#0" />
           </folding>
         </state>
       </provider>

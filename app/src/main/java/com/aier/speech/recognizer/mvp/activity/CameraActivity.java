@@ -58,7 +58,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
         super.onCreate(savedInstanceState);
         presenter = new OpenCVPresenter(this);
         type = getIntent().getIntExtra("type",1);
-      //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
+        //mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
          mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
             @Override
