@@ -55,7 +55,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     private boolean isCheckFace = false;
     private static Handler handler = new Handler();
     private String my_name;
-    private boolean isFrontCamera = true;
+    private boolean isFrontCamera = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,12 +93,10 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
                 Rect[] facesArray = faces.toArray();
                 int faceCount = facesArray.length;
                 if (faceCount > 0) {
-                    faceSerialCount++;
-                } else {
-                    faceSerialCount = 0;
-                }
-                if (faceSerialCount > 5) {
+                //    faceSerialCount++;
+                    // if (faceSerialCount > 5) {
                     if (!isPhoteTakingPic && !isCheckFace) {
+                        isCheckFace =true;
                         File folder = new File(PATH);
                         if (!folder.exists()) {
                             folder.mkdirs();
@@ -106,8 +104,13 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
                         savePicture(aInputFrame);
                         Log.i(TAG, "拍摄照片啦");
                     }
-                    faceSerialCount = -5000;
+                //    faceSerialCount = -5000;
+                    //     }
                 }
+//                else {
+//                    faceSerialCount = 0;
+//                }
+
 
                 for (int i = 0; i < facesArray.length; i++) {
                     Imgproc.rectangle(aInputFrame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0, 255), 3);
