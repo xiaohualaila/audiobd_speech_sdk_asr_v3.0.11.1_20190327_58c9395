@@ -46,7 +46,6 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     Mat grayscaleImage;
     private int absoluteFaceSize;
     private String PATH = "/sdcard/face2/";
-    int faceSerialCount = 0;
     private boolean isPhoteTakingPic = false;
     String fileName;
     private OpenCVPresenter presenter;
@@ -58,8 +57,8 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
         super.onCreate(savedInstanceState);
         presenter = new OpenCVPresenter(this);
         type = getIntent().getIntExtra("type",1);
-        mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
-       //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
+      //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
+         mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
             @Override
             public void onCameraViewStarted(int width, int height) {
@@ -83,11 +82,6 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
                 Rect[] facesArray = faces.toArray();
                 int faceCount = facesArray.length;
                 if (faceCount > 0) {
-                    faceSerialCount++;
-                } else {
-                    faceSerialCount = 0;
-                }
-                if (faceSerialCount > 5) {
                     if (!isPhoteTakingPic && !isCheckFace) {
                         File folder = new File(PATH);
                         if (!folder.exists()) {
@@ -96,9 +90,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
                         savePicture(aInputFrame);
                         Log.i(TAG, "拍摄照片啦");
                     }
-                    faceSerialCount = -5000;
                 }
-
                 for (int i = 0; i < facesArray.length; i++) {
                     Imgproc.rectangle(aInputFrame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0, 255), 3);
                 }
@@ -199,25 +191,22 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
                     builder1.append("识别失败");
                 }
             }
+            name.setText(builder.toString());
             EventBus.getDefault().post(MessageWrap.getInstance(builder1.toString()));
             if (isCheckFace) {
                 int n = 3000 * list.size();
                 handler.postDelayed(() -> finish(), n);
             }
-        } else {
-            EventBus.getDefault().post(MessageWrap.getInstance("未识别到人脸信息！"));
         }
-        name.setText(builder.toString());
-
         deletePic();
     }
 
     @Override
     public void getRedDataSuccess(SimilarFaceResult bean) {
         deletePic();
-
         List<SimilarFaceResult.ResultBean> resultBeans =bean.getResult();
         if(resultBeans.size()>0){
+            isCheckFace = true;
             SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
 
             Bundle bundle = new Bundle();
@@ -231,8 +220,8 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
             intent.putExtras(bundle);
             startActivity(intent);
             EventBus.getDefault().post(MessageWrap.getInstance("您重回红军时代是"+bean1.getName()+"契合度"+score+bean1.getDuty()));
+            finish();
         }
-        finish();
     }
 
     @Override
