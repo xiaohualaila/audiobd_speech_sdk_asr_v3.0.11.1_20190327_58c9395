@@ -1,75 +1,47 @@
 package com.aier.speech.recognizer.mvp.presenter;
-
-import com.aier.speech.recognizer.bean.VersionResult;
+import android.content.Context;
 import com.aier.speech.recognizer.mvp.contract.StartContract;
-import com.aier.speech.recognizer.network.ApiManager;
-import com.aier.speech.recognizer.network.response.Response;
-import com.aier.speech.recognizer.util.PackageUtil;
-import org.json.JSONException;
-import org.json.JSONObject;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 public class StartPresenter extends BasePresenter implements StartContract.Persenter {
-    private StartContract.View view;
 
-    public StartPresenter(StartContract.View view) {
+    private StartContract.View view;
+    private Context context;
+
+    public StartPresenter(StartContract.View view  ) {
         this.view = view;
+        this.context = context;
     }
 
 
     @Override
-    public void checkAppVersion() {
-        try {
-            JSONObject obj = new JSONObject();
-            JSONObject obj1 = new JSONObject();
-            obj.put("method", "NKCLOUDAPI_GETLASTAPP");
-            obj1.put("appname", "羽白");
-            obj.put("params", obj1);
-            RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), obj.toString());
-            ApiManager.getInstence().getCommonService()
-                    .getVerDataForBody(body)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<Response<VersionResult>>() {
-                        @Override
-                        public void onError(Throwable e) {
-                            view.toActivity();
-                        }
-
-                        @Override
-                        public void onComplete() {
-                        }
-
-                        @Override
-                        public void onSubscribe(Disposable d) {
-                            addDisposable(d);
-                        }
-
-                        @Override
-                        public void onNext(Response<VersionResult> response) {
-                        //    Log.i("sssss", response.toString());
-                            if (response.isSuccess()) {
-                                VersionResult result = response.getResult();
-                                VersionResult.DataBean bean = result.getData();
-                                String ver = PackageUtil.INSTANCE.getVersionName();
-                                if (!bean.getVersion().equals(ver)) {
-                                    view.updateVer(bean.getUrl());
-                                } else {
-                                    view.toActivity();
-                                }
-                            } else {
-                                view.toActivity();
-                            }
-                        }
-                    });
-        } catch (JSONException e) {
-            e.printStackTrace();
+    public void getTime() {
+        Calendar c = Calendar.getInstance();
+        c.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
+        String mMonth = String.valueOf(c.get(Calendar.MONTH) + 1);// 获取当前月份
+        if(mMonth.length()==1){
+            mMonth ="0"+mMonth;
         }
+        String  mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码
+        String mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK));
+        if("1".equals(mWay)){
+            mWay ="天";
+        }else if("2".equals(mWay)){
+            mWay ="一";
+        }else if("3".equals(mWay)){
+            mWay ="二";
+        }else if("4".equals(mWay)){
+            mWay ="三";
+        }else if("5".equals(mWay)){
+            mWay ="四";
+        }else if("6".equals(mWay)){
+            mWay ="五";
+        }else if("7".equals(mWay)){
+            mWay ="六";
+        }
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        view.backTime(hour+ ":" +minute +" "+mMonth +"/" + mDay+" 周"+mWay);
     }
-
 }

@@ -1,13 +1,16 @@
 package com.aier.speech.recognizer.mvp.contract;
 
+
+
 public class StartContract {
+
     public interface Persenter {
-        void checkAppVersion();
+       void getTime();
     }
 
     public interface View {
-        void updateVer(String url);
-        void toActivity();
+        void backTime(String time);
     }
+
 
 }

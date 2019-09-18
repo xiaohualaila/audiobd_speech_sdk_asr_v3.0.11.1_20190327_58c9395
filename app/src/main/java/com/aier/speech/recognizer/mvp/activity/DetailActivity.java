@@ -1,15 +1,13 @@
 package com.aier.speech.recognizer.mvp.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.util.ImageUtils;
-import com.aier.speech.recognizer.util.StatusBarUtil;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -28,13 +26,6 @@ public class DetailActivity extends BaseActivity {
     TextView tv_history;
     @BindView(R.id.tv_score)
     TextView tv_score;
-
-    @Override
-    protected void beforeInit() {
-        super.beforeInit();
-        StatusBarUtil.INSTANCE.setTranslucent(this);
-    }
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -25,7 +25,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -43,11 +42,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     private boolean isNetConnection = false;
     private boolean isFirst = true;
 
-    @Override
-    protected void beforeInit() {
-        super.beforeInit();
-        StatusBarUtil.INSTANCE.setTranslucent(this);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,9 +80,6 @@ public class MainActivity extends RobotSpeechActivity implements MainContract.Vi
     @Override
     protected void onResume() {
         super.onResume();
-        if (!isFirst) {
-            startWakeUp();
-        }
     }
 
     public void wakup() {
