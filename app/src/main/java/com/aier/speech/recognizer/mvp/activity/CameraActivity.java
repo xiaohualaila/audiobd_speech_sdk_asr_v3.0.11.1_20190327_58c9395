@@ -176,6 +176,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
         StringBuilder builder1 = new StringBuilder();
         builder.delete(0, builder.length());
         if (list.size() > 0) {
+            isCheckFace = true;
             for (int i = 0; i < list.size(); i++) {
                 FaceCheckBean.ResultBean b = list.get(i);
                 builder.append("姓名：" + b.getLabel());
@@ -183,7 +184,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
                 float score = (float) b.getScore();
                 builder.append("，识别分数：" + score);
                 if (score > 0.55) {
-                    isCheckFace = true;
+
                     builder.append(" ,识别成功！" + "\n");
                     builder1.append("识别成功");
                 } else {
@@ -193,10 +194,10 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
             }
             name.setText(builder.toString());
             EventBus.getDefault().post(MessageWrap.getInstance(builder1.toString()));
-            if (isCheckFace) {
-                int n = 3000 * list.size();
-                handler.postDelayed(() -> finish(), n);
-            }
+
+            int n = 3000 * list.size();
+            handler.postDelayed(() -> finish(), n);
+
         }
         deletePic();
     }
