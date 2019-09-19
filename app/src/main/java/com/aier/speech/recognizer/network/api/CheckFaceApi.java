@@ -19,4 +19,7 @@ public interface CheckFaceApi {
     @POST("redface")
     @Multipart
     Observable<SimilarFaceResult> uploadRedPeoplePicFile(@Part List<MultipartBody.Part> files);
+
+    //@POST("api")
+   // Observable<SimilarFaceResult> uploadRedPeoplePicFile(@Part List<MultipartBody.Part> files);
 }

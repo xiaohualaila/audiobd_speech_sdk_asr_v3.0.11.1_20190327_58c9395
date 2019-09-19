@@ -1,23 +1,23 @@
 -- Merging decision tree log ---
 manifest
-ADDED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
-INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
+ADDED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
+INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:1-6:12
 	package
-		ADDED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:3:7-27
-		INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
-		INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
+		ADDED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:3:7-27
+		INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
+		INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
 	android:versionName
-		ADDED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:5:7-34
-		INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
-		INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
+		ADDED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:5:7-34
+		INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
+		INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:4:7-33
-		INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
-		INJECTED from F:\company\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
+		ADDED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml:4:7-33
+		INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
+		INJECTED from C:\companyapp\audiobd_speech\openCV4Libs\src\main\AndroidManifest.xml
