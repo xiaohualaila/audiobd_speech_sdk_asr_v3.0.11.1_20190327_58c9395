@@ -73,6 +73,7 @@
         app:layout_constraintLeft_toRightOf="@+id/iv_5"
         app:layout_constraintTop_toTopOf="@+id/iv_4"
         android:src="@drawable/knowledge" />
+
     <ImageView
         android:id="@+id/iv_7"
         android:layout_width="wrap_content"
@@ -85,26 +86,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="30dp"
         android:src="@drawable/red_arm" />
-
-
-<!--    <ImageView-->
-<!--        android:id="@+id/iv_about_me"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="5dp"-->
-<!--        android:layout_marginTop="5dp"-->
-<!--        android:src="@drawable/about_me"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <TextView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="5dp"-->
-<!--        android:text="关于我们"-->
-<!--        app:layout_constraintLeft_toRightOf="@+id/iv_about_me"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/iv_about_me"-->
-<!--        android:textColor="@color/white"/>-->
 
     <TextView
         android:id="@+id/tv_time"
@@ -149,11 +130,12 @@
         android:layout_marginTop="5dp"
         app:layout_constraintLeft_toLeftOf="@+id/tv_wendu"
         app:layout_constraintTop_toBottomOf="@+id/tv_wendu"/>
-<!--    <ImageView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        android:layout_marginRight="200dp"-->
-<!--        android:src=""/>-->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="150dp"
+        android:src="@drawable/weather"/>
 </android.support.constraint.ConstraintLayout>

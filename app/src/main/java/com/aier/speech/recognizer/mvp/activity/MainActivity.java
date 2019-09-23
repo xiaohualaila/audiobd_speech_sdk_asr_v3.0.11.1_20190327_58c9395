@@ -17,7 +17,6 @@ import com.aier.speech.recognizer.mvp.contract.MainContract;
 import com.aier.speech.recognizer.bean.YUBAIBean;
 import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.presenter.MainPresenter;
-import com.aier.speech.recognizer.util.StatusBarUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

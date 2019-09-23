@@ -2,14 +2,15 @@ package com.aier.speech.recognizer.mvp.presenter;
 
 
 import android.text.TextUtils;
-import android.util.Log;
 
-import com.aier.speech.recognizer.bean.FaceCheckBean;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
-import com.aier.speech.recognizer.mvp.contract.OpenCVContract;
+import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.network.ApiManager;
 import java.io.File;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
+
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -17,13 +18,12 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 
-public class CameraPresenter extends BasePresenter implements OpenCVContract.Persenter {
+public class CameraPresenter extends BasePresenter implements CameraContract.Persenter {
 
-    private OpenCVContract.View view;
+    private CameraContract.View view;
 
-    public CameraPresenter(OpenCVContract.View view) {
+    public CameraPresenter(CameraContract.View view) {
         this.view = view;
     }
 
@@ -70,5 +70,24 @@ public class CameraPresenter extends BasePresenter implements OpenCVContract.Per
                         }
                     }
                 });
+    }
+
+
+    @Override
+    public void getTime() {
+        Calendar c = Calendar.getInstance();
+        c.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
+        String mMonth = String.valueOf(c.get(Calendar.MONTH) + 1);// 获取当前月份
+        if(mMonth.length()==1){
+            mMonth ="0"+mMonth;
+        }
+        String  mDay = String.valueOf(c.get(Calendar.DAY_OF_MONTH));// 获取当前月份的日期号码
+        if(mDay.length()==1){
+            mDay ="0"+mDay;
+        }
+        String[] weekDays = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        view.backTime(hour+ ":" +minute,mMonth +"/" + mDay+" "+weekDays[c.get(Calendar.DAY_OF_WEEK)-1]);
     }
 }

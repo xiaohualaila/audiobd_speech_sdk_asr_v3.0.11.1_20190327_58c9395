@@ -73,6 +73,13 @@
             android:label="语音合成"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".mvp.activity.RobotTTSNotWakeUpActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:launchMode="singleTask"
+            android:label="语音合成"
+            android:screenOrientation="portrait">
+        </activity>
 
         <activity
             android:name=".mvp.activity.RobotSpeechActivity"

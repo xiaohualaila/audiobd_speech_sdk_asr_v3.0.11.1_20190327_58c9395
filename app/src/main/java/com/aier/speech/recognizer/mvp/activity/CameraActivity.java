@@ -2,13 +2,17 @@ package com.aier.speech.recognizer.mvp.activity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
-import com.aier.speech.recognizer.mvp.contract.OpenCVContract;
+import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.mvp.presenter.CameraPresenter;
+import com.aier.speech.recognizer.util.ImageUtils;
+
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.Utils;
@@ -26,19 +30,31 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
+import java.util.List;
+
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class CameraActivity extends BaseActivity implements OpenCVContract.View {
+public class CameraActivity extends RobotSpeechActivity implements CameraContract.View {
 
 
     private static final String TAG = "CameraActivity";
     @BindView(R.id.camera)
     JavaCameraView mCameraView;
+    @BindView(R.id.iv_photo)
+    ImageView iv_photo;
+
     @BindView(R.id.name)
-    TextView name;
+    TextView tv_name;
+    @BindView(R.id.tv_work)
+    TextView tv_work;
     @BindView(R.id.score)
-    TextView score;
+    TextView tv_score;
+    @BindView(R.id.tv_history)
+    TextView tv_history;
+    @BindView(R.id.back)
+    TextView back;
     CascadeClassifier cascadeClassifier;
 
     Mat grayscaleImage;
@@ -48,8 +64,6 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
     private boolean isPhoteTakingPic = false;
     String fileName;
     private CameraPresenter presenter;
-    private static Handler handler = new Handler();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,11 +114,6 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
         });
 
         initClassifier();
-    }
-
-    @Override
-    protected int getLayout() {
-        return R.layout.camera;
     }
 
     private void savePicture(Mat frameData) {
@@ -159,32 +168,35 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
 
     @Override
     public void getDataSuccess(SimilarFaceResult bean) {
-        isPhoteTakingPic = false;
+        List<SimilarFaceResult.ResultBean> resultBeans = bean.getResult();
+        if (resultBeans.size() > 0) {
+            SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
+            String score = (bean1.getScore() * 100 + "").substring(0, 2);
+            Log.i("ccc",bean1.getDraw_image());
+            ImageUtils.image(this, bean1.getDraw_image(),iv_photo);
+            tv_name.setText(bean1.getName());
+            tv_work.setText(bean1.getDuty());
+            tv_history.setText(bean1.getDescription());
+            tv_score.setText(score+"%");
+
+            Log.i(TAG, "result " + "您回到红军时代是" + bean1.getName() + "相似度" + score + "%" + bean1.getDuty());
+            speak("您回到红军时代是" + bean1.getName() + "相似度" + score + "%" + bean1.getDuty());
+        } else {
+            isPhoteTakingPic = false;
+        }
         deletePic();
 
-//        List<SimilarFaceResult.ResultBean> resultBeans = bean.getResult();
-//        if (resultBeans.size() > 0) {
-//            SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
-//            Bundle bundle = new Bundle();
-//            Intent intent = new Intent(this, DetailActivity.class);
-//            bundle.putString("my_name", "");
-//            bundle.putString("name", bean1.getName());
-//            bundle.putString("duty", bean1.getDuty());
-//            bundle.putString("description", bean1.getDescription());
-//            String score = (bean1.getScore() * 100 + "").substring(0, 2);
-//            bundle.putString("score", score);
-//            bundle.putString("img", bean1.getDraw_image());
-//            intent.putExtras(bundle);
-//            startActivity(intent);
-//        }
-//        finish();
     }
 
     @Override
     public void getDataFail() {
         isPhoteTakingPic = false;
-     //   EventBus.getDefault().post(MessageWrap.getInstance("未识别到人脸信息！"));
         deletePic();
+    }
+
+    @Override
+    public void backTime(String time, String date) {
+
     }
 
     private void deletePic() {
@@ -193,6 +205,17 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
             file.delete();
             Log.i(TAG, "deletePic+++");
         }
+    }
+
+    @OnClick(R.id.back)
+    public  void onClick(View view){
+        finish();
+    }
+
+    /**
+     * 语音合成播放完成
+     */
+    protected void ttsFinish() {
         isPhoteTakingPic = false;
     }
 
@@ -203,7 +226,7 @@ public class CameraActivity extends BaseActivity implements OpenCVContract.View 
         if (null != mCameraView) {
             mCameraView.disableView();
         }
-        handler.removeCallbacksAndMessages(null);
     }
+
 
 }

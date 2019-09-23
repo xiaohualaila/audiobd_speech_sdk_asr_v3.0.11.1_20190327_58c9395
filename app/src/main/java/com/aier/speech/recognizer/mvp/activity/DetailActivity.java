@@ -44,7 +44,7 @@ public class DetailActivity extends BaseActivity {
         tv_name.setText(my_name);
         name_1.setText(name);
         tv_work.setText(duty);
-        tv_history.setText(description);
+        tv_history.setText("   "+description);
         tv_score.setText(score+"%");
     }
 

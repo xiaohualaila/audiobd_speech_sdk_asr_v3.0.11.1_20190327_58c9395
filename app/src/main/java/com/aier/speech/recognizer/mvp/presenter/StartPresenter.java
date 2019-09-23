@@ -1,14 +1,10 @@
 package com.aier.speech.recognizer.mvp.presenter;
 import android.util.Log;
-
-import com.aier.speech.recognizer.bean.SimilarFaceResult;
 import com.aier.speech.recognizer.bean.YUBAIBean;
 import com.aier.speech.recognizer.mvp.contract.StartContract;
 import com.aier.speech.recognizer.network.ApiManager;
-
 import java.util.Calendar;
 import java.util.TimeZone;
-
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
