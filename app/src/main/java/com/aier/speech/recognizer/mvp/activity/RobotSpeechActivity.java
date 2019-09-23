@@ -130,6 +130,7 @@ public class RobotSpeechActivity extends RobotTTSActivity {
     @Override
     protected void onDestroy() {
         myRecognizer.release();
+        handlerSpeech.removeCallbacksAndMessages(null);
         super.onDestroy();
     }
 
