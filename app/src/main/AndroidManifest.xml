@@ -36,6 +36,13 @@
 
         </activity>
         <activity
+            android:name=".mvp.activity.SecondStepActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
             android:name=".mvp.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"

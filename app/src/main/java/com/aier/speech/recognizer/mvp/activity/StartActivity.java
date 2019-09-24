@@ -66,8 +66,9 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
     public void openIv5(View view) {
       //  startActivity(new Intent(this, .class));
     }
-    public void openIv6(View view) {
-       // startActivity(new Intent(this, .class));
+    //第二步
+    public void stepSecondBtn(View view) {
+        startActivity(new Intent(this, SecondStepActivity.class));
     }
 //    public void returnRedTime(View view) {
 //        if(openCVIsOk){

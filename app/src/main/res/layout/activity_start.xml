@@ -21,6 +21,7 @@
         app:layout_constraintLeft_toLeftOf="@+id/iv_step_first"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="300dp"
+        android:onClick="stepSecondBtn"
         android:src="@drawable/btn_step_second"/>
     <ImageView
         android:id="@+id/btn_2_1"
