@@ -8,12 +8,37 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 
 /**
  * Created by fujiayi on 2017/5/19.
  */
 
 public class FileUtil {
+
+    /**
+     * 获取图片保存路径
+     */
+    public static String getPath(){
+        String path = FileUtil.getSDPath() + File.separator + "image";
+        File pathFile = new File(path);
+        if(!pathFile.exists() || !pathFile.isDirectory()){
+            pathFile.mkdir();
+        }
+        return path;
+    }
+
+    /**
+     * 获取路径
+     * @return
+     */
+    public static String getSDPath() {
+        boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+        if (sdCardExist) {
+            return Environment.getExternalStorageDirectory().getAbsolutePath();
+        }
+        return null;
+    }
 
     // 创建一个临时目录，用于复制临时文件，如assets目录下的离线资源文件
     public static String createTmpDir(Context context) {
@@ -69,5 +94,9 @@ public class FileUtil {
                 }
             }
         }
+    }
+
+    public static long getTime() {
+        return Calendar.getInstance().getTimeInMillis();
     }
 }

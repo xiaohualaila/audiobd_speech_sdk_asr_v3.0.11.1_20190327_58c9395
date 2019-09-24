@@ -42,19 +42,19 @@ public class CameraActivity extends RobotSpeechActivity implements CameraContrac
     private static final String TAG = "CameraActivity";
     @BindView(R.id.camera)
     JavaCameraView mCameraView;
-    @BindView(R.id.iv_photo)
-    ImageView iv_photo;
-
-    @BindView(R.id.name)
-    TextView tv_name;
-    @BindView(R.id.tv_work)
-    TextView tv_work;
-    @BindView(R.id.score)
-    TextView tv_score;
-    @BindView(R.id.tv_history)
-    TextView tv_history;
-    @BindView(R.id.back)
-    TextView back;
+//    @BindView(R.id.iv_photo)
+//    ImageView iv_photo;
+//
+//    @BindView(R.id.name)
+//    TextView tv_name;
+//    @BindView(R.id.tv_work)
+//    TextView tv_work;
+//    @BindView(R.id.score)
+//    TextView tv_score;
+//    @BindView(R.id.tv_history)
+//    TextView tv_history;
+//    @BindView(R.id.back)
+//    TextView back;
     CascadeClassifier cascadeClassifier;
 
     Mat grayscaleImage;
@@ -173,11 +173,11 @@ public class CameraActivity extends RobotSpeechActivity implements CameraContrac
             SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
             String score = (bean1.getScore() * 100 + "").substring(0, 2);
             Log.i("ccc",bean1.getDraw_image());
-            ImageUtils.image(this, bean1.getDraw_image(),iv_photo);
-            tv_name.setText(bean1.getName());
-            tv_work.setText(bean1.getDuty());
-            tv_history.setText(bean1.getDescription());
-            tv_score.setText(score+"%");
+//            ImageUtils.image(this, bean1.getDraw_image(),iv_photo);
+//            tv_name.setText(bean1.getName());
+//            tv_work.setText(bean1.getDuty());
+//            tv_history.setText(bean1.getDescription());
+//            tv_score.setText(score+"%");
 
             Log.i(TAG, "result " + "您回到红军时代是" + bean1.getName() + "相似度" + score + "%" + bean1.getDuty());
             speak("您回到红军时代是" + bean1.getName() + "相似度" + score + "%" + bean1.getDuty());
@@ -207,10 +207,10 @@ public class CameraActivity extends RobotSpeechActivity implements CameraContrac
         }
     }
 
-    @OnClick(R.id.back)
-    public  void onClick(View view){
-        finish();
-    }
+//    @OnClick(R.id.back)
+//    public  void onClick(View view){
+//        finish();
+//    }
 
     /**
      * 语音合成播放完成

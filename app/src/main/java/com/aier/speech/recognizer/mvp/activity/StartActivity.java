@@ -93,7 +93,7 @@ public class StartActivity extends BaseActivity implements StartContract.View {
     }
     public void returnRedTime(View view) {
         if(openCVIsOk){
-            startActivity(new Intent(this, CameraActivity.class));
+            startActiviys(Camera2Activity.class);
         }else {
             ToastyUtil.INSTANCE.showError("openCV初始化失败！，请重启软件。");
         }
