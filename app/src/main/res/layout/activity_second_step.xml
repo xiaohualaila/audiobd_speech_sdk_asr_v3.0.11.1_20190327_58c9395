@@ -105,17 +105,17 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="122dp"
+        android:layout_marginRight="88dp"
         android:layout_marginTop="62dp"
         android:src="@drawable/second_back"/>
     <SurfaceView
         android:id="@+id/sf_video"
-        android:layout_width="780dp"
+        android:layout_width="778dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginRight="18dp"
         android:layout_height="512dp"/>
 </android.support.constraint.ConstraintLayout>
