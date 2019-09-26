@@ -55,6 +55,20 @@
             android:launchMode="singleTask">
         </activity>
         <activity
+            android:name=".mvp.activity.AnswerQuestionActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="答题"
+            android:launchMode="singleTask">
+        </activity>
+        <activity
+            android:name=".mvp.activity.AnswerResultsActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="答题结果"
+            android:launchMode="singleTask">
+
+
+        </activity>
+        <activity
             android:name=".mvp.activity.DetailActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"

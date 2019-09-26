@@ -10,7 +10,7 @@ public class MainContract {
     }
 
     public interface View {
-        void getDataSuccess(YUBAIBean bean);
+        void getDataSuccess(YUBAIBean DataBean);
         void getDataFail();
     }
 

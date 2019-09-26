@@ -4,6 +4,7 @@ package com.aier.speech.recognizer.network;
 
 import com.aier.speech.recognizer.network.api.CheckFaceApi;
 import com.aier.speech.recognizer.network.api.CommonApi;
+import com.aier.speech.recognizer.network.api.RedTimeApi;
 import com.aier.speech.recognizer.network.api.YubaiApi;
 
 import java.util.concurrent.TimeUnit;
@@ -22,6 +23,7 @@ public class ApiManager {
     private CommonApi commonApi;
     private YubaiApi yubaiApi;
     private CheckFaceApi checkFaceApi;
+    private RedTimeApi redTimeApi;
 
     private static ApiManager sApiManager;
 
@@ -97,5 +99,20 @@ public class ApiManager {
         }
         return checkFaceApi;
     }
-
+    /**
+     * 红军知识问答 api
+     * @return
+     */
+    public RedTimeApi getAnswerQuestionService() {
+        if (redTimeApi == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Config.BASIC_ANSWERQUESTION_URL)
+                    .client(mClient)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            redTimeApi =  retrofit.create(RedTimeApi.class);
+        }
+        return redTimeApi;
+    }
 }

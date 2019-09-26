@@ -105,7 +105,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         }
     }
 
-    @OnClick({R.id.take_photo})
+    @OnClick({R.id.take_photo,R.id.iv_answer_question})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.take_photo:
@@ -113,7 +113,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                     takePhoto();
                 }
                 break;
-
+            case R.id.iv_answer_question:
+               startActiviys(AnswerQuestionActivity.class);
+                break;
 
         }
     }

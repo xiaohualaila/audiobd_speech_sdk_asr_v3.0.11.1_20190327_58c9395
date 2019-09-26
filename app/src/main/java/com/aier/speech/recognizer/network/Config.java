@@ -13,4 +13,7 @@ public class Config {
 
     public static String UPLOAD_PIC_API_URL = "https://www.zq-ai.com/zqcloudapi/v1.0/video/";//图片识别
 
+
+    public static String BASIC_ANSWERQUESTION_URL = "https://www.buwangchuxin.com/api/Offline/";
+
 }
