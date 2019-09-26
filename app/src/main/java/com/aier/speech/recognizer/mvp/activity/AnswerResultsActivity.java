@@ -19,7 +19,7 @@ public class AnswerResultsActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        score = getIntent().getIntExtra("type",0);
+        score = getIntent().getIntExtra("score",0);
         if(score==100){
             tv_tip.setText("智慧之神我就是智慧与美貌的化身～");
         }else if(score>60){

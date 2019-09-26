@@ -1,5 +1,6 @@
 package com.aier.speech.recognizer.mvp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +15,6 @@ import com.aier.speech.recognizer.bean.AnswerQuestionResult;
 import com.aier.speech.recognizer.bean.ListBean;
 import com.aier.speech.recognizer.mvp.contract.AnswerQuestionContract;
 import com.aier.speech.recognizer.mvp.presenter.AnswerQuestionPresenter;
-import com.aier.speech.recognizer.util.ToastyUtil;
 
 import java.util.List;
 
@@ -49,7 +49,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
         return R.layout.activity_answer_question;
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_next})
+    @OnClick({R.id.take_photo, R.id.iv_next, R.id.iv_left_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -64,13 +64,19 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                     tv_question.setText(quest);
                     mMyAdapter.setList(bean.getTopics(), false);
                 } else {
-                    startActiviys(AnswerResultsActivity.class,score);
+                    Intent intent = new Intent(this,AnswerResultsActivity.class);
+                    intent.putExtra("score",score);
+                    startActivity(intent);
                     finish();
                 }
 
                 break;
             case R.id.right_btn://菜单
                 startActiviys(MenuActivity.class);
+                finish();
+                break;
+            case R.id.iv_left_btn://初心地图
+                startActiviys(MapActivity.class);
                 finish();
                 break;
         }

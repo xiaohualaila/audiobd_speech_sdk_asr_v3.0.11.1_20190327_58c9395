@@ -64,9 +64,12 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="菜单"
             android:launchMode="singleTask">
-
-
-
+        </activity>
+        <activity
+            android:name=".mvp.activity.MapActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="初心地图"
+            android:launchMode="singleTask">
         </activity>
         <activity
             android:name=".mvp.activity.AnswerResultsActivity"
