@@ -34,7 +34,7 @@ public class AnswerResultsActivity extends BaseActivity {
 
 
 
-    @OnClick({R.id.take_photo, R.id.back_first,R.id.conti_})
+    @OnClick({R.id.take_photo, R.id.back_first,R.id.conti_,R.id.iv_left_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -45,6 +45,10 @@ public class AnswerResultsActivity extends BaseActivity {
                 break;
             case R.id.conti_:
                 startActiviys(AnswerQuestionActivity.class);
+                finish();
+                break;
+            case R.id.iv_left_btn://初心地图
+                startActiviys(MapActivity.class);
                 finish();
                 break;
         }
