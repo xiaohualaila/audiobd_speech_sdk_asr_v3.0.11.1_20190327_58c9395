@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/choose_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="back"
+        android:layout_marginLeft="80dp"
+        android:src="@drawable/back"/>
+
+    <ImageView
+        android:id="@+id/btn_vr_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/btn_vr_a"/>
+    <TextView
+        app:layout_constraintLeft_toLeftOf="@+id/btn_vr_a"
+        app:layout_constraintTop_toTopOf="@+id/btn_vr_a"
+        app:layout_constraintRight_toRightOf="@+id/btn_vr_a"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_vr_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"
+        android:text="桃丰密桃园"
+        android:textColor="@color/white" />
+
+
+    <ImageView
+        android:id="@+id/btn_vr_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="150dp"
+        android:src="@drawable/btn_vr_b"/>
+    <TextView
+        app:layout_constraintLeft_toLeftOf="@+id/btn_vr_b"
+        app:layout_constraintTop_toTopOf="@+id/btn_vr_b"
+        app:layout_constraintRight_toRightOf="@+id/btn_vr_b"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_vr_b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"
+        android:text="桃丰密桃园"
+        android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/btn_vr_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="380dp"
+        android:layout_marginRight="100dp"
+        android:src="@drawable/btn_vr_c"/>
+    <TextView
+        app:layout_constraintLeft_toLeftOf="@+id/btn_vr_c"
+        app:layout_constraintTop_toTopOf="@+id/btn_vr_c"
+        app:layout_constraintRight_toRightOf="@+id/btn_vr_c"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_vr_c"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:onClick="openVR"
+        android:textSize="20sp"
+        android:text="桃丰密桃园"
+        android:textColor="@color/white" />
+
+
+</android.support.constraint.ConstraintLayout>

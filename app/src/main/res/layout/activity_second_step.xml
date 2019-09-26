@@ -4,91 +4,13 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/second_bg">
-    <LinearLayout
-        android:id="@+id/ll_1"
+
+    <com.aier.speech.recognizer.weight.ChooseView
+        android:id="@+id/choose_view"
         app:layout_constraintBottom_toTopOf="@+id/iv_video"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/iv_line_1"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:layout_marginBottom="60dp"
-        android:layout_marginLeft="100dp"
-        android:gravity="center_horizontal|bottom"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:text="AR上挑"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_box1"/>
-
-    </LinearLayout>
-    <ImageView
-        android:id="@+id/iv_line_1"
-        app:layout_constraintTop_toTopOf="@+id/ll_1"
-        app:layout_constraintLeft_toRightOf="@+id/ll_1"
-        app:layout_constraintRight_toLeftOf="@+id/ll_2"
-        android:layout_marginTop="150dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/icon_box4"/>
-    <LinearLayout
-        android:id="@+id/ll_2"
-        app:layout_constraintTop_toTopOf="@+id/ll_1"
-        app:layout_constraintLeft_toRightOf="@+id/iv_line_1"
-        app:layout_constraintRight_toLeftOf="@+id/iv_line_2"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:gravity="center_horizontal|bottom"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:text="智能分拣"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_box2"/>
-
-    </LinearLayout>
-    <ImageView
-        android:id="@+id/iv_line_2"
-        app:layout_constraintTop_toTopOf="@+id/iv_line_1"
-        app:layout_constraintLeft_toRightOf="@+id/ll_2"
-        app:layout_constraintRight_toLeftOf="@+id/ll_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/icon_box5"/>
-    <LinearLayout
-        android:id="@+id/ll_3"
-        app:layout_constraintTop_toTopOf="@+id/ll_1"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/iv_line_2"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:layout_marginRight="100dp"
-        android:gravity="center_horizontal|bottom"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:text="包装运输"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_box3"/>
-    </LinearLayout>
+        android:layout_marginBottom="40dp"/>
     <ImageView
         android:id="@+id/iv_video"
         android:layout_width="wrap_content"
@@ -99,15 +21,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="30dp"
         android:src="@drawable/video_bg"/>
-    <ImageView
-        android:onClick="back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="88dp"
-        android:layout_marginTop="62dp"
-        android:src="@drawable/second_back"/>
+
     <SurfaceView
         android:id="@+id/sf_video"
         android:layout_width="778dp"
@@ -118,4 +32,22 @@
         android:layout_marginTop="26dp"
         android:layout_marginRight="18dp"
         android:layout_height="512dp"/>
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="back"
+        android:layout_marginLeft="80dp"
+        android:src="@drawable/back"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="300dp"
+        android:src="@drawable/bg_egg_fonts"/>
 </android.support.constraint.ConstraintLayout>

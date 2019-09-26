@@ -3,19 +3,24 @@ package com.aier.speech.recognizer.mvp.activity;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import com.aier.speech.recognizer.R;
+import com.aier.speech.recognizer.weight.ChooseView;
+
 import java.io.File;
 import java.io.IOException;
 import butterknife.BindView;
 
 
-public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Callback {
+public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Callback,ChooseView.ChooseCallBack {
     private static String TAG = "SecondStepActivity";
     @BindView(R.id.sf_video)
     SurfaceView surfaceView;
+    @BindView(R.id.choose_view)
+    ChooseView choose_view;
     private MediaPlayer mMediaPlayer;
     private SurfaceHolder myholder;
     private int currentPosition = 0;
@@ -25,7 +30,7 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
         myholder = surfaceView.getHolder();
         myholder.addCallback(this);
         mMediaPlayer = new MediaPlayer();
-
+        choose_view.setChooseCallBack(this);
     }
 
     @Override
@@ -83,10 +88,14 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
     protected void onDestroy() {
         super.onDestroy();
         if(mMediaPlayer != null){
-            finish();
             mMediaPlayer.reset();
             mMediaPlayer.release();
             mMediaPlayer = null;
         }
+    }
+
+    @Override
+    public void setCallBack(int num) {
+        Log.i("sss","+++++++++num " +num);
     }
 }

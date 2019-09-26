@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -38,14 +37,6 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
     }
 
 
-
-    private void startDelay() {
-        new Handler().postDelayed(() -> {
-            startActiviys(MainActivity.class);
-            finish();
-        }, 2000);
-    }
-
     @Override
     protected int getLayout() {
         return R.layout.activity_start;
@@ -63,8 +54,9 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
     public void openIv4(View view) {
      //   startActivity(new Intent(this, .class));
     }
-    public void openIv5(View view) {
-      //  startActivity(new Intent(this, .class));
+    //第一步
+    public void stepFirstBtn(View view) {
+        startActivity(new Intent(this, ChooseActivity.class));
     }
     //第二步
     public void stepSecondBtn(View view) {
@@ -140,7 +132,6 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
         super.onDestroy();
         presenter.dispose();
         if(mMediaPlayer != null){
-            finish();
             mMediaPlayer.reset();
             mMediaPlayer.release();
             mMediaPlayer = null;

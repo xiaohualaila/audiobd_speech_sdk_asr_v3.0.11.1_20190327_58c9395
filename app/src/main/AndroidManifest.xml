@@ -43,6 +43,20 @@
 
         </activity>
         <activity
+            android:name=".mvp.activity.ChooseActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".mvp.activity.WebActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
             android:name=".mvp.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
