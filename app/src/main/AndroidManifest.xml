@@ -33,7 +33,6 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-
         </activity>
         <activity
             android:name=".mvp.activity.MainActivity"
@@ -59,6 +58,15 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="答题"
             android:launchMode="singleTask">
+        </activity>
+        <activity
+            android:name=".mvp.activity.MenuActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="菜单"
+            android:launchMode="singleTask">
+
+
+
         </activity>
         <activity
             android:name=".mvp.activity.AnswerResultsActivity"

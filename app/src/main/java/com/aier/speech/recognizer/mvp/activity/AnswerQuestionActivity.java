@@ -53,6 +53,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
+                startActiviys(Camera2Activity.class);
                 finish();
                 break;
             case R.id.iv_next:
@@ -67,6 +68,10 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                     finish();
                 }
 
+                break;
+            case R.id.right_btn://菜单
+                startActiviys(MenuActivity.class);
+                finish();
                 break;
         }
     }

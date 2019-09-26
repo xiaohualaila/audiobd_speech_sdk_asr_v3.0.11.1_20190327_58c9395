@@ -1,0 +1,39 @@
+package com.aier.speech.recognizer.mvp.activity;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.View;
+
+import com.aier.speech.recognizer.R;
+
+
+import butterknife.OnClick;
+
+public class MenuActivity extends BaseActivity {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
+
+    @OnClick({R.id.take_photo, R.id.iv_answer_question})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.take_photo:
+                startActiviys(Camera2Activity.class);
+                finish();
+                break;
+            case R.id.iv_answer_question:
+                startActiviys(AnswerQuestionActivity.class);
+                finish();
+                break;
+        }
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_menu;
+    }
+}
