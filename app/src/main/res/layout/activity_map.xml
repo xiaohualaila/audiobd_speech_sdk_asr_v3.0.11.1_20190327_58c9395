@@ -178,5 +178,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-
+    <ImageView
+        android:id="@+id/iv_answer_question"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/iv_left_btn"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="70dp"
+        android:src="@drawable/answer_questions"/>
 </android.support.constraint.ConstraintLayout>

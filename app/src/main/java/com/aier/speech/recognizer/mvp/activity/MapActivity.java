@@ -153,7 +153,8 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
         return R.layout.activity_map;
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_back, R.id.right_btn,R.id.tv_search_btn,R.id.iv_delete})
+    @OnClick({R.id.take_photo, R.id.iv_back, R.id.right_btn,
+            R.id.tv_search_btn,R.id.iv_delete,R.id.iv_answer_question})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -180,6 +181,10 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                 adapter.setListData(null);
                 ll_fengjing.setVisibility(View.VISIBLE);
+                break;
+            case R.id.iv_answer_question:
+                startActiviys(AnswerQuestionActivity.class);
+                finish();
                 break;
         }
     }

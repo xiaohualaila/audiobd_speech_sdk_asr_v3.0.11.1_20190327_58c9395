@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aier.speech.recognizer.R;
@@ -26,7 +27,8 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     RecyclerView mRecyclerView;
     @BindView(R.id.tv_question)
     TextView tv_question;
-
+    @BindView(R.id.iv_people)
+    ImageView iv_people;
     private AnswerQuestionPresenter presenter;
     private LinearLayoutManager mLayoutManager;
     private AnswerAdapter mMyAdapter;
@@ -49,7 +51,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
         return R.layout.activity_answer_question;
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_next, R.id.iv_left_btn})
+    @OnClick({R.id.take_photo, R.id.iv_next, R.id.iv_left_btn,R.id.iv_right_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -63,6 +65,16 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                     String quest = bean.getQuestion();
                     tv_question.setText(quest);
                     mMyAdapter.setList(bean.getTopics(), false);
+                    if(index==1){
+                        iv_people.setImageResource(R.drawable.question_1);
+                    }else if(index==2){
+                        iv_people.setImageResource(R.drawable.question_2);
+                    }else if(index==3){
+                        iv_people.setImageResource(R.drawable.question_3);
+                    }else {
+                        iv_people.setImageResource(R.drawable.question_1);
+                    }
+
                 } else {
                     Intent intent = new Intent(this,AnswerResultsActivity.class);
                     intent.putExtra("score",score);
@@ -71,12 +83,13 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                 }
 
                 break;
-            case R.id.right_btn://菜单
-                startActiviys(MenuActivity.class);
-                finish();
-                break;
+
             case R.id.iv_left_btn://初心地图
                 startActiviys(MapActivity.class);
+                finish();
+                break;
+            case R.id.iv_right_btn://菜单
+                startActiviys(MenuActivity.class);
                 finish();
                 break;
         }

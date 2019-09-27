@@ -51,6 +51,10 @@ public class AnswerResultsActivity extends BaseActivity {
                 startActiviys(MapActivity.class);
                 finish();
                 break;
+            case R.id.iv_right_btn://菜单
+                startActiviys(MenuActivity.class);
+                finish();
+                break;
         }
     }
 
