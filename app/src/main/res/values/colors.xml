@@ -6,6 +6,7 @@
     <color name="green">#338B36</color>
     <color name="green_btn">#5FE99D</color>
     <color name="text_color_gary">#A2AAB3</color>
+    <color name="text_color_gary_white">#DBE4EE</color>
     <!--蓝色背景 -->
     <color name="title_black">#2993F0</color>
 

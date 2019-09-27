@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -51,6 +53,9 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
     EditText et;
     @BindView(R.id.ll_fengjing)
     LinearLayout ll_fengjing;
+
+    @BindView(R.id.iv_delete)
+    ImageView iv_delete;
     Marker marker;
     private CustomMapStyleOptions mapStyleOptions = new CustomMapStyleOptions();
 
@@ -67,29 +72,34 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
         mapView = findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);// 此方法必须重写
         init();
-        et.addTextChangedListener(new TextWatcher() {
+//        et.addTextChangedListener(new TextWatcher() {
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                // 输入的内容变化的监听
+//                Log.e("输入过程中执行该方法", "文字变化");
+//
+//            }
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count,
+//                                          int after) {
+//                // 输入前的监听
+//                Log.e("输入前确认执行该方法", "开始输入");
+//
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//                // 输入后的监听
+//                Log.e("输入结束执行该方法", "输入结束");
+//            }
+//        });
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // 输入的内容变化的监听
-                Log.e("输入过程中执行该方法", "文字变化");
-                ll_fengjing.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count,
-                                          int after) {
-                // 输入前的监听
-                Log.e("输入前确认执行该方法", "开始输入");
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                // 输入后的监听
-                Log.e("输入结束执行该方法", "输入结束");
-            }
-        });
+        adapter = new MapSearchAdapter();
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(adapter);
 
     }
 
@@ -143,7 +153,7 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
         return R.layout.activity_map;
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_back, R.id.right_btn})
+    @OnClick({R.id.take_photo, R.id.iv_back, R.id.right_btn,R.id.tv_search_btn,R.id.iv_delete})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -159,8 +169,17 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
                 break;
             case R.id.tv_search_btn:
              String s = et.getText().toString().trim();
+             Log.i("aaa",s);
              presenter.searchData(s);
              ll_fengjing.setVisibility(View.GONE);
+                break;
+            case R.id.iv_delete:
+                et.setText("");
+                //隐藏软键盘
+                InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                adapter.setListData(null);
+                ll_fengjing.setVisibility(View.VISIBLE);
                 break;
         }
     }
@@ -272,9 +291,8 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
 
     @Override
     public void getSearchDataSuccess(MapSearchResult.DataBean bean) {
-        adapter = new MapSearchAdapter(bean.getList(), mContext);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(adapter);
+        adapter.setListData(bean.getList());
+        ll_fengjing.setVisibility(View.GONE);
+//        mRecyclerView.setVisibility(View.VISIBLE);
     }
 }

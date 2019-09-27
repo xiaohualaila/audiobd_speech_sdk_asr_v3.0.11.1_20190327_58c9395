@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/answer_finish_bg"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.amap.api.maps.MapView
@@ -11,11 +10,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="45dp"
         android:layout_marginLeft="56dp"
         android:layout_marginRight="56dp"
-        android:layout_height="1200dp" />
-
+        android:layout_height="1500dp" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/camera_bg"/>
     <ImageView
         android:id="@+id/iv_back"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -67,21 +69,50 @@
         android:layout_marginRight="56dp"
         android:background="@drawable/dig_ll"
         app:layout_constraintBottom_toTopOf="@+id/iv_left_btn"
-        android:paddingBottom="100dp"
-        android:layout_marginBottom="20dp"
+        android:paddingTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:paddingBottom="130dp"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="30dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
             android:orientation="horizontal">
-            <EditText
-                android:id="@+id/et"
+            <LinearLayout
                 android:layout_width="0dp"
+                android:layout_height="50dp"
                 android:layout_weight="1"
-                android:layout_height="wrap_content"/>
+                android:background="@drawable/bg_gray"
+                android:gravity="center_vertical"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/search_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/search_icon"/>
+                <EditText
+                    android:id="@+id/et"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    android:id="@+id/iv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/delete_icon"/>
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/tv_search_btn"
                 android:layout_width="100dp"
@@ -89,14 +120,13 @@
                 android:background="@drawable/search_btn"
                 android:gravity="center"
                 android:textColor="@color/white"
-                android:layout_margin="5dp"
                 android:text="搜索"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_search"
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="wrap_content"/>
         <LinearLayout
             android:id="@+id/ll_fengjing"
             android:layout_width="wrap_content"
