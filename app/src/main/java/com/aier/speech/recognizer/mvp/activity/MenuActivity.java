@@ -18,7 +18,7 @@ public class MenuActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_answer_question})
+    @OnClick({R.id.take_photo, R.id.iv_answer_question, R.id.iv_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -29,6 +29,10 @@ public class MenuActivity extends BaseActivity {
                 startActiviys(AnswerQuestionActivity.class);
                 finish();
                 break;
+            case R.id.iv_back:
+                finish();
+                break;
+
         }
     }
 

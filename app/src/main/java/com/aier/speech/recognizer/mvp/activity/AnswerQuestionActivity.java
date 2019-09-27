@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.aier.speech.recognizer.R;
-import com.aier.speech.recognizer.adapter.MyAdapter;
+import com.aier.speech.recognizer.adapter.AnswerAdapter;
 import com.aier.speech.recognizer.bean.AnswerQuestionResult;
 import com.aier.speech.recognizer.bean.ListBean;
 import com.aier.speech.recognizer.mvp.contract.AnswerQuestionContract;
@@ -29,7 +29,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
 
     private AnswerQuestionPresenter presenter;
     private LinearLayoutManager mLayoutManager;
-    private MyAdapter mMyAdapter;
+    private AnswerAdapter mMyAdapter;
     private List questionslist;
     private int size;
     private int index = 0;
@@ -99,7 +99,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
             bean = (ListBean) questionslist.get(index);
             String quest = bean.getQuestion();
             tv_question.setText(quest);
-            mMyAdapter = new MyAdapter(bean.getTopics(), mContext, false);
+            mMyAdapter = new AnswerAdapter(bean.getTopics(), mContext, false);
             mLayoutManager = new LinearLayoutManager(this);
             mRecyclerView.setLayoutManager(mLayoutManager);
             mRecyclerView.setAdapter(mMyAdapter);

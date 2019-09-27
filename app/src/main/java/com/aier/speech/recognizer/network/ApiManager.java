@@ -4,6 +4,7 @@ package com.aier.speech.recognizer.network;
 
 import com.aier.speech.recognizer.network.api.CheckFaceApi;
 import com.aier.speech.recognizer.network.api.CommonApi;
+import com.aier.speech.recognizer.network.api.MapSearchApi;
 import com.aier.speech.recognizer.network.api.RedTimeApi;
 import com.aier.speech.recognizer.network.api.YubaiApi;
 
@@ -24,7 +25,7 @@ public class ApiManager {
     private YubaiApi yubaiApi;
     private CheckFaceApi checkFaceApi;
     private RedTimeApi redTimeApi;
-
+    private MapSearchApi mapSearchApi;
     private static ApiManager sApiManager;
 
     private static OkHttpClient mClient;
@@ -114,5 +115,22 @@ public class ApiManager {
             redTimeApi =  retrofit.create(RedTimeApi.class);
         }
         return redTimeApi;
+    }
+
+    /**
+     * 红军地图查询
+     * @return
+     */
+    public MapSearchApi getMapSearchService() {
+        if (mapSearchApi == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Config.BASIC_MAP_SEARCH_URL)
+                    .client(mClient)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            mapSearchApi =  retrofit.create(MapSearchApi.class);
+        }
+        return mapSearchApi;
     }
 }

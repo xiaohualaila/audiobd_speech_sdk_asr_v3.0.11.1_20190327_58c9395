@@ -171,7 +171,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             Manifest.permission.WRITE_SETTINGS,
             Manifest.permission.CAMERA,
             Manifest.permission.ACCESS_WIFI_STATE,
-            Manifest.permission.CHANGE_WIFI_STATE
+            Manifest.permission.CHANGE_WIFI_STATE,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
     };
 
     private boolean hasNecessaryPermission() {

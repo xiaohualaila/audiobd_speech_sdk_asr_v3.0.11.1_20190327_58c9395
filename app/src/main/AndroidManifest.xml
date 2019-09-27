@@ -16,6 +16,11 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--声明后台定位权限-->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -23,16 +28,16 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:theme="@style/AppTheme"
             android:name=".MyApplication">
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="6e3a009bcdf2fc7b49ea82d1900ee1a1" />
         <!-- 如果需要在API 28上编译并运行在 android 9.0的机器上，需要在application中添加 android:networkSecurityConfig="@xml/network_security_config"-->
         <activity
             android:name=".mvp.activity.StartActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".mvp.activity.MainActivity"
@@ -70,7 +75,10 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="初心地图"
             android:launchMode="singleTask">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".mvp.activity.AnswerResultsActivity"
@@ -139,6 +147,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
+        <!-- 定位需要的服务 使用2.0的定位需要加上这个 -->
+        <service android:name="com.amap.api.location.APSService" >
+        </service>
     </application>
 
 </manifest>

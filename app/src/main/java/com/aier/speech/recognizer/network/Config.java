@@ -16,4 +16,6 @@ public class Config {
 
     public static String BASIC_ANSWERQUESTION_URL = "https://www.buwangchuxin.com/api/Offline/";
 
+    public static String BASIC_MAP_SEARCH_URL = "https://www.buwangchuxin.com/api/Webmap/";
+
 }
