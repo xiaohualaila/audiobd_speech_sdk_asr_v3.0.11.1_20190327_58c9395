@@ -13,11 +13,13 @@
         android:layout_marginTop="45dp"
         android:layout_marginLeft="56dp"
         android:layout_marginRight="56dp"
-        android:layout_height="1500dp" />
+        android:layout_height="850dp" />
+
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/camera_bg"/>
+        android:src="@drawable/camera_bg" />
     <ImageView
         android:id="@+id/iv_back"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -25,165 +27,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="90dp"
         android:src="@drawable/back_icon"/>
     <TextView
+        android:id="@+id/iv_back_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@+id/iv_back"
         app:layout_constraintLeft_toRightOf="@+id/iv_back"
         android:textColor="@color/white"
-        android:textSize="50sp"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="30sp"
         android:text="返回"/>
-    <ImageView
-        android:id="@+id/iv_left_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="150dp"
-        android:layout_marginBottom="130dp"
-        android:src="@drawable/left_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
-    <ImageView
-        android:id="@+id/right_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="150dp"
-        android:layout_marginBottom="130dp"
-        android:src="@drawable/right_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-
-    <LinearLayout
+    <include layout="@layout/linerarlayout_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="56dp"
         android:layout_marginRight="56dp"
-        android:background="@drawable/dig_ll"
-        app:layout_constraintBottom_toTopOf="@+id/iv_left_btn"
-        android:paddingTop="30dp"
-        android:layout_marginBottom="30dp"
-        android:paddingRight="30dp"
-        android:paddingLeft="30dp"
-        android:paddingBottom="130dp"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:background="@drawable/bg_gray"
-                android:gravity="center_vertical"
-                android:layout_marginRight="10dp"
-                android:orientation="horizontal">
-                <ImageView
-                    android:id="@+id/search_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/search_icon"/>
-                <EditText
-                    android:id="@+id/et"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:layout_height="match_parent"/>
-                <ImageView
-                    android:id="@+id/iv_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/delete_icon"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tv_search_btn"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:background="@drawable/search_btn"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:text="搜索"/>
-        </LinearLayout>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <LinearLayout
-            android:id="@+id/ll_fengjing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/figure_icon"
-                android:layout_margin="10dp"
-                android:textSize="20sp"
-                android:gravity="center_horizontal"
-                android:text="人物"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="景点"
-                android:textSize="20sp"
-                android:layout_margin="10dp"
-                android:drawableTop="@drawable/attractions_icon"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="故事"
-                android:textSize="20sp"
-                android:gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:drawableTop="@drawable/story_icon"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="党支部"
-                android:textSize="20sp"
-                android:gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:drawableTop="@drawable/party_branch_icon"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/take_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="210dp"
-        android:src="@drawable/take_photo"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="210dp"/>
+    <include
+        android:id="@+id/common_bottom_view"
+        layout="@layout/common_bottom_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <ImageView
         android:id="@+id/iv_answer_question"
-        android:layout_width="280dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/iv_left_btn"
+        app:layout_constraintBottom_toTopOf="@+id/common_bottom_view"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="70dp"
+        android:layout_marginRight="40dp"
         android:src="@drawable/answer_questions"/>
 </android.support.constraint.ConstraintLayout>

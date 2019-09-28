@@ -1,6 +1,7 @@
 package com.aier.speech.recognizer.mvp.activity;
 
-import android.app.Activity;
+
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
@@ -13,14 +14,12 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import com.aier.speech.recognizer.R;
+import com.aier.speech.recognizer.bean.SimilarFaceResult;
+import com.aier.speech.recognizer.mvp.contract.CameraContract;
+import com.aier.speech.recognizer.mvp.presenter.CameraPresenter;
 import com.aier.speech.recognizer.util.FileUtil;
-import com.aier.speech.recognizer.util.ImageUtils;
 import com.aier.speech.recognizer.util.ToastyUtil;
-
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
@@ -43,14 +42,11 @@ import butterknife.OnClick;
 import static org.opencv.imgcodecs.Imgcodecs.imread;
 
 
-public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callback {
+public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callback , CameraContract.View{
 
      @BindView(R.id.camera_sf)
      SurfaceView camera_sf;
 
-
-
-//    private ImageView img;
     private Camera camera;
     private String filePath;
     private SurfaceHolder holder;
@@ -62,10 +58,11 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     CascadeClassifier cascadeClassifier;
     Mat grayscaleImage;
     private int absoluteFaceSize;
-
+    private CameraPresenter presenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter = new CameraPresenter(this);
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         camera_sf = findViewById(R.id.camera_sf);
 
@@ -105,7 +102,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         }
     }
 
-    @OnClick({R.id.take_photo,R.id.iv_answer_question,R.id.right_btn,R.id.iv_left_btn})
+    @OnClick({R.id.take_photo,R.id.iv_answer_question,R.id.iv_right_btn,R.id.iv_left_btn})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.take_photo:
@@ -117,7 +114,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                startActiviys(AnswerQuestionActivity.class);
                finish();
                 break;
-            case R.id.right_btn://菜单
+            case R.id.iv_right_btn://菜单
                 startActiviys(MenuActivity.class);
                 finish();
                 break;
@@ -196,15 +193,11 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         Rect[] facesArray = faces.toArray();
         int faceCount = facesArray.length;
         if (faceCount > 0) {
-
-            isPhoto = false;
             Log.i("sss", "有人脸的照片");
             ToastyUtil.INSTANCE.showInfo("人脸");
+            presenter.upLoadPicFile(filePath);
         } else {
-            File file = new File(filePath);
-            if (file.exists()) {
-                file.delete();
-            }
+            deletePic();
             isPhoto = false;
             ToastyUtil.INSTANCE.showInfo("未识别到人脸");
             Log.i("sss", "没有人脸的照片");
@@ -369,4 +362,51 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     }
 
 
+    @Override
+    public void getDataSuccess(SimilarFaceResult bean) {
+        List<SimilarFaceResult.ResultBean> resultBeans = bean.getResult();
+        if (resultBeans.size() > 0) {
+            SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
+            String score = (bean1.getScore() * 100 + "").substring(0, 2);
+            Log.i("ccc",bean1.getDraw_image());
+//            ImageUtils.image(this, bean1.getDraw_image(),iv_photo);
+//            tv_name.setText(bean1.getName());
+//            tv_work.setText(bean1.getDuty());
+//            tv_history.setText(bean1.getDescription());
+//            tv_score.setText(score+"%");
+
+          //  Log.i(TAG, "result " + "您回到红军时代是" + bean1.getName() + "相似度" + score + "%" + bean1.getDuty());
+           //
+            Bundle bundle = getIntent().getExtras();
+            Intent intent = new Intent(this,DetailActivity.class);
+            bundle.putString("name",bean1.getName());
+            bundle.putString("duty",bean1.getDuty());
+            bundle.putString("description",bean1.getDescription());
+            bundle.putString("score",score);
+            bundle.putString("img",bean1.getDraw_image());
+            intent.putExtras(bundle);
+            startActivity(intent);
+        } else {
+            isPhoto = false;
+        }
+        deletePic();
+    }
+
+    @Override
+    public void getDataFail() {
+        isPhoto = false;
+        deletePic();
+    }
+
+    @Override
+    public void backTime(String time, String date) {
+
+    }
+
+    private void deletePic() {
+        File file = new File(filePath);
+        if (file.exists()) {
+            file.delete();
+        }
+    }
 }

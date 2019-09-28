@@ -26,39 +26,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_tip" />
 
-    <ImageView
-        android:id="@+id/iv_left_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="110dp"
-        android:layout_marginBottom="95dp"
-        android:src="@drawable/left_btn"
+    <include
+        layout="@layout/common_bottom_view"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
-
-    <ImageView
-        android:id="@+id/iv_right_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginRight="110dp"
-        android:layout_marginBottom="95dp"
-        android:src="@drawable/right_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <ImageView
-        android:id="@+id/take_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
-        android:src="@drawable/take_photo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/tv_tip"
         android:layout_width="wrap_content"

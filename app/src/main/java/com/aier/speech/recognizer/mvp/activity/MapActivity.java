@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +12,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.adapter.MapSearchAdapter;
 import com.aier.speech.recognizer.bean.MapDataResult;
@@ -34,13 +30,11 @@ import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.animation.Animation;
 import com.amap.api.maps.model.animation.ScaleAnimation;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -51,9 +45,15 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
     RecyclerView mRecyclerView;
     @BindView(R.id.et)
     EditText et;
-    @BindView(R.id.ll_fengjing)
-    LinearLayout ll_fengjing;
 
+    @BindView(R.id.tv_renwu)
+    TextView tv_renwu;
+    @BindView(R.id.tv_fengjing)
+    TextView tv_fengjing;
+    @BindView(R.id.tv_dang)
+    TextView tv_dang;
+    @BindView(R.id.tv_story)
+    TextView tv_story;
     @BindView(R.id.iv_delete)
     ImageView iv_delete;
     Marker marker;
@@ -72,29 +72,6 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
         mapView = findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);// 此方法必须重写
         init();
-//        et.addTextChangedListener(new TextWatcher() {
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                // 输入的内容变化的监听
-//                Log.e("输入过程中执行该方法", "文字变化");
-//
-//            }
-//
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count,
-//                                          int after) {
-//                // 输入前的监听
-//                Log.e("输入前确认执行该方法", "开始输入");
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//                // 输入后的监听
-//                Log.e("输入结束执行该方法", "输入结束");
-//            }
-//        });
 
         adapter = new MapSearchAdapter();
         mLayoutManager = new LinearLayoutManager(this);
@@ -153,7 +130,7 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
         return R.layout.activity_map;
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_back, R.id.right_btn,
+    @OnClick({R.id.take_photo, R.id.iv_back,R.id.iv_back_, R.id.iv_right_btn,
             R.id.tv_search_btn,R.id.iv_delete,R.id.iv_answer_question})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -164,7 +141,10 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
             case R.id.iv_back:
                 finish();
                 break;
-            case R.id.right_btn://菜单
+            case R.id.iv_back_:
+                finish();
+                break;
+            case R.id.iv_right_btn://菜单
                 startActiviys(MapActivity.class);
                 finish();
                 break;
@@ -172,7 +152,11 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
              String s = et.getText().toString().trim();
              Log.i("aaa",s);
              presenter.searchData(s);
-             ll_fengjing.setVisibility(View.GONE);
+                tv_renwu.setVisibility(View.GONE);
+
+                tv_fengjing.setVisibility(View.GONE);
+                tv_renwu.setVisibility(View.GONE);
+                tv_renwu.setVisibility(View.GONE);
                 break;
             case R.id.iv_delete:
                 et.setText("");
@@ -180,7 +164,7 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
                 InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
                 adapter.setListData(null);
-                ll_fengjing.setVisibility(View.VISIBLE);
+                setViewVisible();
                 break;
             case R.id.iv_answer_question:
                 startActiviys(AnswerQuestionActivity.class);
@@ -297,7 +281,20 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
     @Override
     public void getSearchDataSuccess(MapSearchResult.DataBean bean) {
         adapter.setListData(bean.getList());
-        ll_fengjing.setVisibility(View.GONE);
+        setViewGone();
 //        mRecyclerView.setVisibility(View.VISIBLE);
+    }
+
+    private void setViewGone(){
+        tv_renwu.setVisibility(View.GONE);
+        tv_fengjing.setVisibility(View.GONE);
+        tv_story.setVisibility(View.GONE);
+        tv_dang.setVisibility(View.GONE);
+    }
+    private void setViewVisible(){
+        tv_renwu.setVisibility(View.VISIBLE);
+        tv_fengjing.setVisibility(View.VISIBLE);
+        tv_story.setVisibility(View.VISIBLE);
+        tv_dang.setVisibility(View.VISIBLE);
     }
 }

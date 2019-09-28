@@ -9,7 +9,6 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="sss" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -86,6 +85,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fde45cdb-ada4-4259-bea4-41d6d46ac4f4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/stars_png.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/yellow_bording.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/common_back.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/common_bottom_view.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/linerarlayout_search.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" afterDir="false" />
@@ -98,71 +102,20 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerQuestionActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerQuestionActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerResultsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerFinishActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/BaseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/BaseActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/StartActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/StartActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/about_me.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/about_me.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/answer.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/answer_bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer_bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/answer_finish_bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer_finish_bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/answer_questions.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer_questions.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/attractions_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/attractions_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/back_first.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/back_first.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/back_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/back_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/big_marker.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/big_marker.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/books_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/books_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/camera_bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/camera_bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/conti_.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/conti_.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/delete_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/delete_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/djgs_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/djgs_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/djxx_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/djxx_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/djzd_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/djzd_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/dsjs_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/dsjs_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/figure_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/figure_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/gift_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/gift_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/icon_back.webp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/icon_back.webp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/item_bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/item_bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/knowledge.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/knowledge.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/left_btn.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/left_btn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/map.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/map.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/menu_bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/menu_bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/next.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/next.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/party_branch_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/party_branch_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/people_bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/people_bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/photo.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/photo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/photo_frame.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/photo_frame.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/place_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/place_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/question_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/question_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/question_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/question_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/question_3.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/question_3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/ranking.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ranking.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/red_arm.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/red_arm.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/retrieve.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/retrieve.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/right.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/right.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/right_btn.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/right_btn.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/search_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/search_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/shiguang.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/shiguang.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/small_dang_marker.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/small_dang_marker.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/sqhxg_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/sqhxg_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/story_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/story_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/take_photo.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/take_photo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/tob_dt.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/tob_dt.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/video_contest_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/video_contest_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/voices.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/voices.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/vr.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/vr.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/vr_hardware_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/vr_hardware_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/vr_history_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/vr_history_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/vr_panoramic_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/vr_panoramic_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/vr_pavilion_icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/vr_pavilion_icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/weather.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/weather.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/white_bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/white_bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-mdpi/wrong.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/wrong.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/Camera2Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/Camera2Activity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/DetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/DetailActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer_questions.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/answer_questions.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/red_button_back.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/red_circle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/red_result_bg.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_answer_question.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_answer_question.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_camera5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_camera5.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_finish_answer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_finish_answer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_start.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_start.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/answer_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/answer_item.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -189,20 +142,103 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerFinishActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="11" column="33" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="33" />
+            <state relative-caret-position="208">
+              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_finish_answer.xml">
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/DetailActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="76" column="32" lean-forward="true" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
+            <state relative-caret-position="-175">
+              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/RobotSpeechActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MenuActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-100">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/Camera2Activity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="378" column="13" selection-start-line="378" selection-start-column="13" selection-end-line="378" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/BaseActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="281">
+              <caret line="130" column="29" lean-forward="true" selection-start-line="130" selection-start-column="7" selection-end-line="130" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="208">
+              <caret line="201" lean-forward="true" selection-start-line="201" selection-end-line="207" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/contract/CameraContract.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="12" column="27" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="27" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/CameraPresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-875">
+              <caret line="23" column="36" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/api/CheckFaceApi.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -213,25 +249,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Class" />
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
-        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>AnswerQuestionActivity</find>
-      <find>books_icon</find>
-      <find>tv_tip_1</find>
-      <find>AnswerResultsActivity</find>
-      <find>ConstraintLayout</find>
-      <find>back_first</find>
-      <find>tv_score</find>
-      <find>conti_</find>
-      <find>ACCESS_COARSE_LOCATION</find>
-      <find>ACCESS_FINE_LOCATION</find>
-      <find>locationType</find>
       <find>moveCamera</find>
       <find>latlng</find>
       <find>markerDelegate</find>
@@ -251,6 +276,17 @@
       <find>right_btn</find>
       <find>iv_left_btn</find>
       <find>AnswerFinishActivity</find>
+      <find>tv_now</find>
+      <find>tv_name</find>
+      <find>iv_back</find>
+      <find>8</find>
+      <find>tv_play_again</find>
+      <find>LAUNCHER</find>
+      <find>title_layout.xml</find>
+      <find>tv_renwu</find>
+      <find>presenter</find>
+      <find>getDataSuccess</find>
+      <find>takePhoto</find>
     </findStrings>
   </component>
   <component name="GenerateSignedApkSettings">
@@ -270,12 +306,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/camera.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/contract/Camera2Contract.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/Camera2Presenter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/util/FileUtil.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/circle_camer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/rounded_corner_camera.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/rounded_green_btn.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/contract/MainContract.java" />
@@ -287,8 +317,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/rounded_red_btn.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/adapter/MyAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/Camera2Activity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/MainPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/api/RedTimeApi.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/bean/MapDataResult.java" />
@@ -306,27 +334,35 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/adapter/MapSearchAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/bg_gray.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerQuestionActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerResultsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MenuActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_camera5.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/BaseActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/StartActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_start.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/answer_item.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_answer_question.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerFinishActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/yellow_bording.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/common_bottom_view.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_answer_question.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_camera5.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_finish_answer.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/common_back.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_start.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/linerarlayout_search.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/Camera2Activity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/DetailActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="935" />
-    <option name="y" value="50" />
+    <option name="x" value="11" />
+    <option name="y" value="20" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -336,7 +372,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -374,14 +409,6 @@
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="audiobd_speech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="audiobd_speech" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -425,32 +452,6 @@
               <item name="aier" type="462c0819:PsiDirectoryNode" />
               <item name="speech" type="462c0819:PsiDirectoryNode" />
               <item name="recognizer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="audiobd_speech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="audiobd_speech" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="aier" type="462c0819:PsiDirectoryNode" />
-              <item name="speech" type="462c0819:PsiDirectoryNode" />
-              <item name="recognizer" type="462c0819:PsiDirectoryNode" />
-              <item name="adapter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="audiobd_speech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="audiobd_speech" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="aier" type="462c0819:PsiDirectoryNode" />
-              <item name="speech" type="462c0819:PsiDirectoryNode" />
-              <item name="recognizer" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="audiobd_speech" type="b2602c69:ProjectViewProjectNode" />
@@ -570,24 +571,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="drawable" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="audiobd_speech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="audiobd_speech" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="drawable-hdpi" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="audiobd_speech" type="b2602c69:ProjectViewProjectNode" />
-              <item name="audiobd_speech" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
               <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -608,6 +591,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
@@ -625,7 +609,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="device.picker.selection" value="8904ab08b7a700000000" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
@@ -635,15 +619,15 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\companyapp\audiobd_speech\app\src\main\res\drawable-mdpi" />
-      <recent name="F:\company\audiobd_speech\app\src\main\res\drawable-xhdpi" />
-      <recent name="F:\company\audiobd_speech\app\src\main\res\drawable-xxhdpi" />
-      <recent name="F:\company\audiobd_speech\core\src\main\assets" />
-      <recent name="E:\baidu\audiobd_speech\app\src\main\res\drawable-xhdpi" />
-    </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="com.aier.speech.recognizer.util" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\companyapp\audiobd_speech\app\src\main\res\drawable-hdpi" />
+      <recent name="C:\companyapp\audiobd_speech\app\src\main\res\drawable-mdpi" />
+      <recent name="C:\companyapp\audiobd_speech\app\src\main\res\drawable" />
+      <recent name="C:\companyapp\audiobd_speech\app\src\main\java\com\aier\speech\recognizer\adapter" />
+      <recent name="C:\companyapp\audiobd_speech\app\src\main\res\layout" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.aier.speech.recognizer.adapter" />
@@ -652,12 +636,12 @@
       <recent name="com.aier.speech.recognizer.mvp.contract" />
       <recent name="com.aier.speech.recognizer.mvp.activity" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\companyapp\audiobd_speech\app\src\main\res\drawable-xhdpi" />
       <recent name="C:\companyapp\audiobd_speech\app\src\main\res\drawable-mdpi" />
-      <recent name="C:\companyapp\audiobd_speech\app\src\main\res\drawable" />
-      <recent name="C:\companyapp\audiobd_speech\app\src\main\java\com\aier\speech\recognizer\adapter" />
-      <recent name="C:\companyapp\audiobd_speech\app\src\main\res\layout" />
-      <recent name="C:\companyapp\audiobd_speech\app\src\main" />
+      <recent name="F:\company\audiobd_speech\app\src\main\res\drawable-xhdpi" />
+      <recent name="F:\company\audiobd_speech\app\src\main\res\drawable-xxhdpi" />
+      <recent name="F:\company\audiobd_speech\core\src\main\assets" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -1159,10 +1143,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.28686327" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.32238606" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -1176,7 +1159,7 @@
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5010661" side_tool="true" weight="0.47450426" />
       <window_info anchor="bottom" id="Build" order="5" weight="0.71954674" />
-      <window_info anchor="bottom" id="Android Profiler" order="6" weight="0.6515581" />
+      <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" weight="0.6515581" />
       <window_info anchor="bottom" id="Run" order="7" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.42776203" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.3286119" />
@@ -1290,201 +1273,239 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/left_btn.png">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer_finish_bg.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/Config.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/dig_ll.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="18" column="45" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="45" />
+        <state relative-caret-position="75">
+          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/ApiManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="123" column="43" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/contract/MapContract.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="16" column="63" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="63" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/bean/MapSearchResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="51" column="28" selection-start-line="51" selection-start-column="28" selection-end-line="51" selection-end-column="28" />
-          <folding>
-            <element signature="e#538#539#0" expanded="true" />
-            <element signature="e#571#572#0" expanded="true" />
-            <element signature="e#620#621#0" expanded="true" />
-            <element signature="e#664#665#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#732#733#0" expanded="true" />
-            <element signature="e#782#783#0" expanded="true" />
-            <element signature="e#824#825#0" expanded="true" />
-            <element signature="e#857#858#0" expanded="true" />
-            <element signature="e#884#885#0" expanded="true" />
-            <element signature="e#926#927#0" expanded="true" />
-            <element signature="e#958#959#0" expanded="true" />
-            <element signature="e#1074#1075#0" expanded="true" />
-            <element signature="e#1109#1110#0" expanded="true" />
-            <element signature="e#1161#1162#0" expanded="true" />
-            <element signature="e#1201#1202#0" expanded="true" />
-            <element signature="e#1489#1490#0" expanded="true" />
-            <element signature="e#1535#1536#0" expanded="true" />
-            <element signature="e#1589#1590#0" expanded="true" />
-            <element signature="e#1643#1644#0" expanded="true" />
-            <element signature="e#1679#1680#0" expanded="true" />
-            <element signature="e#1722#1723#0" expanded="true" />
-            <element signature="e#1767#1768#0" expanded="true" />
-            <element signature="e#1815#1816#0" expanded="true" />
-            <element signature="e#1851#1852#0" expanded="true" />
-            <element signature="e#1894#1895#0" expanded="true" />
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#1987#1988#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/bean/AnswerQuestionResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1175">
-          <caret line="49" column="33" selection-start-line="49" selection-start-column="33" selection-end-line="49" selection-end-column="33" />
-          <folding>
-            <element signature="e#1862#1863#0" expanded="true" />
-            <element signature="e#1895#1896#0" expanded="true" />
-            <element signature="e#1944#1945#0" expanded="true" />
-            <element signature="e#1988#1989#0" expanded="true" />
-            <element signature="e#2024#2025#0" expanded="true" />
-            <element signature="e#2056#2057#0" expanded="true" />
-            <element signature="e#2106#2107#0" expanded="true" />
-            <element signature="e#2148#2149#0" expanded="true" />
-            <element signature="e#2428#2429#0" expanded="true" />
-            <element signature="e#2455#2456#0" expanded="true" />
-            <element signature="class#DataBean#0;class#AnswerQuestionResult#0" />
-            <element signature="e#2645#2646#0" expanded="true" />
-            <element signature="e#2680#2681#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/main_bg_png.png">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/question_1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/rounded_corner_camera.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/StartActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="692">
+          <caret line="54" column="71" selection-start-line="54" selection-start-column="71" selection-end-line="54" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/item_bg.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/people_bg.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/adapter/AnswerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="45" column="96" selection-start-line="45" selection-start-column="96" selection-end-line="45" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/back_first.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerFinishActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/btn_back_selector.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/rounded_green_btn.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/red_result_bg.jpg" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/red_button_back.png" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerQuestionActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="50" column="40" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/red_circle.png" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/yellow_bording.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="8" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer_bg.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer_questions.png" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/shiguang.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/api/CommonApi.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_camera5.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="9" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="9" />
+        <state relative-caret-position="580">
+          <caret line="198" column="4" selection-start-line="198" selection-start-column="4" selection-end-line="198" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/api/CheckFaceApi.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_finish_answer.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        <state relative-caret-position="505">
+          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/api/RedTimeApi.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_answer_question.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="47" column="46" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/sqhxg_icon.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="47" lean-forward="true" selection-start-column="47" selection-end-column="47" />
+        <state relative-caret-position="225">
+          <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1051#1484#0" />
+            <element signature="e#1490#1921#0" />
+            <element signature="e#1926#2285#0" />
+            <element signature="e#2290#2649#0" />
+            <element signature="e#2654#3048#0" />
+            <element signature="e#3054#3437#0" />
+            <element signature="e#3442#3825#0" />
+            <element signature="e#3830#4213#0" />
+            <element signature="e#4218#4601#0" />
+            <element signature="e#4966#5399#0" />
+            <element signature="e#5404#5768#0" />
+            <element signature="e#5773#6127#0" />
+            <element signature="e#6132#6514#0" />
+            <element signature="e#6520#6892#0" />
+            <element signature="e#6897#7292#0" />
+            <element signature="e#7297#7665#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/api/MapSearchApi.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/red_arm.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_start.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" column="60" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-1984">
+          <caret line="25" column="39" lean-forward="true" selection-start-line="25" selection-start-column="39" selection-end-line="25" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/MapPresenter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/answer_item.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="67" column="33" selection-start-line="67" selection-start-column="33" selection-end-line="67" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="250">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-27/java/util/List.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_web.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/common_back.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="565" column="6" selection-start-line="565" selection-start-column="6" selection-end-line="565" selection-end-column="6" />
+        <state relative-caret-position="-109">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/map_markerview.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/map_search_item.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-225" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/title_layout.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="27" column="45" lean-forward="true" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_detail.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="4225">
+          <caret line="169" column="7" selection-start-line="169" selection-start-column="7" selection-end-line="170" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/common_bottom_view.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="10" column="43" lean-forward="true" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="43" />
+          <caret line="17" column="37" selection-start-line="17" selection-start-column="25" selection-end-line="17" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/adapter/MapSearchAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="66">
+          <caret line="41" column="39" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/place_icon.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/search_btn.xml">
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="4" selection-end-column="8" />
+        <state relative-caret-position="403">
+          <caret line="98" selection-start-line="98" selection-end-line="98" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/linerarlayout_search.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="38" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bg_gray.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/StartPresenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="29" column="9" lean-forward="true" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
+        <state relative-caret-position="266">
+          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -1498,170 +1519,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/bg.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/menu_bg.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/camera_bg.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer_finish_bg.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/dig_ll.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="9" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/answer_questions.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_map.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="181" column="43" selection-start-line="181" selection-start-column="25" selection-end-line="181" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
-          <caret line="186" column="25" lean-forward="true" selection-start-line="186" selection-start-column="25" selection-end-line="186" selection-end-column="25" />
+        <state relative-caret-position="208">
+          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/question_1.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/api/CheckFaceApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="407" column="36" selection-start-line="407" selection-start-column="25" selection-end-line="407" selection-end-column="36" />
+        <state relative-caret-position="275">
+          <caret line="20" column="34" selection-start-line="20" selection-start-column="34" selection-end-line="20" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MenuActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/Camera2Activity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1075">
-          <caret line="84" column="35" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_camera5.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4925">
-          <caret line="197" column="19" selection-start-line="197" selection-start-column="19" selection-end-line="197" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="59" column="29" selection-start-line="59" selection-start-column="29" selection-end-line="59" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_start.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="134" column="44" selection-start-line="134" selection-start-column="44" selection-end-line="134" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/BaseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="50" column="37" selection-start-line="50" selection-start-column="37" selection-end-line="50" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/StartActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="692">
-          <caret line="54" column="71" selection-start-line="54" selection-start-column="71" selection-end-line="54" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/item_bg.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/answer_item.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-184">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/people_bg.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/adapter/AnswerAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="45" column="96" selection-start-line="45" selection-start-column="96" selection-end-line="45" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerQuestionActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-33">
-          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+        <state relative-caret-position="-100">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/CameraPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="73" column="27" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_answer_question.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="59" column="41" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="41" />
+        <state relative-caret-position="-875">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/AnswerFinishActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/contract/CameraContract.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="11" column="33" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="33" />
+        <state relative-caret-position="300">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/back_first.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_finish_answer.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="76" column="32" lean-forward="true" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
+        <state relative-caret-position="208">
+          <caret line="201" lean-forward="true" selection-start-line="201" selection-end-line="207" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/BaseActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="130" column="29" lean-forward="true" selection-start-line="130" selection-start-column="7" selection-end-line="130" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/Camera2Activity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="378" column="13" selection-start-line="378" selection-start-column="13" selection-end-line="378" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/RobotSpeechActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/DetailActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-175">
+          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
         </state>
       </provider>
     </entry>

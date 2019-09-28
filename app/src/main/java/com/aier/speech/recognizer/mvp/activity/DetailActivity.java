@@ -11,15 +11,13 @@ import com.aier.speech.recognizer.util.ImageUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DetailActivity extends BaseActivity {
+public class DetailActivity extends RobotSpeechActivity {
     @BindView(R.id.tv_title)
     TextView tv_title;
     @BindView(R.id.iv_photo)
     ImageView iv_photo;
     @BindView(R.id.name)
     TextView tv_name;
-    @BindView(R.id.name_1)
-    TextView name_1;
     @BindView(R.id.tv_work)
     TextView tv_work;
     @BindView(R.id.tv_history)
@@ -33,19 +31,17 @@ public class DetailActivity extends BaseActivity {
         tv_title.setText("重回红军时代");
         tv_title.setTextColor(getResources().getColor(R.color.black));
         Bundle bundle = getIntent().getExtras();
-        String my_name =  bundle.getString("my_name");
         String name =  bundle.getString("name");
         String duty =  bundle.getString("duty");
         String description =  bundle.getString("description");
         String  score =  bundle.getString("score");
         String img =  bundle.getString("img");
-
+        speak("您回到红军时代是" + name + "相似度" + score + "%" + duty);
         ImageUtils.image(this,img,iv_photo);
-        tv_name.setText(my_name);
-        name_1.setText(name);
+        tv_name.setText(name);
         tv_work.setText(duty);
         tv_history.setText("   "+description);
-        tv_score.setText(score+"%");
+        tv_score.setText(score);
     }
 
     @Override
@@ -54,16 +50,15 @@ public class DetailActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.tv_play_again,R.id.iv_back})
+    @OnClick({R.id.iv_back,R.id.iv_back_})
     public void onClick(View view){
         switch (view.getId()){
-            case R.id.tv_play_again:
-                finish();
-                break;
             case R.id.iv_back:
                 finish();
                 break;
+            case R.id.iv_back_:
+                finish();
+                break;
         }
-
     }
 }
