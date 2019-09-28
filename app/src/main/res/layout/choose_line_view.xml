@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:text="AR上挑"/>
+            android:text="无人搬运"/>
         <ImageView
             android:id="@+id/box_1"
             android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:text="智能分拣"/>
+            android:text="视觉分拣"/>
         <ImageView
             android:id="@+id/box_2"
             android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textColor="@color/white"
-            android:text="包装运输"/>
+            android:text="智能码垛"/>
         <ImageView
             android:id="@+id/box_3"
             android:layout_width="wrap_content"
