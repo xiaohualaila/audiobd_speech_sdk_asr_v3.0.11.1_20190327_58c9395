@@ -3,6 +3,7 @@ package com.aier.speech.recognizer.mvp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -27,6 +28,8 @@ public class StartActivity extends BaseActivity implements StartContract.View {
     TextView tv_wendu;
     @BindView(R.id.tv_weather)
     TextView tv_weather;
+    @BindView(R.id.shebei)
+    TextView tv_shebei;
     private StartPresenter presenter;
     private boolean openCVIsOk = false;
     @Override
@@ -43,6 +46,14 @@ public class StartActivity extends BaseActivity implements StartContract.View {
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
        // startDelay();
+        DisplayMetrics metric = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metric);
+        int width = metric.widthPixels;  // 屏幕宽度（像素）
+        int height = metric.heightPixels;  // 屏幕高度（像素）
+        float density = metric.density;  // 屏幕密度（0.75 / 1.0 / 1.5）
+        int densityDpi = metric.densityDpi;  // 屏幕密度DPI（120 / 160 / 240）
+        String shebei = "width " + width +" "+" height "+height+" 屏幕密度 " + density + " densityDpi " +densityDpi;
+        tv_shebei.setText(shebei);
     }
 
 

@@ -9,7 +9,7 @@ import com.aier.speech.recognizer.R;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class AnswerResultsActivity extends BaseActivity {
+public class AnswerFinishActivity extends BaseActivity {
 
     private int score = 0;
     @BindView(R.id.tv_score)
@@ -20,6 +20,7 @@ public class AnswerResultsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         score = getIntent().getIntExtra("score",0);
+
         if(score==100){
             tv_tip.setText("智慧之神我就是智慧与美貌的化身～");
         }else if(score>60){

@@ -12,7 +12,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/take_photo"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="38dp"
         android:layout_marginLeft="9dp"
         android:src="@drawable/people_bg"/>
     <TextView
@@ -23,19 +23,20 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:textSize="30sp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="160dp"
         android:textColor="@color/white"
         android:text="第一题"/>
     <TextView
         android:id="@+id/tv_question"
-        android:layout_width="760dp"
+        android:layout_width="530dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_num_question"
+        android:textColor="@color/black"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="80dp"
         android:textSize="30sp" />
 
     <ImageView
@@ -43,8 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="130dp"
-        android:layout_marginLeft="150dp"
+        android:layout_marginBottom="95dp"
+        android:layout_marginLeft="110dp"
         android:src="@drawable/left_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
@@ -55,8 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="130dp"
-        android:layout_marginRight="150dp"
+        android:layout_marginBottom="95dp"
+        android:layout_marginRight="110dp"
         android:src="@drawable/right_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -64,7 +65,7 @@
         android:id="@+id/take_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="210dp"
+        android:layout_marginBottom="150dp"
         android:src="@drawable/take_photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

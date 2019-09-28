@@ -76,7 +76,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                     }
 
                 } else {
-                    Intent intent = new Intent(this,AnswerResultsActivity.class);
+                    Intent intent = new Intent(this, AnswerFinishActivity.class);
                     intent.putExtra("score",score);
                     startActivity(intent);
                     finish();

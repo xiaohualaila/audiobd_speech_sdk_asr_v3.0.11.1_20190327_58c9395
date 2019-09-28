@@ -138,4 +138,11 @@
         android:layout_marginTop="30dp"
         android:layout_marginRight="150dp"
         android:src="@drawable/weather"/>
+    <TextView
+        android:id="@+id/shebei"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textColor="@color/black" />
 </android.support.constraint.ConstraintLayout>

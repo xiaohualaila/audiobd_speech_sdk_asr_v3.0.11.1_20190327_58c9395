@@ -58,12 +58,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 //        Log.i("sss","density  "+ density);
 //        Log.i("sss","densityDpi  "+ densityDpi);
 //          drawable-ldpi        120DPI
-//          drawable-mdpi        160DPI
+//          drawable-hdpi        160DPI
 //          drawable-hdpi        240DPI
 //          drawable-xhdpi       320DPI
 //          drawalbe-xxhdpi      480DPI
 //          drawable-xxxhdpi     640DPI
-        // 小慧机器人 width  1280 height  720 density  2.0 densityDpi  320 drawable-xhdpi
+
         // 底部导航栏适配
 //        if (AndroidWorkaround.Companion.checkDeviceHasNavigationBar(this)) {
 //            AndroidWorkaround.Companion.assistActivity(findViewById(android.R.id.content));
