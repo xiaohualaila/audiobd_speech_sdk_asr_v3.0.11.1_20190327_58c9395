@@ -50,7 +50,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     private Camera camera;
     private String filePath;
     private SurfaceHolder holder;
-    private boolean isFrontCamera = false;
+    private boolean isFrontCamera = true;
     private int width = 640;
     private int height = 480;
     private boolean isPhoto = false;
