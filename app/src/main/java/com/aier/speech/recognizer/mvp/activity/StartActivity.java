@@ -17,6 +17,7 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class StartActivity extends BaseActivity implements StartContract.View {
     private static String TAG = "StartActivity";
@@ -102,13 +103,40 @@ public class StartActivity extends BaseActivity implements StartContract.View {
     public void openIv6(View view) {
        // startActivity(new Intent(this, .class));
     }
-    public void returnRedTime(View view) {
-        if(openCVIsOk){
-            startActiviys(Camera2Activity.class);
-        }else {
-            ToastyUtil.INSTANCE.showError("openCV初始化失败！，请重启软件。");
-        }
 
+
+
+
+    @OnClick({R.id.iv_1, R.id.iv_2, R.id.iv_3,R.id.iv_4,R.id.iv_5,R.id.iv_6,R.id.iv_7})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_1:
+
+                break;
+            case R.id.iv_2:
+                startActiviys(MapActivity.class);
+                break;
+            case R.id.iv_3:
+                startActiviys(AnswerQuestionActivity.class);
+                break;
+            case R.id.iv_4:
+
+                break;
+
+            case R.id.iv_5:
+
+                break;
+            case R.id.iv_6:
+
+                break;
+            case R.id.iv_7:
+                if(openCVIsOk){
+                    startActiviys(Camera2Activity.class);
+                }else {
+                    ToastyUtil.INSTANCE.showError("openCV初始化失败！，请重启软件。");
+                }
+                break;
+        }
     }
     @Override
     protected void onDestroy() {
