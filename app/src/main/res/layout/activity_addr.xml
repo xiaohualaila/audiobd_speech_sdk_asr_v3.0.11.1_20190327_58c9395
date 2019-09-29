@@ -1,10 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/addr_bg">
-<!--   <TextView-->
-<!--       android:layout_width="wrap_content"-->
-<!--       android:layout_height="wrap_content"-->
-<!--       android:text=""/>-->
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:onClick="back"
+        android:layout_marginLeft="80dp"
+        android:src="@drawable/back"/>
+
+
+    <TextView
+        android:id="@+id/tv_diqu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="450dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="240dp"
+        android:textSize="36sp"
+        android:text="所在地区"/>
+    <TextView
+        android:id="@+id/tv_lianxi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_diqu"
+        app:layout_constraintBottom_toTopOf="@+id/tv_diqu"
+        android:layout_marginBottom="80dp"
+        android:textSize="36sp"
+        android:text="联系方式"/>
+    <TextView
+        android:id="@+id/tv_shouhuoren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_lianxi"
+        app:layout_constraintBottom_toTopOf="@+id/tv_lianxi"
+        android:layout_marginBottom="70dp"
+        android:textSize="36sp"
+        android:text="收货人"/>
+
+    <EditText
+        android:id="@+id/ed_name"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_shouhuoren"
+        app:layout_constraintLeft_toRightOf="@+id/tv_shouhuoren"
+        android:textSize="40sp"
+        android:background="@null"
+        android:textColor="@color/white"
+        android:layout_marginLeft="100dp"
+        android:text="张三" />
+
+    <EditText
+        android:id="@+id/ed_phone"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:inputType="phone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_lianxi"
+        app:layout_constraintLeft_toLeftOf="@+id/ed_name"
+        android:textSize="40sp"
+        android:textColor="@color/white"
+        android:text="178399393" />
+
+    <EditText
+        android:id="@+id/ed_city"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_diqu"
+        app:layout_constraintLeft_toLeftOf="@+id/ed_name"
+        android:textSize="40sp"
+        android:textColor="@color/white"
+        android:text="河北 石家庄" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_diqu"
+        android:layout_marginRight="220dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/location"/>
+    <TextView
+        android:id="@+id/xiangxidiqu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_diqu"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_diqu"
+        android:layout_marginTop="70dp"
+        android:text="详细地址"/>
+    <EditText
+        android:id="@+id/ec_addr"
+        android:layout_width="600dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@null"
+        android:textSize="40sp"
+        app:layout_constraintTop_toBottomOf="@+id/xiangxidiqu"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_diqu"
+        android:layout_marginTop="30dp"
+        android:text="详细地址"/>
+
+    <ImageView
+        android:id="@+id/iv_save_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="500dp"
+        android:src="@drawable/save_btn"/>
 </android.support.constraint.ConstraintLayout>

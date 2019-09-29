@@ -35,7 +35,7 @@ public class WebActivity extends BaseActivity {
         mWebToolbar.setNavigationOnClickListener(v -> finish());
         //4.2 开启辅助功能崩溃
         initWebSettings();
-        mWebView.loadUrl("https://www.baidu.com");
+        mWebView.loadUrl("https://720yun.com/t/b2vkiy2mr7b?scene_id=34359372");
 
     }
 

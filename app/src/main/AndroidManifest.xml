@@ -19,7 +19,7 @@
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
-            android:label="红军时代"
+            android:label="数博"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:theme="@style/AppTheme"
             android:name=".MyApplication">
@@ -29,7 +29,10 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
 
         </activity>
         <activity
@@ -51,10 +54,7 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".mvp.activity.ChooseActivity"

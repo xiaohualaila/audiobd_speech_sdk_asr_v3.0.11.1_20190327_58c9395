@@ -63,21 +63,6 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
         return R.layout.activity_start;
     }
 
-    public void openIv1(View view) {
-        // startActivity(new Intent(this, .class));
-    }
-
-    public void openIv2(View view) {
-        //   startActivity(new Intent(this, .class));
-    }
-
-    public void openIv3(View view) {
-        //  startActivity(new Intent(this, .class));
-    }
-
-    public void openIv4(View view) {
-        //   startActivity(new Intent(this, .class));
-    }
 
     //第一步
     public void stepFirstBtn(View view) {
@@ -86,7 +71,7 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
 
     //第二步
     public void stepSecondBtn(View view) {
-        startActivity(new Intent(this, SecondStepActivity.class));
+
     }
 //    public void returnRedTime(View view) {
 //        if(openCVIsOk){
@@ -97,18 +82,27 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
 //
 //    }
 
-    @OnClick({R.id.btn_fruit_1, R.id.btn_fruit_2, R.id.btn_fruit_3, R.id.btn_fruit_4})
+    @OnClick({R.id.btn_fruit_1, R.id.btn_fruit_2, R.id.btn_fruit_3, R.id.btn_fruit_4,
+            R.id.iv_step_first,R.id.iv_step_second})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_fruit_1:
-
+               startActiviys(BuyFruitActivity.class,1);
                 break;
             case R.id.btn_fruit_2:
-
+                startActiviys(BuyFruitActivity.class,2);
                 break;
             case R.id.btn_fruit_3:
+                startActiviys(BuyFruitActivity.class,3);
                 break;
             case R.id.btn_fruit_4:
+                startActiviys(BuyFruitActivity.class,4);
+                break;
+            case R.id.iv_step_second:
+                startActivity(new Intent(this, SecondStepActivity.class));
+                break;
+            case R.id.iv_step_first:
+                startActivity(new Intent(this, ChooseActivity.class));
                 break;
         }
     }
