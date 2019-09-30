@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    android:background="@drawable/big_marker">
-<TextView
-    android:id="@+id/marker_title"
-    android:textSize="18sp"
-    android:textColor="@color/black"
-    android:layout_marginBottom="54dp"
-    android:layout_width="wrap_content"
-    android:text="红色江山待定"
-    android:layout_height="wrap_content"/>
-</LinearLayout>
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/marker_title"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:text="红色江山待定"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:background="@drawable/marker_bg_title"
+        android:paddingBottom="10dp"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/marker_title"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/marker_big"/>
+</RelativeLayout>

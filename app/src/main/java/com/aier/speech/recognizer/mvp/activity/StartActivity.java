@@ -58,6 +58,7 @@ public class StartActivity extends BaseActivity implements StartContract.View {
     }
 
 
+
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {

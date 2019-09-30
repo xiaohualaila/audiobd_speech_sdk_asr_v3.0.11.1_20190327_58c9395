@@ -143,8 +143,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 }
             }
             Matrix matrix = new Matrix();
-            matrix.reset();
-            matrix.postRotate(90);
+//            matrix.reset();
+//            matrix.postRotate(90);
             BitmapFactory.Options factory = new BitmapFactory.Options();
             factory = setOptions(factory);
 
