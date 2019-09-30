@@ -11,14 +11,11 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
-
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.mvp.contract.StartContract;
 import com.aier.speech.recognizer.mvp.presenter.StartPresenter;
-
 import java.io.File;
 import java.io.IOException;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -34,6 +31,8 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
     TextView btn_fruit_3;
     @BindView(R.id.btn_fruit_4)
     TextView btn_fruit_4;
+    @BindView(R.id.tv_time)
+    TextView tv_time;
     private StartPresenter presenter;
     private MediaPlayer mMediaPlayer;
     private SurfaceHolder myholder;
@@ -44,8 +43,6 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
         super.onCreate(savedInstanceState);
         presenter = new StartPresenter(this);
         presenter.getTime();
-        presenter.getWeather();
-        // startDelay();
         myholder = surfaceView.getHolder();
         myholder.addCallback(this);
         mMediaPlayer = new MediaPlayer();
@@ -63,24 +60,6 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
         return R.layout.activity_start;
     }
 
-
-    //第一步
-    public void stepFirstBtn(View view) {
-        startActivity(new Intent(this, ChooseActivity.class));
-    }
-
-    //第二步
-    public void stepSecondBtn(View view) {
-
-    }
-//    public void returnRedTime(View view) {
-//        if(openCVIsOk){
-//            startActivity(new Intent(this, CameraActivity.class));
-//        }else {
-//            ToastyUtil.INSTANCE.showError("openCV初始化失败！，请重启软件。");
-//        }
-//
-//    }
 
     @OnClick({R.id.btn_fruit_1, R.id.btn_fruit_2, R.id.btn_fruit_3, R.id.btn_fruit_4,
             R.id.iv_step_first,R.id.iv_step_second})
@@ -110,16 +89,8 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
 
     @Override
     public void backTime(String time, String date) {
-//        tv_time.setText(time);
-//        tv_date.setText(date);
+        tv_time.setText(time);
     }
-
-    @Override
-    public void getWeatherDataSuccess(String weather, String wendu) {
-//        tv_weather.setText(weather);
-//        tv_wendu.setText(wendu);
-    }
-
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
