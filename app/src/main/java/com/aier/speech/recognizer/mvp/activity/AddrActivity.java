@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.util.SharedPreferencesUtil;
+import com.aier.speech.recognizer.util.SoftKeyboardUtil;
 import com.aier.speech.recognizer.util.ToastyUtil;
 
 import butterknife.BindView;
@@ -28,19 +29,26 @@ public class AddrActivity extends BaseActivity {
     EditText ed_city;
     @BindView(R.id.ec_addr)
     EditText ec_addr;
+
+    private String name;
+    private String phone;
+    private String city;
+    private String addr;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
-        AssetManager assets = getAssets();
-        Typeface tf = Typeface.createFromAsset(assets, "fonts/MStiffHeiPRC.ttf");
-//        tv_total.setTypeface(tf);
-//        tv_num.setTypeface(tf);
-//        tv_tiandu.setTypeface(tf);
+        name = SharedPreferencesUtil.getString(this, "name", "张三");
+        phone = SharedPreferencesUtil.getString(this, "phone", "17767666656");
+        city = SharedPreferencesUtil.getString(this, "city", "河北省 石家庄");
+        addr = SharedPreferencesUtil.getString(this, "addr", "河北省石家庄2019数字经济博览会");
 
-
+        ed_name.setText(name);
+        ed_phone.setText(phone);
+        ed_city.setText(city);
+        ec_addr.setText(addr);
     }
 
     @Override
@@ -79,6 +87,8 @@ public class AddrActivity extends BaseActivity {
                 SharedPreferencesUtil.putString(this,"phone",phone);
                 SharedPreferencesUtil.putString(this,"city",city);
                 SharedPreferencesUtil.putString(this,"addr",addr);
+                SoftKeyboardUtil.hideSoftKeyboard(this);
+                ToastyUtil.INSTANCE.showInfo("保存成功！");
                 break;
         }
     }

@@ -33,8 +33,8 @@ public class ChooseFruitView extends ConstraintLayout implements View.OnClickLis
         View view = LayoutInflater.from(context).inflate(R.layout.choose_fruit_view, this);
         tv_tiandu_3 = view.findViewById(R.id.tv_tiandu_3);
         tv_tiandu_7 = view.findViewById(R.id.tv_tiandu_7);
-        tv_tiandu_5 = view.findViewById(R.id.tv_tiandu_5);
-        tv_tiandu_ = view.findViewById(R.id.tv_tiandu_);
+//        tv_tiandu_5 = view.findViewById(R.id.tv_tiandu_5);
+//        tv_tiandu_ = view.findViewById(R.id.tv_tiandu_);
 
         tv_suandu_3 = view.findViewById(R.id.tv_suandu_3);
         tv_suandu_7 = view.findViewById(R.id.tv_suandu_7);
@@ -43,8 +43,8 @@ public class ChooseFruitView extends ConstraintLayout implements View.OnClickLis
 
         tv_tiandu_3.setOnClickListener(this);
         tv_tiandu_7.setOnClickListener(this);
-        tv_tiandu_5.setOnClickListener(this);
-        tv_tiandu_.setOnClickListener(this);
+//        tv_tiandu_5.setOnClickListener(this);
+//        tv_tiandu_.setOnClickListener(this);
 
         tv_suandu_3.setOnClickListener(this);
         tv_suandu_7.setOnClickListener(this);
@@ -61,12 +61,12 @@ public class ChooseFruitView extends ConstraintLayout implements View.OnClickLis
             case R.id.tv_tiandu_7:
                 chanseTianduView(2);
                 break;
-            case R.id.tv_tiandu_5:
-                chanseTianduView(3);
-                break;
-            case R.id.tv_tiandu_:
-                chanseTianduView(4);
-                break;
+//            case R.id.tv_tiandu_5:
+//                chanseTianduView(3);
+//                break;
+//            case R.id.tv_tiandu_:
+//                chanseTianduView(4);
+//                break;
             case R.id.tv_suandu_3:
                 chanseSuanduView(1);
                 break;
@@ -91,13 +91,14 @@ public class ChooseFruitView extends ConstraintLayout implements View.OnClickLis
             } else if (mAccount == 2) {
                 tv_tiandu_7.setBackgroundResource(R.drawable.square_bg);
                 callBack.setTianCallBack(2);
-            } else if (mAccount == 3) {
-                tv_tiandu_5.setBackgroundResource(R.drawable.square_bg);
-                callBack.setTianCallBack(3);
-            } else if (mAccount == 4) {
-                tv_tiandu_.setBackgroundResource(R.drawable.square_bg);
-                callBack.setTianCallBack(4);
             }
+//            else if (mAccount == 3) {
+//                tv_tiandu_5.setBackgroundResource(R.drawable.square_bg);
+//                callBack.setTianCallBack(3);
+//            } else if (mAccount == 4) {
+//                tv_tiandu_.setBackgroundResource(R.drawable.square_bg);
+//                callBack.setTianCallBack(4);
+//            }
 
             before_state_tian = mAccount;
         }
@@ -130,11 +131,12 @@ public class ChooseFruitView extends ConstraintLayout implements View.OnClickLis
                 tv_tiandu_3.setBackgroundResource(R.drawable.square_bg_no_color);
             } else if (before_state_tian == 2) {
                 tv_tiandu_7.setBackgroundResource(R.drawable.square_bg_no_color);
-            } else if (before_state_tian == 3) {
-                tv_tiandu_5.setBackgroundResource(R.drawable.square_bg_no_color);
-            } else if (before_state_tian == 4) {
-                tv_tiandu_.setBackgroundResource(R.drawable.square_bg_no_color);
             }
+//            else if (before_state_tian == 3) {
+//                tv_tiandu_5.setBackgroundResource(R.drawable.square_bg_no_color);
+//            } else if (before_state_tian == 4) {
+//                tv_tiandu_.setBackgroundResource(R.drawable.square_bg_no_color);
+//            }
     }
 
 

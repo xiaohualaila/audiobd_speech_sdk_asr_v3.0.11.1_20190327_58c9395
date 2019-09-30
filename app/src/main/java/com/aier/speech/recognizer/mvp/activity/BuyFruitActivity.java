@@ -92,8 +92,8 @@ public class BuyFruitActivity extends BaseActivity implements ChooseFruitView.Ch
     protected void onResume() {
         super.onResume();
         name = SharedPreferencesUtil.getString(this, "name", "张三");
-        phone = SharedPreferencesUtil.getString(this, "phone", "");
-        city = SharedPreferencesUtil.getString(this, "city", "");
+        phone = SharedPreferencesUtil.getString(this, "phone", "17767666656");
+        city = SharedPreferencesUtil.getString(this, "city", "河北省 石家庄");
         addr = SharedPreferencesUtil.getString(this, "addr", "河北省石家庄2019数字经济博览会");
         tv_name.setText(name);
         tv_addr.setText(addr);
