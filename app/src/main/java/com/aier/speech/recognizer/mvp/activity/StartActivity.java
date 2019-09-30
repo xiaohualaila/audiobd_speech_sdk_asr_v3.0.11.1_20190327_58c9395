@@ -113,7 +113,7 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
 
 
     private void play(int msec) {
-        File file = new File(Environment.getExternalStorageDirectory() + "/Download/", "完整.mp4");
+        File file = new File(Environment.getExternalStorageDirectory() + "/Download/", "外景新.mp4");
 
         try {
             mMediaPlayer.reset();

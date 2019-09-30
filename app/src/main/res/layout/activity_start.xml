@@ -99,7 +99,7 @@
         <SurfaceView
             android:id="@+id/sf_video"
             android:layout_width="match_parent"
-            android:layout_height="251dp"/>
+            android:layout_height="292dp"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
