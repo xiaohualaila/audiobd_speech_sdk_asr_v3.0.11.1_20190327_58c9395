@@ -143,8 +143,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 }
             }
             Matrix matrix = new Matrix();
-//            matrix.reset();
-//            matrix.postRotate(90);
+            matrix.reset();
+            matrix.postRotate(90);
             BitmapFactory.Options factory = new BitmapFactory.Options();
             factory = setOptions(factory);
 
@@ -377,7 +377,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
 
           //  Log.i(TAG, "result " + "您回到红军时代是" + bean1.getName() + "相似度" + score + "%" + bean1.getDuty());
            //
-            Bundle bundle = getIntent().getExtras();
+            Bundle bundle = new Bundle();
             Intent intent = new Intent(this,DetailActivity.class);
             bundle.putString("name",bean1.getName());
             bundle.putString("duty",bean1.getDuty());
@@ -386,6 +386,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             bundle.putString("img",bean1.getDraw_image());
             intent.putExtras(bundle);
             startActivity(intent);
+            finish();
         } else {
             isPhoto = false;
         }
@@ -404,9 +405,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     }
 
     private void deletePic() {
-//        File file = new File(filePath);
-//        if (file.exists()) {
-//            file.delete();
-//        }
+        File file = new File(filePath);
+        if (file.exists()) {
+            file.delete();
+        }
     }
 }

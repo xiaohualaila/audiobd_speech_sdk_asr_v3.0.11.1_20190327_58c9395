@@ -60,6 +60,7 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="相机界面"
             android:launchMode="singleTask">
+
         </activity>
         <activity
             android:name=".mvp.activity.DetailActivity"

@@ -12,8 +12,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class DetailActivity extends RobotSpeechActivity {
-    @BindView(R.id.tv_title)
-    TextView tv_title;
+
     @BindView(R.id.iv_photo)
     ImageView iv_photo;
     @BindView(R.id.name)
@@ -28,8 +27,6 @@ public class DetailActivity extends RobotSpeechActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tv_title.setText("重回红军时代");
-        tv_title.setTextColor(getResources().getColor(R.color.black));
         Bundle bundle = getIntent().getExtras();
         String name =  bundle.getString("name");
         String duty =  bundle.getString("duty");
@@ -50,13 +47,25 @@ public class DetailActivity extends RobotSpeechActivity {
     }
 
 
-    @OnClick({R.id.iv_back,R.id.iv_back_})
+    @OnClick({R.id.iv_back,R.id.iv_back_,R.id.take_photo,R.id.iv_left_btn,R.id.iv_right_btn})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.iv_back:
                 finish();
                 break;
             case R.id.iv_back_:
+                finish();
+                break;
+            case R.id.take_photo:
+                startActiviys(Camera2Activity.class);
+                finish();
+                break;
+            case R.id.iv_left_btn://初心地图
+                startActiviys(MapActivity.class);
+                finish();
+                break;
+            case R.id.iv_right_btn://菜单
+                startActiviys(MenuActivity.class);
                 finish();
                 break;
         }

@@ -111,27 +111,7 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
 
             }
         });
-
-//        et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//
-//            @Override
-//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                Log.e("输入完点击确认执行该方法", "输入结束");
-//                // 输入后的监听
-//                Log.e("输入结束执行该方法", "输入结束");
-//                String str= v.getText().toString();
-//              //  String str = s.toString();
-//                if (str.trim().length() > 0) {
-//                    presenter.searchData(str);
-//                    setViewGone();
-//                }
-//                Log.i("aaa", str);
-//                return false;
-//            }
-//        });
-
-
-    }
+            }
 
 
     /**
