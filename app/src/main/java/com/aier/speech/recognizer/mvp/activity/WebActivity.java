@@ -3,16 +3,12 @@ package com.aier.speech.recognizer.mvp.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import com.aier.speech.recognizer.R;
 
 
@@ -29,10 +25,17 @@ public class WebActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+         int type= getIntent().getIntExtra("type",1);
         //4.2 开启辅助功能崩溃
         initWebSettings();
-        mWebView.loadUrl("https://720yun.com/t/b2vkiy2mr7b?scene_id=34359372");
+        if(type==1){
+            mWebView.loadUrl("https://720yun.com/t/b2vkiy2mr7b?scene_id=34359372");
+        }else if(type==2){
+            mWebView.loadUrl("https://720yun.com/t/b2vkiy2mr7b?scene_id=34359373");
+        }else {
+            mWebView.loadUrl("https://720yun.com/t/b2vkiy2mr7b?scene_id=34359374");
+        }
+
         iv_back.setOnClickListener(v -> finish());
     }
 

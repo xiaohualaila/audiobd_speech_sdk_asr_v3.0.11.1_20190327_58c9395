@@ -5,16 +5,13 @@ import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
-
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.weight.ChooseView;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -37,8 +34,6 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
     private int currentPosition = 0;
 
     private int index = 1;
-//    private Handler mHandler = new Handler();
-//    private Runnable runnable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,24 +47,8 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
         text_title.setTypeface(tf);
         text.setTypeface(tf);
         setTextContent();
-        //      getPolling();
     }
 
-
-//    private void getPolling() {
-//        runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                if (index > 3) {
-//                    index = 1;
-//                }
-//                choose_view.setContine(index);
-//                index++;
-//                mHandler.postDelayed(this, 10 * 1000); //需要做轮询的方法
-//            }
-//        };
-//        mHandler.postDelayed(runnable, 10 * 1000);
-//    }
 
     @Override
     protected int getLayout() {
@@ -107,16 +86,12 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
             if (index == 1) {
                 choose_view.setContine(index);
                 file = new File(Environment.getExternalStorageDirectory() + "/Download/", "产线1.mp4");
-                index=2;
-
             }else if(index == 2){
                 choose_view.setContine(index);
                 file = new File(Environment.getExternalStorageDirectory() + "/Download/", "产线2.mp4");
-                index=3;
             }else {
                 choose_view.setContine(index);
                 file = new File(Environment.getExternalStorageDirectory() + "/Download/", "产线3.mp4");
-                index=1;
             }
 
 
@@ -130,6 +105,10 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
             mMediaPlayer.setOnCompletionListener(mp -> {
 //                mMediaPlayer.start();
 //                mp.setLooping(true);
+                index++;
+                if(index>3){
+                    index=1;
+                }
                 play(0);
             });
         } catch (IOException e) {
@@ -145,13 +124,18 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
             mMediaPlayer.release();
             mMediaPlayer = null;
         }
-//        mHandler.removeCallbacks(runnable);
     }
 
     @Override
     public void setCallBack(int num) {
-        //       index = num;
-        Log.i("sss", "+++++++++num " + num);
+        if(index!=num){
+            index = num;
+        }else{
+            return;
+        }
+        index = num;
+        play(0);
+//        Log.i("sss", "+++++++++num " + num);
         if (num == 1) {
             setTextContent();
         } else if (num == 2) {

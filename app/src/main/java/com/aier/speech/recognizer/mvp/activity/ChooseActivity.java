@@ -57,13 +57,13 @@ public class ChooseActivity extends BaseActivity {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.tip_5:
-                startActivity(new Intent(this, WebActivity.class));
+                startActiviys(WebActivity.class,1);
                 break;
             case R.id.tip_6:
-                startActivity(new Intent(this, WebActivity.class));
+                startActiviys(WebActivity.class,2);
                 break;
             case R.id.tip_7:
-                startActivity(new Intent(this, WebActivity.class));
+                startActiviys(WebActivity.class,3);
                 break;
         }
     }
