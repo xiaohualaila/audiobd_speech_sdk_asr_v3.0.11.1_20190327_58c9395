@@ -15,77 +15,80 @@
         android:onClick="back"
         android:layout_marginLeft="80dp"
         android:src="@drawable/back"/>
+    <!--来点蜜桃桃园-->
+      <com.aier.speech.recognizer.weight.TipGrayView
+          android:id="@+id/tip_1"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          android:layout_marginTop="650dp"
+          android:layout_marginLeft="100dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
 
-    <ImageView
-        android:id="@+id/btn_vr_a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
+    <!--银银蜜桃桃园-->
+    <com.aier.speech.recognizer.weight.TipView
+        android:id="@+id/tip_2"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="720dp"
+       android:layout_marginRight="250dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <!--吴家采摘桃园-->
+    <com.aier.speech.recognizer.weight.TipView
+        android:id="@+id/tip_3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/btn_vr_a"/>
-    <TextView
-        app:layout_constraintLeft_toLeftOf="@+id/btn_vr_a"
-        app:layout_constraintTop_toTopOf="@+id/btn_vr_a"
-        app:layout_constraintRight_toRightOf="@+id/btn_vr_a"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_vr_a"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:textSize="20sp"
-        android:text="桃丰密桃园"
-        android:textColor="@color/white" />
-
-
-    <ImageView
-        android:id="@+id/btn_vr_b"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="130dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <!--来点蜜桃桃园-->
+    <com.aier.speech.recognizer.weight.TipGrayView
+        android:id="@+id/tip_4"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="680dp"
+        android:layout_marginLeft="230dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <!--张连会桃园-->
+    <com.aier.speech.recognizer.weight.TipRedView
+        android:id="@+id/tip_5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="30dp"
+       android:layout_marginRight="500dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!--桃都会桃园-->
+    <com.aier.speech.recognizer.weight.TipRedView
+        android:id="@+id/tip_6"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginBottom="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <!--桃丰密桃园-->
+    <com.aier.speech.recognizer.weight.TipRedView
+        android:id="@+id/tip_7"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="200dp"
-        android:layout_marginRight="150dp"
-        android:src="@drawable/btn_vr_b"/>
-    <TextView
-        app:layout_constraintLeft_toLeftOf="@+id/btn_vr_b"
-        app:layout_constraintTop_toTopOf="@+id/btn_vr_b"
-        app:layout_constraintRight_toRightOf="@+id/btn_vr_b"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_vr_b"
+        android:layout_marginLeft="200dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:textSize="20sp"
-        android:text="桃丰密桃园"
-        android:textColor="@color/white" />
-
-    <ImageView
-        android:id="@+id/btn_vr_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="380dp"
-        android:layout_marginRight="100dp"
-        android:src="@drawable/btn_vr_c"/>
-    <TextView
-        app:layout_constraintLeft_toLeftOf="@+id/btn_vr_c"
-        app:layout_constraintTop_toTopOf="@+id/btn_vr_c"
-        app:layout_constraintRight_toRightOf="@+id/btn_vr_c"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_vr_c"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:onClick="openVR"
-        android:textSize="20sp"
-        android:text="桃丰密桃园"
-        android:textColor="@color/white" />
+        android:layout_height="wrap_content"/>
 
 
 </android.support.constraint.ConstraintLayout>

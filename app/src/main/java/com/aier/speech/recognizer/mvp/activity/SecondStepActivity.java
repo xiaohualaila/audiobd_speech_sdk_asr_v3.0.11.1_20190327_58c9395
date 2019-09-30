@@ -5,15 +5,14 @@ import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
-
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.weight.ChooseView;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -35,6 +34,10 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
     private SurfaceHolder myholder;
     private int currentPosition = 0;
 
+    private int index = 1;
+    private Handler mHandler = new Handler();
+    private Runnable runnable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,23 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
         text_title.setTypeface(tf);
         text.setTypeface(tf);
         setTextContent();
+        getPolling();
+    }
+
+
+    private void getPolling() {
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                if (index > 3) {
+                    index = 1;
+                }
+                choose_view.setContine(index);
+                index++;
+                mHandler.postDelayed(this, 10 * 1000); //需要做轮询的方法
+            }
+        };
+        mHandler.postDelayed(runnable, 10 * 1000);
     }
 
     @Override
@@ -81,7 +101,7 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
 
     private void play(int msec) {
         File file = new File(Environment.getExternalStorageDirectory()
-                + "/Download/", "test.mp4");
+                + "/Download/", "完整.mp4");
 
         try {
             mMediaPlayer.reset();
@@ -108,17 +128,19 @@ public class SecondStepActivity extends BaseActivity implements SurfaceHolder.Ca
             mMediaPlayer.release();
             mMediaPlayer = null;
         }
+        mHandler.removeCallbacks(runnable);
     }
 
     @Override
     public void setCallBack(int num) {
+        index = num;
         Log.i("sss", "+++++++++num " + num);
         if (num == 1) {
             setTextContent();
         } else if (num == 2) {
             text_title.setText("视觉分拣");
             text.setText("通过AI深度的视觉监测，对桃子的着色度，大小，破损情况，虫蛀情况及含糖量等进行检测。与下单系统联动，分选至不同对的下果平台和包装路线。");
-        } else if(num == 3) {
+        } else if (num == 3) {
             text_title.setText("智能码垛说明");
             text.setText("自动封箱机封箱完成后，码垛机器人统一码放，由AGV叉车转运至水果排放区 ，智联下单系统和物流系统，运送至顾客之手。");
         }

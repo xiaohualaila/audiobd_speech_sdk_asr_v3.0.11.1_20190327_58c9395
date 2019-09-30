@@ -10,6 +10,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import com.aier.speech.recognizer.R;
@@ -21,22 +22,18 @@ public class WebActivity extends BaseActivity {
     private static final String TAG = "WebActivity";
     @BindView(R.id.web_view)
     WebView mWebView;
-    @BindView(R.id.web_title)
-    TextView tv_title;
-    @BindView(R.id.web_toolbar)
-    Toolbar mWebToolbar;
-    @BindView(R.id.web_progressBar)
-    ProgressBar mWebProgressBar;
+    @BindView(R.id.iv_back)
+    ImageView iv_back;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mWebToolbar.setNavigationOnClickListener(v -> finish());
+
         //4.2 开启辅助功能崩溃
         initWebSettings();
         mWebView.loadUrl("https://720yun.com/t/b2vkiy2mr7b?scene_id=34359372");
-
+        iv_back.setOnClickListener(v -> finish());
     }
 
 
@@ -69,15 +66,14 @@ public class WebActivity extends BaseActivity {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
-            mWebProgressBar.setVisibility(View.VISIBLE);
-            mWebProgressBar.setProgress(newProgress);
+
         }
     }
 
     private  class MyWebClient extends WebViewClient {
         @Override
         public void onPageFinished(WebView view,String url) {
-            mWebProgressBar.setVisibility(View.GONE);
+
         }
     }
 

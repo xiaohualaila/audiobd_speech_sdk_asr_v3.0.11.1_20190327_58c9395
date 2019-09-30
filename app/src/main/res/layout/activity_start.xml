@@ -94,11 +94,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/iv_step_second"
         android:layout_marginLeft="48dp"
         android:layout_marginBottom="53dp"
+        android:background="@color/black"
         android:gravity="center_vertical">
         <SurfaceView
             android:id="@+id/sf_video"
             android:layout_width="match_parent"
-            android:layout_height="600dp"/>
+            android:layout_height="251dp"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

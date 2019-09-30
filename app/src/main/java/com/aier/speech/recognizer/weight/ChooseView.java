@@ -54,8 +54,11 @@ public class ChooseView extends ConstraintLayout implements View.OnClickListener
                 chanseView(3);
                 break;
         }
+    }
 
 
+    public void setContine(int index){
+        chanseView(index);
     }
 
     private void chanseView ( int mAccount){
