@@ -404,9 +404,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     }
 
     private void deletePic() {
-        File file = new File(filePath);
-        if (file.exists()) {
-            file.delete();
-        }
+//        File file = new File(filePath);
+//        if (file.exists()) {
+//            file.delete();
+//        }
     }
 }

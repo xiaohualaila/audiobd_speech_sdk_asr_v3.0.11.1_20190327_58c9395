@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,11 +32,13 @@ import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.animation.Animation;
 import com.amap.api.maps.model.animation.ScaleAnimation;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -65,6 +69,7 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
 
     private LinearLayoutManager mLayoutManager;
     private MapSearchAdapter adapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +82,54 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(adapter);
+        et.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 输入的内容变化的监听
+                Log.e("输入过程中执行该方法", "文字变化");
+                // 输入后的监听
+                Log.e("输入结束执行该方法", "输入结束");
+                String str = s.toString();
+                if (str.trim().length() > 0) {
+                    presenter.searchData(str);
+                    setViewGone();
+                }
+                Log.i("aaa", str);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // 输入前的监听
+                Log.e("输入前确认执行该方法", "开始输入");
+                setViewGone();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+               setViewVisible();
+
+            }
+        });
+
+//        et.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                Log.e("输入完点击确认执行该方法", "输入结束");
+//                // 输入后的监听
+//                Log.e("输入结束执行该方法", "输入结束");
+//                String str= v.getText().toString();
+//              //  String str = s.toString();
+//                if (str.trim().length() > 0) {
+//                    presenter.searchData(str);
+//                    setViewGone();
+//                }
+//                Log.i("aaa", str);
+//                return false;
+//            }
+//        });
+
 
     }
 
@@ -130,8 +183,7 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
         return R.layout.activity_map;
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_back,R.id.iv_back_, R.id.iv_right_btn,
-            R.id.tv_search_btn,R.id.iv_delete,R.id.iv_answer_question})
+    @OnClick({R.id.take_photo, R.id.iv_back, R.id.iv_back_, R.id.iv_right_btn, R.id.iv_delete, R.id.iv_answer_question})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -147,16 +199,6 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
             case R.id.iv_right_btn://菜单
                 startActiviys(MapActivity.class);
                 finish();
-                break;
-            case R.id.tv_search_btn:
-             String s = et.getText().toString().trim();
-             Log.i("aaa",s);
-             presenter.searchData(s);
-                tv_renwu.setVisibility(View.GONE);
-
-                tv_fengjing.setVisibility(View.GONE);
-                tv_renwu.setVisibility(View.GONE);
-                tv_renwu.setVisibility(View.GONE);
                 break;
             case R.id.iv_delete:
                 et.setText("");
@@ -213,9 +255,8 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
     }
 
 
+    private Map<String, String> map = new HashMap<>();
 
-
-    private Map<String,String>  map =new HashMap<>();
     @Override
     public void getDataSuccess(MapDataResult.DataBean dataBean) {
         List<MapDataResult.DataBean.ListBean> listBean = dataBean.getList();
@@ -231,7 +272,7 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
                     .position(mlatLng)
                     .draggable(true);
             marker = aMap.addMarker(markerOption);
-            map.put(marker.getId(),bean.getTitle());
+            map.put(marker.getId(), bean.getTitle());
         }
     }
 
@@ -252,6 +293,7 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
      * @param marker
      */
     Marker oldMarker;
+
     private void growInto(final Marker marker) {
         if (oldMarker != null) {
             oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
@@ -267,7 +309,7 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
         marker.setAnimation(animation);
         //开始动画
         marker.startAnimation();
-        String str =  map.get(marker.getId());
+        String str = map.get(marker.getId());
         marker_title.setText(str);
         marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
         oldMarker = marker;
@@ -282,19 +324,21 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
     public void getSearchDataSuccess(MapSearchResult.DataBean bean) {
         adapter.setListData(bean.getList());
         setViewGone();
-//        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
-    private void setViewGone(){
+    private void setViewGone() {
         tv_renwu.setVisibility(View.GONE);
         tv_fengjing.setVisibility(View.GONE);
         tv_story.setVisibility(View.GONE);
         tv_dang.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
-    private void setViewVisible(){
+
+    private void setViewVisible() {
         tv_renwu.setVisibility(View.VISIBLE);
         tv_fengjing.setVisibility(View.VISIBLE);
         tv_story.setVisibility(View.VISIBLE);
         tv_dang.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
     }
 }

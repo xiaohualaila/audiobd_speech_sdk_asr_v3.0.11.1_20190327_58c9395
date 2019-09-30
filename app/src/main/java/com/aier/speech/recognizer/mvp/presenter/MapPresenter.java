@@ -86,7 +86,7 @@ public class MapPresenter extends BasePresenter implements MapContract.Persenter
 
                     @Override
                     public void onNext(MapSearchResult value) {
-                        Log.i("xxx", value.toString());
+                        Log.i("aaa", value.toString());
                         try {
                             if (value.getError_code()==0) {
                                 view.getSearchDataSuccess(value.getData());
