@@ -16,6 +16,13 @@ public class MapSearchAdapter extends RecyclerView.Adapter<MapSearchAdapter.MyVi
     //数据源
     private List<MapSearchResult.DataBean.ListBean> mList = new ArrayList<>();
 
+
+    public SearchInterface searchInterface;
+
+    public void setSearchInterface(SearchInterface searchInterface) {
+        this.searchInterface = searchInterface;
+    }
+
     public MapSearchAdapter() {
     }
 
@@ -47,6 +54,13 @@ public class MapSearchAdapter extends RecyclerView.Adapter<MapSearchAdapter.MyVi
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         MapSearchResult.DataBean.ListBean listBean = mList.get(position);
         holder.answer.setText( listBean.getKeyword());
+        holder.answer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchInterface.backSearch(listBean);
+            }
+        });
+
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -56,6 +70,11 @@ public class MapSearchAdapter extends RecyclerView.Adapter<MapSearchAdapter.MyVi
             answer = itemView.findViewById(R.id.text_view);
         }
     }
+
+    public interface SearchInterface {
+        void backSearch(MapSearchResult.DataBean.ListBean data);
+    }
+
 
 
 }

@@ -18,4 +18,6 @@ public class Config {
 
     public static String BASIC_MAP_SEARCH_URL = "https://www.buwangchuxin.com/api/Webmap/";
 
+    public static String BASIC_RED_PEOPLE_PIC_URL = "https://www.zq-ai.com/#/";//红色图谱 https://www.zq-ai.com/#/redkg?name=毛泽东
+
 }

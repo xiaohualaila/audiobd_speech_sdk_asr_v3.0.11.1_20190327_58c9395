@@ -133,4 +133,21 @@ public class ApiManager {
         }
         return mapSearchApi;
     }
+
+    /**
+     * 红色人物图谱api
+     * @return
+     */
+    public CheckFaceApi getRedPeoPlePicService() {
+        if (checkFaceApi == null) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(Config.BASIC_RED_PEOPLE_PIC_URL)
+                    .client(mClient)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            checkFaceApi =  retrofit.create(CheckFaceApi.class);
+        }
+        return checkFaceApi;
+    }
 }

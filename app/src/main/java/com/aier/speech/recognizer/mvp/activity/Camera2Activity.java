@@ -229,6 +229,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     protected void onDestroy() {
         super.onDestroy();
         closeCamera();
+        presenter.dispose();
     }
 
     @Override
@@ -373,10 +374,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             bundle.putString("duty",bean1.getDuty());
             bundle.putString("description",bean1.getDescription());
             bundle.putString("score",score);
-            bundle.putString("img",bean1.getDraw_image());
+            bundle.putString("img",bean1.getImage());
             intent.putExtras(bundle);
             startActivity(intent);
-          //  finish();
         }
         isPhoto = false;
         deletePic();

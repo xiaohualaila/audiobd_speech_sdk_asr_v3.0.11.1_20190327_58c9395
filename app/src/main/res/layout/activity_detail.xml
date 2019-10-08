@@ -178,7 +178,15 @@
         android:layout_marginBottom="220dp"
         android:layout_marginRight="20dp"
         android:src="@drawable/answer_questions"/>
-
+    <WebView
+        android:id="@+id/web_red_people"
+        app:layout_constraintTop_toBottomOf="@+id/line_ai"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
     </android.support.constraint.ConstraintLayout>
 
 

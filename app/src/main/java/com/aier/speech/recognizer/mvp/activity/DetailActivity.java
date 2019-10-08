@@ -3,15 +3,21 @@ package com.aier.speech.recognizer.mvp.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.aier.speech.recognizer.R;
+import com.aier.speech.recognizer.bean.YUBAIBean;
+import com.aier.speech.recognizer.mvp.contract.DetailContract;
+import com.aier.speech.recognizer.mvp.presenter.DetailPresenter;
 import com.aier.speech.recognizer.util.ImageUtils;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DetailActivity extends RobotSpeechActivity {
+public class DetailActivity extends RobotSpeechActivity implements DetailContract.View{
 
     @BindView(R.id.iv_photo)
     ImageView iv_photo;
@@ -23,10 +29,15 @@ public class DetailActivity extends RobotSpeechActivity {
     TextView tv_history;
     @BindView(R.id.tv_score)
     TextView tv_score;
+    @BindView(R.id.web_red_people)
+    WebView mWebView;
+    private DetailPresenter presenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter = new DetailPresenter(this);
+
         Bundle bundle = getIntent().getExtras();
         String name =  bundle.getString("name");
         String duty =  bundle.getString("duty");
@@ -39,6 +50,34 @@ public class DetailActivity extends RobotSpeechActivity {
         tv_work.setText(duty);
         tv_history.setText("   "+description);
         tv_score.setText(score);
+      //  presenter.loadData(name);
+        initWebSettings();
+        mWebView.loadUrl("https://www.zq-ai.com/#/redkg?name="+name);
+    }
+
+    private void initWebSettings() {
+        WebSettings settings = mWebView.getSettings();
+        settings.setLoadWithOverviewMode(true);
+        settings.setJavaScriptEnabled(true);
+        settings.setAppCacheEnabled(true);
+        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        settings.setSupportZoom(true);
+        mWebView.setWebChromeClient(new MyWebChrome());
+        mWebView.setWebViewClient(new MyWebClient());
+    }
+
+    private  class MyWebChrome extends WebChromeClient {
+        @Override
+        public void onProgressChanged(WebView view, int newProgress) {
+            super.onProgressChanged(view, newProgress);
+        }
+    }
+
+    private  class MyWebClient extends WebViewClient {
+        @Override
+        public void onPageFinished(WebView view,String url) {
+
+        }
     }
 
     @Override
@@ -57,7 +96,6 @@ public class DetailActivity extends RobotSpeechActivity {
                 finish();
                 break;
             case R.id.take_photo:
-             //   startActiviys(Camera2Activity.class);
                 finish();
                 break;
             case R.id.iv_left_btn://初心地图
@@ -68,6 +106,32 @@ public class DetailActivity extends RobotSpeechActivity {
                 startActiviys(MenuActivity.class);
                 finish();
                 break;
+        }
+    }
+
+    @Override
+    public void getDataSuccess(YUBAIBean DataBean) {
+
+    }
+
+    @Override
+    public void getDataFail() {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.dispose();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (mWebView.canGoBack()) {
+            mWebView.goBack();
+        } else {
+            finish();
         }
     }
 }
