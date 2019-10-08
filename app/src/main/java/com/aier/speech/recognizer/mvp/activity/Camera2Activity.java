@@ -77,6 +77,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         initClassifier();
     }
 
+
     @Override
     protected int getLayout() {
         return R.layout.activity_camera5;
@@ -112,15 +113,12 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 break;
             case R.id.iv_answer_question:
                startActiviys(AnswerQuestionActivity.class);
-               finish();
                 break;
             case R.id.iv_right_btn://菜单
                 startActiviys(MenuActivity.class);
-                finish();
                 break;
             case R.id.iv_left_btn://初心地图
                 startActiviys(MapActivity.class);
-                finish();
                 break;
         }
     }
@@ -143,8 +141,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 }
             }
             Matrix matrix = new Matrix();
-//            matrix.reset();
-//            matrix.postRotate(90);
+            matrix.reset();
+            matrix.postRotate(90);//南康那边要注释掉不需要旋转图片
             BitmapFactory.Options factory = new BitmapFactory.Options();
             factory = setOptions(factory);
 
@@ -194,7 +192,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         int faceCount = facesArray.length;
         if (faceCount > 0) {
             Log.i("sss", "有人脸的照片");
-            ToastyUtil.INSTANCE.showInfo("人脸");
+            ToastyUtil.INSTANCE.showInfo("识别到人脸");
             presenter.upLoadPicFile(filePath);
         } else {
             deletePic();
@@ -219,7 +217,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     protected void onResume() {
         super.onResume();
         camera = openCamera();
-
+        isPhoto = false;
     }
 
     @Override
@@ -369,14 +367,6 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
             String score = (bean1.getScore() * 100 + "").substring(0, 2);
             Log.i("ccc",bean1.getDraw_image());
-//            ImageUtils.image(this, bean1.getDraw_image(),iv_photo);
-//            tv_name.setText(bean1.getName());
-//            tv_work.setText(bean1.getDuty());
-//            tv_history.setText(bean1.getDescription());
-//            tv_score.setText(score+"%");
-
-          //  Log.i(TAG, "result " + "您回到红军时代是" + bean1.getName() + "相似度" + score + "%" + bean1.getDuty());
-           //
             Bundle bundle = new Bundle();
             Intent intent = new Intent(this,DetailActivity.class);
             bundle.putString("name",bean1.getName());
@@ -386,10 +376,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             bundle.putString("img",bean1.getDraw_image());
             intent.putExtras(bundle);
             startActivity(intent);
-            finish();
-        } else {
-            isPhoto = false;
+          //  finish();
         }
+        isPhoto = false;
         deletePic();
     }
 

@@ -9,16 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.adapter.AnswerAdapter;
 import com.aier.speech.recognizer.bean.AnswerQuestionResult;
 import com.aier.speech.recognizer.bean.ListBean;
 import com.aier.speech.recognizer.mvp.contract.AnswerQuestionContract;
 import com.aier.speech.recognizer.mvp.presenter.AnswerQuestionPresenter;
-
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -55,7 +52,6 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
-                startActiviys(Camera2Activity.class);
                 finish();
                 break;
             case R.id.iv_next:

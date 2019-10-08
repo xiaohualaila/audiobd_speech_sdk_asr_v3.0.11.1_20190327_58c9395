@@ -167,7 +167,6 @@ public class MapActivity extends BaseActivity implements MapContract.View, AMap.
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
-                startActiviys(Camera2Activity.class);
                 finish();
                 break;
             case R.id.iv_back:

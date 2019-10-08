@@ -57,7 +57,7 @@ public class DetailActivity extends RobotSpeechActivity {
                 finish();
                 break;
             case R.id.take_photo:
-                startActiviys(Camera2Activity.class);
+             //   startActiviys(Camera2Activity.class);
                 finish();
                 break;
             case R.id.iv_left_btn://初心地图
