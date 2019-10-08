@@ -369,6 +369,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                     marker = aMap.addMarker(markerOption);
                     map.put(marker.getId(), bean.getTitle());
                 }
+                aMap.moveCamera(CameraUpdateFactory.zoomTo(8));
             }
         }
     }
@@ -395,6 +396,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                     marker = aMap.addMarker(markerOption);
                     map.put(marker.getId(), bean.getTitle());
                 }
+                aMap.moveCamera(CameraUpdateFactory.zoomTo(8));
             }
         }
 
