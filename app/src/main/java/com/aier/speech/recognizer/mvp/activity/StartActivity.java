@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -33,6 +34,8 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
     TextView btn_fruit_4;
     @BindView(R.id.tv_time)
     TextView tv_time;
+    @BindView(R.id.tv_shebei)
+    TextView tv_shebei;
     private StartPresenter presenter;
     private MediaPlayer mMediaPlayer;
     private SurfaceHolder myholder;
@@ -52,6 +55,21 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
         btn_fruit_2.setTypeface(tf);
         btn_fruit_3.setTypeface(tf);
         btn_fruit_4.setTypeface(tf);
+
+
+        DisplayMetrics metric = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metric);
+        int width = metric.widthPixels;  // 屏幕宽度（像素）
+        int height = metric.heightPixels;  // 屏幕高度（像素）
+        float density = metric.density;  // 屏幕密度（0.75 / 1.0 / 1.5）
+        int densityDpi = metric.densityDpi;  // 屏幕密度DPI（120 / 160 / 240）
+        Log.i("sss","width  "+ width);
+        Log.i("sss","height  "+ height);
+        Log.i("sss","density  "+ density);
+        Log.i("sss","densityDpi  "+ densityDpi);
+        tv_shebei.setText("设备信息：  "+"width " +width + " height "
+                +height +" density " + density +" Dpi " +densityDpi);
+
     }
 
 
@@ -113,7 +131,7 @@ public class StartActivity extends BaseActivity implements StartContract.View, S
 
 
     private void play(int msec) {
-        File file = new File(Environment.getExternalStorageDirectory() + "/Download/", "外景新.mp4");
+        File file = new File(Environment.getExternalStorageDirectory() + "/Download/", "首页视频.mp4");
 
         try {
             mMediaPlayer.reset();

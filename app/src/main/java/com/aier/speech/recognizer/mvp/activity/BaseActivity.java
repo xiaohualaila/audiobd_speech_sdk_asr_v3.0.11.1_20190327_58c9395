@@ -47,23 +47,14 @@ public abstract class BaseActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);//屏幕常亮
         requestPermission();
         rigisterReceiver();
-//        DisplayMetrics metric = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(metric);
-//        int width = metric.widthPixels;  // 屏幕宽度（像素）
-//        int height = metric.heightPixels;  // 屏幕高度（像素）
-//        float density = metric.density;  // 屏幕密度（0.75 / 1.0 / 1.5）
-//        int densityDpi = metric.densityDpi;  // 屏幕密度DPI（120 / 160 / 240）
-//        Log.i("sss","width  "+ width);
-//        Log.i("sss","height  "+ height);
-//        Log.i("sss","density  "+ density);
-//        Log.i("sss","densityDpi  "+ densityDpi);
+
 //          drawable-ldpi        120DPI
 //          drawable-mdpi        160DPI
 //          drawable-hdpi        240DPI
 //          drawable-xhdpi       320DPI
 //          drawalbe-xxhdpi      480DPI
 //          drawable-xxxhdpi     640DPI
-        // 小慧机器人 width  1280 height  720 density  2.0 densityDpi  320 drawable-xhdpi
+
         // 底部导航栏适配
 //        if (AndroidWorkaround.Companion.checkDeviceHasNavigationBar(this)) {
 //            AndroidWorkaround.Companion.assistActivity(findViewById(android.R.id.content));
