@@ -111,16 +111,6 @@
             android:textSize="20sp"
             android:textColor="@color/red" />
 
-        <TextView
-            android:id="@+id/tv_history"
-            android:layout_width="340dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@+id/tv_work"
-            app:layout_constraintTop_toBottomOf="@+id/tv_work"
-            app:layout_constraintRight_toRightOf="parent" />
 
     <View
         android:id="@+id/line_ai"
@@ -170,6 +160,25 @@
         app:layout_constraintEnd_toStartOf="@+id/iv_answer_question"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line_work"/>
+    <WebView
+        android:id="@+id/web_red_people"
+        app:layout_constraintTop_toBottomOf="@+id/line_ai"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+    <TextView
+        android:id="@+id/tv_history"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/tv_work"
+        app:layout_constraintTop_toBottomOf="@+id/tv_work"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <include
         layout="@layout/common_bottom_view"
@@ -187,15 +196,7 @@
         android:layout_marginBottom="220dp"
         android:layout_marginRight="20dp"
         android:src="@drawable/answer_questions"/>
-    <WebView
-        android:id="@+id/web_red_people"
-        app:layout_constraintTop_toBottomOf="@+id/line_ai"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"/>
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
