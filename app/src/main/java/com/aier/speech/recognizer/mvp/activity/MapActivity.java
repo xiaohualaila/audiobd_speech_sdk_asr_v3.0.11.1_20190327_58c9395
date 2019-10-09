@@ -503,7 +503,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
     @Override
     public void backSearch(MapSearchResult.DataBean.ListBean data) {
         int t = data.getType();//1人物 2景点 3事件
-        Log.i("sss", "type " + type);
+        Log.i("sss", "type " + t+"  name " +data.getKeyword());
         if (t == 1) {
             type = 3;
             presenter.searchRenWuDetailData(data.getKeyword());
