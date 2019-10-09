@@ -32,7 +32,7 @@ public class MapPresenter extends BasePresenter implements MapContract.Persenter
     @Override
     public void loadMapData(String tab) {
         ApiManager.getInstence().getMapSearchService()
-                .getAllMapSearch(tab,"app")
+                .getAllMapSearch(tab)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<AllMapResult>() {

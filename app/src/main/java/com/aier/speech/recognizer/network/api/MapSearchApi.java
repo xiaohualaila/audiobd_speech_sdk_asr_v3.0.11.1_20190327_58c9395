@@ -32,5 +32,5 @@ public interface MapSearchApi {
 
     //获取所有地图标记
     @POST("getPoint")
-    Observable<AllMapResult> getAllMapSearch(@Query("tab") String tab, @Query("channel_type") String app);
+    Observable<AllMapResult> getAllMapSearch(@Query("tab") String tab);
 }

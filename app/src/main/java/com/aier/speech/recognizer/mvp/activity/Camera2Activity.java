@@ -66,8 +66,6 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         presenter = new CameraPresenter(this);
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         camera_sf = findViewById(R.id.camera_sf);
-
-     //   img = findViewById(R.id.img);
         holder = camera_sf.getHolder();
         holder.addCallback(this);
         holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
@@ -193,7 +191,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         int faceCount = facesArray.length;
         if (faceCount > 0) {
             Log.i("sss", "有人脸的照片");
-            ToastyUtil.INSTANCE.showInfo("识别到人脸");
+//            ToastyUtil.INSTANCE.showInfo("识别到人脸");
             presenter.upLoadPicFile(filePath);
         } else {
             deletePic();
@@ -382,8 +380,10 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             }
             intent.putExtras(bundle);
             startActivity(intent);
+            ToastyUtil.INSTANCE.showInfo("识别到人脸");
+        }else {
+            isPhoto = false;
         }
-        isPhoto = false;
         deletePic();
     }
 

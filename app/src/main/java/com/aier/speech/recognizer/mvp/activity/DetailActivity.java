@@ -38,8 +38,7 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
     FlexboxLayout layout;
     private DetailPresenter presenter;
     String[] strings = {"寒食过", "云雨消", "不夜侯正好", "又是一年", "采茶时节暖阳照", "风追着",
-            "蝴蝶跑", "谁家种红苕", "木犁松土", "地龙惊兮蚁出巢", "翠盈盈", "悠香飘",
-            "茶垄漫山绕", "钻进田间", "扯下笠帽 春眠要趁早"};
+            "蝴蝶跑", "谁家种红苕", "木犁松土", "地龙惊兮蚁出巢", "翠盈盈", "悠香飘"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

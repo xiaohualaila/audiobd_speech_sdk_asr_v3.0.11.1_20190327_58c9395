@@ -200,7 +200,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                 type = 3;
                 presenter.loadMapData("3");
                 break;
-            case R.id.tv_fengjing://风景
+            case R.id.tv_fengjing://1景点
                 type = 1;
                 presenter.loadMapData("1");
                 break;
@@ -315,81 +315,38 @@ public class MapActivity extends BaseActivity implements MapContract.View,
             }else if(type==2){
                 oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
                         R.drawable.story_marker));
-            } else{
+            } else if(type==3){
+                oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
+                        R.drawable.people_marker));
+            }else{
                 oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
                         R.drawable.small_dang_marker));
             }
         }
+        Animation animation = new ScaleAnimation(0, 1, 0, 1);
+        animation.setInterpolator(new LinearInterpolator());
+        //整个移动所需要的时间
+        animation.setDuration(1000);
+        //设置动画
+        marker.setAnimation(animation);
+        //开始动画
+        marker.startAnimation();
+        View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
+        TextView marker_title = markerView.findViewById(R.id.marker_title);
+        ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
+        String str = map.get(marker.getId());
+        marker_title.setText(str);
         if(type==1){
-            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
-            TextView marker_title = markerView.findViewById(R.id.marker_title);
-            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
-            Animation animation = new ScaleAnimation(0, 1, 0, 1);
-            animation.setInterpolator(new LinearInterpolator());
-            //整个移动所需要的时间
-            animation.setDuration(1000);
-            //设置动画
-            marker.setAnimation(animation);
-            //开始动画
-            marker.startAnimation();
-            String str = map.get(marker.getId());
-            marker_title.setText(str);
             marker_pic.setImageResource(R.drawable.jingdian_marker_big);
-            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
-            oldMarker = marker;
         }else if(type==2){
-            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
-            TextView marker_title = markerView.findViewById(R.id.marker_title);
-            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
-            Animation animation = new ScaleAnimation(0, 1, 0, 1);
-            animation.setInterpolator(new LinearInterpolator());
-            //整个移动所需要的时间
-            animation.setDuration(1000);
-            //设置动画
-            marker.setAnimation(animation);
-            //开始动画
-            marker.startAnimation();
-            String str = map.get(marker.getId());
-            marker_title.setText(str);
             marker_pic.setImageResource(R.drawable.story_marker_big);
-            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
-            oldMarker = marker;
         }else if(type==3){
-            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
-            TextView marker_title = markerView.findViewById(R.id.marker_title);
-            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
-            Animation animation = new ScaleAnimation(0, 1, 0, 1);
-            animation.setInterpolator(new LinearInterpolator());
-            //整个移动所需要的时间
-            animation.setDuration(1000);
-            //设置动画
-            marker.setAnimation(animation);
-            //开始动画
-            marker.startAnimation();
-            String str = map.get(marker.getId());
-            marker_title.setText(str);
             marker_pic.setImageResource(R.drawable.people_marker_big);
-            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
-            oldMarker = marker;
         }else  {
-            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
-            TextView marker_title = markerView.findViewById(R.id.marker_title);
-            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
-            Animation animation = new ScaleAnimation(0, 1, 0, 1);
-            animation.setInterpolator(new LinearInterpolator());
-            //整个移动所需要的时间
-            animation.setDuration(1000);
-            //设置动画
-            marker.setAnimation(animation);
-            //开始动画
-            marker.startAnimation();
-            String str = map.get(marker.getId());
-            marker_title.setText(str);
             marker_pic.setImageResource(R.drawable.jingdian_marker_big);
-            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
-            oldMarker = marker;
         }
-
+        marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
+        oldMarker = marker;
     }
 
     @Override
@@ -483,14 +440,20 @@ public class MapActivity extends BaseActivity implements MapContract.View,
             aMap.clear();
             map.clear();
             LatLng mlatLng;
-            aMap.moveCamera(CameraUpdateFactory.zoomTo(12));
+            aMap.moveCamera(CameraUpdateFactory.zoomTo(10));
             List<AllMapResult.DataBean.ListBean> listBeans = data.getList();
             if (listBeans.size() > 0) {
                 for (int i = 0; i < listBeans.size(); i++) {
                     AllMapResult.DataBean.ListBean bean = listBeans.get(i);
                     mlatLng = new LatLng(Double.valueOf(bean.getLat()), Double.valueOf(bean.getLng()));
                     if (i == 0) {
-                        aMap.moveCamera(CameraUpdateFactory.changeLatLng(mlatLng));
+                        if(type==2){
+                            aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(25.613346582293,115.0069737372)));
+                        }else if(type==3){
+                            aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(26.006830785714,115.70202539626)));
+                        }else {
+                            aMap.moveCamera(CameraUpdateFactory.changeLatLng(mlatLng));
+                        }
                     }
                     if(type == 1){
                         markerOption = new MarkerOptions()
