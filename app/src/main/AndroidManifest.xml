@@ -33,13 +33,6 @@
             android:value="6e3a009bcdf2fc7b49ea82d1900ee1a1" />
         <!-- 如果需要在API 28上编译并运行在 android 9.0的机器上，需要在application中添加 android:networkSecurityConfig="@xml/network_security_config"-->
         <activity
-            android:name=".mvp.activity.StartActivity"
-            android:configChanges="orientation|keyboardHidden|screenLayout"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity
             android:name=".mvp.activity.FirstActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
