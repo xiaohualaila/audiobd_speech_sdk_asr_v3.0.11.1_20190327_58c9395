@@ -140,8 +140,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 }
             }
             Matrix matrix = new Matrix();
-            matrix.reset();
-            matrix.postRotate(90);//南康那边要注释掉不需要旋转图片
+//            matrix.reset();
+//            matrix.postRotate(90);//南康那边要注释掉不需要旋转图片
             BitmapFactory.Options factory = new BitmapFactory.Options();
             factory = setOptions(factory);
 
