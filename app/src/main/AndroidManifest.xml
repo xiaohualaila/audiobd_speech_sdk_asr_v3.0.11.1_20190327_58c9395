@@ -33,17 +33,10 @@
             android:value="6e3a009bcdf2fc7b49ea82d1900ee1a1" />
         <!-- 如果需要在API 28上编译并运行在 android 9.0的机器上，需要在application中添加 android:networkSecurityConfig="@xml/network_security_config"-->
         <activity
-            android:name=".mvp.activity.StartActivity"
-            android:configChanges="orientation|keyboardHidden|screenLayout"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity
             android:name=".mvp.activity.FirstActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -53,7 +46,7 @@
             android:name=".mvp.activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
 
         </activity>
         <activity
@@ -66,6 +59,7 @@
             android:name=".mvp.activity.Camera2Activity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="相机界面"
+            android:screenOrientation="landscape"
             android:launchMode="singleTask">
 
         </activity>
@@ -74,7 +68,7 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
             android:label="照片识别完成"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
 
 
         </activity>
@@ -113,7 +107,7 @@
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="语音唤醒"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="com.baidu.speech.recognizerdemo.intent.category.SAMPLE_CODE"/>
@@ -125,14 +119,14 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
             android:label="语音合成"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
         </activity>
         <activity
             android:name=".mvp.activity.RobotTTSNotWakeUpActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
             android:label="语音合成"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
         </activity>
 
         <activity
@@ -140,7 +134,7 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
             android:label="语音识别"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
         </activity>
         <receiver android:name=".broadcastReceiver.BootBroadcastReceiver"
             android:enabled="true"
