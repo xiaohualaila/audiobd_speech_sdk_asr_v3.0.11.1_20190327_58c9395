@@ -15,6 +15,6 @@ public interface RedTimeApi {
 
 
     @GET("getPartyList")
-    Observable<MapDataResult> getMapMarker(@Query("channel_type") String channel_type);
+    Observable<MapDataResult> getDangzhibuMapMarker(@Query("channel_type") String channel_type);
 
 }

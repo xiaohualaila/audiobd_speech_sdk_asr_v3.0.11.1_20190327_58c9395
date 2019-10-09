@@ -8,6 +8,7 @@ import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -367,14 +368,18 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         if (resultBeans.size() > 0) {
             SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
             String score = (bean1.getScore() * 100 + "").substring(0, 2);
-            Log.i("ccc",bean1.getDraw_image());
             Bundle bundle = new Bundle();
             Intent intent = new Intent(this,DetailActivity.class);
             bundle.putString("name",bean1.getName());
             bundle.putString("duty",bean1.getDuty());
             bundle.putString("description",bean1.getDescription());
             bundle.putString("score",score);
-            bundle.putString("img",bean1.getImage());
+            String image =bean1.getDraw_image();
+            if(TextUtils.isEmpty(image)){
+                bundle.putString("img",bean1.getImage());
+            }else {
+                bundle.putString("img",image);
+            }
             intent.putExtras(bundle);
             startActivity(intent);
         }

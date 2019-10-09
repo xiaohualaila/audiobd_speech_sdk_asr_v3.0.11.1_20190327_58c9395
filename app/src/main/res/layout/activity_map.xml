@@ -13,7 +13,7 @@
         android:layout_marginTop="45dp"
         android:layout_marginLeft="56dp"
         android:layout_marginRight="56dp"
-        android:layout_height="850dp" />
+        android:layout_height="800dp" />
 
     <ImageView
         android:id="@+id/imageView"

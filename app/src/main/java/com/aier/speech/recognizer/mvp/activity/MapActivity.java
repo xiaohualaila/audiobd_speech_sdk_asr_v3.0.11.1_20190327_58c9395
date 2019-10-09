@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.adapter.MapSearchAdapter;
+import com.aier.speech.recognizer.bean.AllMapResult;
 import com.aier.speech.recognizer.bean.EventResult;
 import com.aier.speech.recognizer.bean.MapDataResult;
 import com.aier.speech.recognizer.bean.MapSearchResult;
@@ -66,6 +67,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
     ImageView iv_delete;
 
 
+    private int type =1;
     Marker marker;
     private CustomMapStyleOptions mapStyleOptions = new CustomMapStyleOptions();
 
@@ -128,10 +130,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
         if (aMap == null) {
             aMap = mapView.getMap();
             aMap.setOnMarkerClickListener(this);// 设置点击marker事件监听器
-            presenter.loadMapData();
-            aMap.moveCamera(CameraUpdateFactory.changeLatLng(dingwei));//将地图移动到指定位置
-            aMap.moveCamera(CameraUpdateFactory.zoomTo(15));
-
+            presenter.dangzhibuMapBtn();
         }
         setMapCustomStyleFile(this);
     }
@@ -197,17 +196,21 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                 startActiviys(AnswerQuestionActivity.class);
                 finish();
                 break;
-            case R.id.tv_renwu://人物
-
+            case R.id.tv_renwu://人物 1景点 2事件 3人物
+                type = 3;
+                presenter.loadMapData("3");
                 break;
             case R.id.tv_fengjing://风景
-
+                type = 1;
+                presenter.loadMapData("1");
                 break;
             case R.id.tv_dang://党支部
-
+                type = 4;
+                presenter.dangzhibuMapBtn();
                 break;
             case R.id.tv_story://故事
-
+                type = 2;
+                presenter.loadMapData("2");
                 break;
         }
     }
@@ -262,20 +265,27 @@ public class MapActivity extends BaseActivity implements MapContract.View,
 
     @Override
     public void getDataSuccess(MapDataResult.DataBean dataBean) {
-        List<MapDataResult.DataBean.ListBean> listBean = dataBean.getList();
-        MapDataResult.DataBean.ListBean bean;
-        LatLng mlatLng;
+        if (aMap != null) {
+            aMap.clear();
+            map.clear();
 
-        for (int i = 0; i < listBean.size(); i++) {
-
-            bean = listBean.get(i);
-            mlatLng = new LatLng(Double.valueOf(bean.getLat()), Double.valueOf(bean.getLng()));
-            markerOption = new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.small_dang_marker))
-                    .position(mlatLng)
-                    .draggable(true);
-            marker = aMap.addMarker(markerOption);
-            map.put(marker.getId(), bean.getTitle());
+            List<MapDataResult.DataBean.ListBean> listBean = dataBean.getList();
+            MapDataResult.DataBean.ListBean bean;
+            LatLng mlatLng;
+            aMap.moveCamera(CameraUpdateFactory.changeLatLng(dingwei));//将地图移动到指定位置
+            aMap.moveCamera(CameraUpdateFactory.zoomTo(12));
+            if (listBean.size() > 0) {
+                for (int i = 0; i < listBean.size(); i++) {
+                    bean = listBean.get(i);
+                    mlatLng = new LatLng(Double.valueOf(bean.getLat()), Double.valueOf(bean.getLng()));
+                    markerOption = new MarkerOptions()
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.small_dang_marker))
+                            .position(mlatLng)
+                            .draggable(true);
+                    marker = aMap.addMarker(markerOption);
+                    map.put(marker.getId(), bean.getTitle());
+                }
+            }
         }
     }
 
@@ -299,23 +309,87 @@ public class MapActivity extends BaseActivity implements MapContract.View,
 
     private void growInto(final Marker marker) {
         if (oldMarker != null) {
-            oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
-                    R.drawable.small_dang_marker));
+            if(type==1){
+                oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
+                        R.drawable.jingdian_marker));
+            }else if(type==2){
+                oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
+                        R.drawable.story_marker));
+            } else{
+                oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
+                        R.drawable.small_dang_marker));
+            }
         }
-        View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
-        TextView marker_title = markerView.findViewById(R.id.marker_title);
-        Animation animation = new ScaleAnimation(0, 1, 0, 1);
-        animation.setInterpolator(new LinearInterpolator());
-        //整个移动所需要的时间
-        animation.setDuration(1000);
-        //设置动画
-        marker.setAnimation(animation);
-        //开始动画
-        marker.startAnimation();
-        String str = map.get(marker.getId());
-        marker_title.setText(str);
-        marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
-        oldMarker = marker;
+        if(type==1){
+            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
+            TextView marker_title = markerView.findViewById(R.id.marker_title);
+            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
+            Animation animation = new ScaleAnimation(0, 1, 0, 1);
+            animation.setInterpolator(new LinearInterpolator());
+            //整个移动所需要的时间
+            animation.setDuration(1000);
+            //设置动画
+            marker.setAnimation(animation);
+            //开始动画
+            marker.startAnimation();
+            String str = map.get(marker.getId());
+            marker_title.setText(str);
+            marker_pic.setImageResource(R.drawable.jingdian_marker_big);
+            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
+            oldMarker = marker;
+        }else if(type==2){
+            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
+            TextView marker_title = markerView.findViewById(R.id.marker_title);
+            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
+            Animation animation = new ScaleAnimation(0, 1, 0, 1);
+            animation.setInterpolator(new LinearInterpolator());
+            //整个移动所需要的时间
+            animation.setDuration(1000);
+            //设置动画
+            marker.setAnimation(animation);
+            //开始动画
+            marker.startAnimation();
+            String str = map.get(marker.getId());
+            marker_title.setText(str);
+            marker_pic.setImageResource(R.drawable.story_marker_big);
+            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
+            oldMarker = marker;
+        }else if(type==3){
+            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
+            TextView marker_title = markerView.findViewById(R.id.marker_title);
+            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
+            Animation animation = new ScaleAnimation(0, 1, 0, 1);
+            animation.setInterpolator(new LinearInterpolator());
+            //整个移动所需要的时间
+            animation.setDuration(1000);
+            //设置动画
+            marker.setAnimation(animation);
+            //开始动画
+            marker.startAnimation();
+            String str = map.get(marker.getId());
+            marker_title.setText(str);
+            marker_pic.setImageResource(R.drawable.people_marker_big);
+            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
+            oldMarker = marker;
+        }else  {
+            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
+            TextView marker_title = markerView.findViewById(R.id.marker_title);
+            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
+            Animation animation = new ScaleAnimation(0, 1, 0, 1);
+            animation.setInterpolator(new LinearInterpolator());
+            //整个移动所需要的时间
+            animation.setDuration(1000);
+            //设置动画
+            marker.setAnimation(animation);
+            //开始动画
+            marker.startAnimation();
+            String str = map.get(marker.getId());
+            marker_title.setText(str);
+            marker_pic.setImageResource(R.drawable.jingdian_marker_big);
+            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
+            oldMarker = marker;
+        }
+
     }
 
     @Override
@@ -331,21 +405,22 @@ public class MapActivity extends BaseActivity implements MapContract.View,
 
     //2景点
     @Override
-    public void getLatAndLngMapSuccess(String lat, String lng,String title) {
+    public void getLatAndLngMapSuccess(String lat, String lng, String title) {
         if (aMap != null) {
             aMap.clear();
             map.clear();
         }
         double d_lat = Double.valueOf(lat);
         double d_lng = Double.valueOf(lng);
-        LatLng latLng =  new LatLng(d_lat, d_lng);
+        LatLng latLng = new LatLng(d_lat, d_lng);
+        aMap.moveCamera(CameraUpdateFactory.changeLatLng(latLng));//将地图移动到指定位置
         markerOption = new MarkerOptions()
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.small_dang_marker))
                 .position(latLng)
                 .draggable(true);
         marker = aMap.addMarker(markerOption);
         map.put(marker.getId(), title);
-        aMap.moveCamera(CameraUpdateFactory.changeLatLng(latLng));//将地图移动到指定位置
+
     }
 
     //1人物
@@ -353,9 +428,10 @@ public class MapActivity extends BaseActivity implements MapContract.View,
     public void getRenWuMapSuccess(List<RenWuResult.DataBean.ListBean> listBeans) {
         if (aMap != null) {
             aMap.clear();
-            LatLng mlatLng;
             map.clear();
-            if( listBeans.size()>0){
+            LatLng mlatLng;
+            aMap.moveCamera(CameraUpdateFactory.zoomTo(8));
+            if (listBeans.size() > 0) {
                 for (int i = 0; i < listBeans.size(); i++) {
                     RenWuResult.DataBean.ListBean bean = listBeans.get(i);
                     mlatLng = new LatLng(Double.valueOf(bean.getLat()), Double.valueOf(bean.getLng()));
@@ -369,7 +445,6 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                     marker = aMap.addMarker(markerOption);
                     map.put(marker.getId(), bean.getTitle());
                 }
-                aMap.moveCamera(CameraUpdateFactory.zoomTo(8));
             }
         }
     }
@@ -379,8 +454,9 @@ public class MapActivity extends BaseActivity implements MapContract.View,
     public void getEventMapSuccess(EventResult.DataBean dataBean) {
         if (aMap != null) {
             aMap.clear();
-            LatLng mlatLng;
             map.clear();
+            LatLng mlatLng;
+            aMap.moveCamera(CameraUpdateFactory.zoomTo(8));
             List<EventResult.DataBean.ListBean> listBeans = dataBean.getList();
             if (listBeans.size() > 0) {
                 for (int i = 0; i < listBeans.size(); i++) {
@@ -396,10 +472,53 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                     marker = aMap.addMarker(markerOption);
                     map.put(marker.getId(), bean.getTitle());
                 }
-                aMap.moveCamera(CameraUpdateFactory.zoomTo(8));
             }
         }
 
+    }
+
+    @Override
+    public void getAllMapSuccess(AllMapResult.DataBean data) {
+        if (aMap != null) {
+            aMap.clear();
+            map.clear();
+            LatLng mlatLng;
+            aMap.moveCamera(CameraUpdateFactory.zoomTo(12));
+            List<AllMapResult.DataBean.ListBean> listBeans = data.getList();
+            if (listBeans.size() > 0) {
+                for (int i = 0; i < listBeans.size(); i++) {
+                    AllMapResult.DataBean.ListBean bean = listBeans.get(i);
+                    mlatLng = new LatLng(Double.valueOf(bean.getLat()), Double.valueOf(bean.getLng()));
+                    if (i == 0) {
+                        aMap.moveCamera(CameraUpdateFactory.changeLatLng(mlatLng));
+                    }
+                    if(type == 1){
+                        markerOption = new MarkerOptions()
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.jingdian_marker))
+                                .position(mlatLng)
+                                .draggable(true);
+                    }else if(type == 2){
+                        markerOption = new MarkerOptions()
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.story_marker))
+                                .position(mlatLng)
+                                .draggable(true);
+                    }else if(type == 3){
+                        markerOption = new MarkerOptions()
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.people_marker))
+                                .position(mlatLng)
+                                .draggable(true);
+                    }else {
+                        markerOption = new MarkerOptions()
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.small_dang_marker))
+                                .position(mlatLng)
+                                .draggable(true);
+                    }
+
+                    marker = aMap.addMarker(markerOption);
+                    map.put(marker.getId(), bean.getTitle());
+                }
+            }
+        }
     }
 
     private void setViewGone() {
@@ -420,13 +539,16 @@ public class MapActivity extends BaseActivity implements MapContract.View,
 
     @Override
     public void backSearch(MapSearchResult.DataBean.ListBean data) {
-        int type = data.getType();//1人物 2景点 3事件
+        int t = data.getType();//1人物 2景点 3事件
         Log.i("sss", "type " + type);
-        if (type == 1) {
+        if (t == 1) {
+            type = 3;
             presenter.searchRenWuDetailData(data.getKeyword());
-        } else if (type == 2) {
+        } else if (t == 2) {
+            type = 1;
             presenter.searchJingDianDetailData(data.getKeyword());
-        } else if (type == 3) {
+        } else if (t == 3) {
+            type = 2;
             presenter.searchEventMapData(data.getKeyword());
         }
         setViewVisible();

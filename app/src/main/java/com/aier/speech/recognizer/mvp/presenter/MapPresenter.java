@@ -2,6 +2,7 @@ package com.aier.speech.recognizer.mvp.presenter;
 
 import android.util.Log;
 
+import com.aier.speech.recognizer.bean.AllMapResult;
 import com.aier.speech.recognizer.bean.EventResult;
 import com.aier.speech.recognizer.bean.JingdianResult;
 import com.aier.speech.recognizer.bean.MapDataResult;
@@ -27,13 +28,14 @@ public class MapPresenter extends BasePresenter implements MapContract.Persenter
     }
 
 
+    //获取所有
     @Override
-    public void loadMapData() {
-        ApiManager.getInstence().getAnswerQuestionService()
-                .getMapMarker("app")
+    public void loadMapData(String tab) {
+        ApiManager.getInstence().getMapSearchService()
+                .getAllMapSearch(tab,"app")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<MapDataResult>() {
+                .subscribe(new Observer<AllMapResult>() {
 
                     @Override
                     public void onError(Throwable e) {
@@ -50,11 +52,11 @@ public class MapPresenter extends BasePresenter implements MapContract.Persenter
                     }
 
                     @Override
-                    public void onNext(MapDataResult value) {
+                    public void onNext(AllMapResult value) {
                            Log.i("xxx", value.toString());
                         try {
                             if (value.getError_code()==0) {
-                                view.getDataSuccess(value.getData());
+                                view.getAllMapSuccess(value.getData());
                             }else {
                                 view.getDataFail(value.getError_msg());
                             }
@@ -64,6 +66,7 @@ public class MapPresenter extends BasePresenter implements MapContract.Persenter
                     }
                 });
     }
+
 
     /**
      * 地图搜索接口
@@ -230,5 +233,43 @@ public class MapPresenter extends BasePresenter implements MapContract.Persenter
                     }
                 });
 
+    }
+
+    @Override
+    public void dangzhibuMapBtn() {
+        ApiManager.getInstence().getAnswerQuestionService()
+                .getDangzhibuMapMarker("app")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<MapDataResult>() {
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.getDataFail("请求失败！");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        addDisposable(d);
+                    }
+
+                    @Override
+                    public void onNext(MapDataResult value) {
+                        Log.i("xxx", value.toString());
+                        try {
+                            if (value.getError_code()==0) {
+                                view.getDataSuccess(value.getData());
+                            }else {
+                                view.getDataFail(value.getError_msg());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 }

@@ -159,9 +159,20 @@
         app:layout_constraintLeft_toRightOf="@+id/line_work"
         android:textColor="@color/red"
         android:textSize="24sp"
-
         android:layout_marginLeft="10dp"
         android:text="关联词条"/>
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flexbox"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="250dp"
+        app:flexWrap="wrap"
+        app:layout_constraintEnd_toStartOf="@+id/iv_answer_question"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_work"/>
+
     <include
         layout="@layout/common_bottom_view"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -187,6 +198,9 @@
         android:layout_marginLeft="100dp"
         android:layout_width="match_parent"
         android:layout_height="300dp"/>
+
+
+
     </android.support.constraint.ConstraintLayout>
 
 

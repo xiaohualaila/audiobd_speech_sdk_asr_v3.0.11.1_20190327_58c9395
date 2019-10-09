@@ -1,5 +1,6 @@
 package com.aier.speech.recognizer.network.api;
 
+import com.aier.speech.recognizer.bean.AllMapResult;
 import com.aier.speech.recognizer.bean.EventResult;
 import com.aier.speech.recognizer.bean.JingdianResult;
 import com.aier.speech.recognizer.bean.MapSearchResult;
@@ -28,4 +29,8 @@ public interface MapSearchApi {
     @POST("getNewsByEvent")
     Observable<EventResult> getEventMapSearch(@Query("name") String name, @Query("channel_type") String channel_type);
 
+
+    //获取所有地图标记
+    @POST("getPoint")
+    Observable<AllMapResult> getAllMapSearch(@Query("tab") String tab, @Query("channel_type") String app);
 }
