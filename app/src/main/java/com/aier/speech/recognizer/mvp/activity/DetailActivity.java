@@ -11,11 +11,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.aier.speech.recognizer.R;
-import com.aier.speech.recognizer.bean.YUBAIBean;
 import com.aier.speech.recognizer.mvp.contract.DetailContract;
 import com.aier.speech.recognizer.mvp.presenter.DetailPresenter;
 import com.aier.speech.recognizer.util.ImageUtils;
 import com.google.android.flexbox.FlexboxLayout;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -37,8 +38,6 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
     @BindView(R.id.flexbox)
     FlexboxLayout layout;
     private DetailPresenter presenter;
-    String[] strings = {"寒食过", "云雨消", "不夜侯正好", "又是一年", "采茶时节暖阳照", "风追着",
-            "蝴蝶跑", "谁家种红苕", "木犁松土", "地龙惊兮蚁出巢", "翠盈盈", "悠香飘"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,43 +56,12 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
         tv_work.setText(duty);
         tv_history.setText("   "+description);
         tv_score.setText(score);
-      //  presenter.loadData(name);
+        presenter.loadData(name);
         initWebSettings();
         mWebView.loadUrl("https://www.zq-ai.com/#/redkg?name="+name);
-        addFlexBox();
     }
 
-    //添加标签
-    private void addFlexBox() {
 
-        for (int i = 0; i < strings.length; i++) {
-            TextView textView = new TextView(this);
-            FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(15, 10, 15, 10);
-
-            if(i==2){
-                textView.setTextColor(getResources().getColor(R.color.red_btn));
-                textView.setTextSize(20f);
-            }else if(i==4){
-                textView.setTextColor(getResources().getColor(R.color.yellow));
-                textView.setTextSize(24f);
-            }else if(i==6){
-                textView.setTextColor(getResources().getColor(R.color.red));
-                textView.setTextSize(22f);
-            }else {
-                textView.setTextColor(getResources().getColor(R.color.text_color_gary));
-                textView.setTextSize(26f);
-            }
-            textView.setText(strings[i]);
-
-            textView.setPadding(8, 5, 8, 0);
-            textView.setLayoutParams(layoutParams);
-            layout.addView(textView);
-
-        }
-    }
 
     private void initWebSettings() {
         WebSettings settings = mWebView.getSettings();
@@ -149,9 +117,42 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
         }
     }
 
-    @Override
-    public void getDataSuccess(YUBAIBean DataBean) {
+    //添加标签
+    private void addFlexBox(List<String> strings) {
 
+        for (int i = 0; i < strings.size(); i++) {
+            TextView textView = new TextView(this);
+            FlexboxLayout.LayoutParams layoutParams = new FlexboxLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(15, 10, 15, 10);
+
+            if(i==2){
+                textView.setTextColor(getResources().getColor(R.color.red_btn));
+                textView.setTextSize(20f);
+            }else if(i==4){
+                textView.setTextColor(getResources().getColor(R.color.yellow));
+                textView.setTextSize(24f);
+            }else if(i==6){
+                textView.setTextColor(getResources().getColor(R.color.red));
+                textView.setTextSize(22f);
+            }else {
+                textView.setTextColor(getResources().getColor(R.color.text_color_gary));
+                textView.setTextSize(26f);
+            }
+            textView.setText(strings.get(i));
+
+            textView.setPadding(8, 5, 8, 0);
+            textView.setLayoutParams(layoutParams);
+            layout.addView(textView);
+
+        }
+    }
+
+
+    @Override
+    public void getDataSuccess(List<String> strings) {
+        addFlexBox(strings);
     }
 
     @Override

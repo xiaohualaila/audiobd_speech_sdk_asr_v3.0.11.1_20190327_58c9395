@@ -2,6 +2,7 @@ package com.aier.speech.recognizer.network.api;
 
 import com.aier.speech.recognizer.bean.AllMapResult;
 import com.aier.speech.recognizer.bean.EventResult;
+import com.aier.speech.recognizer.bean.GuanlianCitiaoResult;
 import com.aier.speech.recognizer.bean.JingdianResult;
 import com.aier.speech.recognizer.bean.MapSearchResult;
 import com.aier.speech.recognizer.bean.RenWuResult;
@@ -33,4 +34,8 @@ public interface MapSearchApi {
     //获取所有地图标记
     @POST("getPoint")
     Observable<AllMapResult> getAllMapSearch(@Query("tab") String tab);
+
+    //获取关联词条
+    @POST("getFigureRelate")
+    Observable<GuanlianCitiaoResult> getFigureRelate(@Query("name") String name);
 }

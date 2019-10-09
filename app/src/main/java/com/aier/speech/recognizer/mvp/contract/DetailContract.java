@@ -1,6 +1,7 @@
 package com.aier.speech.recognizer.mvp.contract;
 
-import com.aier.speech.recognizer.bean.YUBAIBean;
+
+import java.util.List;
 
 public class DetailContract {
 
@@ -10,8 +11,9 @@ public class DetailContract {
     }
 
     public interface View {
-        void getDataSuccess(YUBAIBean DataBean);
+        void getDataSuccess(List<String> strings);
         void getDataFail();
+
     }
 
 
