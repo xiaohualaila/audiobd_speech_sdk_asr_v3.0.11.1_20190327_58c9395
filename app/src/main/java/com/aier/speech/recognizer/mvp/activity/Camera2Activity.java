@@ -15,7 +15,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
@@ -23,6 +22,7 @@ import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.mvp.presenter.CameraPresenter;
 import com.aier.speech.recognizer.util.FileUtil;
 import com.aier.speech.recognizer.util.ToastyUtil;
+
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
@@ -49,10 +49,10 @@ import io.reactivex.disposables.Disposable;
 import static org.opencv.imgcodecs.Imgcodecs.imread;
 
 
-public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callback , CameraContract.View{
+public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callback, CameraContract.View {
 
-     @BindView(R.id.camera_sf)
-     SurfaceView camera_sf;
+    @BindView(R.id.camera_sf)
+    SurfaceView camera_sf;
 
     private Camera camera;
     private String filePath;
@@ -67,6 +67,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     private int absoluteFaceSize;
     private CameraPresenter presenter;
     private Disposable mDisposable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,10 +92,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     takePhoto();
-                    Log.i("sss",">>>>>>>>>>>>>>>>>>>>>心跳");
+                    Log.i("sss", ">>>>>>>>>>>>>>>>>>>>>心跳");
                 });
     }
-
 
 
     @Override
@@ -122,14 +122,14 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         }
     }
 
-    @OnClick({R.id.take_photo,R.id.iv_answer_question,R.id.iv_right_btn,R.id.iv_left_btn})
-    public void onClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.take_photo, R.id.iv_answer_question, R.id.iv_right_btn, R.id.iv_left_btn})
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.take_photo:
                 takePhoto();
                 break;
             case R.id.iv_answer_question:
-               startActiviys(AnswerQuestionActivity.class);
+                startActiviys(AnswerQuestionActivity.class);
                 break;
             case R.id.iv_right_btn://菜单
                 startActiviys(MenuActivity.class);
@@ -141,7 +141,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     }
 
     private void takePhoto() {
-        if(!isPhoto){
+        if (!isPhoto) {
             isPhoto = true;
             camera.takePicture(null, null, jpeg);
         }
@@ -388,25 +388,25 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         List<SimilarFaceResult.ResultBean> resultBeans = bean.getResult();
         if (resultBeans.size() > 0) {
             SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
-            String score = (bean1.getScore() * 100 +30+ "").substring(0, 2);
-            Log.i("ccc","  getScore " +score+" bean1.getScore()" +bean1.getScore());
+            String score = (bean1.getScore() * 100 + 30 + "").substring(0, 2);
+            Log.i("ccc", "  getScore " + score + " bean1.getScore()" + bean1.getScore());
             Bundle bundle = new Bundle();
-            Intent intent = new Intent(this,DetailActivity.class);
-            bundle.putString("name",bean1.getName());
-            bundle.putString("duty",bean1.getDuty());
-            bundle.putString("description",bean1.getDescription());
-            bundle.putString("score",score);
-            String image =bean1.getDraw_image();
-            Log.i("ccc","  getDraw_image " +image);
-            if(TextUtils.isEmpty(image)){
-                bundle.putString("img",bean1.getImage());
-            }else {
-                bundle.putString("img",image);
+            Intent intent = new Intent(this, DetailActivity.class);
+            bundle.putString("name", bean1.getName());
+            bundle.putString("duty", bean1.getDuty());
+            bundle.putString("description", bean1.getDescription());
+            bundle.putString("score", score);
+            String image = bean1.getDraw_image();
+            Log.i("ccc", "  getDraw_image " + image);
+            if (TextUtils.isEmpty(image)) {
+                bundle.putString("img", bean1.getImage());
+            } else {
+                bundle.putString("img", image);
             }
             intent.putExtras(bundle);
             startActivity(intent);
             ToastyUtil.INSTANCE.showInfo("识别到人脸");
-        }else {
+        } else {
             isPhoto = false;
         }
         deletePic();
