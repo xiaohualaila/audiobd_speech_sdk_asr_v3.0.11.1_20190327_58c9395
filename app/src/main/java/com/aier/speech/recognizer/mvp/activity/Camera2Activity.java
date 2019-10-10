@@ -18,9 +18,11 @@ import android.view.WindowManager;
 
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
+import com.aier.speech.recognizer.bean.UniqidResult;
 import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.mvp.presenter.CameraPresenter;
 import com.aier.speech.recognizer.util.FileUtil;
+import com.aier.speech.recognizer.util.SharedPreferencesUtil;
 import com.aier.speech.recognizer.util.ToastyUtil;
 
 import org.opencv.core.CvType;
@@ -406,8 +408,21 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             intent.putExtras(bundle);
             startActivity(intent);
             ToastyUtil.INSTANCE.showInfo("识别到人脸");
+            presenter.upLoadPicGetUseIdFile(filePath);
         } else {
             isPhoto = false;
+            deletePic();
+        }
+    }
+
+    @Override
+    public void getUniqidDataSuccess(UniqidResult value) {
+
+        String id = value.getData().getUniqid();
+        if(!TextUtils.isEmpty(id)){
+            SharedPreferencesUtil.putString(this,"uniqid",value.getData().getUniqid());
+        }else{
+            SharedPreferencesUtil.putString(this,"uniqid","");
         }
         deletePic();
     }
@@ -421,6 +436,12 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     @Override
     public void backTime(String time, String date) {
 
+    }
+
+    @Override
+    public void getUniqidDataFail() {
+        SharedPreferencesUtil.putString(this,"uniqid","");
+        deletePic();
     }
 
     private void deletePic() {
