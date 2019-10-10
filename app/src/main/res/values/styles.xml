@@ -28,4 +28,21 @@
         <item name="android:thumb">@color/title_black</item>
         <item name="android:thumbOffset">10.0dip</item>
     </style>
+
+    <style name="right_photo_score">
+        <item name="android:foreground">@drawable/bottom_score_1</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_marginRight">28dp</item>
+    </style>
+    <style name="left_photo_score">
+        <item name="android:foreground">@drawable/bottom_score_1</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:layout_marginLeft">28dp</item>
+    </style>
+
+    <style name="bottom_photo_score">
+        <item name="android:background">@drawable/bottom_score</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

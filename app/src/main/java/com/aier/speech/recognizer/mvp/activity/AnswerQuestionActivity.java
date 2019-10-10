@@ -129,7 +129,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
             mMyAdapter.setXianShiInterface(doRight -> {
                 if (doRight) {
                     score += every_score;
-                    ToastyUtil.INSTANCE.showInfo("答题正确！");
+                    ToastyUtil.INSTANCE.showSuccess("答题正确！");
 
                     Log.i("score", "score " + score);
                 }else {

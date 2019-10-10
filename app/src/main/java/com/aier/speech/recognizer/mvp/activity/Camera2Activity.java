@@ -15,13 +15,17 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.aier.speech.recognizer.R;
+import com.aier.speech.recognizer.bean.QuestionRankResult;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
 import com.aier.speech.recognizer.bean.UniqidResult;
 import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.mvp.presenter.CameraPresenter;
 import com.aier.speech.recognizer.util.FileUtil;
+import com.aier.speech.recognizer.util.ImageUtils;
 import com.aier.speech.recognizer.util.SharedPreferencesUtil;
 import com.aier.speech.recognizer.util.ToastyUtil;
 
@@ -55,6 +59,41 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
 
     @BindView(R.id.camera_sf)
     SurfaceView camera_sf;
+
+    @BindView(R.id.iv_left_pic_1)
+    ImageView iv_left_pic_1;
+    @BindView(R.id.iv_left_pic_2)
+    ImageView iv_left_pic_2;
+    @BindView(R.id.iv_left_pic_3)
+    ImageView iv_left_pic_3;
+    @BindView(R.id.iv_left_pic_4)
+    ImageView iv_left_pic_4;
+    @BindView(R.id.iv_right_pic_1)
+    ImageView iv_right_pic_1;
+    @BindView(R.id.iv_right_pic_2)
+    ImageView iv_right_pic_2;
+    @BindView(R.id.iv_right_pic_3)
+    ImageView iv_right_pic_3;
+    @BindView(R.id.iv_right_pic_4)
+    ImageView iv_right_pic_4;
+
+    @BindView(R.id.left_score_1)
+    TextView left_score_1;
+    @BindView(R.id.left_score_2)
+    TextView left_score_2;
+    @BindView(R.id.left_score_3)
+    TextView left_score_3;
+    @BindView(R.id.left_score_4)
+    TextView left_score_4;
+
+    @BindView(R.id.right_score_1)
+    TextView right_score_1;
+    @BindView(R.id.right_score_2)
+    TextView right_score_2;
+    @BindView(R.id.right_score_3)
+    TextView right_score_3;
+    @BindView(R.id.right_score_4)
+    TextView right_score_4;
 
     private Camera camera;
     private String filePath;
@@ -94,7 +133,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     takePhoto();
-                    Log.i("sss", ">>>>>>>>>>>>>>>>>>>>>心跳");
+             //       Log.i("sss", ">>>>>>>>>>>>>>>>>>>>>心跳");
+
                 });
     }
 
@@ -108,7 +148,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         InputStream is = getResources().openRawResource(R.raw.lbpcascade_frontalface);
         File cascadeDir = getDir("cascade", MODE_PRIVATE);
         File mCascadeFile = new File(cascadeDir, "lbpcascade_frontalface.xml");
-        FileOutputStream os = null;
+        FileOutputStream os;
         try {
             os = new FileOutputStream(mCascadeFile);
             byte[] buffer = new byte[4096];
@@ -162,8 +202,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 }
             }
             Matrix matrix = new Matrix();
-            matrix.reset();
-            matrix.postRotate(90);//南康那边要注释掉不需要旋转图片
+//            matrix.reset();
+//            matrix.postRotate(90);//南康那边要注释掉不需要旋转图片
             BitmapFactory.Options factory = new BitmapFactory.Options();
             factory = setOptions(factory);
 
@@ -198,7 +238,6 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
      * 上传信息
      */
     private void showPic() {
-        Log.i("sss", "++++++++++++++++++++++++");
         startCameraPreview();
 
         Mat src = imread(filePath);
@@ -212,16 +251,14 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         int faceCount = facesArray.length;
         if (faceCount > 0) {
             Log.i("sss", "有人脸的照片");
-//            ToastyUtil.INSTANCE.showInfo("识别到人脸");
+            ToastyUtil.INSTANCE.showInfo("识别到人脸");
             presenter.upLoadPicFile(filePath);
         } else {
             deletePic();
             isPhoto = false;
-            ToastyUtil.INSTANCE.showInfo("未识别到人脸");
+           // ToastyUtil.INSTANCE.showInfo("未识别到人脸");
             Log.i("sss", "没有人脸的照片");
         }
-
-
     }
 
     public static BitmapFactory.Options setOptions(BitmapFactory.Options opts) {
@@ -238,6 +275,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         super.onResume();
         camera = openCamera();
         isPhoto = false;
+        presenter.getQuestionRank();
     }
 
     @Override
@@ -391,7 +429,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         if (resultBeans.size() > 0) {
             SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
             String score = (bean1.getScore() * 100 + 30 + "").substring(0, 2);
-            Log.i("ccc", "  getScore " + score + " bean1.getScore()" + bean1.getScore());
+         //   Log.i("ccc", "  getScore " + score + " bean1.getScore()" + bean1.getScore());
             Bundle bundle = new Bundle();
             Intent intent = new Intent(this, DetailActivity.class);
             bundle.putString("name", bean1.getName());
@@ -399,7 +437,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             bundle.putString("description", bean1.getDescription());
             bundle.putString("score", score);
             String image = bean1.getDraw_image();
-            Log.i("ccc", "  getDraw_image " + image);
+          //  Log.i("ccc", "  getDraw_image " + image);
             if (TextUtils.isEmpty(image)) {
                 bundle.putString("img", bean1.getImage());
             } else {
@@ -407,7 +445,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             }
             intent.putExtras(bundle);
             startActivity(intent);
-            ToastyUtil.INSTANCE.showInfo("识别到人脸");
+
             presenter.upLoadPicGetUseIdFile(filePath);
         } else {
             isPhoto = false;
@@ -434,14 +472,55 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     }
 
     @Override
-    public void backTime(String time, String date) {
-
-    }
-
-    @Override
     public void getUniqidDataFail() {
         SharedPreferencesUtil.putString(this,"uniqid","");
         deletePic();
+    }
+
+    @Override
+    public void getQuestionRankDataSuccess(QuestionRankResult value) {
+        QuestionRankResult.DataBean dataBean = value.getData();
+        List<QuestionRankResult.DataBean.LeftBean> leftBeans =dataBean.getLeft();
+        if(leftBeans.size()>0){
+            QuestionRankResult.DataBean.LeftBean leftBean;
+            for(int i=0;i<leftBeans.size();i++){
+                leftBean = leftBeans.get(i);
+                if(i==0){
+                  //  ImageUtils.imageRound2(this,leftBean.getImage(),iv_left_pic_1);
+                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_1);
+                    left_score_1.setText("总得分："+leftBean.getScore()+"分");
+                }else if(i==1){
+                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_2);
+                    left_score_2.setText("总得分："+leftBean.getScore()+"分");
+                }else if (i==2){
+                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_3);
+                    left_score_3.setText("总得分："+leftBean.getScore()+"分");
+                }else if(i==3){
+                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_4);
+                    left_score_4.setText("总得分："+leftBean.getScore()+"分");
+                }
+            }
+        }
+        List<QuestionRankResult.DataBean.RightBean> rightBeans =dataBean.getRight();
+        if(rightBeans.size()>0){
+            QuestionRankResult.DataBean.RightBean rightBean;
+            for(int i=0;i<rightBeans.size();i++){
+                rightBean = rightBeans.get(i);
+                if(i==0){
+                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_1);
+                    right_score_1.setText("总得分："+rightBean.getScore()+"分");
+                }else if(i==1){
+                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_2);
+                    right_score_2.setText("总得分："+rightBean.getScore()+"分");
+                }else if (i==2){
+                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_3);
+                    right_score_3.setText("总得分："+rightBean.getScore()+"分");
+                }else if(i==3){
+                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_4);
+                    right_score_4.setText("总得分："+rightBean.getScore()+"分");
+                }
+            }
+        }
     }
 
     private void deletePic() {

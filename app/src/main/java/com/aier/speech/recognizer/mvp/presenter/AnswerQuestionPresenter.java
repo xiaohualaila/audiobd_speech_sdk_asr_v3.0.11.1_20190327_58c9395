@@ -47,7 +47,7 @@ public class AnswerQuestionPresenter extends BasePresenter implements AnswerQues
 
                     @Override
                     public void onNext(AnswerQuestionResult value) {
-                        Log.i("xxx", value.toString());
+                        //Log.i("xxx", value.toString());
                         try {
                             if (value.getError_code()==0) {
                                 view.getDataSuccess(value);

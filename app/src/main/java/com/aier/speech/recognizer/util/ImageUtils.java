@@ -8,14 +8,16 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.widget.ImageView;
-
-import com.aier.speech.recognizer.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.gifbitmap.GifBitmapWrapper;
 
 import java.io.File;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * author : Rain
@@ -40,7 +42,17 @@ public class ImageUtils {
                 .crossFade() //设置淡入淡出效果，默认300ms，可以传参
                 .into(imageView);
     }
+    public static void imageCorners(Context context, String url, ImageView imageView) {
+        Glide.with(context)
+                .load(url)
 
+                .bitmapTransform(new RoundedCornersTransformation(context,200,0))
+//
+//                .placeholder(R.drawable.perch)//设置占位图
+//                .error(R.drawable.perch)//设置错误图片
+                .crossFade() //设置淡入淡出效果，默认300ms，可以传参
+                .into(imageView);
+    }
     /**
      * 一般用法
      *
@@ -100,7 +112,7 @@ public class ImageUtils {
     public static void imageCircle(Context context, File file, ImageView imageView) {
         Glide.with(context)
                 .load(file)
-                .transform(new GlideCircleTransform(context))
+                .transform( new GlideCircleTransform(context))
                 .crossFade()
                 .into(imageView);
     }
@@ -117,9 +129,17 @@ public class ImageUtils {
                 .load(url)
                 .transform(new GlideRoundTransform(context))
                 .crossFade()
+                .dontAnimate()
                 .into(imageView);
     }
 
+
+    public static void imageRound2(Context context, String url, ImageView imageView) {
+        Glide.with(context).load(url)
+                .centerCrop()
+                .bitmapTransform(new RoundedCornersTransformation(context,50,0)).crossFade(1000)
+                .into(imageView);
+    }
     /**
      * 圆形图片处理
      *

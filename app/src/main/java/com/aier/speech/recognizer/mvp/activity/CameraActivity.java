@@ -8,7 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aier.speech.recognizer.R;
+import com.aier.speech.recognizer.bean.QuestionRankResult;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
+import com.aier.speech.recognizer.bean.UniqidResult;
 import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.mvp.presenter.CameraPresenter;
 import com.aier.speech.recognizer.util.ImageUtils;
@@ -189,13 +191,24 @@ public class CameraActivity extends RobotSpeechActivity implements CameraContrac
     }
 
     @Override
+    public void getUniqidDataSuccess(UniqidResult value) {
+
+    }
+
+    @Override
     public void getDataFail() {
         isPhoteTakingPic = false;
         deletePic();
     }
 
+
     @Override
-    public void backTime(String time, String date) {
+    public void getUniqidDataFail() {
+
+    }
+
+    @Override
+    public void getQuestionRankDataSuccess(QuestionRankResult value) {
 
     }
 

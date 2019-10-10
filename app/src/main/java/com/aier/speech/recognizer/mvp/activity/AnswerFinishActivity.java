@@ -2,23 +2,31 @@ package com.aier.speech.recognizer.mvp.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.aier.speech.recognizer.R;
+import com.aier.speech.recognizer.mvp.contract.AnswerFinishContract;
+import com.aier.speech.recognizer.mvp.presenter.AnswerFinishPresenter;
+import com.aier.speech.recognizer.util.SharedPreferencesUtil;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class AnswerFinishActivity extends BaseActivity {
+public class AnswerFinishActivity extends BaseActivity implements AnswerFinishContract.View{
 
     private int score = 0;
     @BindView(R.id.tv_score)
     TextView tv_score;
     @BindView(R.id.tv_tip)
     TextView tv_tip;
+
+    private AnswerFinishPresenter presenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        presenter=new AnswerFinishPresenter(this);
         score = getIntent().getIntExtra("score",0);
 
         if(score==100){
@@ -29,6 +37,10 @@ public class AnswerFinishActivity extends BaseActivity {
             tv_tip.setText("离胜利还差一丢丢~");
         }
         tv_score.setText(score+"");
+       String uniqid = SharedPreferencesUtil.getString(this,"uniqid","");
+       if(!TextUtils.isEmpty(uniqid)){
+           presenter.upLoadScore(uniqid,score+"");
+       }
     }
 
     @OnClick({R.id.take_photo, R.id.back_first,R.id.conti_,R.id.iv_left_btn})
@@ -63,4 +75,14 @@ public class AnswerFinishActivity extends BaseActivity {
 
     }
 
+
+    @Override
+    public void getDataFail() {
+        SharedPreferencesUtil.putString(this,"uniqid","");
+    }
+
+    @Override
+    public void getDataSuccess() {
+        SharedPreferencesUtil.putString(this,"uniqid","");
+    }
 }
