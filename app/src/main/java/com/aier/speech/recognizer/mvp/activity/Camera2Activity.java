@@ -15,6 +15,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
+
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
 import com.aier.speech.recognizer.mvp.contract.CameraContract;
@@ -36,9 +38,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 import static org.opencv.imgcodecs.Imgcodecs.imread;
 
@@ -60,6 +66,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     Mat grayscaleImage;
     private int absoluteFaceSize;
     private CameraPresenter presenter;
+    private Disposable mDisposable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,11 +77,24 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         holder.addCallback(this);
         holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
-
         grayscaleImage = new Mat(height, width, CvType.CV_8UC4);
         absoluteFaceSize = (int) (height * 0.2);
         initClassifier();
+        heartinterval();
     }
+
+    /**
+     * 发送心跳数据
+     */
+    private void heartinterval() {
+        mDisposable = Flowable.interval(0, 5, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    takePhoto();
+                    Log.i("sss",">>>>>>>>>>>>>>>>>>>>>心跳");
+                });
+    }
+
 
 
     @Override
@@ -106,9 +126,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     public void onClick(View view){
         switch (view.getId()){
             case R.id.take_photo:
-                if (!isPhoto) {
-                    takePhoto();
-                }
+                takePhoto();
                 break;
             case R.id.iv_answer_question:
                startActiviys(AnswerQuestionActivity.class);
@@ -123,8 +141,10 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     }
 
     private void takePhoto() {
-        isPhoto = true;
-        camera.takePicture(null, null, jpeg);
+        if(!isPhoto){
+            isPhoto = true;
+            camera.takePicture(null, null, jpeg);
+        }
     }
 
     private Camera.PictureCallback jpeg = new Camera.PictureCallback() {
@@ -176,7 +196,6 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
      * 上传信息
      */
     private void showPic() {
-//        ImageUtils.image(Camera2Activity.this,filePath,img);
         Log.i("sss", "++++++++++++++++++++++++");
         startCameraPreview();
 
@@ -222,6 +241,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     @Override
     protected void onPause() {
         super.onPause();
+        isPhoto = true;
     }
 
     @Override
@@ -229,6 +249,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         super.onDestroy();
         closeCamera();
         presenter.dispose();
+        if (mDisposable != null) {
+            mDisposable.dispose();
+        }
     }
 
     @Override
