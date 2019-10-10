@@ -140,8 +140,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 }
             }
             Matrix matrix = new Matrix();
-//            matrix.reset();
-//            matrix.postRotate(90);//南康那边要注释掉不需要旋转图片
+            matrix.reset();
+            matrix.postRotate(90);//南康那边要注释掉不需要旋转图片
             BitmapFactory.Options factory = new BitmapFactory.Options();
             factory = setOptions(factory);
 
@@ -365,7 +365,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         List<SimilarFaceResult.ResultBean> resultBeans = bean.getResult();
         if (resultBeans.size() > 0) {
             SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
-            String score = (bean1.getScore() * 100 + "").substring(0, 2);
+            String score = (bean1.getScore() * 100 +30+ "").substring(0, 2);
+            Log.i("ccc","  getScore " +score+" bean1.getScore()" +bean1.getScore());
             Bundle bundle = new Bundle();
             Intent intent = new Intent(this,DetailActivity.class);
             bundle.putString("name",bean1.getName());
@@ -373,6 +374,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             bundle.putString("description",bean1.getDescription());
             bundle.putString("score",score);
             String image =bean1.getDraw_image();
+            Log.i("ccc","  getDraw_image " +image);
             if(TextUtils.isEmpty(image)){
                 bundle.putString("img",bean1.getImage());
             }else {

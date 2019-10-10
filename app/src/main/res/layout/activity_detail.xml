@@ -139,7 +139,7 @@
         android:background="@color/red"
         app:layout_constraintLeft_toLeftOf="@+id/line_ai"
         app:layout_constraintTop_toBottomOf="@+id/line_ai"
-        android:layout_marginTop="340dp" />
+        android:layout_marginTop="410dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -153,7 +153,7 @@
     <com.google.android.flexbox.FlexboxLayout
         android:id="@+id/flexbox"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="130dp"
         android:layout_marginLeft="100dp"
         android:layout_marginRight="250dp"
         app:flexWrap="wrap"
@@ -168,7 +168,7 @@
         android:layout_marginRight="100dp"
         android:layout_marginLeft="100dp"
         android:layout_width="match_parent"
-        android:layout_height="300dp"/>
+        android:layout_height="400dp"/>
     <TextView
         android:id="@+id/tv_history"
         android:layout_width="340dp"

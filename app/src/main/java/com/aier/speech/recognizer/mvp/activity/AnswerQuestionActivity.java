@@ -15,6 +15,8 @@ import com.aier.speech.recognizer.bean.AnswerQuestionResult;
 import com.aier.speech.recognizer.bean.ListBean;
 import com.aier.speech.recognizer.mvp.contract.AnswerQuestionContract;
 import com.aier.speech.recognizer.mvp.presenter.AnswerQuestionPresenter;
+import com.aier.speech.recognizer.util.ToastyUtil;
+
 import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -26,6 +28,8 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     TextView tv_question;
     @BindView(R.id.iv_people)
     ImageView iv_people;
+    @BindView(R.id.tv_num_question)
+    TextView tv_num_question;
     private AnswerQuestionPresenter presenter;
     private LinearLayoutManager mLayoutManager;
     private AnswerAdapter mMyAdapter;
@@ -35,7 +39,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     private int score = 0;
     private int every_score = 0;
     private ListBean bean;
-
+    private boolean isCanBtnNext = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,11 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                 finish();
                 break;
             case R.id.iv_next:
+                if(!isCanBtnNext){
+                    ToastyUtil.INSTANCE.showNormal("请答题！");
+                   return;
+                }
+                isCanBtnNext = false;
                 index++;
                 if (index < size) {
                     bean = (ListBean) questionslist.get(index);
@@ -62,12 +71,16 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                     tv_question.setText(quest);
                     mMyAdapter.setList(bean.getTopics(), false);
                     if(index==1){
+                        tv_num_question.setText("第二题");
                         iv_people.setImageResource(R.drawable.question_1);
                     }else if(index==2){
+                        tv_num_question.setText("第三题");
                         iv_people.setImageResource(R.drawable.question_2);
                     }else if(index==3){
+                        tv_num_question.setText("第四题");
                         iv_people.setImageResource(R.drawable.question_3);
                     }else {
+                        tv_num_question.setText("第五题");
                         iv_people.setImageResource(R.drawable.question_1);
                     }
 
@@ -116,8 +129,13 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
             mMyAdapter.setXianShiInterface(doRight -> {
                 if (doRight) {
                     score += every_score;
+                    ToastyUtil.INSTANCE.showInfo("答题正确！");
+
                     Log.i("score", "score " + score);
+                }else {
+                    ToastyUtil.INSTANCE.showError("答题错误！");
                 }
+                isCanBtnNext = true;
                 mMyAdapter.setList(bean.getTopics(), true);
             });
         }

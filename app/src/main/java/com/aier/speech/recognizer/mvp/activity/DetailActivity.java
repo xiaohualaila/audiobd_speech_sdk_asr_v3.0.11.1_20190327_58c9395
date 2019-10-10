@@ -94,7 +94,8 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
     }
 
 
-    @OnClick({R.id.iv_back,R.id.iv_back_,R.id.take_photo,R.id.iv_left_btn,R.id.iv_right_btn})
+    @OnClick({R.id.iv_back,R.id.iv_back_,R.id.take_photo,R.id.iv_left_btn,
+            R.id.iv_right_btn,R.id.iv_answer_question})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.iv_back:
@@ -112,6 +113,10 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
                 break;
             case R.id.iv_right_btn://菜单
                 startActiviys(MenuActivity.class);
+                finish();
+                break;
+            case R.id.iv_answer_question:
+                startActiviys(AnswerQuestionActivity.class);
                 finish();
                 break;
         }
@@ -142,7 +147,7 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
             }
             textView.setText(strings.get(i));
 
-            textView.setPadding(8, 5, 8, 0);
+            textView.setPadding(8, 0, 8, 0);
             textView.setLayoutParams(layoutParams);
             layout.addView(textView);
 
