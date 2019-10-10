@@ -143,6 +143,6 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
 
     @Override
     public void getDataFail() {
-
+        ToastyUtil.INSTANCE.showError("网络请求失败！");
     }
 }
