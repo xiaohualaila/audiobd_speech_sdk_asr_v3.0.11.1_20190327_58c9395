@@ -10,6 +10,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.mvp.contract.DetailContract;
 import com.aier.speech.recognizer.mvp.presenter.DetailPresenter;
@@ -21,7 +22,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DetailActivity extends RobotSpeechActivity implements DetailContract.View{
+public class DetailActivity extends RobotSpeechActivity implements DetailContract.View {
 
     @BindView(R.id.iv_photo)
     ImageView iv_photo;
@@ -45,22 +46,21 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
         presenter = new DetailPresenter(this);
 
         Bundle bundle = getIntent().getExtras();
-        String name =  bundle.getString("name");
-        String duty =  bundle.getString("duty");
-        String description =  bundle.getString("description");
-        String  score =  bundle.getString("score");
-        String img =  bundle.getString("img");
+        String name = bundle.getString("name");
+        String duty = bundle.getString("duty");
+        String description = bundle.getString("description");
+        String score = bundle.getString("score");
+        String img = bundle.getString("img");
         speak("您回到红军时代是" + name + "相似度" + score + "%" + duty);
-        ImageUtils.image(this,img,iv_photo);
+        ImageUtils.image(this, img, iv_photo);
         tv_name.setText(name);
         tv_work.setText(duty);
-        tv_history.setText("   "+description);
+        tv_history.setText("   " + description);
         tv_score.setText(score);
         presenter.loadData(name);
         initWebSettings();
-        mWebView.loadUrl("https://www.zq-ai.com/#/redkg?name="+name);
+        mWebView.loadUrl("https://www.zq-ai.com/#/redkg?name=" + name);
     }
-
 
 
     private void initWebSettings() {
@@ -74,16 +74,16 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
         mWebView.setWebViewClient(new MyWebClient());
     }
 
-    private  class MyWebChrome extends WebChromeClient {
+    private class MyWebChrome extends WebChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
         }
     }
 
-    private  class MyWebClient extends WebViewClient {
+    private class MyWebClient extends WebViewClient {
         @Override
-        public void onPageFinished(WebView view,String url) {
+        public void onPageFinished(WebView view, String url) {
 
         }
     }
@@ -94,19 +94,10 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
     }
 
 
-    @OnClick({R.id.iv_back,R.id.iv_back_,R.id.take_photo,R.id.iv_left_btn,
-            R.id.iv_right_btn,R.id.iv_answer_question})
-    public void onClick(View view){
-        switch (view.getId()){
-            case R.id.iv_back:
-                finish();
-                break;
-            case R.id.iv_back_:
-                finish();
-                break;
-            case R.id.take_photo:
-                finish();
-                break;
+    @OnClick({R.id.iv_back, R.id.iv_back_, R.id.take_photo, R.id.iv_left_btn,
+            R.id.iv_right_btn, R.id.iv_answer_question})
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.iv_left_btn://初心地图
                 startActiviys(MapActivity.class);
                 finish();
@@ -117,6 +108,9 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
                 break;
             case R.id.iv_answer_question:
                 startActiviys(AnswerQuestionActivity.class);
+                finish();
+                break;
+            default:
                 finish();
                 break;
         }
@@ -132,16 +126,16 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
                     LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(15, 10, 15, 10);
 
-            if(i==2){
+            if (i == 2) {
                 textView.setTextColor(getResources().getColor(R.color.red_btn));
                 textView.setTextSize(20f);
-            }else if(i==4){
+            } else if (i == 4) {
                 textView.setTextColor(getResources().getColor(R.color.yellow));
                 textView.setTextSize(24f);
-            }else if(i==6){
+            } else if (i == 6) {
                 textView.setTextColor(getResources().getColor(R.color.red));
                 textView.setTextSize(22f);
-            }else {
+            } else {
                 textView.setTextColor(getResources().getColor(R.color.text_color_gary));
                 textView.setTextSize(26f);
             }

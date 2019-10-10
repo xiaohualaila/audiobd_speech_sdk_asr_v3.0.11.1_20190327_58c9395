@@ -29,21 +29,11 @@ public class AnswerFinishActivity extends BaseActivity {
             tv_tip.setText("离胜利还差一丢丢~");
         }
         tv_score.setText(score+"");
-
     }
-
-
-
 
     @OnClick({R.id.take_photo, R.id.back_first,R.id.conti_,R.id.iv_left_btn})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.take_photo:
-                finish();
-                break;
-            case R.id.back_first:
-                finish();
-                break;
             case R.id.conti_:
                 startActiviys(AnswerQuestionActivity.class);
                 finish();
@@ -54,6 +44,9 @@ public class AnswerFinishActivity extends BaseActivity {
                 break;
             case R.id.iv_right_btn://菜单
                 startActiviys(MenuActivity.class);
+                finish();
+                break;
+            default:
                 finish();
                 break;
         }

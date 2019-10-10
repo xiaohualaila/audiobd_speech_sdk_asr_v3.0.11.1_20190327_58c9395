@@ -173,15 +173,6 @@ public class MapActivity extends BaseActivity implements MapContract.View,
             R.id.iv_answer_question, R.id.tv_renwu, R.id.tv_fengjing, R.id.tv_dang, R.id.tv_story,})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.take_photo:
-                finish();
-                break;
-            case R.id.iv_back:
-                finish();
-                break;
-            case R.id.iv_back_:
-                finish();
-                break;
             case R.id.iv_right_btn://菜单
                 startActiviys(MapActivity.class);
                 finish();
@@ -211,6 +202,9 @@ public class MapActivity extends BaseActivity implements MapContract.View,
             case R.id.tv_story://故事
                 type = 2;
                 presenter.loadMapData("2");
+                break;
+            default:
+                finish();
                 break;
         }
     }
