@@ -437,6 +437,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     public void getDataSuccess(SimilarFaceResult bean) {
         List<SimilarFaceResult.ResultBean> resultBeans = bean.getResult();
         if (resultBeans.size() > 0) {
+            presenter.upLoadPicGetUseIdFile(filePath);
             SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
             String score = (bean1.getScore() * 100 + 30 + "").substring(0, 2);
             Log.i("ccc", "  getScore " + score + " bean1.getScore()" + bean1.getScore());
@@ -455,8 +456,6 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             }
             intent.putExtras(bundle);
             startActivity(intent);
-
-            presenter.upLoadPicGetUseIdFile(filePath);
         } else {
             Log.i("ccc", "服务器没有返回信息》》》》》》 ");
             isPhoto = false;

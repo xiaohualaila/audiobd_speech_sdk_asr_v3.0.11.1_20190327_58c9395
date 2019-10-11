@@ -472,7 +472,11 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                     }
 
                     marker = aMap.addMarker(markerOption);
-                    map.put(marker.getId(), bean.getTitle());
+                    if(type == 3){
+                        map.put(marker.getId(), bean.getName());
+                    }else {
+                        map.put(marker.getId(), bean.getTitle());
+                    }
                 }
             }
         }
