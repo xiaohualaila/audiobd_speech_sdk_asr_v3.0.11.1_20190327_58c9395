@@ -2,8 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/menu_bg">
+    android:background="@drawable/menu_bj"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
  <include
      android:id="@+id/include_common_back"
      layout="@layout/common_back"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@+id/djxx_icon"
         app:layout_constraintLeft_toRightOf="@+id/djgs_icon"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toRightOf="@+id/guideline"
         android:layout_marginRight="40dp"
         android:src="@drawable/djzd_icon"/>
 
@@ -85,15 +85,17 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:text="党建故事"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/djzd_icon"
-        app:layout_constraintLeft_toLeftOf="@+id/djzd_icon"
-        app:layout_constraintRight_toRightOf="@+id/djzd_icon"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:text="党建终端"/>
+
+   <TextView
+       android:id="@+id/textView"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="10dp"
+       android:text="党建终端"
+       android:textSize="20sp"
+       app:layout_constraintLeft_toLeftOf="@+id/djzd_icon"
+       app:layout_constraintRight_toRightOf="@+id/djzd_icon"
+       app:layout_constraintTop_toBottomOf="@+id/djzd_icon" />
 
     <!-- 红色文创 -->
     <TextView
@@ -133,15 +135,17 @@
         app:layout_constraintLeft_toRightOf="@+id/video_contest"
         app:layout_constraintRight_toLeftOf="@+id/djzd_icon"
         android:src="@drawable/gift_icon"/>
-    <ImageView
-        android:id="@+id/books"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/sqhxg"
-        app:layout_constraintLeft_toRightOf="@+id/gift"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="40dp"
-        android:src="@drawable/books_icon"/>
+
+   <ImageView
+       android:id="@+id/books"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginRight="40dp"
+       android:src="@drawable/books_icon"
+       app:layout_constraintLeft_toRightOf="@+id/gift"
+       app:layout_constraintRight_toRightOf="parent"
+       app:layout_constraintStart_toStartOf="@+id/textView"
+       app:layout_constraintTop_toTopOf="@+id/sqhxg" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -186,9 +190,8 @@
         android:id="@+id/tv_tip_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/sqhxg"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_tip"
-        android:layout_marginTop="80dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_tip"
+        app:layout_constraintLeft_toRightOf="@+id/guideline"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:text="红色VR"/>
@@ -198,7 +201,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/tv_tip_2"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline"
         app:layout_constraintRight_toLeftOf="@+id/vr_history"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="30dp"
@@ -266,14 +269,13 @@
         android:textSize="20sp"
         android:text="VR硬件"/>
 
-    <ImageView
-        android:id="@+id/iv_answer_question"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/common_bottom_view"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/answer_questions"/>
+
+   <android.support.constraint.Guideline
+       android:id="@+id/guideline"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       app:layout_constraintGuide_percent="0.5"
+       android:orientation="vertical"/>
 
     <include
         android:id="@+id/common_bottom_view"
@@ -283,4 +285,12 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+   <include layout="@layout/tips_view"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:layout_constraintTop_toTopOf="parent"
+       android:layout_marginTop="20dp"
+       android:layout_marginLeft="100dp"
+       android:layout_marginRight="100dp"/>
 </android.support.constraint.ConstraintLayout>

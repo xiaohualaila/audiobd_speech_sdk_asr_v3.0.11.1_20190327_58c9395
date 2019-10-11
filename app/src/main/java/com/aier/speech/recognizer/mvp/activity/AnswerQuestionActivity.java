@@ -3,6 +3,7 @@ package com.aier.speech.recognizer.mvp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,8 +28,8 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     @BindView(R.id.iv_people)
     ImageView iv_people;
     private AnswerQuestionPresenter presenter;
-    private LinearLayoutManager mLayoutManager;
     private AnswerAdapter mMyAdapter;
+    private GridLayoutManager manager;
     private List questionslist;
     private int size;
     private int index = 0;
@@ -62,13 +63,13 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                     tv_question.setText(quest);
                     mMyAdapter.setList(bean.getTopics(), false);
                     if(index==1){
-                        iv_people.setImageResource(R.drawable.question_1);
+                        iv_people.setImageResource(R.drawable.img2);
                     }else if(index==2){
-                        iv_people.setImageResource(R.drawable.question_2);
+                        iv_people.setImageResource(R.drawable.img3);
                     }else if(index==3){
-                        iv_people.setImageResource(R.drawable.question_3);
+                        iv_people.setImageResource(R.drawable.img4);
                     }else {
-                        iv_people.setImageResource(R.drawable.question_1);
+                        iv_people.setImageResource(R.drawable.img5);
                     }
 
                 } else {
@@ -109,8 +110,9 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
             String quest = bean.getQuestion();
             tv_question.setText(quest);
             mMyAdapter = new AnswerAdapter(bean.getTopics(), mContext, false);
-            mLayoutManager = new LinearLayoutManager(this);
-            mRecyclerView.setLayoutManager(mLayoutManager);
+
+            manager = new GridLayoutManager(this, 2);
+            mRecyclerView.setLayoutManager(manager);
             mRecyclerView.setAdapter(mMyAdapter);
 
             mMyAdapter.setXianShiInterface(doRight -> {

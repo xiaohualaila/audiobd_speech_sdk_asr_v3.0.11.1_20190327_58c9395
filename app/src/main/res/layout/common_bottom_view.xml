@@ -3,36 +3,59 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ImageView
+    <TextView
         android:id="@+id/iv_left_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="95dp"
-        android:layout_marginLeft="110dp"
-        android:src="@drawable/left_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/iv_right_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:drawableTop="@drawable/cxdt_icon"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:text="初心地图"/>
 
-    <ImageView
+    <TextView
         android:id="@+id/iv_right_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="95dp"
-        android:layout_marginRight="110dp"
-        android:src="@drawable/right_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-    <ImageView
+        app:layout_constraintLeft_toRightOf="@+id/iv_left_btn"
+        app:layout_constraintRight_toLeftOf="@+id/take_photo"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_left_btn"
+        android:drawableTop="@drawable/menu_icon"
+        android:textColor="@color/white"
+        android:text="菜单"/>
+
+    <TextView
         android:id="@+id/take_photo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
-        android:src="@drawable/take_photo"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_left_btn"
+        android:drawableTop="@drawable/sgj_icon"
+        android:textColor="@color/white"
+        android:text="时光机" />
+
+    <TextView
+        android:id="@+id/iv_answer_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/take_photo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_left_btn"
+        android:layout_marginRight="100dp"
+        android:drawableTop="@drawable/yjwd_icon"
+        android:textColor="@color/white"
+        android:text="有奖问答"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/iv_answer_question"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_left_btn"
+        android:drawableTop="@drawable/jj_icon"
+        android:textColor="@color/white"
+        android:text="智研院介绍"/>
 
 </android.support.constraint.ConstraintLayout>

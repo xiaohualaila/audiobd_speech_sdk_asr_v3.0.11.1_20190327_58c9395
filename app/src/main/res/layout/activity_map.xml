@@ -6,28 +6,17 @@
 
     <com.amap.api.maps.MapView
         android:id="@+id/map"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_width="match_parent"
-        android:layout_marginTop="45dp"
-        android:layout_marginLeft="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_height="800dp" />
+        android:layout_height="match_parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/camera_bg" />
     <ImageView
         android:id="@+id/iv_back"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="90dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/back_icon"/>
     <TextView
         android:id="@+id/iv_back_"
@@ -39,60 +28,101 @@
         android:layout_marginLeft="10dp"
         android:textSize="30sp"
         android:text="返回"/>
-    <include layout="@layout/linerarlayout_search"
+
+    <include layout="@layout/tips_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_marginBottom="210dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
-    <ImageView
-        android:id="@+id/iv_left_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="95dp"
-        android:layout_marginLeft="110dp"
-        android:src="@drawable/left_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"/>
 
-    <ImageView
-        android:id="@+id/iv_right_btn"
-        android:layout_width="wrap_content"
+<!--    <include layout="@layout/linerarlayout_search"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="56dp"-->
+<!--        android:layout_marginRight="56dp"-->
+<!--        android:layout_marginBottom="210dp"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent" />-->
+
+
+    <LinearLayout
+        android:id="@+id/ll_choose"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="95dp"
-        android:layout_marginRight="110dp"
-        android:src="@drawable/right_btn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-    <ImageView
-        android:id="@+id/take_photo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="150dp"
-        android:src="@drawable/take_photo"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_back"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-    <ImageView
-        android:id="@+id/iv_answer_question"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@drawable/map_choose_btns"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp">
+        <TextView
+            android:id="@+id/tv_story"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="故事"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:drawableTop="@drawable/story_icon"/>
+        <TextView
+            android:id="@+id/tv_renwu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/people_icon"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:gravity="center_horizontal"
+            android:text="人物"/>
+        <TextView
+            android:id="@+id/tv_fengjing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="景点"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:drawableTop="@drawable/attractions_icon"/>
+
+        <TextView
+            android:id="@+id/tv_dang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="党支部"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:drawableTop="@drawable/party_branch_icon"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/search_icon"/>
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_search"
+        app:layout_constraintTop_toTopOf="@+id/ll_choose"
+        app:layout_constraintLeft_toRightOf="@+id/ll_choose"
+        android:visibility="gone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/iv_right_btn"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="40dp"
-        android:src="@drawable/answer_questions"/>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/take_photo"
-        android:src="@drawable/shiguang"/>
+        android:layout_height="300dp"/>
+    <include
+        layout="@layout/common_bottom_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </android.support.constraint.ConstraintLayout>

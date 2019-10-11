@@ -30,7 +30,7 @@ public class FirstActivity extends  BaseActivity{
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS:
                     Log.i("rr", "OpenCV loaded successfully");
-                    startActiviys(Camera2Activity.class);
+                    startActiviys(CameraActivity.class);
                     finish();
                     break;
                 default:

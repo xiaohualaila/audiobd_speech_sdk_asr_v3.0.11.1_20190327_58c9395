@@ -3,13 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/answer_bg">
-
+    android:background="@drawable/abstract_bj">
+    <include
+        android:id="@+id/include_common_back"
+        layout="@layout/common_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
     <ImageView
         android:id="@+id/iv_people"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/people_bg"
+        android:src="@drawable/img1"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -61,7 +65,7 @@
         android:id="@+id/list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/iv_next"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
