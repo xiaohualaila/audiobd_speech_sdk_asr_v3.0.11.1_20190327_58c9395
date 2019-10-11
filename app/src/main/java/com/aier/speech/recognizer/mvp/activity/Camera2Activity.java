@@ -129,12 +129,11 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
      * 发送心跳数据
      */
     private void heartinterval() {
-        mDisposable = Flowable.interval(0, 5, TimeUnit.SECONDS)
+        mDisposable = Flowable.interval(0, 4, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     takePhoto();
              //       Log.i("sss", ">>>>>>>>>>>>>>>>>>>>>心跳");
-
                 });
     }
 
@@ -250,14 +249,14 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         Rect[] facesArray = faces.toArray();
         int faceCount = facesArray.length;
         if (faceCount > 0) {
-            Log.i("sss", "有人脸的照片");
+            Log.i("ccc", "有人脸的照片");
             ToastyUtil.INSTANCE.showInfo("识别到人脸");
             presenter.upLoadPicFile(filePath);
         } else {
             deletePic();
             isPhoto = false;
            // ToastyUtil.INSTANCE.showInfo("未识别到人脸");
-            Log.i("sss", "没有人脸的照片");
+            Log.i("ccc", "没有人脸的照片");
         }
     }
 
@@ -332,8 +331,19 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         } else {
             return;
         }
+
+//        List<Camera.Size> supportedPictureSizes = para.getSupportedPictureSizes();
+//        for(int i=0;i<supportedPictureSizes.size();i++){
+//            Log.i("sss","widget " +supportedPictureSizes.get(i).width +"  height " +supportedPictureSizes.get(i).height );
+//        }
+//        Log.i("sss","widget ///////");
+//        List<Camera.Size> supportedPreviewSizes = para.getSupportedPreviewSizes();
+//        for(int i=0;i<supportedPreviewSizes.size();i++){
+//            Log.i("sss","widget " +supportedPreviewSizes.get(i).width +"  height " +supportedPreviewSizes.get(i).height);
+//        }
+
         para.setPreviewSize(width, height);
-        setPictureSize(para, 640, 480);
+        setPictureSize(para, width, height);
         para.setPictureFormat(ImageFormat.JPEG);//设置图片格式
         setCameraDisplayOrientation(isFrontCamera ? 0 : 1, camera);
         camera.setParameters(para);
@@ -429,7 +439,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         if (resultBeans.size() > 0) {
             SimilarFaceResult.ResultBean bean1 = resultBeans.get(0);
             String score = (bean1.getScore() * 100 + 30 + "").substring(0, 2);
-         //   Log.i("ccc", "  getScore " + score + " bean1.getScore()" + bean1.getScore());
+            Log.i("ccc", "  getScore " + score + " bean1.getScore()" + bean1.getScore());
             Bundle bundle = new Bundle();
             Intent intent = new Intent(this, DetailActivity.class);
             bundle.putString("name", bean1.getName());
@@ -448,6 +458,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
 
             presenter.upLoadPicGetUseIdFile(filePath);
         } else {
+            Log.i("ccc", "服务器没有返回信息》》》》》》 ");
             isPhoto = false;
             deletePic();
         }

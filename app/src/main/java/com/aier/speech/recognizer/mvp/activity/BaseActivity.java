@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 import com.aier.speech.recognizer.broadcastReceiver.NetStateReceiver;
+import com.aier.speech.recognizer.util.AndroidWorkaround;
 import com.aier.speech.recognizer.util.StatusBarUtil;
 
 import java.util.ArrayList;
@@ -65,9 +66,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 //          drawable-xxxhdpi     640DPI
 
         // 底部导航栏适配
-//        if (AndroidWorkaround.Companion.checkDeviceHasNavigationBar(this)) {
-//            AndroidWorkaround.Companion.assistActivity(findViewById(android.R.id.content));
-//        }
+        if (AndroidWorkaround.Companion.checkDeviceHasNavigationBar(this)) {
+            AndroidWorkaround.Companion.assistActivity(findViewById(android.R.id.content));
+        }
     }
 
 
