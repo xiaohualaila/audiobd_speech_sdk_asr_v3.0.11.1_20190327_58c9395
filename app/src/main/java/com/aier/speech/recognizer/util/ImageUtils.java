@@ -17,6 +17,8 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
 import java.io.File;
 
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
+
 /**
  * author : Rain
  * time : 2017/10/18 0018
@@ -88,7 +90,17 @@ public class ImageUtils {
     }
 
 
+    public static void imageCorners(Context context, String url, ImageView imageView) {
+        Glide.with(context)
+                .load(url)
 
+                .bitmapTransform(new RoundedCornersTransformation(context,200,0))
+//
+//                .placeholder(R.drawable.perch)//设置占位图
+//                .error(R.drawable.perch)//设置错误图片
+                .crossFade() //设置淡入淡出效果，默认300ms，可以传参
+                .into(imageView);
+    }
 
     /**
      * 圆形加载
