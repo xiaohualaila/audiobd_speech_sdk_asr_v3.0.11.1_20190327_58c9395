@@ -86,30 +86,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fde45cdb-ada4-4259-bea4-41d6d46ac4f4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jp_wasabeef_glide_transformations_2_0_1_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/bean/AddQuestionResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/bean/QuestionRankResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/bean/UniqidResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/util/SharedPreferencesUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.1/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/Camera2Activity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/contract/CameraContract.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/contract/CameraContract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/CameraPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/CameraPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/api/RedTimeApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/api/RedTimeApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/util/ImageUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/util/ImageUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/photo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-hdpi/photo_frame.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_camera5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +98,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="red_API_22" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="e404cc58" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -138,7 +116,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1775">
+            <state relative-caret-position="1475">
               <caret line="96" column="46" selection-start-line="96" selection-start-column="46" selection-end-line="96" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -152,10 +130,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="441">
+              <caret line="479" column="58" lean-forward="true" selection-start-line="479" selection-start-column="58" selection-end-line="479" selection-end-column="58" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-125">
-              <caret line="19" column="55" lean-forward="true" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+            <state relative-caret-position="119">
+              <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
             </state>
           </provider>
           <provider editor-type-id="android-manifest" />
@@ -164,8 +151,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/util/ImageUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1874">
-              <caret line="96" column="53" selection-start-line="96" selection-start-column="53" selection-end-line="96" selection-end-column="53" />
+            <state relative-caret-position="350">
+              <caret line="31" column="6" lean-forward="true" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -224,7 +211,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>人脸</find>
       <find>iv_back_</find>
       <find>ccc</find>
       <find>shiguang</find>
@@ -253,6 +239,7 @@
       <find>getDataSuccess</find>
       <find>getUniqidDataSuccess</find>
       <find>getQuestionRankDataSuccess</find>
+      <find>Camera2Activity</find>
       <find>onResume</find>
     </findStrings>
   </component>
@@ -297,7 +284,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/network/api/MapSearchApi.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/presenter/MapPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/Camera2Activity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/FirstActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
@@ -324,6 +310,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/util/ImageUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_camera5.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java" />
       </list>
     </option>
   </component>
@@ -786,13 +773,6 @@
       <option name="presentableId" value="Default" />
       <updated>1558075415139</updated>
     </task>
-    <task id="LOCAL-00042" summary="修改更新">
-      <created>1560838260656</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1560838260656</updated>
-    </task>
     <task id="LOCAL-00043" summary="修改更新">
       <created>1560842368948</created>
       <option name="number" value="00043" />
@@ -1129,7 +1109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570783351142</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="修改">
+      <created>1570786216936</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1570786216936</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1143,7 +1130,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.26876676" />
@@ -1160,7 +1146,7 @@
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5010661" side_tool="true" weight="0.47450426" />
       <window_info anchor="bottom" id="Build" order="5" weight="0.7181303" />
-      <window_info anchor="bottom" id="Android Profiler" order="6" show_stripe_button="false" weight="0.6515581" />
+      <window_info anchor="bottom" id="Android Profiler" order="6" weight="0.6515581" />
       <window_info anchor="bottom" id="Run" order="7" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="8" weight="0.4957507" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.3286119" />
@@ -1314,13 +1300,6 @@
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="514" column="34" lean-forward="true" selection-start-line="514" selection-start-column="22" selection-end-line="514" selection-end-column="40" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/camera_bg.png" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/story_icon.png" />
@@ -1508,13 +1487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/util/ImageUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1874">
-          <caret line="96" column="53" selection-start-line="96" selection-start-column="53" selection-end-line="96" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/photo.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1529,9 +1501,24 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/util/ImageUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="31" column="6" lean-forward="true" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/CameraActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1775">
+        <state relative-caret-position="1475">
           <caret line="96" column="46" selection-start-line="96" selection-start-column="46" selection-end-line="96" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1543,13 +1530,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/aier/speech/recognizer/mvp/activity/MapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-125">
-          <caret line="19" column="55" lean-forward="true" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
+        <state relative-caret-position="441">
+          <caret line="479" column="58" lean-forward="true" selection-start-line="479" selection-start-column="58" selection-end-line="479" selection-end-column="58" />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
   </component>
   <component name="masterDetails">
