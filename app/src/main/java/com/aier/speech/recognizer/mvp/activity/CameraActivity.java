@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.mvp.presenter.CameraPresenter;
 import com.aier.speech.recognizer.util.ImageUtils;
 import com.aier.speech.recognizer.util.SharedPreferencesUtil;
+import com.aier.speech.recognizer.util.ToastyUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.opencv.android.CameraBridgeViewBase;
@@ -40,6 +42,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class CameraActivity extends BaseActivity implements CameraContract.View {
     private static final String TAG = "CameraActivity";
@@ -144,6 +147,26 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
         initClassifier();
 
     }
+
+    @OnClick({R.id.iv_answer_question, R.id.iv_right_btn, R.id.iv_left_btn,R.id.jj_icon})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.iv_answer_question:
+                startActiviys(AnswerQuestionActivity.class);
+                break;
+            case R.id.iv_right_btn://菜单
+                startActiviys(MenuActivity.class);
+                break;
+            case R.id.iv_left_btn://初心地图
+                startActiviys(MapActivity.class);
+                break;
+            case R.id.jj_icon://简介
+                startActiviys(IntroductionActivity.class);
+                break;
+        }
+    }
+
+
 
     @Override
     protected void onResume() {
@@ -313,13 +336,19 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
         }
     }
 
-    private void deletePic() {
-        File file = new File(fileName);
-        if (file.exists()) {
-            file.delete();
-            Log.i(TAG, "deletePic+++");
-        }
+    @Override
+    public void getQuestionRankDataFail(String msg) {
+        ToastyUtil.INSTANCE.showInfo(msg);
+    }
 
+    private void deletePic() {
+        if(fileName!=null){
+            File file = new File(fileName);
+            if (file.exists()) {
+                file.delete();
+                Log.i(TAG, "deletePic+++");
+            }
+        }
     }
 
     @Override

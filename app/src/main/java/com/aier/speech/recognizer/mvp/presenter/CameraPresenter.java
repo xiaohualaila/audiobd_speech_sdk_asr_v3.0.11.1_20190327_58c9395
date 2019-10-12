@@ -134,7 +134,7 @@ public class CameraPresenter extends BasePresenter implements CameraContract.Per
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getDataFail();
+                        view.getQuestionRankDataFail("网络异常！");
                     }
 
                     @Override
@@ -153,7 +153,7 @@ public class CameraPresenter extends BasePresenter implements CameraContract.Per
                             if (value.getError_code()==0) {
                                 view.getQuestionRankDataSuccess(value);
                             }else {
-                                view.getDataFail();
+                                view.getQuestionRankDataFail(value.getError_msg());
                             }
                         } catch (Exception e) {
                             e.printStackTrace();

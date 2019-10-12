@@ -10,13 +10,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.adapter.AnswerAdapter;
 import com.aier.speech.recognizer.bean.AnswerQuestionResult;
 import com.aier.speech.recognizer.bean.ListBean;
 import com.aier.speech.recognizer.mvp.contract.AnswerQuestionContract;
 import com.aier.speech.recognizer.mvp.presenter.AnswerQuestionPresenter;
+import com.aier.speech.recognizer.util.ToastyUtil;
+
 import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -27,16 +31,17 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     TextView tv_question;
     @BindView(R.id.iv_people)
     ImageView iv_people;
+    @BindView(R.id.tv_num_question)
+    TextView tv_num_question;
     private AnswerQuestionPresenter presenter;
     private AnswerAdapter mMyAdapter;
-    private GridLayoutManager manager;
     private List questionslist;
     private int size;
     private int index = 0;
     private int score = 0;
     private int every_score = 0;
     private ListBean bean;
-
+    private boolean isCanBtnNext = false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,13 +54,18 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
         return R.layout.activity_answer_question;
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_next, R.id.iv_left_btn,R.id.iv_right_btn})
+    @OnClick({R.id.take_photo, R.id.iv_next, R.id.iv_left_btn, R.id.iv_right_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
                 finish();
                 break;
             case R.id.iv_next:
+                if(!isCanBtnNext){
+                    ToastyUtil.INSTANCE.showNormal("请答题！");
+                   return;
+                }
+                isCanBtnNext = false;
                 index++;
                 if (index < size) {
                     bean = (ListBean) questionslist.get(index);
@@ -63,12 +73,16 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                     tv_question.setText(quest);
                     mMyAdapter.setList(bean.getTopics(), false);
                     if(index==1){
+                        tv_num_question.setText("第二题");
                         iv_people.setImageResource(R.drawable.img2);
                     }else if(index==2){
+                        tv_num_question.setText("第三题");
                         iv_people.setImageResource(R.drawable.img3);
                     }else if(index==3){
+                        tv_num_question.setText("第四题");
                         iv_people.setImageResource(R.drawable.img4);
                     }else {
+                        tv_num_question.setText("第五题");
                         iv_people.setImageResource(R.drawable.img5);
                     }
 
@@ -111,15 +125,20 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
             tv_question.setText(quest);
             mMyAdapter = new AnswerAdapter(bean.getTopics(), mContext, false);
 
-            manager = new GridLayoutManager(this, 2);
-            mRecyclerView.setLayoutManager(manager);
+
+            mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
             mRecyclerView.setAdapter(mMyAdapter);
 
             mMyAdapter.setXianShiInterface(doRight -> {
                 if (doRight) {
                     score += every_score;
+                    ToastyUtil.INSTANCE.showSuccess("答题正确！");
+
                     Log.i("score", "score " + score);
+                }else {
+                    ToastyUtil.INSTANCE.showError("答题错误！");
                 }
+                isCanBtnNext = true;
                 mMyAdapter.setList(bean.getTopics(), true);
             });
         }
@@ -127,6 +146,6 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
 
     @Override
     public void getDataFail() {
-
+        ToastyUtil.INSTANCE.showError("网络请求失败！");
     }
 }

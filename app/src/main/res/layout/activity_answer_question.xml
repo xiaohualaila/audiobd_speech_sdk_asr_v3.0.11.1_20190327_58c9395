@@ -11,23 +11,36 @@
         android:layout_height="wrap_content"/>
     <ImageView
         android:id="@+id/iv_people"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img1"
+        android:layout_width="1860dp"
+        android:layout_height="560dp"
+        android:background="@drawable/img1"
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-    <TextView
-        android:id="@+id/tv_num_question"
+
+
+
+    <ImageView
+        android:id="@+id/tv_num_question_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:textSize="30sp"
         android:layout_marginTop="160dp"
+        android:src="@drawable/tob_icon"/>
+
+    <TextView
+        android:id="@+id/tv_num_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/tv_num_question_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_num_question_bg"
+        app:layout_constraintRight_toRightOf="@+id/tv_num_question_bg"
+        android:textSize="30sp"
         android:textColor="@color/white"
+        android:gravity="center"
         android:text="第一题"/>
     <TextView
         android:id="@+id/tv_question"
@@ -65,7 +78,7 @@
         android:id="@+id/list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="80dp"
         app:layout_constraintBottom_toTopOf="@+id/iv_next"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

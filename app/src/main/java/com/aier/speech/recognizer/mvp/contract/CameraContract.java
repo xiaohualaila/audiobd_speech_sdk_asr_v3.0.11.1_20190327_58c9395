@@ -19,6 +19,8 @@ public class CameraContract {
         void getUniqidDataFail();
 
         void getQuestionRankDataSuccess(QuestionRankResult value);
+
+        void getQuestionRankDataFail(String msg);
     }
 
 
