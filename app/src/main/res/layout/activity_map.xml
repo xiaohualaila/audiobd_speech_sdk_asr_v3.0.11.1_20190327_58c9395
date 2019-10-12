@@ -2,12 +2,14 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/red"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.amap.api.maps.MapView
         android:id="@+id/map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="130dp"/>
 
     <ImageView
         android:id="@+id/iv_back"
@@ -28,14 +30,12 @@
         android:layout_marginLeft="10dp"
         android:textSize="30sp"
         android:text="返回"/>
-
     <include layout="@layout/tips_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"/>
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="@+id/iv_back"
+        android:layout_marginLeft="180dp"
+        android:layout_marginRight="180dp"/>
 
 <!--    <include layout="@layout/linerarlayout_search"-->
 <!--        android:layout_width="match_parent"-->
@@ -50,7 +50,7 @@
 
     <LinearLayout
         android:id="@+id/ll_choose"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/iv_back"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -59,8 +59,13 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:background="@drawable/map_choose_btns"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp">
+        android:paddingTop="50dp"
+        android:paddingBottom="50dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/story_icon" />
         <TextView
             android:id="@+id/tv_story"
             android:layout_width="wrap_content"
@@ -69,18 +74,24 @@
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:gravity="center_horizontal"
-            android:drawableTop="@drawable/story_icon"/>
+            android:gravity="center_horizontal" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/people_icon" />
         <TextView
             android:id="@+id/tv_renwu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/people_icon"
             android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:textColor="@color/white"
             android:gravity="center_horizontal"
             android:text="人物"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/attractions_icon" />
         <TextView
             android:id="@+id/tv_fengjing"
             android:layout_width="wrap_content"
@@ -89,9 +100,11 @@
             android:text="景点"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:drawableTop="@drawable/attractions_icon"/>
-
+            android:layout_marginTop="10dp" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/party_branch_icon" />
         <TextView
             android:id="@+id/tv_dang"
             android:layout_width="wrap_content"
@@ -100,8 +113,7 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:drawableTop="@drawable/party_branch_icon"/>
+            android:layout_marginTop="10dp" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -110,9 +122,40 @@
             android:src="@drawable/search_icon"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_shuru"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="@+id/ll_choose"
+        app:layout_constraintLeft_toRightOf="@+id/ll_choose"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:background="@drawable/bg_gray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/search_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/search_icon"/>
+        <EditText
+            android:id="@+id/et"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/delete_icon"/>
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_search"
-        app:layout_constraintTop_toTopOf="@+id/ll_choose"
+        app:layout_constraintTop_toBottomOf="@+id/ll_shuru"
         app:layout_constraintLeft_toRightOf="@+id/ll_choose"
         android:visibility="gone"
         android:layout_width="wrap_content"
