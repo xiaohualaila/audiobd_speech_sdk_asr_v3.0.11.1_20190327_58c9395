@@ -10,6 +10,7 @@ public class CameraContract {
         void upLoadPicFile(String pic_path);
         void upLoadPicGetUseIdFile(String pic_path);
         void getQuestionRank();
+        void getMsgData();
     }
 
     public interface View {
@@ -21,6 +22,8 @@ public class CameraContract {
         void getQuestionRankDataSuccess(QuestionRankResult value);
 
         void getQuestionRankDataFail(String msg);
+
+        void backMsg(String msg);
     }
 
 

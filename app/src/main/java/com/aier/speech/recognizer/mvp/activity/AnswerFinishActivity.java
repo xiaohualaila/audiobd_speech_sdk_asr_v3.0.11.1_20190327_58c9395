@@ -7,6 +7,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.aier.speech.recognizer.R;
+import com.aier.speech.recognizer.model.MessageWrap;
+import com.aier.speech.recognizer.util.SharedPreferencesUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -18,10 +24,14 @@ public class AnswerFinishActivity extends BaseActivity {
     TextView tv_score;
     @BindView(R.id.tv_tip)
     TextView tv_tip;
-
+    @BindView(R.id.tip)
+    TextView tip;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().unregister(this);
+        String msg = SharedPreferencesUtil.getString(this,"tips","");
+        tip.setText(msg);
         score = getIntent().getIntExtra("score", 0);
 
         if (score == 100) {
@@ -58,6 +68,13 @@ public class AnswerFinishActivity extends BaseActivity {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onGetMessage(MessageWrap message) {
+        Log.i("zzz", " -->"+message.message );
+        tip.setText(message.message);
+    }
+
+
     @Override
     protected int getLayout() {
         return R.layout.activity_finish_answer;
@@ -66,7 +83,7 @@ public class AnswerFinishActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
+        EventBus.getDefault().unregister(this);
     }
 
 }

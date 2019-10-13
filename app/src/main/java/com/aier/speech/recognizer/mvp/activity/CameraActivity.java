@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.bean.FaceCheckBean;
@@ -40,9 +41,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 public class CameraActivity extends BaseActivity implements CameraContract.View {
     private static final String TAG = "CameraActivity";
@@ -84,7 +89,8 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
     TextView right_score_3;
     @BindView(R.id.right_score_4)
     TextView right_score_4;
-
+    @BindView(R.id.tip)
+    TextView tip;
 
     CascadeClassifier cascadeClassifier;
 
@@ -94,7 +100,7 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
     String fileName;
     private CameraPresenter presenter;
     private boolean isPhoto = false;
-
+    private Disposable mDisposable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,8 +152,23 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
         });
 
         initClassifier();
-
+        heartinterval();
     }
+
+
+    /**
+     * 发送心跳数据
+     */
+    private void heartinterval() {
+        mDisposable = Flowable.interval(0, 5, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    presenter.getMsgData();
+                    Log.i("sss",">>>>>>>>>>>>>>>>>>>>>心跳");
+                });
+    }
+
+
 
     @OnClick({R.id.iv_answer_question, R.id.iv_right_btn, R.id.iv_left_btn, R.id.jj_icon})
     public void onClick(View view) {
@@ -356,6 +377,13 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
         ToastyUtil.INSTANCE.showInfo(msg);
     }
 
+    @Override
+    public void backMsg(String msg) {
+        tip.setText(msg);
+        SharedPreferencesUtil.putString(this,"tips",msg);
+        EventBus.getDefault().post(MessageWrap.getInstance(msg));
+    }
+
     private void deletePic() {
         if (fileName != null) {
             File file = new File(fileName);
@@ -373,6 +401,8 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
             mCameraView.disableView();
         }
         presenter.dispose();
+        if (mDisposable != null) {
+            mDisposable.dispose();
+        }
     }
-
 }

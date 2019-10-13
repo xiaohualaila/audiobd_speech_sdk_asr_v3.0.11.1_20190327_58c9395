@@ -24,8 +24,10 @@ import com.aier.speech.recognizer.bean.EventResult;
 import com.aier.speech.recognizer.bean.MapDataResult;
 import com.aier.speech.recognizer.bean.MapSearchResult;
 import com.aier.speech.recognizer.bean.RenWuResult;
+import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.contract.MapContract;
 import com.aier.speech.recognizer.mvp.presenter.MapPresenter;
+import com.aier.speech.recognizer.util.SharedPreferencesUtil;
 import com.aier.speech.recognizer.util.ToastyUtil;
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.CameraUpdateFactory;
@@ -37,6 +39,10 @@ import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.animation.Animation;
 import com.amap.api.maps.model.animation.ScaleAnimation;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -60,6 +66,9 @@ public class MapActivity extends BaseActivity implements MapContract.View,
     ImageView iv_delete;
     @BindView(R.id.ll_right)
     LinearLayout ll_right;
+    @BindView(R.id.tip)
+    TextView tip;
+
 
     private int type = 1;
     Marker marker;
@@ -75,6 +84,9 @@ public class MapActivity extends BaseActivity implements MapContract.View,
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().unregister(this);
+        String msg = SharedPreferencesUtil.getString(this,"tips","");
+        tip.setText(msg);
         presenter = new MapPresenter(this);
         mapView = findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);// 此方法必须重写
@@ -241,17 +253,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
         mapView.onSaveInstanceState(outState);
     }
 
-    /**
-     * 方法必须重写
-     */
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (aMap != null) {//清除marker
-            marker.destroy();
-        }
-        mapView.onDestroy();
-    }
+
 
 
     private Map<String, String> map = new HashMap<>();
@@ -501,4 +503,23 @@ public class MapActivity extends BaseActivity implements MapContract.View,
         hideKeyboard();
         et.setText("");
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onGetMessage(MessageWrap message) {
+        Log.i("zzz", " -->"+message.message );
+        tip.setText(message.message);
+    }
+    /**
+     * 方法必须重写
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+        if (aMap != null) {//清除marker
+            marker.destroy();
+        }
+        mapView.onDestroy();
+    }
+
 }

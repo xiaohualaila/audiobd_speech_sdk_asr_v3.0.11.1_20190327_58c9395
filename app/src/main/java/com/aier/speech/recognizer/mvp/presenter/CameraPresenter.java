@@ -162,6 +162,10 @@ public class CameraPresenter extends BasePresenter implements CameraContract.Per
                 });
     }
 
+    @Override
+    public void getMsgData() {
+        view.backMsg("小虎你中奖了！");
+    }
 
 
 }

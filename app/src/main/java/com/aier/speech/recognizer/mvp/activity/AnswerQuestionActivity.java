@@ -15,9 +15,14 @@ import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.adapter.AnswerAdapter;
 import com.aier.speech.recognizer.bean.AnswerQuestionResult;
 import com.aier.speech.recognizer.bean.ListBean;
+import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.contract.AnswerQuestionContract;
 import com.aier.speech.recognizer.mvp.presenter.AnswerQuestionPresenter;
 import com.aier.speech.recognizer.util.ToastyUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -33,6 +38,8 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     ImageView iv_people;
     @BindView(R.id.tv_num_question)
     TextView tv_num_question;
+    @BindView(R.id.tip)
+    TextView tip;
     private AnswerQuestionPresenter presenter;
     private AnswerAdapter mMyAdapter;
     private List questionslist;
@@ -45,6 +52,9 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().unregister(this);
+        String msg = getIntent().getStringExtra("msg");
+        tip.setText(msg);
         presenter = new AnswerQuestionPresenter(this);
         presenter.loadData();
     }
@@ -106,11 +116,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        presenter.dispose();
-    }
+
 
     @Override
     public void getDataSuccess(AnswerQuestionResult value) {
@@ -147,5 +153,20 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     @Override
     public void getDataFail() {
         ToastyUtil.INSTANCE.showError("网络请求失败！");
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onGetMessage(MessageWrap message) {
+        Log.i("zzz", " -->"+message.message );
+        tip.setText(message.message);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.dispose();
+        EventBus.getDefault().unregister(this);
     }
 }

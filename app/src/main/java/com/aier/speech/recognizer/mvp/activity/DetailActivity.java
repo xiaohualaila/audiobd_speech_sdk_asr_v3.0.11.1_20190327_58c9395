@@ -2,6 +2,7 @@ package com.aier.speech.recognizer.mvp.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -12,10 +13,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.bean.YUBAIBean;
+import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.contract.DetailContract;
 import com.aier.speech.recognizer.mvp.presenter.DetailPresenter;
 import com.aier.speech.recognizer.util.ImageUtils;
+import com.aier.speech.recognizer.util.SharedPreferencesUtil;
 import com.google.android.flexbox.FlexboxLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -36,6 +43,8 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
     WebView mWebView;
     @BindView(R.id.flexbox)
     FlexboxLayout layout;
+    @BindView(R.id.tip)
+    TextView tip;
     private DetailPresenter presenter;
     String[] strings = {"寒食过", "云雨消", "不夜侯正好", "又是一年", "采茶时节暖阳照", "风追着",
             "蝴蝶跑", "谁家种红苕", "木犁松土", "地龙惊兮蚁出巢", "翠盈盈", "悠香飘"};
@@ -43,6 +52,7 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         presenter = new DetailPresenter(this);
 
         Bundle bundle = getIntent().getExtras();
@@ -53,11 +63,12 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
         String img =  bundle.getString("img");
         speak("您回到红军时代是" + name + "相似度" + score + "%" + duty);
         ImageUtils.image(this,img,iv_photo);
+        String msg =SharedPreferencesUtil.getString(this,"tips","");
+        tip.setText(msg);
         tv_name.setText(name);
         tv_work.setText(duty);
         tv_history.setText("   "+description);
         tv_score.setText(score);
-      //  presenter.loadData(name);
         initWebSettings();
         mWebView.loadUrl("https://www.zq-ai.com/#/redkg?name="+name);
         addFlexBox();
@@ -163,10 +174,18 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
 
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onGetMessage(MessageWrap message) {
+            Log.i("zzz", " -->"+message.message );
+//        speak(message.message);
+        tip.setText(message.message);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         presenter.dispose();
+        EventBus.getDefault().unregister(this);
     }
 
 
