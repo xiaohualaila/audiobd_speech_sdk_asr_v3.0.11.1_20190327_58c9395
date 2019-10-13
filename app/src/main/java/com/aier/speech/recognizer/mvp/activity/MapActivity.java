@@ -14,6 +14,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aier.speech.recognizer.R;
@@ -55,19 +56,12 @@ public class MapActivity extends BaseActivity implements MapContract.View,
     @BindView(R.id.et)
     EditText et;
 
-    @BindView(R.id.tv_renwu)//人物
-            TextView tv_renwu;
-    @BindView(R.id.tv_fengjing)//风景
-            TextView tv_fengjing;
-    @BindView(R.id.tv_dang)//党支部
-            TextView tv_dang;
-    @BindView(R.id.tv_story)//故事
-            TextView tv_story;
     @BindView(R.id.iv_delete)
     ImageView iv_delete;
+    @BindView(R.id.ll_right)
+    LinearLayout ll_right;
 
-
-    private int type =1;
+    private int type = 1;
     Marker marker;
     private CustomMapStyleOptions mapStyleOptions = new CustomMapStyleOptions();
 
@@ -102,7 +96,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                 String str = s.toString();
                 if (str.trim().length() > 0) {
                     presenter.searchData(str);
-                    setViewGone();
+//                    ll_right.setVisibility(View.GONE);
                 }
                 Log.i("aaa", str);
             }
@@ -111,13 +105,12 @@ public class MapActivity extends BaseActivity implements MapContract.View,
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // 输入前的监听
                 Log.e("输入前确认执行该方法", "开始输入");
-                setViewGone();
+//                ll_right.setVisibility(View.GONE);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                setViewVisible();
-
+//                ll_right.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -170,18 +163,10 @@ public class MapActivity extends BaseActivity implements MapContract.View,
     }
 
     @OnClick({R.id.take_photo, R.id.iv_back, R.id.iv_back_, R.id.iv_right_btn, R.id.iv_delete,
-            R.id.iv_answer_question, R.id.tv_renwu, R.id.tv_fengjing, R.id.tv_dang, R.id.tv_story,})
+            R.id.iv_answer_question, R.id.tv_renwu, R.id.tv_fengjing, R.id.tv_dang, R.id.tv_story,
+            R.id.iv_search})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.take_photo:
-                finish();
-                break;
-            case R.id.iv_back:
-                finish();
-                break;
-            case R.id.iv_back_:
-                finish();
-                break;
             case R.id.iv_right_btn://菜单
                 startActiviys(MapActivity.class);
                 finish();
@@ -190,7 +175,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                 et.setText("");
                 hideKeyboard();
                 adapter.setListData(null);
-                setViewVisible();
+                ll_right.setVisibility(View.VISIBLE);
                 break;
             case R.id.iv_answer_question:
                 startActiviys(AnswerQuestionActivity.class);
@@ -212,13 +197,21 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                 type = 2;
                 presenter.loadMapData("2");
                 break;
+            case R.id.iv_search:
+                ll_right.setVisibility(View.VISIBLE);
+                break;
+            default:
+                finish();
+                break;
         }
     }
 
     private void hideKeyboard() {
         //隐藏软键盘
         InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(et.getWindowToken(), 0);
+        }
     }
 
     /**
@@ -309,16 +302,16 @@ public class MapActivity extends BaseActivity implements MapContract.View,
 
     private void growInto(final Marker marker) {
         if (oldMarker != null) {
-            if(type==1){
+            if (type == 1) {
                 oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
                         R.drawable.jingdian_marker));
-            }else if(type==2){
+            } else if (type == 2) {
                 oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
                         R.drawable.story_marker));
-            } else if(type==3){
+            } else if (type == 3) {
                 oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
                         R.drawable.people_marker));
-            }else{
+            } else {
                 oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
                         R.drawable.small_dang_marker));
             }
@@ -336,13 +329,13 @@ public class MapActivity extends BaseActivity implements MapContract.View,
         ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
         String str = map.get(marker.getId());
         marker_title.setText(str);
-        if(type==1){
+        if (type == 1) {
             marker_pic.setImageResource(R.drawable.jingdian_marker_big);
-        }else if(type==2){
+        } else if (type == 2) {
             marker_pic.setImageResource(R.drawable.story_marker_big);
-        }else if(type==3){
+        } else if (type == 3) {
             marker_pic.setImageResource(R.drawable.people_marker_big);
-        }else  {
+        } else {
             marker_pic.setImageResource(R.drawable.jingdian_marker_big);
         }
         marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
@@ -357,7 +350,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
     @Override
     public void getSearchDataSuccess(MapSearchResult.DataBean bean) {
         adapter.setListData(bean.getList());
-        setViewGone();
+//        ll_right.setVisibility(View.GONE);
     }
 
     //2景点
@@ -447,30 +440,30 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                     AllMapResult.DataBean.ListBean bean = listBeans.get(i);
                     mlatLng = new LatLng(Double.valueOf(bean.getLat()), Double.valueOf(bean.getLng()));
                     if (i == 0) {
-                        if(type==2){
-                            aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(25.613346582293,115.0069737372)));
-                        }else if(type==3){
-                            aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(26.006830785714,115.70202539626)));
-                        }else {
+                        if (type == 2) {
+                            aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(25.613346582293, 115.0069737372)));
+                        } else if (type == 3) {
+                            aMap.moveCamera(CameraUpdateFactory.changeLatLng(new LatLng(26.006830785714, 115.70202539626)));
+                        } else {
                             aMap.moveCamera(CameraUpdateFactory.changeLatLng(mlatLng));
                         }
                     }
-                    if(type == 1){
+                    if (type == 1) {
                         markerOption = new MarkerOptions()
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.jingdian_marker))
                                 .position(mlatLng)
                                 .draggable(true);
-                    }else if(type == 2){
+                    } else if (type == 2) {
                         markerOption = new MarkerOptions()
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.story_marker))
                                 .position(mlatLng)
                                 .draggable(true);
-                    }else if(type == 3){
+                    } else if (type == 3) {
                         markerOption = new MarkerOptions()
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.people_marker))
                                 .position(mlatLng)
                                 .draggable(true);
-                    }else {
+                    } else {
                         markerOption = new MarkerOptions()
                                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.small_dang_marker))
                                 .position(mlatLng)
@@ -478,9 +471,9 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                     }
 
                     marker = aMap.addMarker(markerOption);
-                    if(type==3){
+                    if (type == 3) {
                         map.put(marker.getId(), bean.getName());
-                    }else {
+                    } else {
                         map.put(marker.getId(), bean.getTitle());
                     }
 
@@ -489,26 +482,11 @@ public class MapActivity extends BaseActivity implements MapContract.View,
         }
     }
 
-    private void setViewGone() {
-        tv_renwu.setVisibility(View.GONE);
-        tv_fengjing.setVisibility(View.GONE);
-        tv_story.setVisibility(View.GONE);
-        tv_dang.setVisibility(View.GONE);
-        mRecyclerView.setVisibility(View.VISIBLE);
-    }
-
-    private void setViewVisible() {
-        tv_renwu.setVisibility(View.VISIBLE);
-        tv_fengjing.setVisibility(View.VISIBLE);
-        tv_story.setVisibility(View.VISIBLE);
-        tv_dang.setVisibility(View.VISIBLE);
-        mRecyclerView.setVisibility(View.GONE);
-    }
 
     @Override
     public void backSearch(MapSearchResult.DataBean.ListBean data) {
         int t = data.getType();//1人物 2景点 3事件
-        Log.i("sss", "type " + t+"  name " +data.getKeyword());
+        Log.i("sss", "type " + t + "  name " + data.getKeyword());
         if (t == 1) {
             type = 3;
             presenter.searchRenWuDetailData(data.getKeyword());
@@ -519,7 +497,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
             type = 2;
             presenter.searchEventMapData(data.getKeyword());
         }
-        setViewVisible();
+        ll_right.setVisibility(View.GONE);
         hideKeyboard();
         et.setText("");
     }

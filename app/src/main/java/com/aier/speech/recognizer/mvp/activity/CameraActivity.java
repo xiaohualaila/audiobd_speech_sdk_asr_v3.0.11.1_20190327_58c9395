@@ -94,13 +94,14 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
     String fileName;
     private CameraPresenter presenter;
     private boolean isPhoto = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new CameraPresenter(this);
 
-      //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
-         mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
+        //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
+        mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);//打开前置摄像头
         mCameraView.setCvCameraViewListener(new CameraBridgeViewBase.CvCameraViewListener() {
             @Override
             public void onCameraViewStarted(int width, int height) {
@@ -125,16 +126,16 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
                 int faceCount = facesArray.length;
                 if (faceCount > 0) {
 
-                        File folder = new File(PATH);
-                        if (!folder.exists()) {
-                            folder.mkdirs();
-                        }
-                        if(!isPhoto){
-                            isPhoto =true;
-                            savePicture(aInputFrame);
-                            Log.i(TAG, "拍摄照片啦");
-                        }
+                    File folder = new File(PATH);
+                    if (!folder.exists()) {
+                        folder.mkdirs();
                     }
+                    if (!isPhoto) {
+                        isPhoto = true;
+                        savePicture(aInputFrame);
+                        Log.i(TAG, "拍摄照片啦");
+                    }
+                }
 
                 for (int i = 0; i < facesArray.length; i++) {
                     Imgproc.rectangle(aInputFrame, facesArray[i].tl(), facesArray[i].br(), new Scalar(0, 255, 0, 255), 3);
@@ -148,7 +149,7 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
 
     }
 
-    @OnClick({R.id.iv_answer_question, R.id.iv_right_btn, R.id.iv_left_btn,R.id.jj_icon})
+    @OnClick({R.id.iv_answer_question, R.id.iv_right_btn, R.id.iv_left_btn, R.id.jj_icon})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_answer_question:
@@ -165,7 +166,6 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
                 break;
         }
     }
-
 
 
     @Override
@@ -194,8 +194,9 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
         FileOutputStream outputStream = null;
         try {
             outputStream = new FileOutputStream(fileName);
+           Bitmap bitmap1 = edgeBitmap(bitmap);
             //int quality 图像压缩率，0-100。 0 压缩100%，100意味着不压缩；
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 50, outputStream);
+            bitmap1.compress(Bitmap.CompressFormat.JPEG, 50, outputStream);
             outputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
@@ -211,6 +212,20 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
             }
         }
     }
+
+    /**
+     * Bitmap 剪切成正方形
+     *
+     * @param bitmap
+     * @return
+     */
+    public Bitmap edgeBitmap(Bitmap bitmap) {
+        int size = bitmap.getWidth() < bitmap.getHeight() ? bitmap.getWidth() : bitmap.getHeight();
+        //剪切成正方形
+        Bitmap bitmap2 = Bitmap.createBitmap(bitmap, 0, 0, size, size);
+        return bitmap2;
+    }
+
 
     public long getTime() {
         return Calendar.getInstance().getTimeInMillis();
@@ -271,10 +286,10 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
     @Override
     public void getUniqidDataSuccess(UniqidResult value) {
         String id = value.getData().getUniqid();
-        if(!TextUtils.isEmpty(id)){
-            SharedPreferencesUtil.putString(this,"uniqid",value.getData().getUniqid());
-        }else{
-            SharedPreferencesUtil.putString(this,"uniqid","");
+        if (!TextUtils.isEmpty(id)) {
+            SharedPreferencesUtil.putString(this, "uniqid", value.getData().getUniqid());
+        } else {
+            SharedPreferencesUtil.putString(this, "uniqid", "");
         }
         deletePic();
     }
@@ -286,51 +301,51 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
 
     @Override
     public void getUniqidDataFail() {
-        SharedPreferencesUtil.putString(this,"uniqid","");
+        SharedPreferencesUtil.putString(this, "uniqid", "");
         deletePic();
     }
 
     @Override
     public void getQuestionRankDataSuccess(QuestionRankResult value) {
         QuestionRankResult.DataBean dataBean = value.getData();
-        List<QuestionRankResult.DataBean.LeftBean> leftBeans =dataBean.getLeft();
-        if(leftBeans.size()>0){
+        List<QuestionRankResult.DataBean.LeftBean> leftBeans = dataBean.getLeft();
+        if (leftBeans.size() > 0) {
             QuestionRankResult.DataBean.LeftBean leftBean;
-            for(int i=0;i<leftBeans.size();i++){
+            for (int i = 0; i < leftBeans.size(); i++) {
                 leftBean = leftBeans.get(i);
-                if(i==0){
-                    //  ImageUtils.imageRound2(this,leftBean.getImage(),iv_left_pic_1);
-                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_1);
-                    left_score_1.setText("总得分："+leftBean.getScore()+"分");
-                }else if(i==1){
-                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_2);
-                    left_score_2.setText("总得分："+leftBean.getScore()+"分");
-                }else if (i==2){
-                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_3);
-                    left_score_3.setText("总得分："+leftBean.getScore()+"分");
-                }else if(i==3){
-                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_4);
-                    left_score_4.setText("总得分："+leftBean.getScore()+"分");
+                if (i == 0) {
+                   //   ImageUtils.imageRound2(this,leftBean.getImage(),iv_left_pic_1);
+                    ImageUtils.imageCorners(this, leftBean.getImage(), iv_left_pic_1);
+                    left_score_1.setText("总得分：" + leftBean.getScore() + "分");
+                } else if (i == 1) {
+                    ImageUtils.imageCorners(this, leftBean.getImage(), iv_left_pic_2);
+                    left_score_2.setText("总得分：" + leftBean.getScore() + "分");
+                } else if (i == 2) {
+                    ImageUtils.imageCorners(this, leftBean.getImage(), iv_left_pic_3);
+                    left_score_3.setText("总得分：" + leftBean.getScore() + "分");
+                } else if (i == 3) {
+                    ImageUtils.imageCorners(this, leftBean.getImage(), iv_left_pic_4);
+                    left_score_4.setText("总得分：" + leftBean.getScore() + "分");
                 }
             }
         }
-        List<QuestionRankResult.DataBean.RightBean> rightBeans =dataBean.getRight();
-        if(rightBeans.size()>0){
+        List<QuestionRankResult.DataBean.RightBean> rightBeans = dataBean.getRight();
+        if (rightBeans.size() > 0) {
             QuestionRankResult.DataBean.RightBean rightBean;
-            for(int i=0;i<rightBeans.size();i++){
+            for (int i = 0; i < rightBeans.size(); i++) {
                 rightBean = rightBeans.get(i);
-                if(i==0){
-                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_1);
-                    right_score_1.setText("总得分："+rightBean.getScore()+"分");
-                }else if(i==1){
-                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_2);
-                    right_score_2.setText("总得分："+rightBean.getScore()+"分");
-                }else if (i==2){
-                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_3);
-                    right_score_3.setText("总得分："+rightBean.getScore()+"分");
-                }else if(i==3){
-                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_4);
-                    right_score_4.setText("总得分："+rightBean.getScore()+"分");
+                if (i == 0) {
+                    ImageUtils.imageCorners(this, rightBean.getImage(), iv_right_pic_1);
+                    right_score_1.setText("总得分：" + rightBean.getScore() + "分");
+                } else if (i == 1) {
+                    ImageUtils.imageCorners(this, rightBean.getImage(), iv_right_pic_2);
+                    right_score_2.setText("总得分：" + rightBean.getScore() + "分");
+                } else if (i == 2) {
+                    ImageUtils.imageCorners(this, rightBean.getImage(), iv_right_pic_3);
+                    right_score_3.setText("总得分：" + rightBean.getScore() + "分");
+                } else if (i == 3) {
+                    ImageUtils.imageCorners(this, rightBean.getImage(), iv_right_pic_4);
+                    right_score_4.setText("总得分：" + rightBean.getScore() + "分");
                 }
             }
         }
@@ -342,7 +357,7 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
     }
 
     private void deletePic() {
-        if(fileName!=null){
+        if (fileName != null) {
             File file = new File(fileName);
             if (file.exists()) {
                 file.delete();

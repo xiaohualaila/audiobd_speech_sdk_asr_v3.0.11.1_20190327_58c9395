@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.amap.api.maps.MapView
@@ -48,14 +47,69 @@
 <!--        app:layout_constraintBottom_toBottomOf="parent" />-->
 
 
+
+    <LinearLayout
+        android:id="@+id/ll_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/ll_choose"
+        app:layout_constraintLeft_toLeftOf="@+id/ll_choose"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_choose"
+        android:background="@drawable/white_bording"
+        android:paddingLeft="40dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/bg_gray"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/search_icon"/>
+            <EditText
+                android:id="@+id/et"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:layout_height="match_parent"/>
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/delete_icon"/>
+        </LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_search"
+            app:layout_constraintTop_toBottomOf="@+id/ll_shuru"
+            app:layout_constraintLeft_toRightOf="@+id/ll_choose"
+            android:layout_width="300dp"
+            android:layout_height="300dp"/>
+
+
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_choose"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="150dp"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:background="@drawable/map_choose_btns"
@@ -78,6 +132,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:src="@drawable/people_icon" />
         <TextView
             android:id="@+id/tv_renwu"
@@ -91,6 +146,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:src="@drawable/attractions_icon" />
         <TextView
             android:id="@+id/tv_fengjing"
@@ -104,62 +160,42 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:src="@drawable/party_branch_icon" />
         <TextView
             android:id="@+id/tv_dang"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="党支部"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:gravity="center_horizontal"
             android:layout_marginTop="10dp" />
 
         <ImageView
+            android:id="@+id/iv_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/search_icon"/>
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_shuru"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        app:layout_constraintTop_toTopOf="@+id/ll_choose"
-        app:layout_constraintLeft_toRightOf="@+id/ll_choose"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:background="@drawable/bg_gray"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-        <ImageView
-            android:id="@+id/search_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:src="@drawable/search_icon"/>
-        <EditText
-            android:id="@+id/et"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:layout_height="match_parent"/>
-        <ImageView
-            android:id="@+id/iv_delete"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/delete_icon"/>
+            android:text="搜索"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="10dp" />
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_search"
-        app:layout_constraintTop_toBottomOf="@+id/ll_shuru"
-        app:layout_constraintLeft_toRightOf="@+id/ll_choose"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="300dp"/>
+    <View
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="120dp"
+        android:background="@color/red"/>
     <include
         layout="@layout/common_bottom_view"
         app:layout_constraintBottom_toBottomOf="parent"
