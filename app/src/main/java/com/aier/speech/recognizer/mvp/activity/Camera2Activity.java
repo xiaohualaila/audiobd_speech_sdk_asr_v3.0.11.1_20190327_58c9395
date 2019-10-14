@@ -107,7 +107,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     Mat grayscaleImage;
     private int absoluteFaceSize;
     private CameraPresenter presenter;
-    private Disposable mDisposable;
+  //  private Disposable mDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,25 +122,25 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         grayscaleImage = new Mat(height, width, CvType.CV_8UC4);
         absoluteFaceSize = (int) (height * 0.2);
         initClassifier();
-        heartinterval();
+//        heartinterval();
     }
 
     /**
      * 发送心跳数据
      */
-    private void heartinterval() {
-        mDisposable = Flowable.interval(0, 4, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> {
-                    takePhoto();
-             //       Log.i("sss", ">>>>>>>>>>>>>>>>>>>>>心跳");
-                });
-    }
+//    private void heartinterval() {
+//        mDisposable = Flowable.interval(0, 4, TimeUnit.SECONDS)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(aLong -> {
+//                    takePhoto();
+//             //       Log.i("sss", ">>>>>>>>>>>>>>>>>>>>>心跳");
+//                });
+//    }
 
 
     @Override
     protected int getLayout() {
-        return R.layout.activity_camera5;
+        return R.layout.activity_camera2;
     }
 
     private void initClassifier() {
@@ -250,12 +250,12 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         int faceCount = facesArray.length;
         if (faceCount > 0) {
             Log.i("ccc", "有人脸的照片");
-            ToastyUtil.INSTANCE.showInfo("识别到人脸");
+            ToastyUtil.INSTANCE.showSuccess("正在穿越红军时代");
             presenter.upLoadPicFile(filePath);
         } else {
             deletePic();
             isPhoto = false;
-           // ToastyUtil.INSTANCE.showInfo("未识别到人脸");
+            ToastyUtil.INSTANCE.showError("请重新拍照！");
             Log.i("ccc", "没有人脸的照片");
         }
     }
@@ -288,9 +288,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         super.onDestroy();
         closeCamera();
         presenter.dispose();
-        if (mDisposable != null) {
-            mDisposable.dispose();
-        }
+//        if (mDisposable != null) {
+//            mDisposable.dispose();
+//        }
     }
 
     @Override

@@ -63,6 +63,13 @@
 
         </activity>
         <activity
+            android:name=".mvp.activity.CameraActivity3"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="OpenCV相机界面"
+            android:launchMode="singleTask">
+
+        </activity>
+        <activity
             android:name=".mvp.activity.DetailActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"

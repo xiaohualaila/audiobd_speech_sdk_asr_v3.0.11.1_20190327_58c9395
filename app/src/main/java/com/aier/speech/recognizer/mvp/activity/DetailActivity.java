@@ -126,13 +126,13 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
                     LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(15, 10, 15, 10);
 
-            if (i == 2) {
+            if (i == 0) {
                 textView.setTextColor(getResources().getColor(R.color.red_btn));
                 textView.setTextSize(20f);
-            } else if (i == 4) {
+            } else if (i == 2) {
                 textView.setTextColor(getResources().getColor(R.color.yellow));
                 textView.setTextSize(24f);
-            } else if (i == 6) {
+            } else if (i == 4) {
                 textView.setTextColor(getResources().getColor(R.color.red));
                 textView.setTextSize(22f);
             } else {
