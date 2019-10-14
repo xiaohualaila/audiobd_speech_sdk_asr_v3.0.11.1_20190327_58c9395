@@ -140,10 +140,7 @@ public class MapPresenter extends BasePresenter implements MapContract.Persenter
                             if (value.getError_code()==0) {
                                JingdianResult.DataBean.NewsInfoBean newsInfoBean = value.getData().getNews_info();
                                 if(newsInfoBean!=null){
-                                    String lat = value.getData().getNews_info().getLat();
-                                    String lng = value.getData().getNews_info().getLng();
-                                    String title = value.getData().getNews_info().getTitle();
-                                    view.getLatAndLngMapSuccess(lat,lng,title);
+                                    view.getJingdianMapSuccess(value);
                                 }
                             }else {
                                 view.getDataFail(value.getError_msg());

@@ -10,6 +10,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.adapter.MapSearchAdapter;
 import com.aier.speech.recognizer.bean.AllMapResult;
 import com.aier.speech.recognizer.bean.EventResult;
+import com.aier.speech.recognizer.bean.JingdianResult;
 import com.aier.speech.recognizer.bean.MapDataResult;
 import com.aier.speech.recognizer.bean.MapSearchResult;
 import com.aier.speech.recognizer.bean.RenWuResult;
@@ -117,7 +119,6 @@ public class MapActivity extends BaseActivity implements MapContract.View,
             @Override
             public void afterTextChanged(Editable s) {
                 setViewVisible();
-
             }
         });
     }
@@ -256,7 +257,9 @@ public class MapActivity extends BaseActivity implements MapContract.View,
 
 
     private Map<String, String> map = new HashMap<>();
+    private Map<String, JingdianResult.DataBean.NewsInfoBean> jingdian_map = new HashMap<>();
 
+    private Map<String, AllMapResult.DataBean.ListBean> all_map = new HashMap<>();
     @Override
     public void getDataSuccess(MapDataResult.DataBean dataBean) {
         if (aMap != null) {
@@ -303,13 +306,13 @@ public class MapActivity extends BaseActivity implements MapContract.View,
 
     private void growInto(final Marker marker) {
         if (oldMarker != null) {
-            if(type==1){
+            if(type==1){//景点
                 oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
                         R.drawable.jingdian_marker));
-            }else if(type==2){
+            }else if(type==2){//故事
                 oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
                         R.drawable.story_marker));
-            } else if(type==3){
+            } else if(type==3){//人物
                 oldMarker.setIcon(BitmapDescriptorFactory.fromResource(
                         R.drawable.people_marker));
             }else{
@@ -325,21 +328,76 @@ public class MapActivity extends BaseActivity implements MapContract.View,
         marker.setAnimation(animation);
         //开始动画
         marker.startAnimation();
-        View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
-        TextView marker_title = markerView.findViewById(R.id.marker_title);
-        ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
-        String str = map.get(marker.getId());
-        marker_title.setText(str);
-        if(type==1){
-            marker_pic.setImageResource(R.drawable.jingdian_marker_big);
-        }else if(type==2){
-            marker_pic.setImageResource(R.drawable.story_marker_big);
-        }else if(type==3){
-            marker_pic.setImageResource(R.drawable.people_marker_big);
-        }else  {
-            marker_pic.setImageResource(R.drawable.jingdian_marker_big);
+
+        if(type==5){//景点
+
+            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.jingdian_map_markerview, null);
+            TextView title = markerView.findViewById(R.id.title);
+            TextView address = markerView.findViewById(R.id.address);
+            TextView chengli_time = markerView.findViewById(R.id.chengli_time);
+            TextView tv_jianjie = markerView.findViewById(R.id.tv_jianjie);
+
+            JingdianResult.DataBean.NewsInfoBean bean = jingdian_map.get(marker.getId());
+            title.setText(bean.getTitle());
+            address.setText(bean.getIntro());
+            chengli_time.setText(bean.getIntro());
+            tv_jianjie.setText(bean.getDescription());
+            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
         }
-        marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
+//        else if(type==2){//故事
+//            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
+//            TextView marker_title = markerView.findViewById(R.id.marker_title);
+//            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
+//            AllMapResult.DataBean.ListBean str = all_map.get(marker.getId());
+//            marker_title.setText(str);
+//            marker_pic.setImageResource(R.drawable.story_marker_big);
+//            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
+//        }
+//        else if(type==3){//人物
+//            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.map_markerview, null);
+//            TextView marker_title = markerView.findViewById(R.id.marker_title);
+//            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
+//            String str = map.get(marker.getId());
+//            marker_title.setText(str);
+//            marker_pic.setImageResource(R.drawable.people_marker_big);
+//            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
+//        }
+        else  {
+//            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.jingdian_map_markerview, null);
+//            TextView marker_title = markerView.findViewById(R.id.marker_title);
+//            ImageView marker_pic = markerView.findViewById(R.id.marker_pic);
+//            String str = map.get(marker.getId());
+//            marker_title.setText(str);
+//            marker_pic.setImageResource(R.drawable.jingdian_marker_big);
+//            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
+            View markerView = ViewGroup.inflate(MapActivity.this, R.layout.jingdian_map_markerview, null);
+            TextView title = markerView.findViewById(R.id.title);
+            TextView address = markerView.findViewById(R.id.address);
+            TextView chengli_time = markerView.findViewById(R.id.chengli_time);
+            TextView tv_jianjie = markerView.findViewById(R.id.tv_jianjie);
+
+            AllMapResult.DataBean.ListBean bean = all_map.get(marker.getId());
+            title.setText(bean.getTitle());
+            address.setText("中央人类的是否上的广告电梯");
+            chengli_time.setText("1094年");
+            tv_jianjie.setText("与第三方第三方范德萨发顺丰发达省份的幅度萨芬范德萨给");
+
+
+            ImageView marker_icon = markerView.findViewById(R.id.marker_icon);
+            if(type ==1){
+                marker_icon.setImageResource(R.drawable.jingdian_marker_big);
+            }else if(type ==2){
+                marker_icon.setImageResource(R.drawable.story_marker_big);
+            }else if(type ==3){
+                marker_icon.setImageResource(R.drawable.people_marker_big);
+            }else {
+                marker_icon.setImageResource(R.drawable.jingdian_marker_big);
+            }
+
+
+            marker.setIcon(BitmapDescriptorFactory.fromView(markerView));
+        }
+
         oldMarker = marker;
     }
 
@@ -356,13 +414,14 @@ public class MapActivity extends BaseActivity implements MapContract.View,
 
     //2景点
     @Override
-    public void getLatAndLngMapSuccess(String lat, String lng, String title) {
+    public void getJingdianMapSuccess(JingdianResult value) {
         if (aMap != null) {
             aMap.clear();
-            map.clear();
+            jingdian_map.clear();
         }
-        double d_lat = Double.valueOf(lat);
-        double d_lng = Double.valueOf(lng);
+        JingdianResult.DataBean.NewsInfoBean bean =value.getData().getNews_info();
+        double d_lat = Double.valueOf(bean.getLat());
+        double d_lng = Double.valueOf(bean.getLng());
         LatLng latLng = new LatLng(d_lat, d_lng);
         aMap.moveCamera(CameraUpdateFactory.changeLatLng(latLng));//将地图移动到指定位置
         markerOption = new MarkerOptions()
@@ -370,9 +429,12 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                 .position(latLng)
                 .draggable(true);
         marker = aMap.addMarker(markerOption);
-        map.put(marker.getId(), title);
+        jingdian_map.put(marker.getId(), bean);
 
     }
+
+
+
 
     //1人物
     @Override
@@ -472,11 +534,15 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                     }
 
                     marker = aMap.addMarker(markerOption);
-                    if(type == 3){
-                        map.put(marker.getId(), bean.getName());
-                    }else {
-                        map.put(marker.getId(), bean.getTitle());
-                    }
+
+                    all_map.put(marker.getId(),bean);
+//                     if(type == 3){
+//                        map.put(marker.getId(), bean.getName());
+//                    }else {
+//                        map.put(marker.getId(), bean.getTitle());
+//                    }
+
+
                 }
             }
         }
@@ -501,15 +567,15 @@ public class MapActivity extends BaseActivity implements MapContract.View,
     @Override
     public void backSearch(MapSearchResult.DataBean.ListBean data) {
         int t = data.getType();//1人物 2景点 3事件
-        Log.i("sss", "type " + t+"  name " +data.getKeyword());
+        Log.i("sss", "类型 " + t+"  name " +data.getKeyword());
         if (t == 1) {
-            type = 3;
+            type = 6;
             presenter.searchRenWuDetailData(data.getKeyword());
         } else if (t == 2) {
-            type = 1;
+            type = 5;
             presenter.searchJingDianDetailData(data.getKeyword());
         } else if (t == 3) {
-            type = 2;
+            type = 7;
             presenter.searchEventMapData(data.getKeyword());
         }
         setViewVisible();

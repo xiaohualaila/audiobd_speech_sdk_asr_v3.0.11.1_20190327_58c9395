@@ -3,6 +3,7 @@ package com.aier.speech.recognizer.mvp.contract;
 
 import com.aier.speech.recognizer.bean.AllMapResult;
 import com.aier.speech.recognizer.bean.EventResult;
+import com.aier.speech.recognizer.bean.JingdianResult;
 import com.aier.speech.recognizer.bean.MapDataResult;
 import com.aier.speech.recognizer.bean.MapSearchResult;
 import com.aier.speech.recognizer.bean.RenWuResult;
@@ -26,7 +27,7 @@ public class MapContract {
         void getDataSuccess(MapDataResult.DataBean dataBean);
         void getDataFail(String msg);
         void getSearchDataSuccess(MapSearchResult.DataBean bean);
-        void getLatAndLngMapSuccess(String lat,String lng,String title);
+        void getJingdianMapSuccess(JingdianResult value);
 
         void getRenWuMapSuccess(List<RenWuResult.DataBean.ListBean> listBeans);
 
