@@ -8,7 +8,7 @@
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="130dp"/>
+        android:layout_marginBottom="120dp"/>
 
     <ImageView
         android:id="@+id/iv_back"
@@ -51,15 +51,15 @@
     <LinearLayout
         android:id="@+id/ll_right"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="@+id/ll_choose"
         app:layout_constraintLeft_toLeftOf="@+id/ll_choose"
         app:layout_constraintBottom_toBottomOf="@+id/ll_choose"
         android:background="@drawable/white_bording"
-        android:paddingLeft="40dp"
-        android:paddingTop="20dp"
+        android:paddingLeft="60dp"
         android:paddingRight="20dp"
-        android:paddingBottom="20dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="150dp"
         android:layout_marginLeft="20dp"
         android:visibility="gone"
         android:orientation="vertical">
@@ -67,6 +67,8 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:focusable="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
             android:focusableInTouchMode="true"
             android:background="@drawable/bg_gray"
             android:gravity="center_vertical"
@@ -96,9 +98,8 @@
             app:layout_constraintTop_toBottomOf="@+id/ll_shuru"
             app:layout_constraintLeft_toRightOf="@+id/ll_choose"
             android:layout_width="300dp"
-            android:layout_height="300dp"/>
-
-
+            android:layout_marginLeft="20dp"
+            android:layout_height="match_parent"/>
     </LinearLayout>
     <LinearLayout
         android:id="@+id/ll_choose"
@@ -117,9 +118,10 @@
         android:paddingBottom="50dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/story_icon" />
+            android:id="@+id/iv_story"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/story_icon" />
         <TextView
             android:id="@+id/tv_story"
             android:layout_width="wrap_content"
@@ -130,9 +132,10 @@
             android:textSize="20sp"
             android:gravity="center_horizontal" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
+            android:id="@+id/iv_renwu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
             android:src="@drawable/people_icon" />
         <TextView
             android:id="@+id/tv_renwu"
@@ -144,9 +147,10 @@
             android:gravity="center_horizontal"
             android:text="人物"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
+            android:id="@+id/iv_fengjing"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
             android:src="@drawable/attractions_icon" />
         <TextView
             android:id="@+id/tv_fengjing"
@@ -158,9 +162,10 @@
             android:textSize="20sp"
             android:layout_marginTop="10dp" />
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
+            android:id="@+id/iv_dang"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="30dp"
             android:src="@drawable/party_branch_icon" />
         <TextView
             android:id="@+id/tv_dang"
@@ -178,7 +183,7 @@
             android:id="@+id/iv_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginTop="230dp"
             android:src="@drawable/search_icon"/>
         <TextView
             android:layout_width="wrap_content"

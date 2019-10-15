@@ -20,6 +20,7 @@ public class MapContract {
 
 
         void dangzhibuMapBtn();//党支部
+        void loadMapDataForName(String tab,String name);
     }
 
     public interface View {
@@ -33,6 +34,7 @@ public class MapContract {
         void getEventMapSuccess(EventResult.DataBean data);
 
         void getAllMapSuccess(AllMapResult.DataBean data);
+
     }
 
 

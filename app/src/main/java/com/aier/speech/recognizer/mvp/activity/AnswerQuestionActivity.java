@@ -57,6 +57,8 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
         tip.setText(msg);
         presenter = new AnswerQuestionPresenter(this);
         presenter.loadData();
+        tv_num_question.setText("第一题");
+        iv_people.setImageResource(R.drawable.img1);
     }
 
     @Override
@@ -64,7 +66,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
         return R.layout.activity_answer_question;
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_next, R.id.iv_left_btn, R.id.iv_right_btn})
+    @OnClick({R.id.take_photo, R.id.iv_next, R.id.jj_icon, R.id.iv_left_btn, R.id.iv_right_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -111,6 +113,10 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                 break;
             case R.id.iv_right_btn://菜单
                 startActiviys(MenuActivity.class);
+                finish();
+                break;
+            case R.id.jj_icon:
+                startActiviys(IntroductionActivity.class);
                 finish();
                 break;
         }

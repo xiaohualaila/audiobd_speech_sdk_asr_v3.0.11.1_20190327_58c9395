@@ -2,4 +2,5 @@
 <resources>
     <dimen name="score_photo_w">160dp</dimen>
     <dimen name="score_text_h">20dp</dimen>
+<!--    <dimen name="status_bar_height">0dip</dimen>-->
 </resources>
