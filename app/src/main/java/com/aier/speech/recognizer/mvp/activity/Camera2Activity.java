@@ -1,6 +1,7 @@
 package com.aier.speech.recognizer.mvp.activity;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,13 +9,18 @@ import android.graphics.ImageFormat;
 import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +38,7 @@ import com.aier.speech.recognizer.util.ToastyUtil;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
+import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
@@ -43,6 +50,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -94,20 +102,27 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     TextView right_score_3;
     @BindView(R.id.right_score_4)
     TextView right_score_4;
-
+    @BindView(R.id.tv_countdown)
+    TextView tv_countdown;
+    @BindView(R.id.tv_photo_tip)
+    ImageView tv_photo_tip;
+    @BindView(R.id.gray_bg)
+    ImageView gray_bg;
+    @BindView(R.id.line_icon)
+    ImageView line_icon;
     private Camera camera;
     private String filePath;
     private SurfaceHolder holder;
     private boolean isFrontCamera = true;
     private int width = 640;
     private int height = 480;
-    private boolean isPhoto = false;
+    private boolean isPhoto = true;
 
     CascadeClassifier cascadeClassifier;
     Mat grayscaleImage;
     private int absoluteFaceSize;
     private CameraPresenter presenter;
-  //  private Disposable mDisposable;
+    private Disposable mDisposable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,20 +137,33 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         grayscaleImage = new Mat(height, width, CvType.CV_8UC4);
         absoluteFaceSize = (int) (height * 0.2);
         initClassifier();
-//        heartinterval();
+        heartinterval();
+
     }
 
     /**
      * 发送心跳数据
      */
-//    private void heartinterval() {
-//        mDisposable = Flowable.interval(0, 4, TimeUnit.SECONDS)
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(aLong -> {
-//                    takePhoto();
-//             //       Log.i("sss", ">>>>>>>>>>>>>>>>>>>>>心跳");
-//                });
-//    }
+    private void heartinterval() {
+        mDisposable = Flowable.interval(0, 4, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> {
+                    takePhoto();
+             //       Log.i("sss", ">>>>>>>>>>>>>>>>>>>>>心跳");
+                });
+    }
+
+    private void TransLateAnination(){
+        TranslateAnimation translateAnimation  = new TranslateAnimation(
+                Animation.ABSOLUTE,0f,
+                Animation.ABSOLUTE,0f,
+                Animation.ABSOLUTE,0f,
+                Animation.ABSOLUTE,480f);
+        translateAnimation.setDuration(2000);
+        translateAnimation.setRepeatCount(Animation.INFINITE);
+        line_icon.startAnimation(translateAnimation);
+
+    }
 
 
     @Override
@@ -167,7 +195,10 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
-                takePhoto();
+                //开始计时
+                TransLateAnination();
+                gray_bg.setVisibility(View.VISIBLE);
+                timer.start();
                 break;
             case R.id.iv_answer_question:
                 startActiviys(AnswerQuestionActivity.class);
@@ -180,6 +211,22 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 break;
         }
     }
+
+    CountDownTimer timer = new CountDownTimer(5 * 1000, 1000) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            tv_photo_tip.setVisibility(View.VISIBLE);
+            line_icon.setVisibility(View.VISIBLE);
+            tv_countdown.setText(millisUntilFinished / 1000+"");
+        }
+
+        @Override
+        public void onFinish() {
+            tv_countdown.setText("");
+            isPhoto = false;
+            takePhoto();
+        }
+    };
 
     private void takePhoto() {
         if (!isPhoto) {
@@ -211,7 +258,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             BufferedOutputStream bos = null;
             try {
                 bos = new BufferedOutputStream(new FileOutputStream(file));
-                bm1.compress(Bitmap.CompressFormat.JPEG, 50, bos);
+                Bitmap bitmap2 = edgeBitmap(bm1);
+                bitmap2.compress(Bitmap.CompressFormat.JPEG, 50, bos);
                 bos.flush();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -232,6 +280,22 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             }
         }
     };
+
+
+
+
+    /**
+     * Bitmap 剪切成正方形
+     *
+     * @param bitmap
+     * @return
+     */
+    public Bitmap edgeBitmap(Bitmap bitmap) {
+        int size = bitmap.getWidth() < bitmap.getHeight() ? bitmap.getWidth() : bitmap.getHeight();
+        //剪切成正方形
+        Bitmap bitmap2 = Bitmap.createBitmap(bitmap, 0, 0, size, size);
+        return bitmap2;
+    }
 
     /**
      * 上传信息
@@ -273,7 +337,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     protected void onResume() {
         super.onResume();
         camera = openCamera();
-        isPhoto = false;
+        gray_bg.setVisibility(View.GONE);
+        tv_photo_tip.setVisibility(View.GONE);
+        isPhoto = true;
         presenter.getQuestionRank();
     }
 
@@ -281,6 +347,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     protected void onPause() {
         super.onPause();
         isPhoto = true;
+        line_icon.setVisibility(View.GONE);
+        line_icon.clearAnimation();
     }
 
     @Override
@@ -288,9 +356,10 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         super.onDestroy();
         closeCamera();
         presenter.dispose();
-//        if (mDisposable != null) {
-//            mDisposable.dispose();
-//        }
+        timer.cancel();
+        if (mDisposable != null) {
+            mDisposable.dispose();
+        }
     }
 
     @Override
@@ -341,8 +410,10 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
 //        for(int i=0;i<supportedPreviewSizes.size();i++){
 //            Log.i("sss","widget " +supportedPreviewSizes.get(i).width +"  height " +supportedPreviewSizes.get(i).height);
 //        }
-
+      //  Point realScreenSize = getRealScreenMetrics(Camera2Activity.this);
+    //    Point previewSize = getBestCameraResolution(para, realScreenSize);
         para.setPreviewSize(width, height);
+     //   para.setPreviewSize((int)previewSize.x,(int) previewSize.y);//获得摄像区域的大小
         setPictureSize(para, width, height);
         para.setPictureFormat(ImageFormat.JPEG);//设置图片格式
         setCameraDisplayOrientation(isFrontCamera ? 0 : 1, camera);
@@ -538,5 +609,58 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         if (file.exists()) {
             file.delete();
         }
+    }
+
+
+    public static Point getRealScreenMetrics(Activity context) {
+        int realWidth = 0, realHeight = 0;
+        try {
+            Display display = context.getWindowManager().getDefaultDisplay();
+            DisplayMetrics metrics = new DisplayMetrics();
+            display.getMetrics(metrics);
+            if (android.os.Build.VERSION.SDK_INT >= 17) {
+                Point size = new Point();
+                display.getRealSize(size);
+                realWidth = (int) size.x;
+                realHeight = (int) size.y;
+            } else if (android.os.Build.VERSION.SDK_INT < 17
+                    && android.os.Build.VERSION.SDK_INT >= 14) {
+                Method mGetRawH = Display.class.getMethod("getRawHeight");
+                Method mGetRawW = Display.class.getMethod("getRawWidth");
+                realWidth = (Integer) mGetRawW.invoke(display);
+                realHeight = (Integer) mGetRawH.invoke(display);
+            } else {
+                realWidth = metrics.widthPixels;
+                realHeight = metrics.heightPixels;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new Point(realWidth, realHeight);
+    }
+
+
+    /**
+     * 获取最佳预览大小
+     *
+     * @param parameters       相机参数
+     * @param screenResolution 屏幕宽高
+     * @return
+     */
+    public static Point getBestCameraResolution(Camera.Parameters parameters, Point screenResolution) {
+        float tmp = 0f;
+        float mindiff = 100f;
+        float x_d_y = (float) screenResolution.x / (float) screenResolution.y;
+        Camera.Size best = null;
+        List<Camera.Size> supportedPreviewSizes = parameters.getSupportedPreviewSizes();
+        for (Camera.Size s : supportedPreviewSizes) {
+            tmp = Math.abs(((float) s.height / (float) s.width) - x_d_y);//通过调试运行可以发现，这里的宽是大于高的，也就是横置屏幕的效果。所以我们用高/宽来作为实际竖屏时的宽高比。
+            if (tmp < mindiff) {
+                mindiff = tmp;
+                best = s;
+            }
+        }
+        return new Point(best.width, best.height);
     }
 }
