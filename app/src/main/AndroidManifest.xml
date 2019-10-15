@@ -50,6 +50,13 @@
 
         </activity>
         <activity
+            android:name=".mvp.activity.NewsActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
             android:name=".mvp.activity.CameraActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="人脸识别"

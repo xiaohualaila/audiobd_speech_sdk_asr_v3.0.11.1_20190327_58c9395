@@ -35,6 +35,10 @@ public interface MapSearchApi {
     @POST("getPoint")
     Observable<AllMapResult> getAllMapSearch(@Query("tab") String tab);
 
+    //获取所有地图标记
+    @POST("getPoint")
+    Observable<AllMapResult> getAllMapSearch(@Query("tab") String tab,@Query("name") String name);
+
     //获取关联词条
     @POST("getFigureRelate")
     Observable<GuanlianCitiaoResult> getFigureRelate(@Query("name") String name);

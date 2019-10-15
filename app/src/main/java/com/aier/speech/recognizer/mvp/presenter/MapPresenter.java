@@ -68,6 +68,44 @@ public class MapPresenter extends BasePresenter implements MapContract.Persenter
     }
 
 
+    //获取所有
+    @Override
+    public void loadMapDataForName(String tab,String name) {
+        ApiManager.getInstence().getMapSearchService()
+                .getAllMapSearch(tab,name)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<AllMapResult>() {
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.getDataFail("请求失败！");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        addDisposable(d);
+                    }
+
+                    @Override
+                    public void onNext(AllMapResult value) {
+                        Log.i("xxx", value.toString());
+                        try {
+                            if (value.getError_code()==0) {
+                                view.getAllMapSuccess(value.getData());
+                            }else {
+                                view.getDataFail(value.getError_msg());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
     /**
      * 地图搜索接口
      * @param str

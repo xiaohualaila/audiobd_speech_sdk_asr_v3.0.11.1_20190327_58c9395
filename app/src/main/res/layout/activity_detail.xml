@@ -169,6 +169,16 @@
         android:layout_marginLeft="100dp"
         android:layout_width="match_parent"
         android:layout_height="400dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/web_red_people"
+        android:textColor="@color/white"
+        android:text="以上图谱根据后台数据匹配生成"/>
+
     <TextView
         android:id="@+id/tv_history"
         android:layout_width="340dp"

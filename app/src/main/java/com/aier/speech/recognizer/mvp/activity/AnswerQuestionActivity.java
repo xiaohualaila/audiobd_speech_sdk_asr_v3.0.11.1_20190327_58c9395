@@ -48,6 +48,11 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.activity_answer_question;
     }

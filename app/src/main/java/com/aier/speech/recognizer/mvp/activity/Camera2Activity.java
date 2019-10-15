@@ -110,6 +110,10 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     ImageView gray_bg;
     @BindView(R.id.line_icon)
     ImageView line_icon;
+
+    @BindView(R.id.tip)
+    TextView tip;
+
     private Camera camera;
     private String filePath;
     private SurfaceHolder holder;
@@ -139,6 +143,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         initClassifier();
         heartinterval();
 
+        tip.setText("热烈祝贺2019年赣州经开区“传承红色基因·牢记初心使命”赣南苏区红色故事演讲大赛圆满成功!");
+        tip.setSelected(true);
     }
 
     /**
@@ -191,7 +197,8 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         }
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_answer_question, R.id.iv_right_btn, R.id.iv_left_btn})
+    @OnClick({R.id.take_photo, R.id.iv_answer_question, R.id.iv_right_btn, R.id.iv_left_btn,
+            R.id.ll_tip})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -208,6 +215,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 break;
             case R.id.iv_left_btn://初心地图
                 startActiviys(MapActivity.class);
+                break;
+            case R.id.ll_tip://点击顶部消息
+                startActiviys(NewsActivity.class);
                 break;
         }
     }
