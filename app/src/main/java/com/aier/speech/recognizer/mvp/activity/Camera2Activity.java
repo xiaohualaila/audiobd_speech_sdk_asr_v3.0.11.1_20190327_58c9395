@@ -222,7 +222,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         }
     }
 
-    CountDownTimer timer = new CountDownTimer(5 * 1000, 1000) {
+    CountDownTimer timer = new CountDownTimer(3 * 1000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
             tv_photo_tip.setVisibility(View.VISIBLE);

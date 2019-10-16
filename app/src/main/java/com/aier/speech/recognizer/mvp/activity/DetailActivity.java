@@ -10,7 +10,6 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.aier.speech.recognizer.R;
 import com.aier.speech.recognizer.mvp.contract.DetailContract;
 import com.aier.speech.recognizer.mvp.presenter.DetailPresenter;
@@ -126,10 +125,10 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
                     LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.setMargins(15, 10, 15, 10);
 
-            if (i == 0) {
+            if (i == 2) {
                 textView.setTextColor(getResources().getColor(R.color.red_btn));
                 textView.setTextSize(20f);
-            } else if (i == 2) {
+            } else if (i == 3) {
                 textView.setTextColor(getResources().getColor(R.color.yellow));
                 textView.setTextSize(24f);
             } else if (i == 4) {
