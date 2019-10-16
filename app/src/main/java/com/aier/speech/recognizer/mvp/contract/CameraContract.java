@@ -3,6 +3,7 @@ package com.aier.speech.recognizer.mvp.contract;
 import com.aier.speech.recognizer.bean.QuestionRankResult;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
 import com.aier.speech.recognizer.bean.UniqidResult;
+import com.aier.speech.recognizer.bean.YUBAIBean;
 
 public class CameraContract {
 
@@ -11,6 +12,8 @@ public class CameraContract {
         void upLoadPicGetUseIdFile(String pic_path);
         void getQuestionRank();
         void getMsgData();
+
+        void loadData(String queryData);
     }
 
     public interface View {
@@ -23,7 +26,9 @@ public class CameraContract {
 
         void getQuestionRankDataFail(String msg);
 
-        void backMsg(String msg);
+
+
+        void getYubaiDataSuccess(YUBAIBean DataBean);
     }
 
 

@@ -30,6 +30,7 @@
         android:layout_height="50dp"
         app:layout_constraintTop_toTopOf="@+id/iv_back"
         android:layout_marginLeft="180dp"
+        android:visibility="gone"
         android:layout_marginRight="180dp"/>
 
 

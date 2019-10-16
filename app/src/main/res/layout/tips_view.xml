@@ -21,8 +21,11 @@
         android:src="@drawable/radio_icon"/>
     <TextView
         android:id="@+id/tip"
-        android:layout_width="wrap_content"
+        android:layout_width="900dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="-1"
         android:textColor="@color/white"/>
 </LinearLayout>

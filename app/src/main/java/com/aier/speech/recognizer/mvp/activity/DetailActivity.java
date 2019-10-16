@@ -27,8 +27,8 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DetailActivity extends RobotSpeechActivity implements DetailContract.View{
-
+//public class DetailActivity extends RobotSpeechActivity implements DetailContract.View{
+    public class DetailActivity extends BaseActivity implements DetailContract.View{
     @BindView(R.id.iv_photo)
     ImageView iv_photo;
     @BindView(R.id.name)
@@ -61,7 +61,7 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
         String description =  bundle.getString("description");
         String  score =  bundle.getString("score");
         String img =  bundle.getString("img");
-        speak("您回到红军时代是" + name + "相似度" + score + "%" + duty);
+      //  speak("您回到红军时代是" + name + "相似度" + score + "%" + duty);
         ImageUtils.image(this,img,iv_photo);
         String msg =SharedPreferencesUtil.getString(this,"tips","");
         tip.setText(msg);

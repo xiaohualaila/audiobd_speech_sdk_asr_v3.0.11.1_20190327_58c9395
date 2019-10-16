@@ -178,7 +178,8 @@ public class MapActivity extends BaseActivity implements MapContract.View,
 
     @OnClick({R.id.take_photo, R.id.iv_back, R.id.iv_back_, R.id.iv_right_btn, R.id.iv_delete,
             R.id.iv_answer_question, R.id.tv_renwu, R.id.tv_fengjing, R.id.tv_dang, R.id.tv_story,
-            R.id.iv_search, R.id.jj_icon,R.id.iv_story,R.id.iv_renwu,R.id.iv_fengjing,R.id.iv_dang})
+            R.id.iv_search, R.id.jj_icon,R.id.iv_story,R.id.iv_renwu,R.id.iv_fengjing,R.id.iv_dang
+            ,R.id.tv_search})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_right_btn://菜单
@@ -239,6 +240,9 @@ public class MapActivity extends BaseActivity implements MapContract.View,
                 presenter.loadMapData("2");
                 break;
             case R.id.iv_search:
+                ll_right.setVisibility(View.VISIBLE);
+                break;
+            case R.id.tv_search:
                 ll_right.setVisibility(View.VISIBLE);
                 break;
             case R.id.jj_icon:

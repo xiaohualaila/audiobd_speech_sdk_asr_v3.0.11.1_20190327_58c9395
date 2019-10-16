@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import com.aier.speech.recognizer.bean.QuestionRankResult;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
 import com.aier.speech.recognizer.bean.UniqidResult;
+import com.aier.speech.recognizer.bean.YUBAIBean;
 import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.network.ApiManager;
 
@@ -164,7 +165,43 @@ public class CameraPresenter extends BasePresenter implements CameraContract.Per
 
     @Override
     public void getMsgData() {
-        view.backMsg("小虎你中奖了！");
+
+    }
+
+    @Override
+    public void loadData(String queryData) {
+        ApiManager.getInstence().getYubaiService()
+                .getYUBAIData("YUBAI", queryData)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<YUBAIBean>() {
+
+                    @Override
+                    public void onError(Throwable e) {
+                        view.getDataFail();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        addDisposable(d);
+                    }
+
+                    @Override
+                    public void onNext(YUBAIBean value) {
+                        //   Log.i("xxx", value.getResult());
+                        try {
+                            if (value != null) {
+                                view.getYubaiDataSuccess(value);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
     }
 
 
