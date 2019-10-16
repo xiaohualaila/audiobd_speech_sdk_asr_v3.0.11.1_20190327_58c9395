@@ -68,6 +68,7 @@
             android:layout_marginTop="150dp"
             style="@style/left_photo_score"
             android:layout_marginRight="38dp"
+            android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintRight_toRightOf="@+id/ranking_1"/>
         <TextView
@@ -75,6 +76,7 @@
             android:layout_width="@dimen/score_photo_w"
             android:layout_height="30dp"
             style="@style/bottom_photo_score"
+            android:visibility="gone"
             app:layout_constraintLeft_toLeftOf="@+id/iv_left_pic_1"
             app:layout_constraintRight_toRightOf="@+id/iv_left_pic_1"
             app:layout_constraintBottom_toBottomOf="@+id/iv_left_pic_1"/>
@@ -86,6 +88,7 @@
         style="@style/left_photo_score"
         android:layout_marginTop="10dp"
         android:layout_marginRight="38dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/iv_left_pic_1"
         app:layout_constraintRight_toRightOf="@+id/ranking_1"/>
 
@@ -94,6 +97,7 @@
         android:layout_width="@dimen/score_photo_w"
         android:layout_height="30dp"
         style="@style/bottom_photo_score"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@+id/iv_left_pic_2"
         app:layout_constraintRight_toRightOf="@+id/iv_left_pic_2"
         app:layout_constraintBottom_toBottomOf="@+id/iv_left_pic_2"/>
@@ -105,6 +109,7 @@
         style="@style/left_photo_score"
         android:layout_marginTop="10dp"
         android:layout_marginRight="38dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/iv_left_pic_2"
         app:layout_constraintRight_toRightOf="@+id/ranking_1"/>
 
@@ -113,6 +118,7 @@
         android:layout_width="@dimen/score_photo_w"
         android:layout_height="30dp"
         style="@style/bottom_photo_score"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@+id/iv_left_pic_3"
         app:layout_constraintRight_toRightOf="@+id/iv_left_pic_3"
         app:layout_constraintBottom_toBottomOf="@+id/iv_left_pic_3"/>
@@ -124,6 +130,7 @@
         style="@style/left_photo_score"
         android:layout_marginTop="10dp"
         android:layout_marginRight="38dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/iv_left_pic_3"
         app:layout_constraintRight_toRightOf="@+id/ranking_1"/>
 
@@ -132,6 +139,7 @@
         android:layout_width="@dimen/score_photo_w"
         android:layout_height="30dp"
         style="@style/bottom_photo_score"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@+id/iv_left_pic_4"
         app:layout_constraintRight_toRightOf="@+id/iv_left_pic_4"
         app:layout_constraintBottom_toBottomOf="@+id/iv_left_pic_4"/>
@@ -143,6 +151,7 @@
          style="@style/right_photo_score"
          android:layout_marginTop="150dp"
          android:layout_marginLeft="38dp"
+         android:visibility="gone"
          app:layout_constraintTop_toTopOf="parent"
          app:layout_constraintLeft_toLeftOf="@+id/ranking_2"/>
 
@@ -151,6 +160,7 @@
         android:layout_width="@dimen/score_photo_w"
         android:layout_height="30dp"
         style="@style/bottom_photo_score"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@+id/iv_right_pic_1"
         app:layout_constraintRight_toRightOf="@+id/iv_right_pic_1"
         app:layout_constraintBottom_toBottomOf="@+id/iv_right_pic_1"/>
@@ -162,6 +172,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="38dp"
         style="@style/right_photo_score"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/iv_right_pic_1"
         app:layout_constraintLeft_toLeftOf="@+id/ranking_2"/>
 
@@ -170,6 +181,7 @@
         android:layout_width="@dimen/score_photo_w"
         android:layout_height="30dp"
         style="@style/bottom_photo_score"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@+id/iv_right_pic_2"
         app:layout_constraintRight_toRightOf="@+id/iv_right_pic_2"
         app:layout_constraintBottom_toBottomOf="@+id/iv_right_pic_2"/>
@@ -181,6 +193,7 @@
        style="@style/right_photo_score"
        android:layout_marginLeft="38dp"
        android:layout_marginTop="10dp"
+       android:visibility="gone"
        app:layout_constraintTop_toBottomOf="@+id/iv_right_pic_2"
        app:layout_constraintLeft_toLeftOf="@+id/ranking_2"/>
 
@@ -189,6 +202,7 @@
         android:layout_width="@dimen/score_photo_w"
         android:layout_height="30dp"
         style="@style/bottom_photo_score"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@+id/iv_right_pic_3"
         app:layout_constraintRight_toRightOf="@+id/iv_right_pic_3"
         app:layout_constraintBottom_toBottomOf="@+id/iv_right_pic_3"/>
@@ -200,6 +214,7 @@
         style="@style/right_photo_score"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="38dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/iv_right_pic_3"
         app:layout_constraintLeft_toLeftOf="@+id/ranking_2"/>
 
@@ -208,6 +223,7 @@
         android:layout_width="@dimen/score_photo_w"
         android:layout_height="30dp"
         style="@style/bottom_photo_score"
+        android:visibility="gone"
         app:layout_constraintLeft_toLeftOf="@+id/iv_right_pic_4"
         app:layout_constraintRight_toRightOf="@+id/iv_right_pic_4"
         app:layout_constraintBottom_toBottomOf="@+id/iv_right_pic_4"/>

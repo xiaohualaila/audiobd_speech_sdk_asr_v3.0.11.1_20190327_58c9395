@@ -576,19 +576,47 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             QuestionRankResult.DataBean.LeftBean leftBean;
             for(int i=0;i<leftBeans.size();i++){
                 leftBean = leftBeans.get(i);
+                String img = leftBean.getImage();
                 if(i==0){
-                  //  ImageUtils.imageRound2(this,leftBean.getImage(),iv_left_pic_1);
-                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_1);
-                    left_score_1.setText("总得分："+leftBean.getScore()+"分");
+                    if(!TextUtils.isEmpty(img)){
+                        ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_1);
+                        left_score_1.setText("总得分："+leftBean.getScore()+"分");
+                        iv_left_pic_1.setVisibility(View.VISIBLE);
+                        left_score_1.setVisibility(View.VISIBLE);
+                    }else {
+                        iv_left_pic_1.setVisibility(View.GONE);
+                        left_score_1.setVisibility(View.GONE);
+                    }
                 }else if(i==1){
-                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_2);
-                    left_score_2.setText("总得分："+leftBean.getScore()+"分");
+                    if(!TextUtils.isEmpty(img)){
+                        ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_2);
+                        left_score_2.setText("总得分："+leftBean.getScore()+"分");
+                        iv_left_pic_2.setVisibility(View.VISIBLE);
+                        left_score_2.setVisibility(View.VISIBLE);
+                    }else {
+                        iv_left_pic_2.setVisibility(View.GONE);
+                        left_score_2.setVisibility(View.GONE);
+                    }
                 }else if (i==2){
-                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_3);
-                    left_score_3.setText("总得分："+leftBean.getScore()+"分");
+                    if(!TextUtils.isEmpty(img)){
+                        ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_3);
+                        left_score_3.setText("总得分："+leftBean.getScore()+"分");
+                        iv_left_pic_3.setVisibility(View.VISIBLE);
+                        left_score_3.setVisibility(View.VISIBLE);
+                    }else {
+                        iv_left_pic_3.setVisibility(View.GONE);
+                        left_score_3.setVisibility(View.GONE);
+                    }
                 }else if(i==3){
-                    ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_4);
-                    left_score_4.setText("总得分："+leftBean.getScore()+"分");
+                    if(!TextUtils.isEmpty(img)){
+                        ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_4);
+                        left_score_4.setText("总得分："+leftBean.getScore()+"分");
+                        iv_left_pic_4.setVisibility(View.VISIBLE);
+                        left_score_4.setVisibility(View.VISIBLE);
+                    }else {
+                        iv_left_pic_4.setVisibility(View.GONE);
+                        left_score_4.setVisibility(View.GONE);
+                    }
                 }
             }
         }
@@ -597,18 +625,50 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             QuestionRankResult.DataBean.RightBean rightBean;
             for(int i=0;i<rightBeans.size();i++){
                 rightBean = rightBeans.get(i);
+               String img = rightBean.getImage();
                 if(i==0){
-                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_1);
-                    right_score_1.setText("总得分："+rightBean.getScore()+"分");
+                    if(!TextUtils.isEmpty(img)){
+                        ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_1);
+                        right_score_1.setText("总得分："+rightBean.getScore()+"分");
+                        iv_right_pic_1.setVisibility(View.VISIBLE);
+                        right_score_1.setVisibility(View.VISIBLE);
+                    }else {
+                        iv_right_pic_1.setVisibility(View.GONE);
+                        right_score_1.setVisibility(View.GONE);
+                    }
+
                 }else if(i==1){
-                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_2);
-                    right_score_2.setText("总得分："+rightBean.getScore()+"分");
+                    if(!TextUtils.isEmpty(img)){
+                        ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_2);
+                        right_score_2.setText("总得分："+rightBean.getScore()+"分");
+                        iv_right_pic_2.setVisibility(View.VISIBLE);
+                        right_score_2.setVisibility(View.VISIBLE);
+                    }else {
+                        iv_right_pic_2.setVisibility(View.GONE);
+                        right_score_2.setVisibility(View.GONE);
+                    }
+
                 }else if (i==2){
-                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_3);
-                    right_score_3.setText("总得分："+rightBean.getScore()+"分");
+                    if(!TextUtils.isEmpty(img)){
+                        ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_3);
+                        right_score_3.setText("总得分："+rightBean.getScore()+"分");
+                        iv_right_pic_3.setVisibility(View.VISIBLE);
+                        right_score_3.setVisibility(View.VISIBLE);
+                    }else {
+                        iv_right_pic_3.setVisibility(View.GONE);
+                        right_score_3.setVisibility(View.GONE);
+                    }
+
                 }else if(i==3){
-                    ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_4);
-                    right_score_4.setText("总得分："+rightBean.getScore()+"分");
+                    if(!TextUtils.isEmpty(img)){
+                        ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_4);
+                        right_score_4.setText("总得分："+rightBean.getScore()+"分");
+                        iv_right_pic_4.setVisibility(View.VISIBLE);
+                        right_score_4.setVisibility(View.VISIBLE);
+                    }else {
+                        iv_right_pic_4.setVisibility(View.GONE);
+                        right_score_4.setVisibility(View.GONE);
+                    }
                 }
             }
         }
