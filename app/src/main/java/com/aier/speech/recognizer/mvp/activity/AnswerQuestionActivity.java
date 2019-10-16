@@ -48,6 +48,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
         presenter = new AnswerQuestionPresenter(this);
         presenter.loadData();
         tip.setText("热烈祝贺2019年赣州经开区“传承红色基因·牢记初心使命”赣南苏区红色故事演讲大赛圆满成功!");
+        tip.setTextColor(getResources().getColor(R.color.white));
         tip.setSelected(true);
     }
 

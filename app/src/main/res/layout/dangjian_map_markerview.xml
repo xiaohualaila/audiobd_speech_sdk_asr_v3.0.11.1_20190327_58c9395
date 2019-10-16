@@ -23,7 +23,7 @@
            android:textColor="@color/black"
            android:textSize="20sp" />
        <TextView
-           android:id="@+id/addr"
+           android:id="@+id/tv_shuji"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            app:layout_constraintTop_toBottomOf="@+id/title"
@@ -34,14 +34,29 @@
              android:id="@+id/shuji"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             app:layout_constraintLeft_toRightOf="@+id/addr"
-             app:layout_constraintBottom_toBottomOf="@+id/addr" />
+             app:layout_constraintLeft_toRightOf="@+id/tv_shuji"
+             app:layout_constraintTop_toTopOf="@+id/tv_shuji" />
+
+       <TextView
+           android:id="@+id/phone"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           app:layout_constraintTop_toBottomOf="@+id/shuji"
+           app:layout_constraintLeft_toLeftOf="parent"
+           android:textColor="@color/black"
+           android:text="联系电话:"/>
+       <TextView
+           android:id="@+id/tv_phone"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           app:layout_constraintLeft_toRightOf="@+id/phone"
+           app:layout_constraintTop_toTopOf="@+id/phone" />
 
        <TextView
            android:id="@+id/time"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           app:layout_constraintTop_toBottomOf="@+id/addr"
+           app:layout_constraintTop_toBottomOf="@+id/tv_phone"
            app:layout_constraintLeft_toLeftOf="parent"
            android:textColor="@color/black"
            android:text="近期党建活动:"/>

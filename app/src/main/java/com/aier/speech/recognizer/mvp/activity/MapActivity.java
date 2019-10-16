@@ -242,7 +242,7 @@ public class MapActivity extends BaseActivity implements MapContract.View,
             MapDataResult.DataBean.ListBean bean;
             LatLng mlatLng;
             aMap.moveCamera(CameraUpdateFactory.changeLatLng(dingwei));//将地图移动到指定位置
-            aMap.moveCamera(CameraUpdateFactory.zoomTo(12));
+            aMap.moveCamera(CameraUpdateFactory.zoomTo(14));
             if (listBean.size() > 0) {
                 for (int i = 0; i < listBean.size(); i++) {
                     bean = listBean.get(i);
@@ -307,17 +307,28 @@ public class MapActivity extends BaseActivity implements MapContract.View,
             TextView shuji = markerView.findViewById(R.id.shuji);
             TextView tv_huodong = markerView.findViewById(R.id.tv_huodong);//活动
             TextView tv_jianjie = markerView.findViewById(R.id.tv_jianjie);
-
+            TextView tv_phone = markerView.findViewById(R.id.tv_phone);
             MapDataResult.DataBean.ListBean bean = dangjian_map.get(marker.getId());
             title.setText(bean.getTitle());
-            shuji.setText(bean.getContact_name());//书记
-            tv_huodong.setText("暂无");//活动
+            String name =bean.getContact_name();
+        //    name="王书记";
+            if(!TextUtils.isEmpty(name)){
+                String str = name.substring(0,1)+"**";
+                shuji.setText(str);//书记
+            }
+            String phonenum = bean.getContact_mobile();
+         //   phonenum="17682380987";
+            if(!TextUtils.isEmpty(phonenum)){
+                phonenum = phonenum.substring(0, 3) + "****" + phonenum.substring(7, 11);
+                tv_phone.setText(phonenum);
+            }
+            tv_huodong.setText("暂未更新");//近期党建活动
             String content =bean.getCompany();
             if(content !=null){
                 if(!TextUtils.isEmpty(content)){
-                    if(content.length()>108){
-                        content = content.substring(0,108);
-                        Log.i("sss",content);
+                    if(content.length()>100){
+                        content = content.substring(0,100);
+                       // Log.i("sss",content);
                         tv_jianjie.setText(content+"..");
                     }else {
                         tv_jianjie.setText(content);

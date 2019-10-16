@@ -60,7 +60,7 @@
            app:layout_constraintTop_toBottomOf="@+id/time"
            app:layout_constraintLeft_toLeftOf="parent"
            android:textColor="@color/black"
-           android:text="出生时间:"/>
+           android:text="逝世时间:"/>
        <TextView
            android:id="@+id/time_death_"
            android:layout_width="wrap_content"

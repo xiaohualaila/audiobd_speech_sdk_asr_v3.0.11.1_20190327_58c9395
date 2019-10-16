@@ -17,5 +17,5 @@
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="-1"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/red"/>
 </LinearLayout>
