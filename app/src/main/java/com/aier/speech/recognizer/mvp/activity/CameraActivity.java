@@ -151,7 +151,7 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
         });
 
         initClassifier();
-        heartinterval();
+       // heartinterval();
     }
 
 

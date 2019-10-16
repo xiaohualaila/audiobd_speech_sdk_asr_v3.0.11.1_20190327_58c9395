@@ -82,14 +82,14 @@
            app:layout_constraintLeft_toRightOf="@+id/jianjie"
            app:layout_constraintTop_toTopOf="@+id/jianjie"
            android:text="简介内容"/>
-<!--       <TextView-->
-<!--           android:id="@+id/more"-->
-<!--           android:layout_width="wrap_content"-->
-<!--           android:layout_height="wrap_content"-->
-<!--           app:layout_constraintTop_toBottomOf="@+id/tv_jianjie"-->
-<!--           app:layout_constraintRight_toRightOf="parent"-->
-<!--           android:textColor="@color/blue"-->
-<!--           android:text="查看更多>"/>-->
+       <TextView
+           android:id="@+id/more"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           app:layout_constraintTop_toBottomOf="@+id/tv_jianjie"
+           app:layout_constraintLeft_toLeftOf="parent"
+           android:textColor="@color/blue"
+           android:text="查看更多请到www.buwangchuxin.com"/>
    </android.support.constraint.ConstraintLayout>
     <ImageView
         android:id="@+id/marker_icon"

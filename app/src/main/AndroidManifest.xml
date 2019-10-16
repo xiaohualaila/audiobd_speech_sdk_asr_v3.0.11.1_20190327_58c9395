@@ -101,6 +101,13 @@
 
         </activity>
         <activity
+            android:name=".mvp.activity.WebActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:label="web"
+            android:launchMode="singleTask">
+
+        </activity>
+        <activity
             android:name=".mvp.activity.RobotWakeUpActivity"
             android:launchMode="singleTask"
             android:configChanges="orientation|keyboardHidden|screenLayout"

@@ -71,6 +71,8 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
         tv_score.setText(score);
         initWebSettings();
         mWebView.loadUrl("https://www.zq-ai.com/#/redkg?name="+name);
+        Log.i("sss","name "+ name);
+       // mWebView.loadUrl("https://www.baidu.com");
         addFlexBox();
     }
 
@@ -111,10 +113,10 @@ public class DetailActivity extends RobotSpeechActivity implements DetailContrac
         settings.setLoadWithOverviewMode(true);
         settings.setJavaScriptEnabled(true);
         settings.setAppCacheEnabled(true);
-        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        settings.setSupportZoom(true);
-        mWebView.setWebChromeClient(new MyWebChrome());
-        mWebView.setWebViewClient(new MyWebClient());
+      //  settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+       // settings.setSupportZoom(true);
+        //mWebView.setWebChromeClient(new MyWebChrome());
+       // mWebView.setWebViewClient(new MyWebClient());
     }
 
     private  class MyWebChrome extends WebChromeClient {

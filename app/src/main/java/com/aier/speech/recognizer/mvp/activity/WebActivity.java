@@ -35,8 +35,9 @@ public class WebActivity extends BaseActivity {
         mWebToolbar.setNavigationOnClickListener(v -> finish());
         //4.2 开启辅助功能崩溃
         initWebSettings();
-        mWebView.loadUrl("https:");
-
+        String name = "张琴秋";
+        mWebView.loadUrl("https://www.zq-ai.com/#/redkg?name="+name);
+//        mWebView.loadUrl("https://www.baidu.com");
     }
 
 
@@ -47,13 +48,27 @@ public class WebActivity extends BaseActivity {
 
     private void initWebSettings() {
         WebSettings settings = mWebView.getSettings();
+        settings.setDomStorageEnabled(true);
         settings.setLoadWithOverviewMode(true);
         settings.setJavaScriptEnabled(true);
         settings.setAppCacheEnabled(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         settings.setSupportZoom(true);
+
+        settings.setAppCacheMaxSize(1024*1024*8);
+        String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
+        settings.setAppCachePath(appCachePath);
+        //让WebView支持播放插件
+        settings.setPluginState(WebSettings.PluginState.ON);
+        //设置在WebView内部是否允许访问文件
+        settings.setAllowFileAccess(true);
+        settings.setDefaultTextEncodingName("utf-8");
+       // 开启Application H5 Caches 功能
+        settings.setAppCacheEnabled(true);
         mWebView.setWebChromeClient(new MyWebChrome());
         mWebView.setWebViewClient(new MyWebClient());
+
+
     }
 
     @Override
@@ -78,6 +93,12 @@ public class WebActivity extends BaseActivity {
         @Override
         public void onPageFinished(WebView view,String url) {
             mWebProgressBar.setVisibility(View.GONE);
+        }
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Log.d("webview","url: "+url);
+            view.loadUrl(url);
+            return true;
         }
     }
 
