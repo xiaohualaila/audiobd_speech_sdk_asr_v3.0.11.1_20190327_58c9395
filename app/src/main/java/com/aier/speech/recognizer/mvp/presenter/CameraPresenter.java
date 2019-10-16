@@ -7,6 +7,7 @@ import com.aier.speech.recognizer.bean.QuestionRankResult;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
 import com.aier.speech.recognizer.bean.UniqidResult;
 import com.aier.speech.recognizer.bean.YUBAIBean;
+import com.aier.speech.recognizer.bean.YUBAIBean2;
 import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.network.ApiManager;
 
@@ -171,10 +172,11 @@ public class CameraPresenter extends BasePresenter implements CameraContract.Per
     @Override
     public void loadData(String queryData) {
         ApiManager.getInstence().getYubaiService()
-                .getYUBAIData("YUBAI", queryData)
+               // .getYUBAIData("YUBAI", queryData)
+                .getYUBAIData(queryData)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<YUBAIBean>() {
+                .subscribe(new Observer<YUBAIBean2>() {
 
                     @Override
                     public void onError(Throwable e) {
@@ -191,7 +193,7 @@ public class CameraPresenter extends BasePresenter implements CameraContract.Per
                     }
 
                     @Override
-                    public void onNext(YUBAIBean value) {
+                    public void onNext(YUBAIBean2 value) {
                         //   Log.i("xxx", value.getResult());
                         try {
                             if (value != null) {

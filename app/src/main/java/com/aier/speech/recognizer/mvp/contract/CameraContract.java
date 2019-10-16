@@ -4,6 +4,7 @@ import com.aier.speech.recognizer.bean.QuestionRankResult;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
 import com.aier.speech.recognizer.bean.UniqidResult;
 import com.aier.speech.recognizer.bean.YUBAIBean;
+import com.aier.speech.recognizer.bean.YUBAIBean2;
 
 public class CameraContract {
 
@@ -28,7 +29,7 @@ public class CameraContract {
 
 
 
-        void getYubaiDataSuccess(YUBAIBean DataBean);
+        void getYubaiDataSuccess(YUBAIBean2 DataBean);
     }
 
 

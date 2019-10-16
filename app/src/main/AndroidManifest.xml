@@ -62,6 +62,18 @@
 
         </activity>
         <activity
+            android:name=".mvp.activity.ChuxinActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout"
+            android:launchMode="singleTask"
+            android:label="初心"
+            android:screenOrientation="landscape">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".mvp.activity.AnswerQuestionActivity"
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="答题"
@@ -102,10 +114,7 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="web"
             android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".mvp.activity.RobotWakeUpActivity"

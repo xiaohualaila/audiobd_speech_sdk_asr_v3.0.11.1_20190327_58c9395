@@ -40,48 +40,48 @@ public class StartPresenter extends BasePresenter implements StartContract.Perse
 
     @Override
     public void getWeather() {
-        ApiManager.getInstence().getYubaiService()
-                .getYUBAIData("YUBAI","今天天气怎样")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<YUBAIBean>() {
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-                    }
-
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        addDisposable(d);
-                    }
-
-                    @Override
-                    public void onNext(YUBAIBean value) {
-                        try {
-                            if(value!=null){
-                                String result =value.getResult();
-                                String result2 =value.getResult();
-                                int index =result.indexOf(":");
-                                int index1 = result.indexOf(",");
-                                String str = result.substring(index+1,index1);
-                                String[] weather =str.split("，");
-
-                                String wendu = result2.substring(result.lastIndexOf("℃")-2,result.lastIndexOf("℃")+1);
-                                Log.i("sss","array  "+weather[0].trim());
-                                Log.i("sss","wendu  "+wendu);
-                                view.getWeatherDataSuccess(weather[0],wendu.trim());
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+//        ApiManager.getInstence().getYubaiService()
+//                .getYUBAIData("YUBAI","今天天气怎样")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<YUBAIBean>() {
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                    }
+//
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        addDisposable(d);
+//                    }
+//
+//                    @Override
+//                    public void onNext(YUBAIBean value) {
+//                        try {
+//                            if(value!=null){
+//                                String result =value.getResult();
+//                                String result2 =value.getResult();
+//                                int index =result.indexOf(":");
+//                                int index1 = result.indexOf(",");
+//                                String str = result.substring(index+1,index1);
+//                                String[] weather =str.split("，");
+//
+//                                String wendu = result2.substring(result.lastIndexOf("℃")-2,result.lastIndexOf("℃")+1);
+//                                Log.i("sss","array  "+weather[0].trim());
+//                                Log.i("sss","wendu  "+wendu);
+//                                view.getWeatherDataSuccess(weather[0],wendu.trim());
+//                            }
+//
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
     }
 
 

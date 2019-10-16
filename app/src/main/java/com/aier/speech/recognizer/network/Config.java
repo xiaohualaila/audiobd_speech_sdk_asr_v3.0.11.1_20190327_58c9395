@@ -7,7 +7,11 @@ package com.aier.speech.recognizer.network;
  */
 public class Config {
 
-    public static String YUBAI_API_URL = "https://api.zq-ai.com/zqcloudapi/v1.0/";//羽白
+ //   public static String YUBAI_API_URL = "https://api.zq-ai.com/zqcloudapi/v1.0/";//羽白
+ //   https://www.zq-ai.com/zqcloudapi/v1.0/nlp/redkgqa?data=毛泽东有什么历史功绩？
+
+
+    public static String YUBAI_API_URL = "https://www.zq-ai.com/zqcloudapi/v1.0/nlp/";
 
     public static String BASIC_API_URL = "https://cloud.zq12369.com/nodeapi/";
 

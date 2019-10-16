@@ -17,6 +17,7 @@ import com.aier.speech.recognizer.bean.QuestionRankResult;
 import com.aier.speech.recognizer.bean.SimilarFaceResult;
 import com.aier.speech.recognizer.bean.UniqidResult;
 import com.aier.speech.recognizer.bean.YUBAIBean;
+import com.aier.speech.recognizer.bean.YUBAIBean2;
 import com.aier.speech.recognizer.model.MessageWrap;
 import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.mvp.presenter.CameraPresenter;
@@ -452,72 +453,85 @@ public class CameraActivity extends RobotSpeechActivity implements CameraContrac
     }
 
     @Override
-    public void getYubaiDataSuccess(YUBAIBean bean) {
-        Log.i(TAG, "羽白结果---->  " + bean.toString());
-        String result = bean.getResult();
-        String label = bean.getLabel();
-        //  Log.i("xxxx", "label---->  " + label);
-        //判断是否是新闻如果是新闻资讯显示Webview
-        String text;
-        if (label.equals("新闻资讯")) {
+    public void getYubaiDataSuccess(YUBAIBean2 bean) {
+//        Log.i(TAG, "羽白结果---->  " + bean.toString());
+//        String result = bean.getResult();
+//        String label = bean.getLabel();
+//        //  Log.i("xxxx", "label---->  " + label);
+//        //判断是否是新闻如果是新闻资讯显示Webview
+//        String text;
+//        if (label.equals("新闻资讯")) {
+//
+//            try {
+//                String resultNotHtml = ReplaceHtml.delHtmlTag(result);
+//                int indexLast = resultNotHtml.indexOf("-----------");
+//                text = resultNotHtml.substring(0, indexLast);
+//            } catch (Exception e) {
+//                text = result;
+//            }
+//            //显示滚动文字
+//            tip.setText(text);
+//            tip.setSelected(true);
+//            speak(text);
+//            Log.i("ZZZ", "返回新闻结果----> result  " + result);
+//            return;
+//        }else if(label.equals("笑话娱乐")){
+//            speak(result);
+//            //显示滚动文字
+//            tip.setText(result);
+//            tip.setSelected(true);
+//            return;
+//        }else if(label.equals("音乐欣赏")){
+//            tip.setText(result);
+//            tip.setSelected(true);
+//            //判断是否有声音
+//            String voice = bean.getVoice();
+//            if (TextUtils.isEmpty(voice)) {
+//                speak(result);
+//                Log.i("ZZZ", "speak+++++++++++++++++++++++++++");
+//            } else {
+//                playVoice(voice);
+//            }
+//            return;
+//        }else if(label.equals("儿童故事")){
+//            speak(result);
+//            //显示滚动文字
+//            tip.setText(result);
+//            tip.setSelected(true);
+//            return;
+//        }else{
+//            try {
+//                int index = result.indexOf("你还可以问我");
+//                text = result.substring(0, index);
+//            } catch (Exception e) {
+//                text = result;
+//            }
+//            //显示滚动文字
+//            tip.setText(text);
+//            tip.setSelected(true);
+//        }
+//
+//        //判断是否有声音
+//        String voice = bean.getVoice();
+//        if (TextUtils.isEmpty(voice)) {
+//            speak(text);
+//            Log.i("ZZZ", "speak+++++++++++++++++++++++++++");
+//        } else {
+//            playVoice(voice);
+//        }
 
-            try {
-                String resultNotHtml = ReplaceHtml.delHtmlTag(result);
-                int indexLast = resultNotHtml.indexOf("-----------");
-                text = resultNotHtml.substring(0, indexLast);
-            } catch (Exception e) {
-                text = result;
+        if(bean!=null){
+            YUBAIBean2.ResultBean result = bean.getResult();
+            String answer = result.getAnswer();
+            Log.i("sss",answer);
+            if(!TextUtils.isEmpty(answer)){
+                speak(answer);
+                //显示滚动文字
+                tip.setText(answer);
+                tip.setSelected(true);
             }
-            //显示滚动文字
-            tip.setText(text);
-            tip.setSelected(true);
-            speak(text);
-            Log.i("ZZZ", "返回新闻结果----> result  " + result);
-            return;
-        }else if(label.equals("笑话娱乐")){
-            speak(result);
-            //显示滚动文字
-            tip.setText(result);
-            tip.setSelected(true);
-            return;
-        }else if(label.equals("音乐欣赏")){
-            tip.setText(result);
-            tip.setSelected(true);
-            //判断是否有声音
-            String voice = bean.getVoice();
-            if (TextUtils.isEmpty(voice)) {
-                speak(result);
-                Log.i("ZZZ", "speak+++++++++++++++++++++++++++");
-            } else {
-                playVoice(voice);
-            }
-            return;
-        }else if(label.equals("儿童故事")){
-            speak(result);
-            //显示滚动文字
-            tip.setText(result);
-            tip.setSelected(true);
-            return;
-        }else{
-            try {
-                int index = result.indexOf("你还可以问我");
-                text = result.substring(0, index);
-            } catch (Exception e) {
-                text = result;
-            }
-            //显示滚动文字
-            tip.setText(text);
-            tip.setSelected(true);
         }
 
-        //判断是否有声音
-        String voice = bean.getVoice();
-        if (TextUtils.isEmpty(voice)) {
-            speak(text);
-            Log.i("ZZZ", "speak+++++++++++++++++++++++++++");
-        } else {
-            playVoice(voice);
-        }
     }
 
     private void deletePic() {

@@ -25,9 +25,14 @@ public class RobotWakeUpActivity extends BaseActivity implements EventListener {
         wakeup.registerListener(this); //  EventListener 中 onEvent方法
     }
 
+//    @Override
+//    protected int getLayout() {
+//        return R.layout.camera;
+//    }
+
     @Override
     protected int getLayout() {
-        return R.layout.camera;
+        return R.layout.activity_chuxin;
     }
 
     @Override

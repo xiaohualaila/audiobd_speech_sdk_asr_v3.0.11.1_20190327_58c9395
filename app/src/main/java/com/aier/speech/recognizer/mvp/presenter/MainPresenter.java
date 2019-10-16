@@ -19,38 +19,38 @@ public class MainPresenter extends BasePresenter implements MainContract.Persent
 
     @Override
     public void loadData(String queryData) {
-        ApiManager.getInstence().getYubaiService()
-                .getYUBAIData("YUBAI", queryData)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<YUBAIBean>() {
-
-                    @Override
-                    public void onError(Throwable e) {
-                        view.getDataFail();
-                    }
-
-                    @Override
-                    public void onComplete() {
-                    }
-
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        addDisposable(d);
-                    }
-
-                    @Override
-                    public void onNext(YUBAIBean value) {
-                     //   Log.i("xxx", value.getResult());
-                        try {
-                            if (value != null) {
-                                view.getDataSuccess(value);
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+//        ApiManager.getInstence().getYubaiService()
+//                .getYUBAIData("YUBAI", queryData)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<YUBAIBean>() {
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        view.getDataFail();
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                    }
+//
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        addDisposable(d);
+//                    }
+//
+//                    @Override
+//                    public void onNext(YUBAIBean value) {
+//                     //   Log.i("xxx", value.getResult());
+//                        try {
+//                            if (value != null) {
+//                                view.getDataSuccess(value);
+//                            }
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
     }
 
 
