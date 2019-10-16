@@ -20,7 +20,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.MyViewHold
     private List<TopicsBean> mList;
     private Context mContext;
     private boolean mXingshi, doRight;
-
+    private  int index;
     public XianShiInterface xianShiInterface;
 
     public void setXianShiInterface(XianShiInterface xianShiInterface) {
@@ -52,6 +52,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.MyViewHold
         if (mXingshi) {
             TopicsBean topicsBeans = mList.get(position);
             holder.answer.setText(topicsBeans.getAnswer());
+
             int n = topicsBeans.getIs_answer();
             if (n == 1) {//答对了
                 holder.layout_item.setBackgroundResource(R.drawable.rounded_green_btn);
@@ -59,11 +60,19 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.MyViewHold
                 holder.iv_wrong.setVisibility(View.GONE);
                 holder.answer.setTextColor(mContext.getResources().getColor(R.color.white));
             } else {//答错了
-                holder.layout_item.setBackgroundResource(R.drawable.rounded_red_btn);
-                holder.iv_right.setVisibility(View.GONE);
-                holder.iv_wrong.setVisibility(View.VISIBLE);
-                holder.answer.setTextColor(mContext.getResources().getColor(R.color.white));
+                if(index==position){
+                    holder.layout_item.setBackgroundResource(R.drawable.rounded_red_btn);
+                    holder.iv_right.setVisibility(View.GONE);
+                    holder.iv_wrong.setVisibility(View.VISIBLE);
+                    holder.answer.setTextColor(mContext.getResources().getColor(R.color.white));
+                }else {
+                    holder.layout_item.setBackgroundResource(R.drawable.item_bg);
+                    holder.iv_right.setVisibility(View.GONE);
+                    holder.iv_wrong.setVisibility(View.GONE);
+                    holder.answer.setTextColor(mContext.getResources().getColor(R.color.black));
+                }
             }
+
         } else {
             TopicsBean topicsBeans = mList.get(position);
             holder.answer.setText(topicsBeans.getAnswer());
@@ -78,7 +87,7 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.MyViewHold
                 } else {//答错了
                     doRight = false;
                 }
-                xianShiInterface.setXingShi(doRight);//显示对错结果
+                xianShiInterface.setXingShi(doRight,position);//显示对错结果
             });
         }
 
@@ -98,14 +107,15 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.MyViewHold
         }
     }
 
-    public void setList(List<TopicsBean> list, boolean xingshi) {
+    public void setList(List<TopicsBean> list, boolean xingshi,int index) {
         mList = list;
         mXingshi = xingshi;
+        this.index = index;
         notifyDataSetChanged();
     }
 
     public interface XianShiInterface {
-        void setXingShi(boolean doRight);
+        void setXingShi(boolean doRight,int position);
     }
 
 }

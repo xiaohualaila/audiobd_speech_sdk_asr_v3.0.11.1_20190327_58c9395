@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -58,7 +57,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
         presenter = new AnswerQuestionPresenter(this);
         presenter.loadData();
         tv_num_question.setText("第一题");
-        iv_people.setImageResource(R.drawable.img1);
+        iv_people.setBackground(getResources().getDrawable(R.drawable.img1));
     }
 
     @Override
@@ -83,19 +82,19 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                     bean = (ListBean) questionslist.get(index);
                     String quest = bean.getQuestion();
                     tv_question.setText(quest);
-                    mMyAdapter.setList(bean.getTopics(), false);
+                    mMyAdapter.setList(bean.getTopics(), false,6);
                     if(index==1){
                         tv_num_question.setText("第二题");
-                        iv_people.setImageResource(R.drawable.img2);
+                        iv_people.setBackground(getResources().getDrawable(R.drawable.img2));
                     }else if(index==2){
                         tv_num_question.setText("第三题");
-                        iv_people.setImageResource(R.drawable.img3);
+                        iv_people.setBackground(getResources().getDrawable(R.drawable.img3));
                     }else if(index==3){
                         tv_num_question.setText("第四题");
-                        iv_people.setImageResource(R.drawable.img4);
+                        iv_people.setBackground(getResources().getDrawable(R.drawable.img4));
                     }else {
                         tv_num_question.setText("第五题");
-                        iv_people.setImageResource(R.drawable.img5);
+                        iv_people.setBackground(getResources().getDrawable(R.drawable.img5));
                     }
 
                 } else {
@@ -141,17 +140,20 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
             mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
             mRecyclerView.setAdapter(mMyAdapter);
 
-            mMyAdapter.setXianShiInterface(doRight -> {
-                if (doRight) {
-                    score += every_score;
-                    ToastyUtil.INSTANCE.showSuccess("答题正确！");
+            mMyAdapter.setXianShiInterface(new AnswerAdapter.XianShiInterface() {
+                @Override
+                public void setXingShi(boolean doRight, int position) {
+                    if (doRight) {
+                        score += every_score;
+                        ToastyUtil.INSTANCE.showSuccess("答题正确！");
 
-                    Log.i("score", "score " + score);
-                }else {
-                    ToastyUtil.INSTANCE.showError("答题错误！");
+                        Log.i("score", "score " + score);
+                    } else {
+                        ToastyUtil.INSTANCE.showError("答题错误！");
+                    }
+                    isCanBtnNext = true;
+                    mMyAdapter.setList(bean.getTopics(), true,position);
                 }
-                isCanBtnNext = true;
-                mMyAdapter.setList(bean.getTopics(), true);
             });
         }
     }

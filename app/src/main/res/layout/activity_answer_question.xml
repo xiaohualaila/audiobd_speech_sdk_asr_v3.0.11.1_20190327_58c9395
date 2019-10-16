@@ -20,13 +20,10 @@
         android:id="@+id/iv_people"
         android:layout_width="1860dp"
         android:layout_height="560dp"
-        android:background="@drawable/img1"
         android:layout_marginBottom="26dp"
         app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
-
-
 
     <ImageView
         android:id="@+id/tv_num_question_bg"

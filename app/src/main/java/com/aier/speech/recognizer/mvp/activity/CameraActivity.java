@@ -334,7 +334,6 @@ public class CameraActivity extends BaseActivity implements CameraContract.View 
             for (int i = 0; i < leftBeans.size(); i++) {
                 leftBean = leftBeans.get(i);
                 if (i == 0) {
-                   //   ImageUtils.imageRound2(this,leftBean.getImage(),iv_left_pic_1);
                     ImageUtils.imageCorners(this, leftBean.getImage(), iv_left_pic_1);
                     left_score_1.setText("总得分：" + leftBean.getScore() + "分");
                 } else if (i == 1) {
