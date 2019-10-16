@@ -15,7 +15,7 @@ public class NewsActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_answer_question, R.id.iv_back, R.id.iv_back_, R.id.iv_left_btn})
+    @OnClick({R.id.take_photo, R.id.iv_answer_question, R.id.iv_back, R.id.iv_back_, R.id.iv_left_btn, R.id.iv_right_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_answer_question:

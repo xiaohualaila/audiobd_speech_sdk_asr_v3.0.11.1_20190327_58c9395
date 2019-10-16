@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/menu_bg">
+    android:background="@drawable/news_bg">
  <include
      android:id="@+id/include_common_back"
      layout="@layout/common_back"

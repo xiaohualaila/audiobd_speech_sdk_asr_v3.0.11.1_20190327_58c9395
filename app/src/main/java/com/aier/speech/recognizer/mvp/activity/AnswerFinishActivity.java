@@ -21,7 +21,8 @@ public class AnswerFinishActivity extends BaseActivity implements AnswerFinishCo
     TextView tv_score;
     @BindView(R.id.tv_tip)
     TextView tv_tip;
-
+    @BindView(R.id.tip)
+    TextView tip;
     private AnswerFinishPresenter presenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class AnswerFinishActivity extends BaseActivity implements AnswerFinishCo
        }
     }
 
-    @OnClick({R.id.take_photo, R.id.back_first,R.id.conti_,R.id.iv_left_btn})
+    @OnClick({R.id.take_photo, R.id.back_first,R.id.conti_,R.id.iv_left_btn,R.id.tips_view})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.conti_:
@@ -56,6 +57,10 @@ public class AnswerFinishActivity extends BaseActivity implements AnswerFinishCo
                 break;
             case R.id.iv_right_btn://菜单
                 startActiviys(MenuActivity.class);
+                finish();
+                break;
+            case R.id.tips_view://点击顶部消息
+                startActiviys(NewsActivity.class);
                 finish();
                 break;
             default:

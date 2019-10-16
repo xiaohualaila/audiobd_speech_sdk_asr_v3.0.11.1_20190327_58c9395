@@ -198,7 +198,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     }
 
     @OnClick({R.id.take_photo, R.id.iv_answer_question, R.id.iv_right_btn, R.id.iv_left_btn,
-            R.id.ll_tip})
+            R.id.tips_view})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -216,7 +216,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             case R.id.iv_left_btn://初心地图
                 startActiviys(MapActivity.class);
                 break;
-            case R.id.ll_tip://点击顶部消息
+            case R.id.tips_view://点击顶部消息
                 startActiviys(NewsActivity.class);
                 break;
         }

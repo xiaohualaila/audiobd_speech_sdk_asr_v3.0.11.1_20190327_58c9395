@@ -30,6 +30,8 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
     ImageView iv_people;
     @BindView(R.id.tv_num_question)
     TextView tv_num_question;
+    @BindView(R.id.tip)
+    TextView tip;
     private AnswerQuestionPresenter presenter;
     private LinearLayoutManager mLayoutManager;
     private AnswerAdapter mMyAdapter;
@@ -45,6 +47,8 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
         super.onCreate(savedInstanceState);
         presenter = new AnswerQuestionPresenter(this);
         presenter.loadData();
+        tip.setText("热烈祝贺2019年赣州经开区“传承红色基因·牢记初心使命”赣南苏区红色故事演讲大赛圆满成功!");
+        tip.setSelected(true);
     }
 
     @Override
@@ -57,7 +61,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
         return R.layout.activity_answer_question;
     }
 
-    @OnClick({R.id.take_photo, R.id.iv_next, R.id.iv_left_btn,R.id.iv_right_btn})
+    @OnClick({R.id.take_photo, R.id.iv_next, R.id.iv_left_btn,R.id.iv_right_btn,R.id.tips_view})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -104,6 +108,10 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                 break;
             case R.id.iv_right_btn://菜单
                 startActiviys(MenuActivity.class);
+                finish();
+                break;
+            case R.id.tips_view://点击顶部消息
+                startActiviys(NewsActivity.class);
                 finish();
                 break;
         }
