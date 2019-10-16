@@ -46,7 +46,7 @@ public class AnswerFinishActivity extends BaseActivity {
 
 
     @OnClick({R.id.iv_back, R.id.iv_back_, R.id.take_photo, R.id.back_first,
-            R.id.conti_, R.id.iv_left_btn})
+            R.id.conti_, R.id.iv_left_btn,R.id.iv_right_btn,R.id.jj_icon,R.id.iv_answer_question})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.conti_:
@@ -61,9 +61,19 @@ public class AnswerFinishActivity extends BaseActivity {
                 startActiviys(MenuActivity.class);
                 finish();
                 break;
+            case R.id.jj_icon:
+                startActiviys(IntroductionActivity.class);
+                finish();
+                break;
+            case R.id.iv_answer_question:
+                startActiviys(AnswerQuestionActivity.class);
+                finish();
+                break;
+
             default:
                 finish();
                 break;
+
 
         }
     }
