@@ -10,6 +10,7 @@ import android.graphics.Matrix;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -198,7 +199,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     }
 
     @OnClick({R.id.take_photo, R.id.iv_answer_question, R.id.iv_right_btn, R.id.iv_left_btn,
-            R.id.tips_view})
+            R.id.tips_view,R.id.tv_quite})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
@@ -218,6 +219,9 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 break;
             case R.id.tips_view://点击顶部消息
                 startActiviys(NewsActivity.class);
+                break;
+            case R.id.tv_quite://推出程序
+                System.exit(0);
                 break;
         }
     }
