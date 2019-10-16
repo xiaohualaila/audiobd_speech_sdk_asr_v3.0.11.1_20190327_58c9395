@@ -99,7 +99,6 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                     startActivity(intent);
                     finish();
                 }
-
                 break;
 
             case R.id.iv_left_btn://初心地图

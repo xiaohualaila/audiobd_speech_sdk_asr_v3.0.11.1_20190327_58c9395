@@ -28,15 +28,15 @@
         <item name="android:thumb">@color/title_black</item>
         <item name="android:thumbOffset">10.0dip</item>
     </style>
-
-    <style name="right_photo_score">
-        <item name="android:foreground">@drawable/bottom_score_1</item>
-        <item name="android:scaleType">centerCrop</item>
-    </style>
     <style name="left_photo_score">
         <item name="android:foreground">@drawable/bottom_score_1</item>
-        <item name="android:scaleType">centerCrop</item>
+        <item name="android:padding">5dp</item>
     </style>
+    <style name="right_photo_score">
+        <item name="android:foreground">@drawable/bottom_score_1</item>
+        <item name="android:padding">5dp</item>
+    </style>
+
 
     <style name="bottom_photo_score">
         <item name="android:background">@drawable/bottom_score</item>
