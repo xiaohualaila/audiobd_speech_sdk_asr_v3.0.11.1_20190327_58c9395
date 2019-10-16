@@ -37,8 +37,10 @@ public class WebActivity extends BaseActivity {
         //4.2 开启辅助功能崩溃
         initWebSettings();
         String name = "张琴秋";
-        mWebView.loadUrl("https://www.zq-ai.com/#/redkg?name="+name);
-//        mWebView.loadUrl("https://www.baidu.com");
+      //  mWebView.loadUrl("https://www.zq-ai.com/#/redkg?name="+name);
+       //mWebView.loadUrl("https://emrys5.github.io/ECharts-Relationship-map/");
+       // mWebView.loadUrl("https://gallery.echartsjs.com/editor.html?c=xHy9VHxNuX&v=1");
+        mWebView.loadUrl("https://www.zq-ai.com/zqcloudapi/v1.0/nlp/redkgqa?data=毛泽东有什么历史功绩？");
     }
 
 

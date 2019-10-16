@@ -37,10 +37,7 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:launchMode="singleTask"
             android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".mvp.activity.MainActivity"
@@ -105,7 +102,10 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="web"
             android:launchMode="singleTask">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
         <activity
             android:name=".mvp.activity.RobotWakeUpActivity"

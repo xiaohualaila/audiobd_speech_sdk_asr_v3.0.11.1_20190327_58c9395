@@ -36,13 +36,13 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              app:layout_constraintLeft_toRightOf="@+id/addr"
-             app:layout_constraintBottom_toBottomOf="@+id/addr" />
+             app:layout_constraintTop_toTopOf="@+id/addr" />
 
        <TextView
            android:id="@+id/time"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           app:layout_constraintTop_toBottomOf="@+id/addr"
+           app:layout_constraintTop_toBottomOf="@+id/address"
            app:layout_constraintLeft_toLeftOf="parent"
            android:textColor="@color/black"
            android:text="成立时间:"/>
@@ -65,8 +65,7 @@
            android:layout_width="250dp"
            android:layout_height="wrap_content"
            app:layout_constraintLeft_toRightOf="@+id/jianjie"
-           app:layout_constraintTop_toTopOf="@+id/jianjie"
-           android:text="简介内容"/>
+           app:layout_constraintTop_toTopOf="@+id/jianjie" />
        <TextView
            android:id="@+id/more"
            android:layout_width="wrap_content"
