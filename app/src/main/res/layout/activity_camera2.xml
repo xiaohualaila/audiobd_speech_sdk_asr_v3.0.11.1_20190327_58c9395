@@ -254,10 +254,10 @@
         android:id="@+id/tv_photo_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/iv_left_pic_4"
+        app:layout_constraintTop_toTopOf="@id/iv_left_pic_1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:visibility="gone"
         android:src="@drawable/tv_photo_tip"/>
     <TextView
@@ -267,7 +267,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_photo_tip"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="10dp"
         android:textSize="60sp"
         android:textColor="@color/white" />
 
