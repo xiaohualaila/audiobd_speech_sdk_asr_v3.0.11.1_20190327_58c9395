@@ -78,7 +78,7 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
                     bean = (ListBean) questionslist.get(index);
                     String quest = bean.getQuestion();
                     tv_question.setText(quest);
-                    mMyAdapter.setList(bean.getTopics(), false);
+                    mMyAdapter.setList(bean.getTopics(), false,6);
                     if(index==1){
                         tv_num_question.setText("第二题");
                         iv_people.setImageResource(R.drawable.question_1);
@@ -139,17 +139,20 @@ public class AnswerQuestionActivity extends BaseActivity implements AnswerQuesti
             mRecyclerView.setLayoutManager(mLayoutManager);
             mRecyclerView.setAdapter(mMyAdapter);
 
-            mMyAdapter.setXianShiInterface(doRight -> {
-                if (doRight) {
-                    score += every_score;
-                    ToastyUtil.INSTANCE.showSuccess("答题正确！");
+            mMyAdapter.setXianShiInterface(new AnswerAdapter.XianShiInterface() {
+                @Override
+                public void setXingShi(boolean doRight, int index) {
+                    if (doRight) {
+                        score += every_score;
+                        ToastyUtil.INSTANCE.showSuccess("答题正确！");
 
-                    Log.i("score", "score " + score);
-                }else {
-                    ToastyUtil.INSTANCE.showError("答题错误！");
+                        Log.i("score", "score " + score);
+                    } else {
+                        ToastyUtil.INSTANCE.showError("答题错误！");
+                    }
+                    isCanBtnNext = true;
+                    mMyAdapter.setList(bean.getTopics(), true,index);
                 }
-                isCanBtnNext = true;
-                mMyAdapter.setList(bean.getTopics(), true);
             });
         }
     }

@@ -46,7 +46,8 @@ public class ImageUtils {
         Glide.with(context)
                 .load(url)
 
-                .bitmapTransform(new RoundedCornersTransformation(context,480,0))
+               // .bitmapTransform(new RoundedCornersTransformation(context,480,0))
+                .bitmapTransform(new RoundedCornersTransformation(context,50,0))
 //
 //                .placeholder(R.drawable.perch)//设置占位图
 //                .error(R.drawable.perch)//设置错误图片
