@@ -109,9 +109,10 @@ public class CameraActivity extends RobotSpeechActivity implements CameraContrac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        am = (AudioManager) getSystemService(AUDIO_SERVICE);
+
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        am = (AudioManager) getSystemService(AUDIO_SERVICE);
         presenter = new CameraPresenter(this);
 
         //  mCameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_BACK);//后置摄像头
@@ -491,7 +492,7 @@ public class CameraActivity extends RobotSpeechActivity implements CameraContrac
                 playVoice(voice);
             }
             return;
-        }else if(label.equals("儿童故事")||label.equals("红色知识")){
+        }else if(label.equals("儿童故事")){
             speak(result);
             //显示滚动文字
             tip.setText(result);
