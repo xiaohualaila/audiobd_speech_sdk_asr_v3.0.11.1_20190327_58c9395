@@ -4,6 +4,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.aier.speech.recognizer.R;
@@ -13,6 +14,7 @@ import com.aier.speech.recognizer.bean.UniqidResult;
 import com.aier.speech.recognizer.bean.YUBAIBean2;
 import com.aier.speech.recognizer.mvp.contract.CameraContract;
 import com.aier.speech.recognizer.mvp.presenter.CameraPresenter;
+import com.aier.speech.recognizer.weight.WaveView;
 
 import butterknife.BindView;
 
@@ -22,10 +24,15 @@ public class ChuxinActivity extends RobotSpeechActivity implements CameraContrac
     private CameraPresenter presenter;
     @BindView(R.id.tip)
     TextView tip;
+    @BindView(R.id.voice_view)
+    WaveView waveView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         presenter = new CameraPresenter(this);
+        waveView.setWaveScaleWidth(0.62f);
+        waveView.setWaveScaleHeight(0.1f);
+        waveView.setSpeed(512);
     }
 
     @Override
@@ -83,6 +90,7 @@ public class ChuxinActivity extends RobotSpeechActivity implements CameraContrac
 
     protected void speechStart() {
         Log.i(TAG, "msg ---->   speechStart  ");
+        waveView.setVisibility(View.VISIBLE);
         tip.setText("正在识别");
     }
 
@@ -102,6 +110,7 @@ public class ChuxinActivity extends RobotSpeechActivity implements CameraContrac
      */
     protected void speechFinish() {
         //    Log.i(TAG, "msg ---->   speechFinish  ");
+        waveView.setVisibility(View.GONE);
         tip.setText("");
     }
 

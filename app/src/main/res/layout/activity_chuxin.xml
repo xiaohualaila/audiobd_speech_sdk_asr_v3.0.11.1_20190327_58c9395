@@ -44,4 +44,13 @@
             android:marqueeRepeatLimit="-1"
             android:textColor="@color/white"/>
     </LinearLayout>
+    <com.aier.speech.recognizer.weight.WaveView
+        android:id="@+id/voice_view"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:visibility="gone" />
 </android.support.constraint.ConstraintLayout>
