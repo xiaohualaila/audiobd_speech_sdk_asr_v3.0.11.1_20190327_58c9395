@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg2"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -11,39 +12,29 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
-        android:src="@drawable/comp_logo"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="250dp"
-        android:layout_marginRight="250dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
+        android:src="@drawable/logo"/>
+
+    <ImageView
+        android:id="@+id/chat_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/text_round_tip_bg">
-        <View
-            android:layout_height="30dp"
-            android:background="@color/white"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_width="1dp" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/radio_icon"/>
-        <TextView
-            android:id="@+id/tip"
-            android:layout_width="900dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:singleLine="true"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="-1"
-            android:textColor="@color/white"/>
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/chat_bg"/>
+
+    <ImageView
+        android:id="@+id/right_people"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="50dp"
+        android:src="@drawable/chuxin_img"
+        android:text="开始识别"/>
+
     <com.aier.speech.recognizer.weight.WaveView
         android:id="@+id/voice_view"
         android:layout_width="wrap_content"
@@ -53,4 +44,92 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:visibility="gone" />
+
+
+    <ImageView
+        android:id="@+id/iv_ren"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="200dp"
+        android:visibility="gone"
+        android:src="@drawable/ren"/>
+    <TextView
+        android:id="@+id/my_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/iv_ren"
+        app:layout_constraintTop_toTopOf="@+id/iv_ren"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/red"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="left"
+        android:visibility="gone"
+        android:background="@drawable/dhk"/>
+
+    <ImageView
+        android:id="@+id/chuxin2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginRight="100dp"
+        android:visibility="gone"
+        android:src="@drawable/chuxin2"/>
+
+    <TextView
+        android:id="@+id/back_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toLeftOf="@+id/chuxin2"
+        app:layout_constraintTop_toTopOf="@+id/chuxin2"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/title_black"
+        android:visibility="gone"
+        android:paddingLeft="30dp"
+        android:paddingRight="40dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:padding="10dp"
+        android:gravity="left"
+        android:background="@drawable/duihua"/>
+
+
+    <!--开始识别-->
+    <ImageView
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/yuyin_btn" />
+
+
+
+
+
+
+
+
+
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/btn_stop"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/btn_start"-->
+<!--        app:layout_constraintLeft_toLeftOf="@+id/btn_start"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        android:text="停止说话"/>-->
 </android.support.constraint.ConstraintLayout>

@@ -54,7 +54,7 @@ public class WaveView extends BaseView {
     private ValueAnimator valueAnimator;
 
     @ColorInt
-    private int bgColor = Color.parseColor("#338B36");
+    private int bgColor = Color.parseColor("#60FF9800");//颜色设置
 
     public WaveView(Context context) {
         this(context, null);
