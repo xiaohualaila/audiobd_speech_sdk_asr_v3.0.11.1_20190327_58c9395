@@ -212,6 +212,11 @@ public class CameraActivity extends RobotSpeechActivity implements CameraContrac
 
     }
 
+    @Override
+    public void getNetFail() {
+
+    }
+
     private void deletePic() {
         File file = new File(fileName);
         if (file.exists()) {

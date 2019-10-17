@@ -348,6 +348,11 @@ public class CameraActivity3 extends BaseActivity implements CameraContract.View
         }
     }
 
+    @Override
+    public void getNetFail() {
+
+    }
+
 
     private void deletePic() {
         if (fileName != null) {

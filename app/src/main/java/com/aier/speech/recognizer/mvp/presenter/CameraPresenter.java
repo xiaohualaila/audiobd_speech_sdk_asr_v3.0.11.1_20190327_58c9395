@@ -48,7 +48,7 @@ public class CameraPresenter extends BasePresenter implements CameraContract.Per
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getDataFail();
+                        view.getNetFail();
                     }
 
                     @Override
@@ -94,7 +94,7 @@ public class CameraPresenter extends BasePresenter implements CameraContract.Per
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getDataFail();
+                        view.getNetFail();
                     }
 
                     @Override
@@ -132,7 +132,7 @@ public class CameraPresenter extends BasePresenter implements CameraContract.Per
 
                     @Override
                     public void onError(Throwable e) {
-                        view.getDataFail();
+                        view.getNetFail();
                     }
 
                     @Override

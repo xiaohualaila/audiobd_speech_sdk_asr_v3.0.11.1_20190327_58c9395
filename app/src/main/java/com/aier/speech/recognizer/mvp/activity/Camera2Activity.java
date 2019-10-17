@@ -156,18 +156,40 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     takePhoto();
-             //       Log.i("sss", ">>>>>>>>>>>>>>>>>>>>>心跳");
+                    //       Log.i("sss", ">>>>>>>>>>>>>>>>>>>>>心跳");
                 });
     }
 
-    private void TransLateAnination(){
-        TranslateAnimation translateAnimation  = new TranslateAnimation(
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,480f);
+    private void TransLateAnination() {
+        TranslateAnimation translateAnimation = new TranslateAnimation(
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, 480f);
         translateAnimation.setDuration(2000);
-        translateAnimation.setRepeatCount(Animation.INFINITE);
+        //  translateAnimation.setRepeatCount(Animation.INFINITE);
+        translateAnimation.setRepeatCount(20);
+        translateAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                gray_bg.setVisibility(View.VISIBLE);
+                timer.start();
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                gray_bg.setVisibility(View.GONE);
+                tv_photo_tip.setVisibility(View.GONE);
+                isPhoto = true;
+                line_icon.setVisibility(View.GONE);
+                line_icon.clearAnimation();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
         line_icon.startAnimation(translateAnimation);
 
     }
@@ -199,14 +221,14 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     }
 
     @OnClick({R.id.take_photo, R.id.iv_answer_question, R.id.iv_right_btn, R.id.iv_left_btn,
-            R.id.tips_view,R.id.tv_quite})
+            R.id.tips_view, R.id.tv_quite})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.take_photo:
                 //开始计时
                 TransLateAnination();
-                gray_bg.setVisibility(View.VISIBLE);
-                timer.start();
+//                gray_bg.setVisibility(View.VISIBLE);
+//                timer.start();
                 break;
             case R.id.iv_answer_question:
                 startActiviys(AnswerQuestionActivity.class);
@@ -231,7 +253,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         public void onTick(long millisUntilFinished) {
             tv_photo_tip.setVisibility(View.VISIBLE);
             line_icon.setVisibility(View.VISIBLE);
-            tv_countdown.setText(millisUntilFinished / 1000+"");
+            tv_countdown.setText(millisUntilFinished / 1000 + "");
         }
 
         @Override
@@ -296,8 +318,6 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     };
 
 
-
-
     /**
      * Bitmap 剪切成正方形
      *
@@ -316,7 +336,6 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
      */
     private void showPic() {
         startCameraPreview();
-
         Mat src = imread(filePath);
         Imgproc.cvtColor(src, grayscaleImage, Imgproc.COLOR_RGBA2RGB);
         MatOfRect faces = new MatOfRect();
@@ -333,7 +352,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         } else {
             deletePic();
             isPhoto = false;
-            ToastyUtil.INSTANCE.showError("请重新拍照！");
+            ToastyUtil.INSTANCE.showInfo("正在识别人脸..");
             Log.i("ccc", "没有人脸的照片");
         }
     }
@@ -424,10 +443,10 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
 //        for(int i=0;i<supportedPreviewSizes.size();i++){
 //            Log.i("sss","widget " +supportedPreviewSizes.get(i).width +"  height " +supportedPreviewSizes.get(i).height);
 //        }
-      //  Point realScreenSize = getRealScreenMetrics(Camera2Activity.this);
-    //    Point previewSize = getBestCameraResolution(para, realScreenSize);
+        //  Point realScreenSize = getRealScreenMetrics(Camera2Activity.this);
+        //    Point previewSize = getBestCameraResolution(para, realScreenSize);
         para.setPreviewSize(width, height);
-     //   para.setPreviewSize((int)previewSize.x,(int) previewSize.y);//获得摄像区域的大小
+        //   para.setPreviewSize((int)previewSize.x,(int) previewSize.y);//获得摄像区域的大小
         setPictureSize(para, width, height);
         para.setPictureFormat(ImageFormat.JPEG);//设置图片格式
         setCameraDisplayOrientation(isFrontCamera ? 0 : 1, camera);
@@ -533,7 +552,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             bundle.putString("description", bean1.getDescription());
             bundle.putString("score", score);
             String image = bean1.getDraw_image();
-          //  Log.i("ccc", "  getDraw_image " + image);
+            //  Log.i("ccc", "  getDraw_image " + image);
             if (TextUtils.isEmpty(image)) {
                 bundle.putString("img", bean1.getImage());
             } else {
@@ -545,6 +564,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
             Log.i("ccc", "服务器没有返回信息》》》》》》 ");
             isPhoto = false;
             deletePic();
+            ToastyUtil.INSTANCE.showNormal("没有匹配到信息");
         }
     }
 
@@ -552,10 +572,10 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
     public void getUniqidDataSuccess(UniqidResult value) {
 
         String id = value.getData().getUniqid();
-        if(!TextUtils.isEmpty(id)){
-            SharedPreferencesUtil.putString(this,"uniqid",value.getData().getUniqid());
-        }else{
-            SharedPreferencesUtil.putString(this,"uniqid","");
+        if (!TextUtils.isEmpty(id)) {
+            SharedPreferencesUtil.putString(this, "uniqid", value.getData().getUniqid());
+        } else {
+            SharedPreferencesUtil.putString(this, "uniqid", "");
         }
         deletePic();
     }
@@ -568,108 +588,108 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
 
     @Override
     public void getUniqidDataFail() {
-        SharedPreferencesUtil.putString(this,"uniqid","");
+        SharedPreferencesUtil.putString(this, "uniqid", "");
         deletePic();
     }
 
     @Override
     public void getQuestionRankDataSuccess(QuestionRankResult value) {
         QuestionRankResult.DataBean dataBean = value.getData();
-        List<QuestionRankResult.DataBean.LeftBean> leftBeans =dataBean.getLeft();
-        if(leftBeans.size()>0){
+        List<QuestionRankResult.DataBean.LeftBean> leftBeans = dataBean.getLeft();
+        if (leftBeans.size() > 0) {
             QuestionRankResult.DataBean.LeftBean leftBean;
-            for(int i=0;i<leftBeans.size();i++){
+            for (int i = 0; i < leftBeans.size(); i++) {
                 leftBean = leftBeans.get(i);
                 String img = leftBean.getImage();
-                if(i==0){
-                    if(!TextUtils.isEmpty(img)){
-                        ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_1);
-                        left_score_1.setText("总得分："+leftBean.getScore()+"分");
+                if (i == 0) {
+                    if (!TextUtils.isEmpty(img)) {
+                        ImageUtils.imageCorners(this, leftBean.getImage(), iv_left_pic_1);
+                        left_score_1.setText("总得分：" + leftBean.getScore() + "分");
                         iv_left_pic_1.setVisibility(View.VISIBLE);
                         left_score_1.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         iv_left_pic_1.setVisibility(View.GONE);
                         left_score_1.setVisibility(View.GONE);
                     }
-                }else if(i==1){
-                    if(!TextUtils.isEmpty(img)){
-                        ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_2);
-                        left_score_2.setText("总得分："+leftBean.getScore()+"分");
+                } else if (i == 1) {
+                    if (!TextUtils.isEmpty(img)) {
+                        ImageUtils.imageCorners(this, leftBean.getImage(), iv_left_pic_2);
+                        left_score_2.setText("总得分：" + leftBean.getScore() + "分");
                         iv_left_pic_2.setVisibility(View.VISIBLE);
                         left_score_2.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         iv_left_pic_2.setVisibility(View.GONE);
                         left_score_2.setVisibility(View.GONE);
                     }
-                }else if (i==2){
-                    if(!TextUtils.isEmpty(img)){
-                        ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_3);
-                        left_score_3.setText("总得分："+leftBean.getScore()+"分");
+                } else if (i == 2) {
+                    if (!TextUtils.isEmpty(img)) {
+                        ImageUtils.imageCorners(this, leftBean.getImage(), iv_left_pic_3);
+                        left_score_3.setText("总得分：" + leftBean.getScore() + "分");
                         iv_left_pic_3.setVisibility(View.VISIBLE);
                         left_score_3.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         iv_left_pic_3.setVisibility(View.GONE);
                         left_score_3.setVisibility(View.GONE);
                     }
-                }else if(i==3){
-                    if(!TextUtils.isEmpty(img)){
-                        ImageUtils.imageCorners(this,leftBean.getImage(),iv_left_pic_4);
-                        left_score_4.setText("总得分："+leftBean.getScore()+"分");
+                } else if (i == 3) {
+                    if (!TextUtils.isEmpty(img)) {
+                        ImageUtils.imageCorners(this, leftBean.getImage(), iv_left_pic_4);
+                        left_score_4.setText("总得分：" + leftBean.getScore() + "分");
                         iv_left_pic_4.setVisibility(View.VISIBLE);
                         left_score_4.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         iv_left_pic_4.setVisibility(View.GONE);
                         left_score_4.setVisibility(View.GONE);
                     }
                 }
             }
         }
-        List<QuestionRankResult.DataBean.RightBean> rightBeans =dataBean.getRight();
-        if(rightBeans.size()>0){
+        List<QuestionRankResult.DataBean.RightBean> rightBeans = dataBean.getRight();
+        if (rightBeans.size() > 0) {
             QuestionRankResult.DataBean.RightBean rightBean;
-            for(int i=0;i<rightBeans.size();i++){
+            for (int i = 0; i < rightBeans.size(); i++) {
                 rightBean = rightBeans.get(i);
-               String img = rightBean.getImage();
-                if(i==0){
-                    if(!TextUtils.isEmpty(img)){
-                        ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_1);
-                        right_score_1.setText("总得分："+rightBean.getScore()+"分");
+                String img = rightBean.getImage();
+                if (i == 0) {
+                    if (!TextUtils.isEmpty(img)) {
+                        ImageUtils.imageCorners(this, rightBean.getImage(), iv_right_pic_1);
+                        right_score_1.setText("总得分：" + rightBean.getScore() + "分");
                         iv_right_pic_1.setVisibility(View.VISIBLE);
                         right_score_1.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         iv_right_pic_1.setVisibility(View.GONE);
                         right_score_1.setVisibility(View.GONE);
                     }
 
-                }else if(i==1){
-                    if(!TextUtils.isEmpty(img)){
-                        ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_2);
-                        right_score_2.setText("总得分："+rightBean.getScore()+"分");
+                } else if (i == 1) {
+                    if (!TextUtils.isEmpty(img)) {
+                        ImageUtils.imageCorners(this, rightBean.getImage(), iv_right_pic_2);
+                        right_score_2.setText("总得分：" + rightBean.getScore() + "分");
                         iv_right_pic_2.setVisibility(View.VISIBLE);
                         right_score_2.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         iv_right_pic_2.setVisibility(View.GONE);
                         right_score_2.setVisibility(View.GONE);
                     }
 
-                }else if (i==2){
-                    if(!TextUtils.isEmpty(img)){
-                        ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_3);
-                        right_score_3.setText("总得分："+rightBean.getScore()+"分");
+                } else if (i == 2) {
+                    if (!TextUtils.isEmpty(img)) {
+                        ImageUtils.imageCorners(this, rightBean.getImage(), iv_right_pic_3);
+                        right_score_3.setText("总得分：" + rightBean.getScore() + "分");
                         iv_right_pic_3.setVisibility(View.VISIBLE);
                         right_score_3.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         iv_right_pic_3.setVisibility(View.GONE);
                         right_score_3.setVisibility(View.GONE);
                     }
 
-                }else if(i==3){
-                    if(!TextUtils.isEmpty(img)){
-                        ImageUtils.imageCorners(this,rightBean.getImage(),iv_right_pic_4);
-                        right_score_4.setText("总得分："+rightBean.getScore()+"分");
+                } else if (i == 3) {
+                    if (!TextUtils.isEmpty(img)) {
+                        ImageUtils.imageCorners(this, rightBean.getImage(), iv_right_pic_4);
+                        right_score_4.setText("总得分：" + rightBean.getScore() + "分");
                         iv_right_pic_4.setVisibility(View.VISIBLE);
                         right_score_4.setVisibility(View.VISIBLE);
-                    }else {
+                    } else {
                         iv_right_pic_4.setVisibility(View.GONE);
                         right_score_4.setVisibility(View.GONE);
                     }
@@ -678,11 +698,25 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         }
     }
 
+    @Override
+    public void getNetFail() {
+        ToastyUtil.INSTANCE.showError("网络异常！");
+    }
+
     private void deletePic() {
-        File file = new File(filePath);
-        if (file.exists()) {
-            file.delete();
+        try {
+            if (filePath != null) {
+                File file = new File(filePath);
+                if (file != null) {
+                    if (file.exists()) {
+                        file.delete();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
 
