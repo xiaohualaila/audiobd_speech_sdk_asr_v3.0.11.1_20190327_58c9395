@@ -118,19 +118,21 @@
         android:layout_height="26dp"
         android:background="@color/red"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_photo"
+        app:layout_constraintTop_toBottomOf="@+id/tv_history"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="80dp"/>
     <TextView
+        android:id="@+id/tv_ai_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/iv_photo"
+        app:layout_constraintTop_toBottomOf="@+id/tv_history"
         app:layout_constraintStart_toEndOf="@+id/line_ai"
         android:textColor="@color/red"
         android:textSize="24sp"
         android:layout_marginTop="16dp"
         android:layout_marginLeft="10dp"
         android:text="AI图谱"/>
+
 
     <View
         android:id="@+id/line_work"
@@ -224,6 +226,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_ai_"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ai_"
+        android:textColor="@color/red"
+        android:textSize="24sp"
+        android:text="(跟人物相关的...)"/>
     </android.support.constraint.ConstraintLayout>
 
 

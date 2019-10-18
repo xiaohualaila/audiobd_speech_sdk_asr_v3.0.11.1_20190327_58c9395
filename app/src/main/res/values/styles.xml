@@ -31,10 +31,12 @@
     <style name="left_photo_score">
         <item name="android:foreground">@drawable/bottom_score_1</item>
         <item name="android:padding">5dp</item>
+        <item name="android:scaleType">fitXY</item>
     </style>
     <style name="right_photo_score">
         <item name="android:foreground">@drawable/bottom_score_1</item>
         <item name="android:padding">5dp</item>
+        <item name="android:scaleType">fitXY</item>
     </style>
 
 

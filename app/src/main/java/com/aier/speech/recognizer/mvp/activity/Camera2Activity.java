@@ -165,7 +165,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
                 Animation.ABSOLUTE, 0f,
                 Animation.ABSOLUTE, 0f,
                 Animation.ABSOLUTE, 0f,
-                Animation.ABSOLUTE, 480f);
+                Animation.ABSOLUTE, 500f);
         translateAnimation.setDuration(2000);
         //  translateAnimation.setRepeatCount(Animation.INFINITE);
         translateAnimation.setRepeatCount(20);
@@ -248,7 +248,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         }
     }
 
-    CountDownTimer timer = new CountDownTimer(3 * 1000, 1000) {
+    CountDownTimer timer = new CountDownTimer(5 * 1000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
             tv_photo_tip.setVisibility(View.VISIBLE);
@@ -480,7 +480,7 @@ public class Camera2Activity extends BaseActivity implements SurfaceHolder.Callb
         Camera.CameraInfo info = new Camera.CameraInfo();
         Camera.getCameraInfo(cameraId, info);
         int rotation = this.getWindowManager().getDefaultDisplay().getRotation();
-        rotation = 0;
+//        rotation = 0;
         int degrees = 0;
         switch (rotation) {
             case Surface.ROTATION_0:
