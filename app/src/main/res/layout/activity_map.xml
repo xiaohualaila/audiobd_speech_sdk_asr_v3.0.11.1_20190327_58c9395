@@ -36,14 +36,6 @@
                 android:layout_marginTop="100dp"
                 android:layout_marginLeft="200dp"
                 android:layout_marginRight="200dp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="www.buwangchuxin.com"
-                android:layout_marginTop="64dp"
-                android:layout_centerHorizontal="true"
-                android:layout_alignParentTop="true"/>
 
             <ImageView
                 android:id="@+id/iv_back"
